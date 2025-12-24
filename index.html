@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adminic IA - Gestão Financeira Inteligente</title>
+    <title>ADMINIC - Gestão Financeira com IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
         .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%); }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%); }
+        .card-hover { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .card-hover:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-5px); background: rgba(255,255,255,0.02); }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-200 selection:bg-blue-500/30">
+<body class="text-slate-200 selection:bg-blue-500/30">
 
     <nav class="fixed w-full z-50 border-b border-white/5 glass">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
                     <i class="fas fa-brain text-white"></i>
                 </div>
-                <span class="text-xl font-extrabold tracking-tight text-white uppercase">Adminic<span class="text-blue-500 font-normal">IA</span></span>
+                <span class="text-2xl font-extrabold tracking-tighter text-white uppercase">ADMINIC</span>
             </div>
             <div class="flex items-center gap-6">
-                <a href="https://wa.me/559284790794" class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition-all active:scale-95">
-                    Testar Agora
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20">
+                    Começar Agora
                 </a>
             </div>
         </div>
@@ -37,56 +39,55 @@
 
         <section class="relative pt-48 pb-32 px-6">
             <div class="max-w-5xl mx-auto text-center">
-                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-blue-400 uppercase bg-blue-500/10 border border-blue-500/20 rounded-full">
+                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-bold tracking-widest text-blue-400 uppercase bg-blue-500/10 border border-blue-500/20 rounded-full">
                     <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                     </span>
-                    Inteligência Artificial de Elite
+                    Inteligência Artificial
                 </div>
                 <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-8xl font-extrabold mb-8 leading-[1.05] tracking-tight text-white">
-                    Finanças no <br><span class="text-blue-500">WhatsApp</span> de um jeito novo.
+                    Sua gestão financeira <br><span class="text-blue-500">no WhatsApp.</span>
                 </h1>
                 <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Mande áudios ou textos. A Adminic IA processa, categoriza e organiza tudo em tempo real para você.
+                    Mande áudios ou textos. A ADMINIC processa, categoriza e organiza seus gastos em tempo real, sem planilhas manuais.
                 </p>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:row gap-4 justify-center items-center">
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="https://wa.me/559284790794" class="group bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center gap-3 shadow-2xl shadow-blue-600/20">
-                        <i class="fab fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
-                        Iniciar Conversa Grátis
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        Falar com o Assistente
+                    </a>
+                    <a href="https://script.google.com/macros/s/AKfycbwP21yWgrsVcFimfawrtw11Ndx_bjRkoJc1zy5a0NxCTRvfNPU4Qv0E7uxPzOgHUsZdUQ/exec" target="_blank" class="w-full sm:w-auto px-10 py-5 rounded-2xl font-bold text-lg border border-slate-800 hover:bg-slate-900 transition-all flex items-center justify-center gap-3">
+                        <i class="fas fa-chart-line"></i>
+                        Ver Dashboard Live
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-6 border-t border-white/5 bg-white/5">
+        <section class="py-24 px-6 border-t border-white/5 bg-slate-900/20">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div data-aos="fade-right">
-                        <h2 class="text-4xl font-extrabold text-white mb-6 leading-tight">Muito além de uma <br>planilha de gastos.</h2>
-                        <div class="space-y-6">
-                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
-                                <div class="w-12 h-12 shrink-0 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center"><i class="fas fa-microphone"></i></div>
-                                <div><h4 class="font-bold text-white">Entrada por Voz e Texto</h4><p class="text-slate-400 text-sm italic">"Gastei 150 em gasolina agora". A IA entende e registra na hora.</p></div>
-                            </div>
-                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
-                                <div class="w-12 h-12 shrink-0 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center"><i class="fas fa-chart-line"></i></div>
-                                <div><h4 class="font-bold text-white">Dashboard Inteligente</h4><p class="text-slate-400 text-sm italic">Visualize seus gastos com gráficos dinâmicos via Apps Script.</p></div>
-                            </div>
-                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
-                                <div class="w-12 h-12 shrink-0 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center"><i class="fas fa-shield-halved"></i></div>
-                                <div><h4 class="font-bold text-white">Privacidade e Google Sheets</h4><p class="text-slate-400 text-sm italic">Seus dados são espelhados na sua própria planilha segura.</p></div>
-                            </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div data-aos="fade-up" class="p-8 rounded-3xl card-hover">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fas fa-microphone"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Voz e Texto</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Entrada de dados natural. A IA interpreta frases complexas e registra o valor na categoria correta instantaneamente.</p>
                     </div>
-                    <div data-aos="fade-left" class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                        <div class="relative aspect-video bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-play text-white/20 text-6xl"></i>
-                             </div>
-                             <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50" alt="Preview">
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-3xl card-hover">
+                        <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fas fa-file-invoice-dollar"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Google Sheets</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Transparência total. Seus dados são salvos em uma planilha pessoal no seu Google Drive, com espelhamento em tempo real.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-3xl card-hover">
+                        <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fas fa-gauge-high"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Dashboard Web</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Visualize sua saúde financeira através de gráficos dinâmicos e intuitivos acessíveis de qualquer navegador.</p>
                     </div>
                 </div>
             </div>
@@ -95,19 +96,33 @@
 
     <footer class="border-t border-white/5 pt-20 pb-10 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-                <div class="flex items-center gap-3">
-                    <span class="text-xl font-extrabold text-white">Adminic IA</span>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                        <span class="text-2xl font-extrabold text-white uppercase tracking-tighter">ADMINIC</span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
+                        A evolução da organização financeira pessoal através de Inteligência Artificial integrada ao seu cotidiano.
+                    </p>
                 </div>
-                <div class="flex gap-8 text-sm font-bold text-slate-500">
-                    <a href="politica.html" class="hover:text-blue-400">Privacidade</a>
-                    <a href="#" class="hover:text-blue-400">Termos</a>
-                    <a href="mailto:will@adminic.com.br" class="hover:text-blue-400">Suporte</a>
+                <div class="text-center md:text-left">
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Legal</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                        <li><a href="politica.html" class="hover:text-blue-500 transition">Privacidade</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-500 transition">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Contato</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                        <li>will@adminic.com.br</li>
+                        <li>(92) 98489-9955</li>
+                    </ul>
                 </div>
             </div>
-            <div class="text-center border-t border-white/5 pt-10">
-                <p class="text-slate-600 text-[10px] tracking-[0.3em] uppercase mb-4 italic">Operado por Willyan Souza Brito</p>
-                <p class="text-slate-500 text-xs">CNPJ: 64.146.685/0001-61 | Manaus - AM</p>
+            <div class="pt-10 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-500 text-[10px]">&copy; 2025 ADMINIC IA. Manaus - AM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
