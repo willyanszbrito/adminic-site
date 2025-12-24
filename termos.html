@@ -10,47 +10,56 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
     </style>
 </head>
-<body class="text-slate-300">
-    <nav class="border-b border-white/5 py-6">
+<body class="text-slate-300 selection:bg-blue-500/30">
+    <nav class="border-b border-white/5 py-6 backdrop-blur-md sticky top-0 z-50 bg-[#020617]/80">
         <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
             <span class="text-xl font-extrabold text-white tracking-tighter uppercase">ADMINIC</span>
-            <a href="index.html" class="text-sm font-bold text-blue-500 hover:underline">← Voltar</a>
+            <a href="index.html" class="text-sm font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest">← Voltar ao Início</a>
         </div>
     </nav>
 
     <main class="max-w-4xl mx-auto px-6 py-20">
-        <h1 class="text-4xl font-extrabold text-white mb-8 tracking-tight uppercase">Termos e Suporte</h1>
-        <p class="text-slate-400 mb-12 font-medium">Informações oficiais de atendimento e regras de uso do sistema.</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight uppercase">Termos e Suporte</h1>
+        <p class="text-slate-400 mb-12 font-medium text-lg leading-relaxed">Informações oficiais de atendimento, conformidade com a Meta Business e regras de uso do sistema ADMINIC.</p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-slate-900/50 p-8 rounded-3xl border border-white/5">
-                <h2 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Canais de Atendimento</h2>
-                <div class="space-y-4">
-                    <p class="text-blue-500 font-bold text-lg underline">will@adminic.com.br</p>
-                    <p class="text-blue-500 font-bold text-lg underline">(92) 98489-9955</p>
+            <div class="bg-slate-900/40 p-10 rounded-[2rem] border border-white/5 shadow-2xl">
+                <h2 class="text-white font-bold mb-8 uppercase tracking-[0.2em] text-xs text-blue-500">Canais de Atendimento</h2>
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">E-mail Profissional</p>
+                        <p class="text-white font-bold text-xl hover:text-blue-500 transition-colors cursor-pointer">will@adminic.com.br</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">WhatsApp de Suporte</p>
+                        <p class="text-white font-bold text-xl hover:text-blue-500 transition-colors cursor-pointer">(92) 98489-9955</p>
+                    </div>
                 </div>
             </div>
-            <div class="bg-slate-900/50 p-8 rounded-3xl border border-white/5 font-medium text-sm leading-relaxed">
-                <h2 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Horário de Suporte</h2>
-                <p>Segunda a Sexta: 08:00 às 18:00 (Horário de Manaus).</p>
-                <p class="mt-2 text-slate-500">Respostas em até 24 horas úteis.</p>
+            <div class="bg-slate-900/40 p-10 rounded-[2rem] border border-white/5 shadow-2xl flex flex-col justify-center">
+                <h2 class="text-white font-bold mb-6 uppercase tracking-[0.2em] text-xs text-blue-500">Disponibilidade</h2>
+                <p class="text-white font-bold text-lg mb-2">Segunda a Sexta</p>
+                <p class="text-slate-400 font-medium">08:00 às 18:00 (Manaus)</p>
+                <div class="mt-6 pt-6 border-t border-white/5 text-sm text-slate-500 font-bold uppercase tracking-widest">
+                    Respostas em até 24h úteis
+                </div>
             </div>
         </div>
 
-        <section class="space-y-12 text-sm leading-relaxed font-medium">
-            <div>
-                <h2 class="text-lg font-bold text-white mb-4 uppercase tracking-tight">1. Responsabilidade</h2>
-                <p>O usuário é responsável pela veracidade dos dados inseridos. A ADMINIC IA atua como assistente de organização, não realizando transações bancárias automáticas.</p>
+        <section class="space-y-16 text-base leading-relaxed font-medium">
+            <div class="p-2 border-l-2 border-blue-600 pl-8">
+                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">1. Responsabilidade do Usuário</h2>
+                <p class="text-slate-400">O usuário é integralmente responsável pela veracidade dos dados inseridos no sistema. A ADMINIC IA atua como uma camada de inteligência para organização pessoal, não realizando movimentações financeiras ou transações bancárias de forma autônoma.</p>
             </div>
-            <div>
-                <h2 class="text-lg font-bold text-white mb-4 uppercase tracking-tight">2. Disponibilidade</h2>
-                <p>Embora busquemos 99% de disponibilidade, o serviço depende da infraestrutura da Meta (WhatsApp) e do Google[cite: 1, 9].</p>
+            <div class="p-2 border-l-2 border-blue-600 pl-8">
+                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">2. Infraestrutura e Disponibilidade</h2>
+                <p class="text-slate-400">Buscamos manter 99% de disponibilidade técnica. Contudo, a operação depende da estabilidade das APIs da Meta Platforms (WhatsApp) e dos serviços de nuvem do Google Cloud. Eventuais instabilidades nessas plataformas podem afetar o tempo de resposta da IA.</p>
             </div>
         </section>
     </main>
 
-    <footer class="py-10 text-center border-t border-white/5">
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61 [cite: 10, 21]</p>
+    <footer class="py-12 text-center border-t border-white/5 bg-[#020617]">
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
     </footer>
 </body>
 </html>

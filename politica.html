@@ -10,40 +10,53 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
     </style>
 </head>
-<body class="text-slate-300">
-    <nav class="border-b border-white/5 py-6">
+<body class="text-slate-300 selection:bg-blue-500/30">
+    <nav class="border-b border-white/5 py-6 backdrop-blur-md sticky top-0 z-50 bg-[#020617]/80">
         <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
             <span class="text-xl font-extrabold text-white tracking-tighter uppercase">ADMINIC</span>
-            <a href="index.html" class="text-sm font-bold text-blue-500 hover:underline">← Voltar</a>
+            <a href="index.html" class="text-sm font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest">← Voltar ao Início</a>
         </div>
     </nav>
 
     <main class="max-w-4xl mx-auto px-6 py-20">
-        <h1 class="text-4xl font-extrabold text-white mb-8 tracking-tight uppercase">Política de Privacidade</h1>
-        <p class="mb-12 text-slate-400 font-medium uppercase text-xs tracking-widest">Atualizado em 23 de dezembro de 2025</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight uppercase">Política de Privacidade</h1>
+        <div class="inline-block px-4 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-16">
+            Atualizado em 23 de dezembro de 2025
+        </div>
 
-        <section class="space-y-12">
-            <div>
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">1. Coleta de Dados</h2>
-                <p class="leading-relaxed">Coletamos seu número de telefone e nome de perfil do WhatsApp para identificação do usuário e armazenamento de registros financeiros em sua planilha pessoal vinculada ao Google Sheets.</p>
+        <section class="grid grid-cols-1 gap-16">
+            <div class="group">
+                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
+                    <span class="text-blue-600 text-xs">01</span> Coleta de Dados
+                </h2>
+                <p class="leading-relaxed text-slate-400 font-medium">Coletamos exclusivamente seu número de telefone e nome de perfil do WhatsApp para fins de identificação única. Esses dados permitem que a ADMINIC acesse e registre informações na sua planilha pessoal do Google Sheets.</p>
             </div>
-            <div>
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">2. Inteligência Artificial</h2>
-                <p class="leading-relaxed">Utilizamos a API do Google Gemini para o processamento de linguagem natural das mensagens recebidas. Os dados são processados exclusivamente para categorização financeira e não são compartilhados para outros fins.</p>
+
+            <div class="group">
+                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
+                    <span class="text-blue-600 text-xs">02</span> Inteligência Artificial
+                </h2>
+                <p class="leading-relaxed text-slate-400 font-medium font-sans">Utilizamos a API do Google Gemini para o processamento de linguagem natural. Os dados enviados por áudio ou texto são transformados em categorias financeiras. Nenhum dado sensível é utilizado para treinamento de modelos públicos de IA.</p>
             </div>
-            <div>
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">3. Segurança</h2>
-                <p class="leading-relaxed">Seus dados financeiros permanecem privados em seu ambiente Google. Não comercializamos informações de usuários com terceiros.</p>
+
+            <div class="group">
+                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
+                    <span class="text-blue-600 text-xs">03</span> Segurança e Sigilo
+                </h2>
+                <p class="leading-relaxed text-slate-400 font-medium">Seus dados financeiros permanecem privados no ecossistema Google (Sheets/Drive). A ADMINIC não comercializa, compartilha ou expõe informações de usuários a terceiros para fins publicitários.</p>
             </div>
-            <div>
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">4. Exclusão de Dados</h2>
-                <p class="leading-relaxed">A qualquer momento, o usuário pode solicitar a exclusão de sua conta e todos os dados associados através dos nossos canais de suporte.</p>
+
+            <div class="group">
+                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight flex items-center gap-4">
+                    <span class="text-blue-600 text-xs">04</span> Exclusão de Informações
+                </h2>
+                <p class="leading-relaxed text-slate-400 font-medium italic">O usuário possui o direito de esquecimento. A qualquer momento, você pode solicitar a exclusão total de sua conta e histórico através de nossos canais de suporte oficial.</p>
             </div>
         </section>
     </main>
 
-    <footer class="py-10 text-center border-t border-white/5">
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+    <footer class="py-12 text-center border-t border-white/5 bg-[#020617]">
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
     </footer>
 </body>
 </html>
