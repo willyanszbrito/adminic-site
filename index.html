@@ -5,119 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminic IA - Gestão Financeira Inteligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%); }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans selection:bg-blue-500/30">
-    <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20">
-                    <i class="fas fa-robot text-white text-xl"></i>
+<body class="bg-[#020617] text-slate-200 selection:bg-blue-500/30">
+
+    <nav class="fixed w-full z-50 border-b border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-brain text-white"></i>
                 </div>
-                <span class="text-2xl font-bold tracking-tighter text-white">ADMINIC<span class="text-blue-500">IA</span></span>
+                <span class="text-xl font-extrabold tracking-tight text-white uppercase">Adminic<span class="text-blue-500 font-normal">IA</span></span>
             </div>
-            <a href="https://wa.me/559284790794" class="hidden md:block bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-blue-900/20">
-                Começar Agora
-            </a>
+            <div class="flex items-center gap-6">
+                <a href="https://wa.me/559284790794" class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition-all active:scale-95">
+                    Testar Agora
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main>
-        <section class="pt-40 pb-20 px-6">
-            <div class="max-w-6xl mx-auto text-center">
-                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wide text-blue-400 uppercase bg-blue-400/10 border border-blue-400/20 rounded-full">
-                    Sua IA Financeira no WhatsApp
-                </span>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[1.1] tracking-tight text-white italic">
-                    Controle seus gastos <br>
-                    <span class="bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">conversando com a IA.</span>
+    <main class="relative overflow-hidden">
+        <div class="absolute inset-0 hero-gradient pointer-events-none"></div>
+
+        <section class="relative pt-48 pb-32 px-6">
+            <div class="max-w-5xl mx-auto text-center">
+                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-blue-400 uppercase bg-blue-500/10 border border-blue-500/20 rounded-full">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Inteligência Artificial de Elite
+                </div>
+                <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-8xl font-extrabold mb-8 leading-[1.05] tracking-tight text-white">
+                    Finanças no <br><span class="text-blue-500">WhatsApp</span> de um jeito novo.
                 </h1>
-                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed italic">
-                    Chega de planilhas complexas. Mande um áudio ou texto no WhatsApp e a Adminic IA organiza suas finanças em tempo real.
+                <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Mande áudios ou textos. A Adminic IA processa, categoriza e organiza tudo em tempo real para você.
                 </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-                    <a href="https://wa.me/559284790794" class="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-3">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        Falar com o Will IA
-                    </a>
-                    <a href="#funciona" class="w-full md:w-auto px-10 py-5 rounded-2xl font-bold text-lg border border-slate-700 hover:bg-slate-900 transition-all">
-                        Como funciona?
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:row gap-4 justify-center items-center">
+                    <a href="https://wa.me/559284790794" class="group bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center gap-3 shadow-2xl shadow-blue-600/20">
+                        <i class="fab fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
+                        Iniciar Conversa Grátis
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="funciona" class="py-24 border-t border-slate-900 bg-slate-900/30">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-8 bg-slate-900 border border-slate-800 rounded-3xl">
-                        <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-microphone text-xl"></i>
+        <section class="py-24 px-6 border-t border-white/5 bg-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl font-extrabold text-white mb-6 leading-tight">Muito além de uma <br>planilha de gastos.</h2>
+                        <div class="space-y-6">
+                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
+                                <div class="w-12 h-12 shrink-0 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center"><i class="fas fa-microphone"></i></div>
+                                <div><h4 class="font-bold text-white">Entrada por Voz e Texto</h4><p class="text-slate-400 text-sm italic">"Gastei 150 em gasolina agora". A IA entende e registra na hora.</p></div>
+                            </div>
+                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
+                                <div class="w-12 h-12 shrink-0 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center"><i class="fas fa-chart-line"></i></div>
+                                <div><h4 class="font-bold text-white">Dashboard Inteligente</h4><p class="text-slate-400 text-sm italic">Visualize seus gastos com gráficos dinâmicos via Apps Script.</p></div>
+                            </div>
+                            <div class="flex gap-4 p-4 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors">
+                                <div class="w-12 h-12 shrink-0 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center"><i class="fas fa-shield-halved"></i></div>
+                                <div><h4 class="font-bold text-white">Privacidade e Google Sheets</h4><p class="text-slate-400 text-sm italic">Seus dados são espelhados na sua própria planilha segura.</p></div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Entrada por Voz</h3>
-                        <p class="text-slate-400 leading-relaxed italic">"Will, gastei 50 reais no almoço hoje". Pronto! A IA entende e registra.</p>
                     </div>
-                    <div class="p-8 bg-slate-900 border border-slate-800 rounded-3xl">
-                        <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-chart-pie text-xl"></i>
+                    <div data-aos="fade-left" class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative aspect-video bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                             <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-play text-white/20 text-6xl"></i>
+                             </div>
+                             <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50" alt="Preview">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Categorização Automática</h3>
-                        <p class="text-slate-400 leading-relaxed italic">Nossa IA classifica seus gastos em Alimentação, Transporte e mais, sem você digitar nada.</p>
-                    </div>
-                    <div class="p-8 bg-slate-900 border border-slate-800 rounded-3xl">
-                        <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-table text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Relatórios no Sheets</h3>
-                        <p class="text-slate-400 leading-relaxed italic">Todos os seus dados são espelhados em uma planilha pessoal segura no seu Google Drive.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-800 bg-slate-950 pt-20 pb-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-                <div class="max-w-xs">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-robot text-white text-sm"></i>
-                        </div>
-                        <span class="text-xl font-bold text-white">ADMINIC IA</span>
-                    </div>
-                    <p class="text-slate-500 text-sm leading-relaxed italic">
-                        Transformando a gestão financeira através da Inteligência Artificial e simplicidade do WhatsApp.
-                    </p>
+    <footer class="border-t border-white/5 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl font-extrabold text-white">Adminic IA</span>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h4 class="text-white font-bold mb-6">Legal</h4>
-                        <ul class="space-y-4 text-sm text-slate-500">
-                            <li><a href="politica.html" class="hover:text-blue-400 transition">Política de Privacidade</a></li>
-                            <li><a href="#" class="hover:text-blue-400 transition">Termos de Uso</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-6">Contato</h4>
-                        <ul class="space-y-4 text-sm text-slate-500">
-                            <li>will@adminic.com.br</li>
-                            <li>(92) 98489-9955</li>
-                        </ul>
-                    </div>
+                <div class="flex gap-8 text-sm font-bold text-slate-500">
+                    <a href="politica.html" class="hover:text-blue-400">Privacidade</a>
+                    <a href="#" class="hover:text-blue-400">Termos</a>
+                    <a href="mailto:will@adminic.com.br" class="hover:text-blue-400">Suporte</a>
                 </div>
             </div>
-            <div class="border-t border-slate-900 pt-10 text-center">
-                <p class="text-slate-600 text-[10px] uppercase tracking-[0.2em] mb-4">Informações Legais</p>
-                <p class="text-slate-500 text-xs italic">
-                    Adminic IA - Willyan Souza Brito | CNPJ: 64.146.685/0001-61<br>
-                    Manaus - AM, Brasil.
-                </p>
-                <p class="mt-8 text-slate-700 text-[10px] italic font-medium">
-                    &copy; 2025 ADMINIC IA. TODOS OS DIREITOS RESERVADOS.
-                </p>
+            <div class="text-center border-t border-white/5 pt-10">
+                <p class="text-slate-600 text-[10px] tracking-[0.3em] uppercase mb-4 italic">Operado por Willyan Souza Brito</p>
+                <p class="text-slate-500 text-xs">CNPJ: 64.146.685/0001-61 | Manaus - AM</p>
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>
