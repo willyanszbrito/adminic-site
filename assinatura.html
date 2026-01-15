@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assinatura de E-mail - ADMINIC</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            overflow-x: hidden;
+        }
+        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* WhatsApp button fixed para mobile */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
+    
+    <!-- Top Bar (Desktop only) -->
+    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fas fa-envelope"></i> 
+                    <span class="hidden lg:inline">contato@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> 
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-white transition px-2 py-1">Produtos</a>
+                <a href="contato.html" class="hover:text-white transition px-2 py-1">Contato</a>
+            </div>
+
+            <!-- Desktop Button -->
+            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2">
+                <i class="fas fa-home"></i>
+                <span>Voltar ao Site</span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Produtos</a>
+                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Contato</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Voltar ao Site</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <header class="mb-12 text-center">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white uppercase mb-4">Assinatura de E-mail</h1>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Modelo profissional de assinatura para e-mails corporativos da Adminic.
+                </p>
+            </header>
+
+            <!-- Instruções -->
+            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5 mb-8">
+                <h2 class="text-xl font-bold text-white mb-4">📋 Como usar esta assinatura:</h2>
+                <ol class="list-decimal pl-5 space-y-3 text-slate-400">
+                    <li><strong>Copie o código HTML</strong> da assinatura abaixo</li>
+                    <li><strong>No Asas PJ</strong>, vá para as configurações de e-mail</li>
+                    <li><strong>Cole o código</strong> no campo de assinatura</li>
+                    <li><strong>Substitua</strong> [SEU NOME] e [SEU CARGO] pelos seus dados</li>
+                    <li><strong>Salve</strong> as alterações</li>
+                </ol>
+            </div>
+
+            <!-- Pré-visualização -->
+            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5 mb-8">
+                <h2 class="text-xl font-bold text-white mb-6">👁️ Pré-visualização da Assinatura</h2>
+                <div class="bg-white p-6 rounded-lg">
+                    <div style="font-family: Arial, sans-serif; color: #333; font-size: 12px; line-height: 1.5;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                            <tr>
+                                <td width="80" valign="top" style="padding-right: 15px; vertical-align: top;">
+                                    <img src="https://adminic.com.br/logo.png" alt="Adminic" width="60" height="60" style="border-radius: 8px; display: block;">
+                                </td>
+                                <td valign="top" style="vertical-align: top;">
+                                    <p style="margin: 0 0 4px 0; font-weight: bold; font-size: 14px; color: #2563eb;">WILLYAN SOUZA BRITO</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 12px; color: #666;">Fundador & Desenvolvedor | Adminic Serviços e Comércio</p>
+                                    <p style="margin: 0 0 6px 0; font-size: 11px; color: #999;">
+                                        📞 <a href="tel:+5592984899955" style="color: #2563eb; text-decoration: none;">(92) 98489-9955</a> | 
+                                        📧 <a href="mailto:will@adminic.com.br" style="color: #2563eb; text-decoration: none;">will@adminic.com.br</a> | 
+                                        🌐 <a href="https://adminic.com.br" style="color: #2563eb; text-decoration: none;">adminic.com.br</a>
+                                    </p>
+                                    <p style="margin: 0; font-size: 10px; color: #999;">
+                                        CNPJ: 64.146.685/0001-61 | Manaus - Amazonas
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Código HTML -->
+            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-white">📄 Código HTML da Assinatura</h2>
+                    <button id="copy-button" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                        <i class="far fa-copy"></i> Copiar Código
+                    </button>
+                </div>
+                <pre id="signature-code" class="bg-[#020617] p-4 rounded-lg overflow-x-auto text-xs text-slate-300 leading-relaxed">
+&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse: collapse;&quot;&gt;
+    &lt;tr&gt;
+        &lt;td width=&quot;80&quot; valign=&quot;top&quot; style=&quot;padding-right: 15px; vertical-align: top;&quot;&gt;
+            &lt;img src=&quot;https://adminic.com.br/logo.png&quot; alt=&quot;Adminic&quot; width=&quot;60&quot; height=&quot;60&quot; style=&quot;border-radius: 8px; display: block;&quot;&gt;
+        &lt;/td&gt;
+        &lt;td valign=&quot;top&quot; style=&quot;vertical-align: top;&quot;&gt;
+            &lt;p style=&quot;margin: 0 0 4px 0; font-weight: bold; font-size: 14px; color: #2563eb;&quot;&gt;[SEU NOME]&lt;/p&gt;
+            &lt;p style=&quot;margin: 0 0 8px 0; font-size: 12px; color: #666;&quot;&gt;[SEU CARGO] | Adminic Serviços e Com&#233;rcio&lt;/p&gt;
+            &lt;p style=&quot;margin: 0 0 6px 0; font-size: 11px; color: #999;&quot;&gt;
+                📞 &lt;a href=&quot;tel:+5592984899955&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;(92) 98489-9955&lt;/a&gt; | 
+                📧 &lt;a href=&quot;mailto:contato@adminic.com.br&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;contato@adminic.com.br&lt;/a&gt; | 
+                🌐 &lt;a href=&quot;https://adminic.com.br&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;adminic.com.br&lt;/a&gt;
+            &lt;/p&gt;
+            &lt;p style=&quot;margin: 0; font-size: 10px; color: #999;&quot;&gt;
+                CNPJ: 64.146.685/0001-61 | Manaus - Amazonas
+            &lt;/p&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </pre>
+                <p id="copy-success" class="text-green-400 text-xs mt-3 hidden">✓ Código copiado para a área de transferência!</p>
+            </div>
+
+            <!-- Versões Alternativas -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-4">📱 Versão Simplificada (Mobile)</h3>
+                    <pre class="bg-[#020617] p-3 rounded-lg overflow-x-auto text-[10px] text-slate-400">
+&lt;div style=&quot;font-family: Arial, sans-serif; font-size: 12px; color: #333;&quot;&gt;
+    &lt;strong style=&quot;color: #2563eb;&quot;&gt;[SEU NOME]&lt;/strong&gt;&lt;br&gt;
+    [SEU CARGO] | Adminic Servi&#231;os e Com&#233;rcio&lt;br&gt;
+    📞 (92) 98489-9955 | 📧 contato@adminic.com.br&lt;br&gt;
+    🌐 adminic.com.br
+&lt;/div&gt;
+                    </pre>
+                </div>
+                
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-4">🎨 Versão sem Imagem</h3>
+                    <pre class="bg-[#020617] p-3 rounded-lg overflow-x-auto text-[10px] text-slate-400">
+&lt;div style=&quot;font-family: Arial, sans-serif; font-size: 12px; color: #333;&quot;&gt;
+    &lt;strong style=&quot;color: #2563eb; font-size: 14px;&quot;&gt;[SEU NOME]&lt;/strong&gt;&lt;br&gt;
+    &lt;span style=&quot;color: #666;&quot;&gt;[SEU CARGO] | Adminic Servi&#231;os e Com&#233;rcio&lt;/span&gt;&lt;br&gt;
+    📞 &lt;a href=&quot;tel:+5592984899955&quot; style=&quot;color: #2563eb;&quot;&gt;(92) 98489-9955&lt;/a&gt; | 
+    📧 &lt;a href=&quot;mailto:contato@adminic.com.br&quot; style=&quot;color: #2563eb;&quot;&gt;contato@adminic.com.br&lt;/a&gt;&lt;br&gt;
+    &lt;span style=&quot;font-size: 10px; color: #999;&quot;&gt;CNPJ: 64.146.685/0001-61 | Manaus - AM&lt;/span&gt;
+&lt;/div&gt;
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4">ADMINIC</a>
+                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1">(92) 8489-9955</a></li>
+                        <li>Manaus, AM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços e Comércio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu mobile toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                // Alterar ícone
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fechar menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuButton.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Copiar código da assinatura
+        const copyButton = document.getElementById('copy-button');
+        const signatureCode = document.getElementById('signature-code');
+        const copySuccess = document.getElementById('copy-success');
+        
+        if (copyButton && signatureCode) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    const code = signatureCode.textContent;
+                    await navigator.clipboard.writeText(code);
+                    
+                    // Mostrar mensagem de sucesso
+                    copySuccess.classList.remove('hidden');
+                    copyButton.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                    copyButton.classList.remove('bg-blue-600');
+                    copyButton.classList.add('bg-green-600');
+                    
+                    // Reset após 3 segundos
+                    setTimeout(() => {
+                        copySuccess.classList.add('hidden');
+                        copyButton.innerHTML = '<i class="far fa-copy"></i> Copiar Código';
+                        copyButton.classList.remove('bg-green-600');
+                        copyButton.classList.add('bg-blue-600');
+                    }, 3000);
+                } catch (err) {
+                    console.error('Erro ao copiar:', err);
+                    alert('Não foi possível copiar o código. Tente selecionar e copiar manualmente.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
