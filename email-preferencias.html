@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferências de E-mail - ADMINIC</title>
+    
+    <meta property="og:title" content="Gerenciar Preferências de E-mail - ADMINIC">
+    <meta property="og:description" content="Controle quais tipos de e-mails você deseja receber da Adminic.">
+    <meta property="og:type" content="website">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            overflow-x: hidden;
+        }
+        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* WhatsApp button fixed para mobile */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        /* Animações suaves */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* Melhorias de acessibilidade */
+        .focus-visible:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        /* Estados de formulário */
+        .form-loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .form-success {
+            border-color: #10b981 !important;
+            background-color: rgba(16, 185, 129, 0.05) !important;
+        }
+        
+        .form-error {
+            border-color: #ef4444 !important;
+            background-color: rgba(239, 68, 68, 0.05) !important;
+        }
+        
+        /* Checkbox personalizado */
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #475569;
+            border-radius: 4px;
+            background: transparent;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .custom-checkbox.checked {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        
+        .custom-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
+    
+    <!-- Top Bar (Desktop only) -->
+    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:privacidade@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fas fa-envelope"></i> 
+                    <span class="hidden lg:inline">privacidade@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> 
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
+                    <i class="fas fa-cube text-white text-sm md:text-base" aria-hidden="true"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-white transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-white transition px-2 py-1 focus-visible">Contato</a>
+            </div>
+
+            <!-- Desktop Button -->
+            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span>Voltar ao Site</span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Voltar ao Site</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12 px-4 md:px-6" id="main-content" tabindex="-1">
+        <div class="max-w-2xl mx-auto">
+            <!-- Cabeçalho explicativo -->
+            <header class="mb-8 text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 mb-4">
+                    <i class="fas fa-envelope-open-text text-2xl text-blue-500" aria-hidden="true"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                    Preferências de E-mail
+                </h1>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    Controle quais tipos de comunicação você recebe da Adminic.
+                </p>
+            </header>
+            
+            <!-- Explicação -->
+            <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20 mb-8">
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-info-circle text-blue-400 text-xl mt-1" aria-hidden="true"></i>
+                    <div>
+                        <h2 class="text-white font-bold mb-2">Por que você está aqui?</h2>
+                        <p class="text-slate-300 text-sm">
+                            Você clicou em um link de gerenciamento de e-mails que enviamos para você. 
+                            <strong class="text-white">Nada será cancelado automaticamente</strong> - você escolhe quais comunicações deseja continuar recebendo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulário de preferências -->
+            <form id="email-preferences-form" class="space-y-6">
+                <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5">
+                    <h2 class="text-white font-bold text-xl mb-6">📧 Selecione suas preferências</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Opção 1 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0" 
+                                 onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold mb-2">Cancelar apenas e-mails promocionais</h3>
+                                <p class="text-slate-400 text-sm">
+                                    Você continuará recebendo:
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-400">
+                                        <li>Faturas e cobranças</li>
+                                        <li>Atualizações importantes do serviço</li>
+                                        <li>Alertas de segurança</li>
+                                    </ul>
+                                    <p class="mt-2 text-slate-500 text-xs">
+                                        <strong>O que será cancelado:</strong> Ofertas especiais, descontos e promoções.
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Opção 2 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0"
+                                 onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold mb-2">Cancelar novidades e campanhas</h3>
+                                <p class="text-slate-400 text-sm">
+                                    Você continuará recebendo:
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-400">
+                                        <li>Faturas e cobranças</li>
+                                        <li>Alertas de segurança</li>
+                                        <li>Comunicações essenciais</li>
+                                    </ul>
+                                    <p class="mt-2 text-slate-500 text-xs">
+                                        <strong>O que será cancelado:</strong> Novos recursos, estudos de caso e conteúdos educativos.
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Opção 3 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0"
+                                 onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold mb-2">Cancelar todos os e-mails</h3>
+                                <p class="text-slate-400 text-sm">
+                                    <strong class="text-red-400">Atenção:</strong> Esta opção cancela TODOS os tipos de e-mail, incluindo:
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-red-300/70">
+                                        <li>Faturas e cobranças</li>
+                                        <li>Alertas de segurança</li>
+                                        <li>Atualizações do serviço</li>
+                                        <li>Todas as comunicações</li>
+                                    </ul>
+                                    <p class="mt-2 text-slate-500 text-xs">
+                                        <strong>Importante:</strong> Sem comunicações por e-mail, você pode perder informações importantes sobre sua conta.
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações importantes -->
+                <div class="bg-yellow-500/10 p-6 rounded-xl border border-yellow-500/20">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-clock text-yellow-400 text-xl mt-1" aria-hidden="true"></i>
+                        <div>
+                            <h3 class="text-white font-bold mb-2">Tempo de processamento</h3>
+                            <p class="text-slate-300 text-sm">
+                                As alterações podem levar <strong>até 48 horas</strong> para serem totalmente processadas. 
+                                Você pode receber alguns e-mails durante este período.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Transparência de dados -->
+                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-white font-bold mb-4 flex items-center gap-3">
+                        <i class="fas fa-shield-alt text-blue-400" aria-hidden="true"></i>
+                        Transparência sobre seus dados
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-4">
+                        Respeitamos sua privacidade. Seus dados são usados apenas para comunicações relacionadas aos nossos serviços.
+                        <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Leia nossa Política de Privacidade completa</a>.
+                    </p>
+                    <p class="text-slate-500 text-xs">
+                        CNPJ: 64.146.685/0001-61 | Em conformidade com a LGPD (Lei Geral de Proteção de Dados)
+                    </p>
+                </div>
+                
+                <!-- Botão de confirmação -->
+                <div class="pt-6 border-t border-white/5">
+                    <button type="button" id="confirm-button" 
+                            class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-xl font-bold text-base transition-all flex items-center justify-center gap-3 shadow-lg shadow-blue-600/20 uppercase tracking-widest focus-visible">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        Confirmar minhas preferências
+                    </button>
+                    
+                    <p class="text-center text-slate-500 text-xs mt-4">
+                        Ao confirmar, suas preferências serão salvas e processadas.
+                    </p>
+                </div>
+            </form>
+            
+            <!-- Link para voltar -->
+            <div class="mt-8 text-center">
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 transition flex items-center justify-center gap-2 focus-visible">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    Voltar para a página inicial da Adminic
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de confirmação (oculto inicialmente) -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-slate-900 rounded-2xl border border-white/5 p-6 md:p-8 max-w-md w-full">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
+                    <i class="fas fa-check text-2xl text-green-500" aria-hidden="true"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Preferências salvas!</h3>
+                <p class="text-slate-400">
+                    Suas escolhas foram registradas e serão processadas em breve.
+                </p>
+            </div>
+            
+            <div class="bg-slate-800/50 p-4 rounded-lg mb-6">
+                <p class="text-sm text-slate-300">
+                    <strong>Lembrete:</strong> As alterações podem levar até 48 horas para serem totalmente processadas.
+                    Você receberá uma confirmação por e-mail quando o processo for concluído.
+                </p>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <button id="close-modal" 
+                        class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-bold transition-all focus-visible">
+                    Entendi, obrigado!
+                </button>
+                <a href="index.html" class="w-full border border-white/5 hover:bg-slate-800 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
+                    Voltar para o site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li>Manaus, AM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços e Comércio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp Button (Mobile only) -->
+    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95 focus-visible" aria-label="Abrir WhatsApp para suporte">
+        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Menu mobile toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenu.classList.contains('active');
+                mobileMenu.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                
+                // Alterar ícone
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fechar menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                const icon = mobileMenuButton.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Funções para checkboxes personalizados
+        function toggleCheckbox(element) {
+            // Desmarcar todos primeiro
+            document.querySelectorAll('.custom-checkbox').forEach(cb => {
+                cb.classList.remove('checked');
+                cb.setAttribute('aria-checked', 'false');
+            });
+            
+            // Marcar o selecionado
+            element.classList.add('checked');
+            element.setAttribute('aria-checked', 'true');
+        }
+        
+        function handleCheckboxKeydown(event, element) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleCheckbox(element);
+            }
+        }
+        
+        // Modal de confirmação
+        const confirmButton = document.getElementById('confirm-button');
+        const confirmationModal = document.getElementById('confirmation-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        
+        if (confirmButton && confirmationModal) {
+            confirmButton.addEventListener('click', () => {
+                // Verificar se alguma opção foi selecionada
+                const selectedOption = document.querySelector('.custom-checkbox.checked');
+                
+                if (!selectedOption) {
+                    alert('Por favor, selecione uma opção antes de confirmar.');
+                    return;
+                }
+                
+                // Simular envio para backend (sem dados sensíveis)
+                const form = document.getElementById('email-preferences-form');
+                form.classList.add('form-loading');
+                
+                // Simular processamento
+                setTimeout(() => {
+                    form.classList.remove('form-loading');
+                    form.classList.add('form-success');
+                    
+                    // Mostrar modal de confirmação
+                    confirmationModal.classList.remove('hidden');
+                    confirmationModal.setAttribute('aria-hidden', 'false');
+                    
+                    // Focar no modal para acessibilidade
+                    document.getElementById('modal-title').focus();
+                }, 1500);
+            });
+        }
+        
+        if (closeModalButton && confirmationModal) {
+            closeModalButton.addEventListener('click', () => {
+                confirmationModal.classList.add('hidden');
+                confirmationModal.setAttribute('aria-hidden', 'true');
+            });
+        }
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !confirmationModal.classList.contains('hidden')) {
+                confirmationModal.classList.add('hidden');
+                confirmationModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+        
+        // Foco no conteúdo principal
+        document.getElementById('main-content').focus();
+    </script>
+</body>
+</html>
