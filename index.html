@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             overflow-x: hidden;
         }
+        
         .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
         .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%); }
         .card-hover { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
@@ -79,43 +81,7 @@
             }
         }
         
-        /* Animações suaves para scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Respeitar preferência de redução de movimento */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            
-            .card-hover:hover {
-                transform: none !important;
-            }
-            
-            .mobile-menu {
-                transition: none !important;
-            }
-            
-            html {
-                scroll-behavior: auto !important;
-            }
-        }
-        
-        /* Melhorias de acessibilidade */
-        .focus-visible:focus-visible {
-            outline: 3px solid #3b82f6;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-        
-        /* Skip to main content link */
+        /* Acessibilidade: skip to main content */
         .skip-to-main {
             position: absolute;
             top: -40px;
@@ -131,6 +97,12 @@
         
         .skip-to-main:focus {
             top: 0;
+        }
+        
+        /* Acessibilidade: focus styles */
+        .focus-visible:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
         }
         
         /* Melhor contraste para links */
@@ -156,6 +128,37 @@
             right: 2px;
             height: 2px;
             background-color: #3b82f6;
+        }
+        
+        /* Animações com preferência de redução */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .card-hover:hover {
+                transform: none !important;
+            }
+            
+            .mobile-menu {
+                transition: none !important;
+            }
+            
+            html {
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Scroll suave apenas se não houver preferência por redução */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
         }
     </style>
 </head>
@@ -216,7 +219,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
                 <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
                 <a href="#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
@@ -474,6 +477,7 @@
                 const isExpanded = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
                 // Alterar ícone
                 const icon = mobileMenuButton.querySelector('i');
@@ -484,6 +488,14 @@
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
+                
+                // Focar no primeiro link do menu quando aberto
+                if (!isExpanded) {
+                    setTimeout(() => {
+                        const firstLink = mobileMenu.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }, 100);
+                }
             });
             
             // Fechar menu ao clicar em um link
@@ -492,6 +504,7 @@
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('active');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
                     const icon = mobileMenuButton.querySelector('i');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
@@ -503,6 +516,7 @@
                 if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
                     const icon = mobileMenuButton.querySelector('i');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
@@ -516,6 +530,7 @@
             if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
                 mobileMenu.classList.remove('active');
                 mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
                 const icon = mobileMenuButton.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
@@ -579,6 +594,25 @@
             focusableContent.forEach(element => {
                 element.classList.add('focus-visible');
             });
+        });
+        
+        // Navegação por teclado dentro do menu mobile
+        document.addEventListener('keydown', (e) => {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
         });
     </script>
 </body>
