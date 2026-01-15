@@ -3,60 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacidade - ADMINIC</title>
+    <title>Política de Privacidade - ADMINIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
+        .legal-text p { margin-bottom: 1.5rem; }
+        .legal-text ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .legal-text li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="text-slate-300 selection:bg-blue-500/30">
     <nav class="border-b border-white/5 py-6 backdrop-blur-md sticky top-0 z-50 bg-[#020617]/80">
         <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
             <span class="text-xl font-extrabold text-white tracking-tighter uppercase">ADMINIC</span>
-            <a href="index.html" class="text-sm font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest">← Voltar ao Início</a>
+            <a href="index.html" class="text-xs font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest border border-blue-500/20 px-4 py-2 rounded-full hover:bg-blue-500/10">← Voltar</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-20">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight uppercase">Política de Privacidade</h1>
-        <div class="inline-block px-4 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-16">
-            Atualizado em 23 de dezembro de 2025
+    <main class="max-w-3xl mx-auto px-6 py-16">
+        <header class="mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight uppercase leading-tight">
+                Política de Privacidade <br>
+                <span class="text-blue-500">e Proteção de Dados</span>
+            </h1>
+            <div class="flex flex-wrap gap-3">
+                <div class="inline-block px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[11px] font-bold uppercase tracking-widest">
+                    Vigência: Janeiro/2026
+                </div>
+                <div class="inline-block px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 text-slate-400 text-[11px] font-bold uppercase tracking-widest">
+                    Em conformidade com a LGPD
+                </div>
+            </div>
+        </header>
+
+        <div class="space-y-12 legal-text text-sm md:text-base leading-relaxed text-slate-400">
+            
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-xs text-white">01</span>
+                    Informações Introdutórias
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>
+                        Esta Política de Privacidade descreve como a <strong>ADMINIC</strong> (sob responsabilidade de <strong>Willyan Souza Brito</strong>, CNPJ 64.146.685/0001-61), doravante referida como "nós" ou "Empresa", coleta, utiliza e protege suas informações ao utilizar nosso sistema de gestão financeira via WhatsApp.
+                    </p>
+                    <p>
+                        Ao utilizar nossos serviços, você concorda com a coleta e uso de informações de acordo com esta política, desenvolvida em conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/18).
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">02</span>
+                    Dados que Coletamos
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>Para a prestação do serviço de automação financeira, coletamos os seguintes dados, estritamente necessários:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Identificação:</strong> Número de telefone (WhatsApp ID) e Nome de Perfil público do WhatsApp.</li>
+                        <li><strong>Dados Financeiros:</strong> Informações sobre transações (valores, datas, descrições e categorias) enviadas ativamente por você via texto ou áudio.</li>
+                        <li><strong>Dados de Mídia:</strong> Arquivos de áudio enviados para transcrição e processamento.</li>
+                        <li><strong>Registros de Uso (Logs):</strong> Histórico de interações com o bot para fins de suporte (armazenados na aba "ChatLog" e logs do servidor).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">03</span>
+                    Processamento e Terceiros
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>O funcionamento do Adminic depende da integração com serviços de terceiros de nível global. Seus dados trafegam pelas seguintes infraestruturas:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 mb-6">
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-white/5">
+                            <h3 class="text-blue-400 font-bold text-sm uppercase mb-2">Google Cloud & Gemini AI</h3>
+                            <p class="text-xs">Utilizamos a API do Google Gemini para processamento de linguagem natural (texto e áudio) e o Google Sheets como banco de dados pessoal.</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-white/5">
+                            <h3 class="text-green-400 font-bold text-sm uppercase mb-2">Meta (WhatsApp)</h3>
+                            <p class="text-xs">Toda a comunicação trafega pela API Oficial do WhatsApp Business (Meta), sujeita à criptografia em trânsito.</p>
+                        </div>
+                    </div>
+
+                    <p><strong>Atenção:</strong> Não compartilhamos seus dados com agências de marketing, corretores de dados ou terceiros não listados acima.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">04</span>
+                    Segurança e Armazenamento
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>
+                        Seus dados são armazenados principalmente em planilhas do Google Sheets (Google Cloud Platform), acessíveis apenas pelo sistema Adminic e pelos administradores autorizados.
+                    </p>
+                    <p>
+                        Utilizamos autenticação via token (API Keys) e variáveis de ambiente seguras para proteger as credenciais de acesso. Logs de servidor são mantidos para auditoria técnica e correção de bugs.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">05</span>
+                    Seus Direitos (LGPD)
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>Conforme o Art. 18 da LGPD, você tem direito a:</p>
+                    <ul class="space-y-2">
+                        <li>✅ Confirmar a existência de tratamento de dados.</li>
+                        <li>✅ Acessar seus dados (disponível via comando "Resumo" ou "Pendentes" no bot).</li>
+                        <li>✅ Corrigir dados incompletos ou desatualizados.</li>
+                        <li>✅ Solicitar a eliminação dos dados pessoais tratados (Direito ao Esquecimento).</li>
+                    </ul>
+                    <p class="mt-4 text-xs bg-blue-500/10 p-3 rounded border border-blue-500/20 text-blue-300">
+                        Para exercer seus direitos, envie uma mensagem no WhatsApp com o termo "Falar com Humano" ou entre em contato pelo e-mail oficial.
+                    </p>
+                </div>
+            </section>
+
+             <section>
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">06</span>
+                    Contato do Controlador
+                </h2>
+                <div class="pl-11 border-l border-white/10 ml-4">
+                    <p>Para questões sobre privacidade e dados, entre em contato com o desenvolvedor e controlador dos dados:</p>
+                    <div class="bg-white/5 p-6 rounded-xl border border-white/10 mt-4">
+                        <p class="font-bold text-white text-lg mb-1">Willyan Souza Brito</p>
+                        <p class="text-sm text-slate-500 uppercase tracking-wider font-bold mb-4">Adminic Founder & Dev</p>
+                        <p>📧 will@adminic.com.br</p>
+                        <p>📍 Manaus, AM - Brasil</p>
+                        <p>📱 (92) 98489-9955</p>
+                    </div>
+                </div>
+            </section>
+
         </div>
-
-        <section class="grid grid-cols-1 gap-16">
-            <div class="group">
-                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
-                    <span class="text-blue-600 text-xs">01</span> Coleta de Dados
-                </h2>
-                <p class="leading-relaxed text-slate-400 font-medium">Coletamos exclusivamente seu número de telefone e nome de perfil do WhatsApp para fins de identificação única. Esses dados permitem que a ADMINIC acesse e registre informações na sua planilha pessoal do Google Sheets.</p>
-            </div>
-
-            <div class="group">
-                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
-                    <span class="text-blue-600 text-xs">02</span> Inteligência Artificial
-                </h2>
-                <p class="leading-relaxed text-slate-400 font-medium font-sans">Utilizamos a API do Google Gemini para o processamento de linguagem natural. Os dados enviados por áudio ou texto são transformados em categorias financeiras. Nenhum dado sensível é utilizado para treinamento de modelos públicos de IA.</p>
-            </div>
-
-            <div class="group">
-                <h2 class="text-xl font-bold text-white mb-6 uppercase tracking-tight flex items-center gap-4">
-                    <span class="text-blue-600 text-xs">03</span> Segurança e Sigilo
-                </h2>
-                <p class="leading-relaxed text-slate-400 font-medium">Seus dados financeiros permanecem privados no ecossistema Google (Sheets/Drive). A ADMINIC não comercializa, compartilha ou expõe informações de usuários a terceiros para fins publicitários.</p>
-            </div>
-
-            <div class="group">
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight flex items-center gap-4">
-                    <span class="text-blue-600 text-xs">04</span> Exclusão de Informações
-                </h2>
-                <p class="leading-relaxed text-slate-400 font-medium italic">O usuário possui o direito de esquecimento. A qualquer momento, você pode solicitar a exclusão total de sua conta e histórico através de nossos canais de suporte oficial.</p>
-            </div>
-        </section>
     </main>
 
-    <footer class="py-12 text-center border-t border-white/5 bg-[#020617]">
-        <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+    <footer class="py-12 border-t border-white/5 bg-[#01040f]">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase mb-4">Adminic © 2026</p>
+            <p class="text-slate-600 text-xs max-w-lg mx-auto leading-relaxed">
+                CNPJ: 64.146.685/0001-61<br>
+                Feito em Manaus.
+            </p>
+        </div>
     </footer>
 </body>
 </html>
