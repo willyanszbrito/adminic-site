@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assinatura de E-mail - ADMINIC</title>
+    <title>Assinatura Adminic IA - ADMINIC</title>
+    
+    <meta property="og:title" content="Assine o Adminic IA - ADMINIC">
+    <meta property="og:description" content="Assine o assistente financeiro inteligente que vive no seu WhatsApp.">
+    <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -34,6 +38,60 @@
             right: 20px;
             z-index: 1000;
         }
+        
+        /* Animações suaves */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* Melhorias de acessibilidade */
+        .focus-visible:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        /* Estados de formulário */
+        .form-loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .form-success {
+            border-color: #10b981 !important;
+            background-color: rgba(16, 185, 129, 0.05) !important;
+        }
+        
+        .form-error {
+            border-color: #ef4444 !important;
+            background-color: rgba(239, 68, 68, 0.05) !important;
+        }
+        
+        /* Método de pagamento selecionado */
+        .payment-method {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method.selected {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
+        /* Animações de loading */
+        .loading-dots:after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
     </style>
 </head>
 <body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
@@ -43,9 +101,9 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2">
+                <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2">
                     <i class="fas fa-envelope"></i> 
-                    <span class="hidden lg:inline">contato@adminic.com.br</span>
+                    <span class="hidden lg:inline">financeiro@adminic.com.br</span>
                 </a>
                 <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2">
                     <i class="fab fa-whatsapp"></i> 
@@ -56,166 +114,408 @@
     </div>
 
     <!-- Main Navigation -->
-    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass">
+    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-3 group">
+            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
-                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                    <i class="fas fa-cube text-white text-sm md:text-base" aria-hidden="true"></i>
                 </div>
                 <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-white transition px-2 py-1">Produtos</a>
-                <a href="contato.html" class="hover:text-white transition px-2 py-1">Contato</a>
+                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-white transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-white transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <!-- Desktop Button -->
-            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2">
-                <i class="fas fa-home"></i>
+            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible">
+                <i class="fas fa-home" aria-hidden="true"></i>
                 <span>Voltar ao Site</span>
             </a>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2">
-                <i class="fas fa-bars text-xl"></i>
+            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Serviços</a>
-                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Produtos</a>
-                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Contato</a>
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Voltar ao Site</a>
+                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Voltar ao Site</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow py-12 px-4 md:px-6">
+    <main class="flex-grow py-8 md:py-12 px-4 md:px-6" id="main-content" tabindex="-1">
         <div class="max-w-6xl mx-auto">
-            <header class="mb-12 text-center">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-white uppercase mb-4">Assinatura de E-mail</h1>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-                    Modelo profissional de assinatura para e-mails corporativos da Adminic.
-                </p>
-            </header>
-
-            <!-- Instruções -->
-            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5 mb-8">
-                <h2 class="text-xl font-bold text-white mb-4">📋 Como usar esta assinatura:</h2>
-                <ol class="list-decimal pl-5 space-y-3 text-slate-400">
-                    <li><strong>Copie o código HTML</strong> da assinatura abaixo</li>
-                    <li><strong>No Asas PJ</strong>, vá para as configurações de e-mail</li>
-                    <li><strong>Cole o código</strong> no campo de assinatura</li>
-                    <li><strong>Substitua</strong> [SEU NOME] e [SEU CARGO] pelos seus dados</li>
-                    <li><strong>Salve</strong> as alterações</li>
-                </ol>
-            </div>
-
-            <!-- Pré-visualização -->
-            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5 mb-8">
-                <h2 class="text-xl font-bold text-white mb-6">👁️ Pré-visualização da Assinatura</h2>
-                <div class="bg-white p-6 rounded-lg">
-                    <div style="font-family: Arial, sans-serif; color: #333; font-size: 12px; line-height: 1.5;">
-                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                            <tr>
-                                <td width="80" valign="top" style="padding-right: 15px; vertical-align: top;">
-                                    <img src="https://adminic.com.br/logo.png" alt="Adminic" width="60" height="60" style="border-radius: 8px; display: block;">
-                                </td>
-                                <td valign="top" style="vertical-align: top;">
-                                    <p style="margin: 0 0 4px 0; font-weight: bold; font-size: 14px; color: #2563eb;">WILLYAN SOUZA BRITO</p>
-                                    <p style="margin: 0 0 8px 0; font-size: 12px; color: #666;">Fundador & Desenvolvedor | Adminic Serviços e Comércio</p>
-                                    <p style="margin: 0 0 6px 0; font-size: 11px; color: #999;">
-                                        📞 <a href="tel:+5592984899955" style="color: #2563eb; text-decoration: none;">(92) 98489-9955</a> | 
-                                        📧 <a href="mailto:will@adminic.com.br" style="color: #2563eb; text-decoration: none;">will@adminic.com.br</a> | 
-                                        🌐 <a href="https://adminic.com.br" style="color: #2563eb; text-decoration: none;">adminic.com.br</a>
-                                    </p>
-                                    <p style="margin: 0; font-size: 10px; color: #999;">
-                                        CNPJ: 64.146.685/0001-61 | Manaus - Amazonas
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Coluna da esquerda: Resumo do produto -->
+                <div class="lg:col-span-2">
+                    <div class="mb-8">
+                        <a href="index.html" class="text-blue-400 hover:text-blue-300 transition flex items-center gap-2 mb-6 focus-visible">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                            Voltar para a página do Adminic IA
+                        </a>
+                        
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                            Finalizar Assinatura
+                        </h1>
+                        <p class="text-slate-400">
+                            Complete sua assinatura do Adminic IA - o assistente financeiro inteligente no seu WhatsApp.
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Código HTML -->
-            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold text-white">📄 Código HTML da Assinatura</h2>
-                    <button id="copy-button" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                        <i class="far fa-copy"></i> Copiar Código
-                    </button>
-                </div>
-                <pre id="signature-code" class="bg-[#020617] p-4 rounded-lg overflow-x-auto text-xs text-slate-300 leading-relaxed">
-&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse: collapse;&quot;&gt;
-    &lt;tr&gt;
-        &lt;td width=&quot;80&quot; valign=&quot;top&quot; style=&quot;padding-right: 15px; vertical-align: top;&quot;&gt;
-            &lt;img src=&quot;https://adminic.com.br/logo.png&quot; alt=&quot;Adminic&quot; width=&quot;60&quot; height=&quot;60&quot; style=&quot;border-radius: 8px; display: block;&quot;&gt;
-        &lt;/td&gt;
-        &lt;td valign=&quot;top&quot; style=&quot;vertical-align: top;&quot;&gt;
-            &lt;p style=&quot;margin: 0 0 4px 0; font-weight: bold; font-size: 14px; color: #2563eb;&quot;&gt;[SEU NOME]&lt;/p&gt;
-            &lt;p style=&quot;margin: 0 0 8px 0; font-size: 12px; color: #666;&quot;&gt;[SEU CARGO] | Adminic Serviços e Com&#233;rcio&lt;/p&gt;
-            &lt;p style=&quot;margin: 0 0 6px 0; font-size: 11px; color: #999;&quot;&gt;
-                📞 &lt;a href=&quot;tel:+5592984899955&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;(92) 98489-9955&lt;/a&gt; | 
-                📧 &lt;a href=&quot;mailto:contato@adminic.com.br&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;contato@adminic.com.br&lt;/a&gt; | 
-                🌐 &lt;a href=&quot;https://adminic.com.br&quot; style=&quot;color: #2563eb; text-decoration: none;&quot;&gt;adminic.com.br&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style=&quot;margin: 0; font-size: 10px; color: #999;&quot;&gt;
-                CNPJ: 64.146.685/0001-61 | Manaus - Amazonas
-            &lt;/p&gt;
-        &lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-                </pre>
-                <p id="copy-success" class="text-green-400 text-xs mt-3 hidden">✓ Código copiado para a área de transferência!</p>
-            </div>
-
-            <!-- Versões Alternativas -->
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
-                    <h3 class="text-lg font-bold text-white mb-4">📱 Versão Simplificada (Mobile)</h3>
-                    <pre class="bg-[#020617] p-3 rounded-lg overflow-x-auto text-[10px] text-slate-400">
-&lt;div style=&quot;font-family: Arial, sans-serif; font-size: 12px; color: #333;&quot;&gt;
-    &lt;strong style=&quot;color: #2563eb;&quot;&gt;[SEU NOME]&lt;/strong&gt;&lt;br&gt;
-    [SEU CARGO] | Adminic Servi&#231;os e Com&#233;rcio&lt;br&gt;
-    📞 (92) 98489-9955 | 📧 contato@adminic.com.br&lt;br&gt;
-    🌐 adminic.com.br
-&lt;/div&gt;
-                    </pre>
+                    
+                    <!-- Produto -->
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fab fa-whatsapp text-white text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <h2 class="text-white font-bold text-xl mb-2">Adminic IA</h2>
+                                <p class="text-slate-400 text-sm mb-4">
+                                    Assistente financeiro inteligente via WhatsApp. Organize suas finanças conversando como se fosse com um amigo.
+                                </p>
+                                <div class="flex flex-wrap gap-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-300 text-sm">WhatsApp 24/7</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-300 text-sm">Relatórios automáticos</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-300 text-sm">Suporte humano</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-white">R$ 47,90<span class="text-slate-400 text-sm font-normal">/mês</span></div>
+                                <div class="text-slate-500 text-sm">Plano mensal</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulário de checkout -->
+                    <form id="checkout-form" class="space-y-8">
+                        <!-- Seção 1: Dados pessoais -->
+                        <section aria-labelledby="personal-data-heading">
+                            <h2 id="personal-data-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">1</span>
+                                Dados pessoais
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="full-name" class="block text-slate-300 text-sm font-bold mb-2">
+                                        Nome completo <span class="text-red-400">*</span>
+                                    </label>
+                                    <input type="text" id="full-name" name="full_name" required
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           placeholder="Seu nome completo"
+                                           aria-required="true">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-slate-300 text-sm font-bold mb-2">
+                                        E-mail <span class="text-red-400">*</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" required
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           placeholder="seu@email.com"
+                                           aria-required="true">
+                                </div>
+                                
+                                <div>
+                                    <label for="phone" class="block text-slate-300 text-sm font-bold mb-2">
+                                        Telefone (WhatsApp) <span class="text-red-400">*</span>
+                                    </label>
+                                    <input type="tel" id="phone" name="phone" required
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           placeholder="(92) 99999-9999"
+                                           aria-required="true">
+                                </div>
+                                
+                                <div>
+                                    <label for="cpf" class="block text-slate-300 text-sm font-bold mb-2">
+                                        CPF <span class="text-red-400">*</span>
+                                    </label>
+                                    <input type="text" id="cpf" name="cpf" required
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           placeholder="000.000.000-00"
+                                           aria-required="true">
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <label for="notes" class="block text-slate-300 text-sm font-bold mb-2">
+                                    Observações adicionais (opcional)
+                                </label>
+                                <textarea id="notes" name="notes" rows="3"
+                                          class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                          placeholder="Alguma observação importante sobre sua assinatura..."></textarea>
+                            </div>
+                        </section>
+                        
+                        <!-- Seção 2: Método de pagamento -->
+                        <section aria-labelledby="payment-method-heading">
+                            <h2 id="payment-method-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">2</span>
+                                Método de pagamento
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                <!-- Pix -->
+                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                        onclick="selectPaymentMethod('pix')">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
+                                            <i class="fas fa-qrcode text-green-500" aria-hidden="true"></i>
+                                        </div>
+                                        <span class="text-white font-bold">Pix</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm">
+                                        Pagamento instantâneo. Gere o QR code e pague pelo seu banco.
+                                    </p>
+                                </button>
+                                
+                                <!-- Cartão de Crédito -->
+                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                        onclick="selectPaymentMethod('credit_card')">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                                            <i class="far fa-credit-card text-blue-500" aria-hidden="true"></i>
+                                        </div>
+                                        <span class="text-white font-bold">Cartão</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm">
+                                        Parcele em até 12x. Pagamento seguro com criptografia.
+                                    </p>
+                                </button>
+                                
+                                <!-- Boleto -->
+                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                        onclick="selectPaymentMethod('boleto')">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center">
+                                            <i class="fas fa-barcode text-yellow-500" aria-hidden="true"></i>
+                                        </div>
+                                        <span class="text-white font-bold">Boleto</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm">
+                                        Pague em qualquer banco. Vencimento em 3 dias úteis.
+                                    </p>
+                                </button>
+                            </div>
+                            
+                            <!-- Formulários dinâmicos por método de pagamento -->
+                            <div id="payment-form-container">
+                                <!-- Os formulários serão injetados aqui via JavaScript -->
+                            </div>
+                        </section>
+                        
+                        <!-- Seção 3: Termos e condições -->
+                        <section aria-labelledby="terms-heading">
+                            <h2 id="terms-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">3</span>
+                                Termos e condições
+                            </h2>
+                            
+                            <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5 mb-6">
+                                <div class="flex items-start gap-4 mb-6">
+                                    <input type="checkbox" id="terms" name="terms" required
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2">
+                                    <div>
+                                        <label for="terms" class="text-white font-bold cursor-pointer">
+                                            Concordo com os Termos de Uso
+                                        </label>
+                                        <p class="text-slate-400 text-sm mt-2">
+                                            Li e concordo com os <a href="termos.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <input type="checkbox" id="privacy" name="privacy" required
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2">
+                                    <div>
+                                        <label for="privacy" class="text-white font-bold cursor-pointer">
+                                            Concordo com a Política de Privacidade
+                                        </label>
+                                        <p class="text-slate-400 text-sm mt-2">
+                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Política de Privacidade</a> e estou ciente dos meus direitos LGPD.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Informações importantes -->
+                            <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
+                                <div class="flex items-start gap-4">
+                                    <i class="fas fa-shield-alt text-blue-400 text-xl mt-1" aria-hidden="true"></i>
+                                    <div>
+                                        <h3 class="text-white font-bold mb-2">Pagamento 100% seguro</h3>
+                                        <p class="text-slate-300 text-sm">
+                                            Seus dados são protegidos com criptografia. Processamos pagamentos através do 
+                                            <strong>Asaas PJ</strong>, uma plataforma de pagamentos brasileira certificada e segura.
+                                            <a href="https://www.asaas.com" target="_blank" class="text-blue-400 hover:text-blue-300 underline focus-visible">Saiba mais sobre o Asaas</a>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- Botão de finalização -->
+                        <div class="pt-6 border-t border-white/5">
+                            <button type="button" id="finalize-button"
+                                    class="w-full bg-green-600 hover:bg-green-500 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-600/20 uppercase tracking-widest focus-visible"
+                                    onclick="submitSubscription()">
+                                <i class="fas fa-lock" aria-hidden="true"></i>
+                                Finalizar assinatura
+                            </button>
+                            
+                            <p class="text-center text-slate-500 text-sm mt-4">
+                                Você será redirecionado para um ambiente seguro para completar o pagamento.
+                            </p>
+                        </div>
+                    </form>
                 </div>
                 
-                <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
-                    <h3 class="text-lg font-bold text-white mb-4">🎨 Versão sem Imagem</h3>
-                    <pre class="bg-[#020617] p-3 rounded-lg overflow-x-auto text-[10px] text-slate-400">
-&lt;div style=&quot;font-family: Arial, sans-serif; font-size: 12px; color: #333;&quot;&gt;
-    &lt;strong style=&quot;color: #2563eb; font-size: 14px;&quot;&gt;[SEU NOME]&lt;/strong&gt;&lt;br&gt;
-    &lt;span style=&quot;color: #666;&quot;&gt;[SEU CARGO] | Adminic Servi&#231;os e Com&#233;rcio&lt;/span&gt;&lt;br&gt;
-    📞 &lt;a href=&quot;tel:+5592984899955&quot; style=&quot;color: #2563eb;&quot;&gt;(92) 98489-9955&lt;/a&gt; | 
-    📧 &lt;a href=&quot;mailto:contato@adminic.com.br&quot; style=&quot;color: #2563eb;&quot;&gt;contato@adminic.com.br&lt;/a&gt;&lt;br&gt;
-    &lt;span style=&quot;font-size: 10px; color: #999;&quot;&gt;CNPJ: 64.146.685/0001-61 | Manaus - AM&lt;/span&gt;
-&lt;/div&gt;
-                    </pre>
+                <!-- Coluna da direita: Resumo do pedido -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24">
+                        <div class="bg-slate-900/50 rounded-xl border border-white/5 p-6 mb-6">
+                            <h3 class="text-white font-bold text-xl mb-6">Resumo da assinatura</h3>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Adminic IA (mensal)</span>
+                                    <span class="text-white font-bold">R$ 47,90</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Taxa de instalação</span>
+                                    <span class="text-white font-bold">R$ 0,00</span>
+                                </div>
+                                
+                                <div class="pt-4 border-t border-white/5">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-300 font-bold">Total</span>
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-white">R$ 47,90</div>
+                                            <div class="text-slate-500 text-sm">por mês</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Vantagens -->
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-300 text-sm">Cancelamento a qualquer momento</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-300 text-sm">7 dias de teste gratuito</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-300 text-sm">Suporte prioritário</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-300 text-sm">Atualizações gratuitas</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Suporte -->
+                        <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
+                            <h3 class="text-white font-bold mb-4">Precisa de ajuda?</h3>
+                            <p class="text-slate-300 text-sm mb-4">
+                                Nossa equipe está pronta para ajudar você com qualquer dúvida sobre a assinatura.
+                            </p>
+                            <div class="space-y-3">
+                                <a href="https://wa.me/559284790794" class="flex items-center gap-3 text-blue-400 hover:text-blue-300 transition focus-visible">
+                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    <span>WhatsApp: (92) 98489-9955</span>
+                                </a>
+                                <a href="mailto:suporte@adminic.com.br" class="flex items-center gap-3 text-blue-400 hover:text-blue-300 transition focus-visible">
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    <span>suporte@adminic.com.br</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Modal de sucesso (oculto inicialmente) -->
+    <div id="success-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+        <div class="bg-slate-900 rounded-2xl border border-white/5 p-6 md:p-8 max-w-md w-full">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
+                    <i class="fas fa-check text-2xl text-green-500" aria-hidden="true"></i>
+                </div>
+                <h3 id="success-modal-title" class="text-2xl font-bold text-white mb-2">Assinatura processada!</h3>
+                <p class="text-slate-400">
+                    Sua assinatura foi recebida e está sendo processada.
+                </p>
+            </div>
+            
+            <div class="bg-slate-800/50 p-4 rounded-lg mb-6">
+                <p class="text-sm text-slate-300 mb-4">
+                    <strong>Próximos passos:</strong>
+                </p>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
+                        <span>Você receberá um e-mail de confirmação</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-green-400" aria-hidden="true"></i>
+                        <span>Nosso bot entrará em contato no WhatsApp</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-rocket text-purple-400" aria-hidden="true"></i>
+                        <span>Comece a usar o Adminic IA imediatamente</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <a href="index.html" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
+                    Voltar para o site
+                </a>
+                <a href="https://wa.me/559284790794" class="w-full border border-white/5 hover:bg-slate-800 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
+                    Falar com suporte
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617]">
+    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-12">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4">ADMINIC</a>
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
                     <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência.
                     </p>
@@ -223,16 +523,16 @@
                 <div>
                     <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
@@ -244,6 +544,11 @@
         </div>
     </footer>
 
+    <!-- Fixed WhatsApp Button (Mobile only) -->
+    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95 focus-visible" aria-label="Abrir WhatsApp para suporte">
+        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
+    </a>
+
     <!-- Scripts -->
     <script>
         // Menu mobile toggle
@@ -252,7 +557,10 @@
         
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                
                 // Alterar ícone
                 const icon = mobileMenuButton.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
@@ -269,6 +577,7 @@
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('active');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
                     const icon = mobileMenuButton.querySelector('i');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
@@ -280,6 +589,7 @@
         document.addEventListener('click', (e) => {
             if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
                 mobileMenu.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
                 const icon = mobileMenuButton.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
@@ -288,36 +598,270 @@
             }
         });
         
-        // Copiar código da assinatura
-        const copyButton = document.getElementById('copy-button');
-        const signatureCode = document.getElementById('signature-code');
-        const copySuccess = document.getElementById('copy-success');
+        // Variáveis globais
+        let selectedPaymentMethod = null;
+        const paymentForms = {
+            pix: `
+                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-white font-bold mb-4">Pagamento via Pix</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Após confirmar a assinatura, você receberá um QR code e código Pix para pagamento. 
+                        O acesso ao Adminic IA será liberado em até 5 minutos após a confirmação do pagamento.
+                    </p>
+                    
+                    <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20 mb-6">
+                        <p class="text-blue-300 text-sm">
+                            <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
+                            Pagamento instantâneo - Liberação em até 5 minutos
+                        </p>
+                    </div>
+                </div>
+            `,
+            credit_card: `
+                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-white font-bold mb-4">Cartão de Crédito</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label for="card-number" class="block text-slate-300 text-sm font-bold mb-2">
+                                Número do cartão <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="card-number" name="card_number" required
+                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                   placeholder="0000 0000 0000 0000"
+                                   aria-required="true">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="card-expiry" class="block text-slate-300 text-sm font-bold mb-2">
+                                    Validade <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="card-expiry" name="card_expiry" required
+                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                       placeholder="MM/AA"
+                                       aria-required="true">
+                            </div>
+                            
+                            <div>
+                                <label for="card-cvv" class="block text-slate-300 text-sm font-bold mb-2">
+                                    CVV <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="card-cvv" name="card_cvv" required
+                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                       placeholder="123"
+                                       aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="card-name" class="block text-slate-300 text-sm font-bold mb-2">
+                                Nome no cartão <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="card-name" name="card_name" required
+                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                   placeholder="Como está no cartão"
+                                   aria-required="true">
+                        </div>
+                        
+                        <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20 mt-6">
+                            <p class="text-blue-300 text-sm">
+                                <i class="fas fa-lock mr-2" aria-hidden="true"></i>
+                                Pagamento seguro processado pelo Asaas. Seus dados são criptografados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            boleto: `
+                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-white font-bold mb-4">Boleto Bancário</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Após confirmar a assinatura, você receberá o boleto por e-mail. 
+                        O acesso ao Adminic IA será liberado após a confirmação do pagamento, que pode levar até 3 dias úteis.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20">
+                            <p class="text-yellow-300 text-sm">
+                                <i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i>
+                                <strong>Atenção:</strong> O boleto tem vencimento de 3 dias úteis. Após o vencimento, a assinatura será cancelada automaticamente.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
+                            <p class="text-blue-300 text-sm">
+                                <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
+                                <strong>Dica:</strong> Para liberação mais rápida, utilize Pix ou Cartão de Crédito.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
         
-        if (copyButton && signatureCode) {
-            copyButton.addEventListener('click', async () => {
-                try {
-                    const code = signatureCode.textContent;
-                    await navigator.clipboard.writeText(code);
-                    
-                    // Mostrar mensagem de sucesso
-                    copySuccess.classList.remove('hidden');
-                    copyButton.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                    copyButton.classList.remove('bg-blue-600');
-                    copyButton.classList.add('bg-green-600');
-                    
-                    // Reset após 3 segundos
-                    setTimeout(() => {
-                        copySuccess.classList.add('hidden');
-                        copyButton.innerHTML = '<i class="far fa-copy"></i> Copiar Código';
-                        copyButton.classList.remove('bg-green-600');
-                        copyButton.classList.add('bg-blue-600');
-                    }, 3000);
-                } catch (err) {
-                    console.error('Erro ao copiar:', err);
-                    alert('Não foi possível copiar o código. Tente selecionar e copiar manualmente.');
+        // Função para selecionar método de pagamento
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Remover seleção de todos os botões
+            document.querySelectorAll('.payment-method').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            
+            // Adicionar seleção ao botão clicado
+            event.currentTarget.classList.add('selected');
+            event.currentTarget.setAttribute('aria-pressed', 'true');
+            
+            // Injetar formulário correspondente
+            const container = document.getElementById('payment-form-container');
+            container.innerHTML = paymentForms[method];
+            
+            // Focar no primeiro campo do formulário, se houver
+            const firstInput = container.querySelector('input');
+            if (firstInput) {
+                setTimeout(() => firstInput.focus(), 100);
+            }
+        }
+        
+        // Função para validar formulário
+        function validateForm() {
+            const form = document.getElementById('checkout-form');
+            const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+            
+            // Validação básica de campos obrigatórios
+            for (const input of requiredInputs) {
+                if (!input.value.trim()) {
+                    input.classList.add('form-error');
+                    isValid = false;
+                } else {
+                    input.classList.remove('form-error');
+                }
+            }
+            
+            // Validação de e-mail
+            const emailInput = document.getElementById('email');
+            if (emailInput.value && !/\S+@\S+\.\S+/.test(emailInput.value)) {
+                emailInput.classList.add('form-error');
+                isValid = false;
+            }
+            
+            // Validação de CPF (simplificada)
+            const cpfInput = document.getElementById('cpf');
+            if (cpfInput.value && cpfInput.value.replace(/\D/g, '').length !== 11) {
+                cpfInput.classList.add('form-error');
+                isValid = false;
+            }
+            
+            // Verificar método de pagamento selecionado
+            if (!selectedPaymentMethod) {
+                alert('Por favor, selecione um método de pagamento.');
+                isValid = false;
+            }
+            
+            // Verificar termos aceitos
+            const termsCheckbox = document.getElementById('terms');
+            const privacyCheckbox = document.getElementById('privacy');
+            
+            if (!termsCheckbox.checked || !privacyCheckbox.checked) {
+                alert('Por favor, aceite os termos e a política de privacidade para continuar.');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Função para enviar assinatura
+        function submitSubscription() {
+            if (!validateForm()) {
+                return;
+            }
+            
+            const form = document.getElementById('checkout-form');
+            const button = document.getElementById('finalize-button');
+            
+            // Simular carregamento
+            form.classList.add('form-loading');
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+            button.disabled = true;
+            
+            // Simular envio para backend
+            setTimeout(() => {
+                form.classList.remove('form-loading');
+                form.classList.add('form-success');
+                
+                // Mostrar modal de sucesso
+                const successModal = document.getElementById('success-modal');
+                successModal.classList.remove('hidden');
+                successModal.setAttribute('aria-hidden', 'false');
+                
+                // Focar no modal para acessibilidade
+                document.getElementById('success-modal-title').focus();
+                
+                // Aqui normalmente enviaríamos os dados para o backend
+                // Exemplo: fetch('/criar-assinatura', { method: 'POST', body: new FormData(form) })
+                console.log('Dados da assinatura (simulação):', {
+                    payment_method: selectedPaymentMethod,
+                    // ... outros dados do formulário
+                });
+                
+            }, 2000);
+        }
+        
+        // Fechar modal de sucesso
+        const successModal = document.getElementById('success-modal');
+        if (successModal) {
+            successModal.addEventListener('click', (e) => {
+                if (e.target === successModal) {
+                    successModal.classList.add('hidden');
+                    successModal.setAttribute('aria-hidden', 'true');
+                }
+            });
+            
+            // Fechar com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !successModal.classList.contains('hidden')) {
+                    successModal.classList.add('hidden');
+                    successModal.setAttribute('aria-hidden', 'true');
                 }
             });
         }
+        
+        // Máscaras para campos
+        document.getElementById('phone')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.substring(0, 11);
+            
+            if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d{0,2})/, '($1');
+            }
+            
+            e.target.value = value;
+        });
+        
+        document.getElementById('cpf')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.substring(0, 11);
+            
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{0,3})/, '$1.$2');
+            }
+            
+            e.target.value = value;
+        });
+        
+        // Foco no conteúdo principal
+        document.getElementById('main-content').focus();
     </script>
 </body>
 </html>
