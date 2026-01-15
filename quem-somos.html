@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça a ADMINIC - Tecnologia, Inovação e Suporte Administrativo nascidos na Amazônia para o mundo">
     <title>Quem Somos - ADMINIC</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animações -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        /* Configurações base */
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             overflow-x: hidden;
         }
-        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        
+        /* Acessibilidade: foco visível */
+        :focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        .glass { 
+            background: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(12px); 
+        }
+        
         .card-hover { 
             transition: all 0.3s ease; 
             border: 1px solid rgba(255,255,255,0.05); 
@@ -25,7 +48,7 @@
             background: rgba(255,255,255,0.02); 
         }
         
-        /* Menu mobile */
+        /* Menu mobile acessível */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -44,6 +67,22 @@
             z-index: 1000;
         }
         
+        /* Link para pular para o conteúdo principal */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 1001;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
         /* Melhorias de responsividade */
         @media (max-width: 768px) {
             .section-padding {
@@ -51,73 +90,100 @@
                 padding-right: 1rem !important;
             }
         }
+        
+        /* Redução de movimento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .mobile-menu,
+            .mobile-menu.active {
+                transition: none !important;
+            }
+            
+            .card-hover:hover {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
+    
+    <!-- Link para pular para conteúdo principal (Acessibilidade) -->
+    <a href="#main-content" class="skip-to-main focus:top-0" aria-label="Pular para o conteúdo principal">
+        Pular para conteúdo
+    </a>
     
     <!-- Top Bar (Desktop only) -->
     <div class="bg-blue-900/20 border-b border-white/5 py-2 px-4 md:px-6 text-[10px] font-bold uppercase tracking-widest text-blue-300 hidden md:block">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex gap-4">
-                <span><i class="fas fa-phone-alt mr-2"></i>(92) 98489-9955</span>
-                <span><i class="fas fa-envelope mr-2"></i>institucional@adminic.com.br</span>
+                <span><i class="fas fa-phone-alt mr-2" aria-hidden="true"></i>(92) 98489-9955</span>
+                <span><i class="fas fa-envelope mr-2" aria-hidden="true"></i>institucional@adminic.com.br</span>
             </div>
             <div class="flex gap-4">
-                <a href="index.html" class="hover:text-white transition">Página Inicial</a>
-                <a href="contato.html" class="hover:text-white transition">Contato</a>
+                <a href="index.html" class="hover:text-white transition focus:text-white focus:outline-none">Página Inicial</a>
+                <a href="contato.html" class="hover:text-white transition focus:text-white focus:outline-none">Contato</a>
             </div>
         </div>
     </div>
 
     <!-- Main Navigation -->
-    <nav class="sticky top-0 z-50 border-b border-white/5 glass">
+    <nav class="sticky top-0 z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-6xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
-            <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white tracking-tighter uppercase flex items-center gap-2 group">
+            <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white tracking-tighter uppercase flex items-center gap-2 group" aria-label="Adminic - Página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded flex items-center justify-center group-hover:bg-blue-500 transition">
-                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                    <i class="fas fa-cube text-white text-sm md:text-base" aria-hidden="true"></i>
                 </div>
                 <span class="group-hover:text-blue-200 transition">Adminic</span>
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-white transition px-2 py-1">Principal</a>
-                <a href="quem-somos.html" class="text-blue-500 px-2 py-1">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1">Serviços</a>
-                <a href="contato.html" class="hover:text-white transition px-2 py-1">Contato</a>
-                <a href="termos.html" class="hover:text-white transition px-2 py-1">Suporte</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400" role="menubar" aria-label="Menu principal">
+                <a href="index.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-blue-500 px-2 py-1 focus:text-blue-500 focus:outline-none" role="menuitem" aria-current="page">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Serviços</a>
+                <a href="contato.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Contato</a>
+                <a href="termos.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Suporte</a>
             </div>
 
             <!-- Desktop Button -->
-            <a href="contato.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2">
-                <i class="fas fa-envelope"></i>
+            <a href="contato.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus:bg-blue-500 focus:outline-none">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
                 <span>Fale Conosco</span>
             </a>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2">
-                <i class="fas fa-bars text-xl"></i>
+            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus:text-white focus:outline-none" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu mobile">
             <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Principal</a>
-                <a href="quem-somos.html" class="text-blue-500 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Serviços</a>
-                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Contato</a>
-                <a href="termos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Suporte</a>
-                <a href="contato.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2">Fale Conosco</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-blue-500 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-blue-500 focus:outline-none" role="menuitem" aria-current="page">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Serviços</a>
+                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Contato</a>
+                <a href="termos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Suporte</a>
+                <a href="contato.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus:bg-blue-500 focus:outline-none">Fale Conosco</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow py-12 px-4 md:px-6 section-padding">
+    <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding">
         <div class="max-w-6xl mx-auto">
             
-            <header class="mb-12 md:mb-16 border-b border-white/5 pb-8 md:pb-10">
+            <header class="mb-12 md:mb-16 border-b border-white/5 pb-8 md:pb-10" data-aos="fade-up" data-aos-duration="600">
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 md:mb-6 uppercase tracking-tight">Quem Somos</h1>
                 <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
                     Tecnologia, Inovação e Suporte Administrativo nascidos na Amazônia para o mundo.
@@ -127,49 +193,49 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
                 
                 <div class="space-y-6 md:space-y-8 text-justify leading-relaxed text-slate-400">
-                    <p>
+                    <p data-aos="fade-right" data-aos-delay="100">
                         A <strong class="text-white">ADMINIC</strong> foi fundada em dezembro de 2025, em Manaus-AM, com uma proposta clara: unir a inteligência artificial à eficiência dos serviços administrativos. Diferente das empresas tradicionais que migraram do papel para o digital, a Adminic já nasceu na nuvem, utilizando algoritmos avançados e metodologias ágeis desde o seu primeiro dia.
                     </p>
-                    <p>
+                    <p data-aos="fade-right" data-aos-delay="150">
                         Inicialmente concebida para oferecer soluções de <strong class="text-white">Edição de Cadastros e Apoio Administrativo</strong> (CNAE 58.19-1-00), a empresa rapidamente expandiu sua atuação ao perceber a necessidade do mercado por automação inteligente. Foi assim que surgiu nosso principal produto, a <strong class="text-blue-400">Adminic IA</strong>, um sistema capaz de integrar gestão financeira via WhatsApp, eliminando a complexidade de softwares antigos.
                     </p>
-                                            <p>
+                    <p data-aos="fade-right" data-aos-delay="200">
                         Nossa metodologia combina o "High-Tech" (Inteligência Artificial, APIs do Google e Meta) com o "High-Touch" (Suporte humano especializado e empático). Atuamos não apenas como fornecedores de software, mas como parceiros estratégicos na <strong class="text-white">preparação de documentos, treinamento em informática e suporte técnico</strong>.
                     </p>
-                    <p>
+                    <p data-aos="fade-right" data-aos-delay="250">
                         Com sede em Manaus e atuação digital em todo o Brasil, contamos com uma estrutura enxuta, moderna e focada na retenção de talentos e na segurança de dados, seguindo rigorosamente a LGPD.
                     </p>
                 </div>
 
                 <div class="space-y-6">
-                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover">
+                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover" data-aos="fade-left" data-aos-delay="100">
                         <h3 class="text-white font-bold text-lg mb-2 uppercase flex items-center gap-3">
-                            <i class="fas fa-rocket text-blue-500"></i> Nascida na Nuvem
+                            <i class="fas fa-rocket text-blue-500" aria-hidden="true"></i> Nascida na Nuvem
                         </h3>
                         <p class="text-sm text-slate-400">Sem legado de sistemas antigos. Nossa arquitetura é 100% baseada em APIs modernas e servidores seguros.</p>
                     </div>
 
-                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover">
+                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover" data-aos="fade-left" data-aos-delay="150">
                         <h3 class="text-white font-bold text-lg mb-2 uppercase flex items-center gap-3">
-                            <i class="fas fa-laptop-code text-blue-500"></i> Soluções Híbridas
+                            <i class="fas fa-laptop-code text-blue-500" aria-hidden="true"></i> Soluções Híbridas
                         </h3>
                         <p class="text-sm text-slate-400">Desenvolvimento de Software + Serviços Administrativos manuais (Digitalização e Edição). Resolvemos o problema de ponta a ponta.</p>
                     </div>
 
-                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover">
+                    <div class="bg-slate-900/50 p-6 rounded-xl md:rounded-2xl border border-white/5 card-hover" data-aos="fade-left" data-aos-delay="200">
                         <h3 class="text-white font-bold text-lg mb-2 uppercase flex items-center gap-3">
-                            <i class="fas fa-users text-blue-500"></i> Foco no Cliente
+                            <i class="fas fa-users text-blue-500" aria-hidden="true"></i> Foco no Cliente
                         </h3>
                         <p class="text-sm text-slate-400">Atendimento personalizado. Na Adminic, você fala com especialistas, não apenas com robôs.</p>
                     </div>
 
-                    <div class="mt-8 pt-8 border-t border-white/10">
+                    <div class="mt-8 pt-8 border-t border-white/10" data-aos="fade-left" data-aos-delay="250">
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Dados Corporativos</p>
                         <div class="space-y-2">
                             <p class="text-white font-mono text-sm">Razão Social: WILLYAN SOUZA BRITO</p>
                             <p class="text-white font-mono text-sm">CNPJ: 64.146.685/0001-61</p>
                             <p class="text-white font-mono text-sm">Fundação: 22/12/2025</p>
-                            <p class="text-white font-mono text-sm">E-mail: <a href="mailto:institucional@adminic.com.br" class="text-blue-400 hover:text-blue-300">institucional@adminic.com.br</a></p>
+                            <p class="text-white font-mono text-sm">E-mail: <a href="mailto:institucional@adminic.com.br" class="text-blue-400 hover:text-blue-300 focus:text-blue-300 focus:outline-none">institucional@adminic.com.br</a></p>
                         </div>
                     </div>
                 </div>
@@ -179,23 +245,23 @@
             <div class="mt-16 pt-12 border-t border-white/5">
                 <h2 class="text-2xl md:text-3xl font-extrabold text-white uppercase mb-8 text-center">Nossa Missão e Valores</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center">
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center" data-aos="zoom-in" data-aos-delay="100">
                         <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-bullseye text-blue-500 text-xl"></i>
+                            <i class="fas fa-bullseye text-blue-500 text-xl" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-white font-bold mb-3">Missão</h3>
                         <p class="text-slate-400 text-sm">Descomplicar a tecnologia para pessoas e empresas, tornando processos administrativos mais eficientes através de soluções inteligentes e acessíveis.</p>
                     </div>
-                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center">
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center" data-aos="zoom-in" data-aos-delay="150">
                         <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-eye text-green-500 text-xl"></i>
+                            <i class="fas fa-eye text-green-500 text-xl" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-white font-bold mb-3">Visão</h3>
                         <p class="text-slate-400 text-sm">Ser referência em soluções tecnológicas administrativas no Norte do Brasil, reconhecida pela inovação e qualidade no atendimento.</p>
                     </div>
-                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center">
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 text-center" data-aos="zoom-in" data-aos-delay="200">
                         <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-gem text-purple-500 text-xl"></i>
+                            <i class="fas fa-gem text-purple-500 text-xl" aria-hidden="true"></i>
                         </div>
                         <h3 class="text-white font-bold mb-3">Valores</h3>
                         <ul class="text-slate-400 text-sm space-y-2">
@@ -214,59 +280,91 @@
         <div class="max-w-6xl mx-auto px-4 md:px-6 text-center">
             <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase">Adminic © 2026 | Manaus - Amazonas</p>
             <div class="mt-4 flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="politica.html" class="hover:text-white transition">Privacidade</a>
-                <a href="termos.html" class="hover:text-white transition">Termos</a>
-                <a href="contato.html" class="hover:text-white transition">Contato</a>
+                <a href="politica.html" class="hover:text-white transition focus:text-white focus:outline-none">Privacidade</a>
+                <a href="termos.html" class="hover:text-white transition focus:text-white focus:outline-none">Termos</a>
+                <a href="contato.html" class="hover:text-white transition focus:text-white focus:outline-none">Contato</a>
             </div>
         </div>
     </footer>
 
     <!-- Fixed WhatsApp Button (Mobile only) -->
-    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95">
-        <i class="fab fa-whatsapp text-xl"></i>
+    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95 focus:bg-green-500 focus:outline-none" aria-label="Contato via WhatsApp">
+        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
     </a>
 
     <!-- Scripts -->
     <script>
-        // Menu mobile toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                // Alterar ícone
-                const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
+        // Inicializar AOS com verificação de preferência de movimento reduzido
+        document.addEventListener('DOMContentLoaded', function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             
-            // Fechar menu ao clicar em um link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+            if (!prefersReducedMotion) {
+                AOS.init({
+                    duration: 600,
+                    once: true,
+                    offset: 100
                 });
-            });
-        }
-        
-        // Fechar menu ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                const icon = mobileMenuButton.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+            }
+            
+            // Menu mobile toggle com acessibilidade
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('active');
+                    
+                    // Alterar ícone
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Fechar menu com tecla ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        mobileMenuButton.focus();
+                    }
+                });
+                
+                // Fechar menu ao clicar em um link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', (e) => {
+                    if (mobileMenu && mobileMenuButton && 
+                        !mobileMenu.contains(e.target) && 
+                        !mobileMenuButton.contains(e.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
             }
         });
     </script>
