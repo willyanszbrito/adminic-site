@@ -3,63 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suporte e Termos - ADMINIC</title>
+    <title>Termos de Uso e Suporte - ADMINIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
+        .term-section { @apply border-l-2 border-slate-700 pl-6 py-1 transition-colors duration-300 hover:border-blue-500; }
     </style>
 </head>
 <body class="text-slate-300 selection:bg-blue-500/30">
     <nav class="border-b border-white/5 py-6 backdrop-blur-md sticky top-0 z-50 bg-[#020617]/80">
         <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
             <span class="text-xl font-extrabold text-white tracking-tighter uppercase">ADMINIC</span>
-            <a href="index.html" class="text-sm font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest">← Voltar ao Início</a>
+            <a href="index.html" class="text-xs font-bold text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest border border-blue-500/20 px-4 py-2 rounded-full hover:bg-blue-500/10">← Voltar</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-20">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight uppercase">Termos e Suporte</h1>
-        <p class="text-slate-400 mb-12 font-medium text-lg leading-relaxed">Informações oficiais de atendimento, conformidade com a Meta Business e regras de uso do sistema ADMINIC.</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-slate-900/40 p-10 rounded-[2rem] border border-white/5 shadow-2xl">
-                <h2 class="text-white font-bold mb-8 uppercase tracking-[0.2em] text-xs text-blue-500">Canais de Atendimento</h2>
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <header class="mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight uppercase leading-tight">
+                Termos de Uso <br>
+                <span class="text-blue-500">& Suporte Oficial</span>
+            </h1>
+            <p class="text-slate-400 font-medium text-lg leading-relaxed max-w-2xl">
+                Documento oficial que regula o uso do assistente financeiro baseado em IA e estabelece os canais de comunicação com o desenvolvedor.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+            <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-lg group">
+                <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6 group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <h2 class="text-white font-bold mb-6 uppercase tracking-widest text-xs opacity-50">Canais Diretos</h2>
                 <div class="space-y-6">
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">E-mail Profissional</p>
-                        <p class="text-white font-bold text-xl hover:text-blue-500 transition-colors cursor-pointer">will@adminic.com.br</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">E-mail do Desenvolvedor</p>
+                        <a href="mailto:will@adminic.com.br" class="text-white font-bold text-lg hover:text-blue-400 transition-colors block">will@adminic.com.br</a>
                     </div>
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">WhatsApp de Suporte</p>
-                        <p class="text-white font-bold text-xl hover:text-blue-500 transition-colors cursor-pointer">(92) 98489-9955</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">WhatsApp Suporte</p>
+                        <a href="https://wa.me/5592984899955" class="text-white font-bold text-lg hover:text-blue-400 transition-colors block">(92) 98489-9955</a>
                     </div>
                 </div>
             </div>
-            <div class="bg-slate-900/40 p-10 rounded-[2rem] border border-white/5 shadow-2xl flex flex-col justify-center">
-                <h2 class="text-white font-bold mb-6 uppercase tracking-[0.2em] text-xs text-blue-500">Disponibilidade</h2>
-                <p class="text-white font-bold text-lg mb-2">Segunda a Sexta</p>
-                <p class="text-slate-400 font-medium">08:00 às 18:00 (Manaus)</p>
-                <div class="mt-6 pt-6 border-t border-white/5 text-sm text-slate-500 font-bold uppercase tracking-widest">
-                    Respostas em até 24h úteis
+
+            <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-lg flex flex-col justify-center">
+                <h2 class="text-white font-bold mb-8 uppercase tracking-widest text-xs opacity-50">SLA & Disponibilidade</h2>
+                <div class="space-y-2 mb-8">
+                    <p class="text-white font-bold text-2xl">Segunda a Sexta</p>
+                    <p class="text-blue-400 font-medium">08:00 às 18:00 <span class="text-slate-500 text-sm">(Manaus/AM)</span></p>
+                </div>
+                <div class="pt-6 border-t border-white/5 flex items-center gap-3">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Sistemas Operacionais</span>
                 </div>
             </div>
         </div>
 
-        <section class="space-y-16 text-base leading-relaxed font-medium">
-            <div class="p-2 border-l-2 border-blue-600 pl-8">
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">1. Responsabilidade do Usuário</h2>
-                <p class="text-slate-400">O usuário é integralmente responsável pela veracidade dos dados inseridos no sistema. A ADMINIC IA atua como uma camada de inteligência para organização pessoal, não realizando movimentações financeiras ou transações bancárias de forma autônoma.</p>
+        <h3 class="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">Termos de Aceitação e Uso</h3>
+        
+        <section class="space-y-12 text-slate-400 leading-relaxed">
+            
+            <div class="term-section">
+                <h4 class="text-lg font-bold text-white mb-3">1. Aceite dos Termos</h4>
+                <p>Ao iniciar uma conversa com o número oficial do ADMINIC no WhatsApp e utilizar a senha de acesso, você expressa sua concordância livre, informada e inequívoca com este termo. O serviço é oferecido "como está" (as-is), em caráter de desenvolvimento contínuo.</p>
             </div>
-            <div class="p-2 border-l-2 border-blue-600 pl-8">
-                <h2 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">2. Infraestrutura e Disponibilidade</h2>
-                <p class="text-slate-400">Buscamos manter 99% de disponibilidade técnica. Contudo, a operação depende da estabilidade das APIs da Meta Platforms (WhatsApp) e dos serviços de nuvem do Google Cloud. Eventuais instabilidades nessas plataformas podem afetar o tempo de resposta da IA.</p>
+
+            <div class="term-section">
+                <h4 class="text-lg font-bold text-white mb-3">2. Natureza do Serviço</h4>
+                <p>O ADMINIC é uma ferramenta de <strong>automação e organização pessoal</strong>. O sistema utiliza Inteligência Artificial (Google Gemini) para interpretar textos e áudios e organizá-los em planilhas.</p>
+                <ul class="mt-4 space-y-2 list-disc pl-5 text-sm text-slate-500">
+                    <li>O sistema <strong>NÃO</strong> é um banco e não realiza movimentações financeiras reais.</li>
+                    <li>O sistema <strong>NÃO</strong> tem acesso à sua conta bancária oficial.</li>
+                    <li>O usuário é o único responsável pela veracidade dos dados inseridos.</li>
+                </ul>
             </div>
+
+            <div class="term-section">
+                <h4 class="text-lg font-bold text-white mb-3">3. Limitação de Responsabilidade</h4>
+                <p>Em conformidade com a legislação aplicável, o desenvolvedor (Willyan Souza Brito) não se responsabiliza por danos diretos ou indiretos decorrentes de:</p>
+                <ul class="mt-4 space-y-2 list-disc pl-5 text-sm text-slate-500">
+                    <li>Erros de interpretação da Inteligência Artificial;</li>
+                    <li>Indisponibilidade das plataformas terceiras (WhatsApp/Meta ou Google Cloud);</li>
+                    <li>Perda de dados decorrente de mau uso ou violação de acesso por culpa do usuário (compartilhamento de senha).</li>
+                </ul>
+            </div>
+
+            <div class="term-section">
+                <h4 class="text-lg font-bold text-white mb-3">4. Uso Aceitável</h4>
+                <p>É estritamente proibido utilizar a IA do ADMINIC para:</p>
+                <p class="mt-2 text-sm">a) Enviar conteúdos ilícitos, violentos ou pornográficos (o sistema reporta logs à Meta);<br>
+                b) Tentar realizar engenharia reversa ou ataques de negação de serviço;<br>
+                c) Utilizar o bot para spam ou envio em massa.</p>
+                <p class="mt-2 text-sm italic text-blue-500">A violação destas regras resultará no bloqueio imediato do número do usuário.</p>
+            </div>
+
+            <div class="term-section">
+                <h4 class="text-lg font-bold text-white mb-3">5. Propriedade Intelectual</h4>
+                <p>Todo o código-fonte, marca ADMINIC e fluxos de conversa são propriedade intelectual de <strong>Willyan Souza Brito</strong>. O uso do sistema concede ao usuário apenas uma licença limitada, revogável e não exclusiva de uso.</p>
+            </div>
+
         </section>
+
+        <div class="mt-16 p-6 bg-blue-900/10 border border-blue-500/20 rounded-xl">
+            <p class="text-sm text-blue-300 text-center font-medium">
+                Este termo foi atualizado em <span class="text-white font-bold">15 de janeiro de 2025</span> e é válido por prazo indeterminado.
+            </p>
+        </div>
+
     </main>
 
-    <footer class="py-12 text-center border-t border-white/5 bg-[#020617]">
-        <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+    <footer class="py-12 text-center border-t border-white/5 bg-[#01040f]">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase mb-4">Adminic © 2026</p>
+            <p class="text-slate-600 text-xs">
+                Willyan Souza Brito | CNPJ: 64.146.685/0001-61<br>
+                Manaus, Amazonas - Brasil
+            </p>
+        </div>
     </footer>
 </body>
 </html>
