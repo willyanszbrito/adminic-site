@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com a ADMINIC - Serviços Administrativos e Tecnologia">
     <title>Contato - ADMINIC</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animações -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        /* Configurações base */
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             overflow-x: hidden;
         }
-        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        
+        /* Acessibilidade: foco visível */
+        :focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        .glass { 
+            background: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(12px); 
+        }
+        
         .card-hover { 
             transition: all 0.3s ease; 
             border: 1px solid rgba(255,255,255,0.05); 
@@ -25,7 +48,7 @@
             background: rgba(255,255,255,0.02); 
         }
         
-        /* Menu mobile */
+        /* Menu mobile acessível */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -44,6 +67,22 @@
             z-index: 1000;
         }
         
+        /* Link para pular para o conteúdo principal */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 1001;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
         /* Melhorias de responsividade */
         @media (max-width: 768px) {
             .section-padding {
@@ -51,74 +90,101 @@
                 padding-right: 1rem !important;
             }
         }
+        
+        /* Redução de movimento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .mobile-menu,
+            .mobile-menu.active {
+                transition: none !important;
+            }
+            
+            .card-hover:hover {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
+    
+    <!-- Link para pular para conteúdo principal (Acessibilidade) -->
+    <a href="#main-content" class="skip-to-main focus:top-0" aria-label="Pular para o conteúdo principal">
+        Pular para conteúdo
+    </a>
     
     <!-- Top Bar (Desktop only) -->
     <div class="bg-blue-900/20 border-b border-white/5 py-2 px-4 md:px-6 text-[10px] font-bold uppercase tracking-widest text-blue-300 hidden md:block">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex gap-4">
-                <span><i class="fas fa-phone-alt mr-2"></i>(92) 98489-9955</span>
-                <span><i class="fas fa-envelope mr-2"></i>contato@adminic.com.br</span>
+                <span><i class="fas fa-phone-alt mr-2" aria-hidden="true"></i>(92) 98489-9955</span>
+                <span><i class="fas fa-envelope mr-2" aria-hidden="true"></i>contato@adminic.com.br</span>
             </div>
             <div class="flex gap-4">
-                <a href="index.html" class="hover:text-white transition">Página Inicial</a>
-                <a href="https://wa.me/559284790794" class="hover:text-white transition">WhatsApp</a>
+                <a href="index.html" class="hover:text-white transition focus:text-white focus:outline-none">Página Inicial</a>
+                <a href="https://wa.me/559284790794" class="hover:text-white transition focus:text-white focus:outline-none">WhatsApp</a>
             </div>
         </div>
     </div>
 
     <!-- Main Navigation -->
-    <nav class="sticky top-0 z-50 border-b border-white/5 glass">
+    <nav class="sticky top-0 z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-6xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-3 group">
+            <a href="index.html" class="flex items-center gap-3 group" aria-label="Adminic - Página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
-                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                    <i class="fas fa-cube text-white text-sm md:text-base" aria-hidden="true"></i>
                 </div>
                 <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-white transition px-2 py-1">Principal</a>
-                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1">Serviços</a>
-                <a href="contato.html" class="text-blue-500 px-2 py-1">Contato</a>
-                <a href="termos.html" class="hover:text-white transition px-2 py-1">Suporte</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400" role="menubar" aria-label="Menu principal">
+                <a href="index.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Serviços</a>
+                <a href="contato.html" class="text-blue-500 px-2 py-1 focus:text-blue-500 focus:outline-none" role="menuitem" aria-current="page">Contato</a>
+                <a href="termos.html" class="hover:text-white transition px-2 py-1 focus:text-white focus:outline-none" role="menuitem">Suporte</a>
             </div>
 
             <!-- Desktop Button -->
-            <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2">
-                <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus:bg-blue-500 focus:outline-none">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 <span>WhatsApp</span>
             </a>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2">
-                <i class="fas fa-bars text-xl"></i>
+            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus:text-white focus:outline-none" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu mobile">
             <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Principal</a>
-                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Serviços</a>
-                <a href="contato.html" class="text-blue-500 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Contato</a>
-                <a href="termos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5">Suporte</a>
-                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2">WhatsApp</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Serviços</a>
+                <a href="contato.html" class="text-blue-500 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-blue-500 focus:outline-none" role="menuitem" aria-current="page">Contato</a>
+                <a href="termos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus:text-white focus:outline-none" role="menuitem">Suporte</a>
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus:bg-blue-500 focus:outline-none">WhatsApp</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow py-12 px-4 md:px-6 section-padding">
+    <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding">
         <div class="max-w-6xl mx-auto">
             
-            <header class="mb-12 md:mb-16 border-b border-white/5 pb-8 md:pb-10">
+            <header class="mb-12 md:mb-16 border-b border-white/5 pb-8 md:pb-10" data-aos="fade-up" data-aos-duration="600">
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 md:mb-6 uppercase tracking-tight">Contato</h1>
                 <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
                     Entre em contato com o setor responsável através dos canais abaixo.
@@ -128,18 +194,18 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 mb-12 md:mb-20">
                 
                 <div class="space-y-8">
-                    <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5">
+                    <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5" data-aos="fade-right" data-aos-delay="100">
                         <h3 class="text-white font-bold text-xl mb-6 uppercase flex items-center gap-3">
-                            <i class="fas fa-info-circle text-blue-500"></i> Informações Gerais
+                            <i class="fas fa-info-circle text-blue-500" aria-hidden="true"></i> Informações Gerais
                         </h3>
                         <div class="space-y-6">
                             <div>
                                 <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">E-mail Principal</p>
-                                <a href="mailto:contato@adminic.com.br" class="text-white font-bold text-lg hover:text-blue-400 transition block break-words">contato@adminic.com.br</a>
+                                <a href="mailto:contato@adminic.com.br" class="text-white font-bold text-lg hover:text-blue-400 transition block break-words focus:text-blue-400 focus:outline-none">contato@adminic.com.br</a>
                             </div>
                             <div>
                                 <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">Telefone / WhatsApp</p>
-                                <a href="https://wa.me/559284790794" class="text-white font-bold text-lg hover:text-blue-400 transition block">(92) 8489-9955</a>
+                                <a href="https://wa.me/559284790794" class="text-white font-bold text-lg hover:text-blue-400 transition block focus:text-blue-400 focus:outline-none">(92) 8489-9955</a>
                             </div>
                             <div>
                                 <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">Endereço</p>
@@ -152,9 +218,9 @@
                         </div>
                     </div>
 
-                    <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5">
+                    <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5" data-aos="fade-right" data-aos-delay="150">
                         <h3 class="text-white font-bold text-xl mb-6 uppercase flex items-center gap-3">
-                            <i class="fas fa-clock text-blue-500"></i> Horário de Atendimento
+                            <i class="fas fa-clock text-blue-500" aria-hidden="true"></i> Horário de Atendimento
                         </h3>
                         <div class="space-y-4">
                             <div>
@@ -173,60 +239,60 @@
                 <div>
                     <h3 class="text-white font-bold text-xl mb-8 uppercase">Departamentos Especializados</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover">
+                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover" data-aos="zoom-in" data-aos-delay="100">
                             <h4 class="text-blue-400 font-bold mb-4 text-sm uppercase">Comercial & Vendas</h4>
                             <ul class="space-y-2 text-xs text-slate-400">
-                                <li><a href="mailto:comercial@adminic.com.br" class="hover:text-white transition block">comercial@adminic.com.br</a></li>
-                                <li><a href="mailto:vendas@adminic.com.br" class="hover:text-white transition block">vendas@adminic.com.br</a></li>
+                                <li><a href="mailto:comercial@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">comercial@adminic.com.br</a></li>
+                                <li><a href="mailto:vendas@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">vendas@adminic.com.br</a></li>
                             </ul>
                         </div>
-                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover">
+                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover" data-aos="zoom-in" data-aos-delay="150">
                             <h4 class="text-green-400 font-bold mb-4 text-sm uppercase">Suporte Técnico</h4>
                             <ul class="space-y-2 text-xs text-slate-400">
-                                <li><a href="mailto:suporte@adminic.com.br" class="hover:text-white transition block">suporte@adminic.com.br</a></li>
-                                <li><a href="mailto:helpdesk@adminic.com.br" class="hover:text-white transition block">helpdesk@adminic.com.br</a></li>
+                                <li><a href="mailto:suporte@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">suporte@adminic.com.br</a></li>
+                                <li><a href="mailto:helpdesk@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">helpdesk@adminic.com.br</a></li>
                             </ul>
                         </div>
-                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover">
+                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover" data-aos="zoom-in" data-aos-delay="200">
                             <h4 class="text-purple-400 font-bold mb-4 text-sm uppercase">Financeiro</h4>
                             <ul class="space-y-2 text-xs text-slate-400">
-                                <li><a href="mailto:financeiro@adminic.com.br" class="hover:text-white transition block">financeiro@adminic.com.br</a></li>
-                                <li><a href="mailto:cobranca@adminic.com.br" class="hover:text-white transition block">cobranca@adminic.com.br</a></li>
+                                <li><a href="mailto:financeiro@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">financeiro@adminic.com.br</a></li>
+                                <li><a href="mailto:cobranca@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">cobranca@adminic.com.br</a></li>
                             </ul>
                         </div>
-                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover">
+                        <div class="p-6 rounded-xl border border-white/5 bg-slate-900/30 card-hover" data-aos="zoom-in" data-aos-delay="250">
                             <h4 class="text-red-400 font-bold mb-4 text-sm uppercase">Jurídico & LGPD</h4>
                             <ul class="space-y-2 text-xs text-slate-400">
-                                <li><a href="mailto:juridico@adminic.com.br" class="hover:text-white transition block">juridico@adminic.com.br</a></li>
-                                <li><a href="mailto:lgpd@adminic.com.br" class="hover:text-white transition block">lgpd@adminic.com.br</a></li>
+                                <li><a href="mailto:juridico@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">juridico@adminic.com.br</a></li>
+                                <li><a href="mailto:lgpd@adminic.com.br" class="hover:text-white transition block focus:text-white focus:outline-none">lgpd@adminic.com.br</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="mt-8 p-6 bg-blue-900/10 border border-blue-500/20 rounded-xl">
+                    <div class="mt-8 p-6 bg-blue-900/10 border border-blue-500/20 rounded-xl" data-aos="fade-up" data-aos-delay="300">
                         <p class="text-sm text-blue-300 text-center">
-                            Para outros departamentos, consulte nossa <a href="index.html" class="text-white font-bold hover:text-blue-400">página principal</a> ou envie para <a href="mailto:contato@adminic.com.br" class="text-white font-bold hover:text-blue-400">contato@adminic.com.br</a>
+                            Para outros departamentos, consulte nossa <a href="index.html" class="text-white font-bold hover:text-blue-400 focus:text-blue-400 focus:outline-none">página principal</a> ou envie para <a href="mailto:contato@adminic.com.br" class="text-white font-bold hover:text-blue-400 focus:text-blue-400 focus:outline-none">contato@adminic.com.br</a>
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- Formas de Contato -->
-            <div class="bg-slate-900/30 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5">
+            <div class="bg-slate-900/30 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5" data-aos="fade-up" data-aos-delay="100">
                 <h3 class="text-white font-bold text-xl mb-6 uppercase">📞 Formas de Contato</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <a href="https://wa.me/559284790794" class="p-6 rounded-xl border border-green-500/20 bg-green-500/5 hover:bg-green-500/10 transition flex flex-col items-center justify-center text-center card-hover">
-                        <i class="fab fa-whatsapp text-green-500 text-3xl mb-4"></i>
+                    <a href="https://wa.me/559284790794" class="p-6 rounded-xl border border-green-500/20 bg-green-500/5 hover:bg-green-500/10 transition flex flex-col items-center justify-center text-center card-hover focus:bg-green-500/10 focus:outline-none" aria-label="Contato via WhatsApp">
+                        <i class="fab fa-whatsapp text-green-500 text-3xl mb-4" aria-hidden="true"></i>
                         <span class="text-white font-bold">WhatsApp</span>
                         <span class="text-green-400 text-sm mt-2">Resposta em até 15min</span>
                     </a>
-                    <a href="mailto:contato@adminic.com.br" class="p-6 rounded-xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition flex flex-col items-center justify-center text-center card-hover">
-                        <i class="fas fa-envelope text-blue-500 text-3xl mb-4"></i>
+                    <a href="mailto:contato@adminic.com.br" class="p-6 rounded-xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition flex flex-col items-center justify-center text-center card-hover focus:bg-blue-500/10 focus:outline-none" aria-label="Contato via E-mail">
+                        <i class="fas fa-envelope text-blue-500 text-3xl mb-4" aria-hidden="true"></i>
                         <span class="text-white font-bold">E-mail</span>
                         <span class="text-blue-400 text-sm mt-2">Resposta em 24h</span>
                     </a>
                     <div class="p-6 rounded-xl border border-slate-700 bg-slate-900/50 flex flex-col items-center justify-center text-center">
-                        <i class="fas fa-phone text-slate-500 text-3xl mb-4"></i>
+                        <i class="fas fa-phone text-slate-500 text-3xl mb-4" aria-hidden="true"></i>
                         <span class="text-white font-bold">Telefone</span>
                         <span class="text-slate-400 text-sm mt-2">(92) 98489-9955</span>
                     </div>
@@ -234,11 +300,11 @@
             </div>
 
             <!-- Mapa Localização -->
-            <div class="mt-12 bg-slate-900/30 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5">
+            <div class="mt-12 bg-slate-900/30 p-6 md:p-8 rounded-xl md:rounded-2xl border border-white/5" data-aos="fade-up" data-aos-delay="150">
                 <h3 class="text-white font-bold text-xl mb-6 uppercase">📍 Nossa Localização</h3>
                 <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
                     <div class="flex items-center gap-4 mb-4">
-                        <i class="fas fa-map-marker-alt text-blue-500 text-xl"></i>
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl" aria-hidden="true"></i>
                         <div>
                             <p class="text-white font-bold">Manaus, Amazonas</p>
                             <p class="text-slate-400 text-sm">Capital do Estado do Amazonas - Região Norte do Brasil</p>
@@ -246,7 +312,7 @@
                     </div>
                     <div class="aspect-video bg-slate-800 rounded-lg flex items-center justify-center">
                         <div class="text-center p-6">
-                            <i class="fas fa-map text-slate-600 text-4xl mb-4"></i>
+                            <i class="fas fa-map text-slate-600 text-4xl mb-4" aria-hidden="true"></i>
                             <p class="text-slate-400 text-sm">Atendimento digital em todo o Brasil</p>
                             <p class="text-slate-500 text-xs mt-2">Nosso foco é atender remotamente com excelência</p>
                         </div>
@@ -261,7 +327,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4">ADMINIC</a>
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus:text-blue-400 focus:outline-none">ADMINIC</a>
                     <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência.
                     </p>
@@ -269,16 +335,16 @@
                 <div>
                     <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus:text-blue-500 focus:outline-none">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus:text-blue-500 focus:outline-none">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus:text-blue-500 focus:outline-none">Sobre Nós</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus:text-blue-500 focus:outline-none">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus:text-blue-500 focus:outline-none">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
@@ -291,51 +357,83 @@
     </footer>
 
     <!-- Fixed WhatsApp Button (Mobile only) -->
-    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95">
-        <i class="fab fa-whatsapp text-xl"></i>
+    <a href="https://wa.me/559284790794" class="whatsapp-fixed md:hidden bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-500 transition-all active:scale-95 focus:bg-green-500 focus:outline-none" aria-label="Contato via WhatsApp">
+        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
     </a>
 
     <!-- Scripts -->
     <script>
-        // Menu mobile toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                // Alterar ícone
-                const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
+        // Inicializar AOS com verificação de preferência de movimento reduzido
+        document.addEventListener('DOMContentLoaded', function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             
-            // Fechar menu ao clicar em um link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+            if (!prefersReducedMotion) {
+                AOS.init({
+                    duration: 600,
+                    once: true,
+                    offset: 100
                 });
-            });
-        }
-        
-        // Fechar menu ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                const icon = mobileMenuButton.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+            }
+            
+            // Menu mobile toggle com acessibilidade
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('active');
+                    
+                    // Alterar ícone
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Fechar menu com tecla ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        mobileMenuButton.focus();
+                    }
+                });
+                
+                // Fechar menu ao clicar em um link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', (e) => {
+                    if (mobileMenu && mobileMenuButton && 
+                        !mobileMenu.contains(e.target) && 
+                        !mobileMenuButton.contains(e.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
             }
         });
     </script>
