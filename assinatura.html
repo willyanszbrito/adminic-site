@@ -10,14 +10,17 @@
     <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             overflow-x: hidden;
         }
+        
         .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
         
         /* Menu mobile */
@@ -39,18 +42,37 @@
             z-index: 1000;
         }
         
-        /* Animações suaves */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
+        /* Acessibilidade: skip to main content */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+            font-weight: bold;
         }
         
-        /* Melhorias de acessibilidade */
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
+        /* Acessibilidade: focus styles */
         .focus-visible:focus-visible {
             outline: 2px solid #3b82f6;
             outline-offset: 2px;
+        }
+        
+        /* Melhor contraste para links */
+        a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #60a5fa;
+        }
+        
+        a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #93c5fd;
         }
         
         /* Estados de formulário */
@@ -92,21 +114,59 @@
             60% { content: '...'; }
             80%, 100% { content: ''; }
         }
+        
+        /* Animações com preferência de redução */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            .mobile-menu {
+                transition: none !important;
+            }
+            
+            .payment-method {
+                transition: none !important;
+            }
+            
+            .loading-dots:after {
+                animation: none !important;
+                content: '';
+            }
+            
+            html {
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Scroll suave apenas se não houver preferência por redução */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
     </style>
 </head>
 <body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
     
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-to-main focus-visible">
+        Pular para o conteúdo principal
+    </a>
+    
     <!-- Top Bar (Desktop only) -->
-    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block">
+    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
+         aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2">
-                    <i class="fas fa-envelope"></i> 
+                <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">financeiro@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2">
-                    <i class="fab fa-whatsapp"></i> 
+                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
             </div>
@@ -118,8 +178,8 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             <!-- Logo -->
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
-                    <i class="fas fa-cube text-white text-sm md:text-base" aria-hidden="true"></i>
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
                 <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
@@ -133,7 +193,7 @@
             </div>
 
             <!-- Desktop Button -->
-            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible">
+            <a href="index.html" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Voltar à página inicial">
                 <i class="fas fa-home" aria-hidden="true"></i>
                 <span>Voltar ao Site</span>
             </a>
@@ -145,7 +205,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
                 <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
                 <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
@@ -224,7 +284,7 @@
                                         Nome completo <span class="text-red-400">*</span>
                                     </label>
                                     <input type="text" id="full-name" name="full_name" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                            placeholder="Seu nome completo"
                                            aria-required="true">
                                 </div>
@@ -234,7 +294,7 @@
                                         E-mail <span class="text-red-400">*</span>
                                     </label>
                                     <input type="email" id="email" name="email" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                            placeholder="seu@email.com"
                                            aria-required="true">
                                 </div>
@@ -244,7 +304,7 @@
                                         Telefone (WhatsApp) <span class="text-red-400">*</span>
                                     </label>
                                     <input type="tel" id="phone" name="phone" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                            placeholder="(92) 99999-9999"
                                            aria-required="true">
                                 </div>
@@ -254,7 +314,7 @@
                                         CPF <span class="text-red-400">*</span>
                                     </label>
                                     <input type="text" id="cpf" name="cpf" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                            placeholder="000.000.000-00"
                                            aria-required="true">
                                 </div>
@@ -265,7 +325,7 @@
                                     Observações adicionais (opcional)
                                 </label>
                                 <textarea id="notes" name="notes" rows="3"
-                                          class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                          class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                           placeholder="Alguma observação importante sobre sua assinatura..."></textarea>
                             </div>
                         </section>
@@ -337,7 +397,7 @@
                             <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5 mb-6">
                                 <div class="flex items-start gap-4 mb-6">
                                     <input type="checkbox" id="terms" name="terms" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2">
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible">
                                     <div>
                                         <label for="terms" class="text-white font-bold cursor-pointer">
                                             Concordo com os Termos de Uso
@@ -350,7 +410,7 @@
                                 
                                 <div class="flex items-start gap-4">
                                     <input type="checkbox" id="privacy" name="privacy" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2">
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible">
                                     <div>
                                         <label for="privacy" class="text-white font-bold cursor-pointer">
                                             Concordo com a Política de Privacidade
@@ -371,7 +431,7 @@
                                         <p class="text-slate-300 text-sm">
                                             Seus dados são protegidos com criptografia. Processamos pagamentos através do 
                                             <strong>Asaas PJ</strong>, uma plataforma de pagamentos brasileira certificada e segura.
-                                            <a href="https://www.asaas.com" target="_blank" class="text-blue-400 hover:text-blue-300 underline focus-visible">Saiba mais sobre o Asaas</a>.
+                                            <a href="https://www.asaas.com" target="_blank" class="text-blue-400 hover:text-blue-300 underline focus-visible" aria-label="Saiba mais sobre o Asaas (abre em nova janela)">Saiba mais sobre o Asaas</a>.
                                         </p>
                                     </div>
                                 </div>
@@ -467,7 +527,7 @@
     </main>
 
     <!-- Modal de sucesso (oculto inicialmente) -->
-    <div id="success-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+    <div id="success-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="success-modal-title" aria-hidden="true">
         <div class="bg-slate-900 rounded-2xl border border-white/5 p-6 md:p-8 max-w-md w-full">
             <div class="text-center mb-6">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
@@ -550,7 +610,18 @@
     </a>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Inicializar AOS com preferência de redução de movimento
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        AOS.init({ 
+            duration: 800, 
+            once: true,
+            offset: 100,
+            disable: prefersReducedMotion || window.innerWidth < 768
+        });
+        
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -560,6 +631,7 @@
                 const isExpanded = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
                 // Alterar ícone
                 const icon = mobileMenuButton.querySelector('i');
@@ -570,6 +642,14 @@
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
+                
+                // Focar no primeiro link do menu quando aberto
+                if (!isExpanded) {
+                    setTimeout(() => {
+                        const firstLink = mobileMenu.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }, 100);
+                }
             });
             
             // Fechar menu ao clicar em um link
@@ -578,10 +658,24 @@
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('active');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
                     const icon = mobileMenuButton.querySelector('i');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 });
+            });
+            
+            // Fechar menu com tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    mobileMenuButton.focus();
+                }
             });
         }
         
@@ -590,10 +684,30 @@
             if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
                 mobileMenu.classList.remove('active');
                 mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
                 const icon = mobileMenuButton.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Navegação por teclado dentro do menu mobile
+        document.addEventListener('keydown', (e) => {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
                 }
             }
         });
@@ -627,7 +741,7 @@
                                 Número do cartão <span class="text-red-400">*</span>
                             </label>
                             <input type="text" id="card-number" name="card_number" required
-                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                    placeholder="0000 0000 0000 0000"
                                    aria-required="true">
                         </div>
@@ -638,7 +752,7 @@
                                     Validade <span class="text-red-400">*</span>
                                 </label>
                                 <input type="text" id="card-expiry" name="card_expiry" required
-                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                        placeholder="MM/AA"
                                        aria-required="true">
                             </div>
@@ -648,7 +762,7 @@
                                     CVV <span class="text-red-400">*</span>
                                 </label>
                                 <input type="text" id="card-cvv" name="card_cvv" required
-                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                        placeholder="123"
                                        aria-required="true">
                             </div>
@@ -659,7 +773,7 @@
                                 Nome no cartão <span class="text-red-400">*</span>
                             </label>
                             <input type="text" id="card-name" name="card_name" required
-                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition"
+                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
                                    placeholder="Como está no cartão"
                                    aria-required="true">
                         </div>
@@ -784,7 +898,7 @@
             
             // Simular carregamento
             form.classList.add('form-loading');
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+            button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Processando...';
             button.disabled = true;
             
             // Simular envio para backend
@@ -858,6 +972,16 @@
             }
             
             e.target.value = value;
+        });
+        
+        // Adicionar foco visível dinamicamente para todos os elementos interativos
+        document.addEventListener('DOMContentLoaded', () => {
+            const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+            const focusableContent = document.querySelectorAll(focusableElements);
+            
+            focusableContent.forEach(element => {
+                element.classList.add('focus-visible');
+            });
         });
         
         // Foco no conteúdo principal
