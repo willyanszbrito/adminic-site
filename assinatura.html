@@ -147,6 +147,36 @@
                 scroll-behavior: smooth;
             }
         }
+        
+        /* Estilos para mensagens de erro */
+        .error-message {
+            display: none;
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .checkbox-error {
+            border-color: #ef4444 !important;
+        }
+        
+        .payment-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+        }
     </style>
 </head>
 <body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
@@ -237,6 +267,17 @@
                         </p>
                     </div>
                     
+                    <!-- Container para mensagens de erro gerais -->
+                    <div id="general-error-message" class="error-message" role="alert" aria-live="assertive">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-exclamation-triangle text-red-400 mt-0.5" aria-hidden="true"></i>
+                            <div>
+                                <h3 class="font-bold text-white mb-1">Atenção</h3>
+                                <p id="general-error-text" class="text-slate-300"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Produto -->
                     <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 mb-8">
                         <div class="flex items-start gap-4">
@@ -271,7 +312,7 @@
                     </div>
                     
                     <!-- Formulário de checkout -->
-                    <form id="checkout-form" class="space-y-8">
+                    <form id="checkout-form" class="space-y-8" novalidate>
                         <!-- Seção 1: Dados pessoais -->
                         <section aria-labelledby="personal-data-heading">
                             <h2 id="personal-data-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
@@ -338,6 +379,17 @@
                                 Método de pagamento
                             </h2>
                             
+                            <!-- Mensagem de erro específica para método de pagamento -->
+                            <div id="payment-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-credit-card text-red-400 mt-0.5" aria-hidden="true"></i>
+                                    <div>
+                                        <h3 class="font-bold text-white mb-1">Método de pagamento necessário</h3>
+                                        <p id="payment-error-text" class="text-slate-300">Selecione um método de pagamento para continuar com a assinatura.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <!-- Pix -->
                                 <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
@@ -395,29 +447,42 @@
                                 Termos e condições
                             </h2>
                             
+                            <!-- Mensagem de erro específica para termos -->
+                            <div id="terms-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-file-contract text-red-400 mt-0.5" aria-hidden="true"></i>
+                                    <div>
+                                        <h3 class="font-bold text-white mb-1">Aceitação necessária</h3>
+                                        <p id="terms-error-text" class="text-slate-300">Para prosseguir, é necessário aceitar os termos e condições.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5 mb-6">
                                 <div class="flex items-start gap-4 mb-6">
                                     <input type="checkbox" id="terms" name="terms" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible">
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-terms"
+                                           aria-describedby="terms-description">
                                     <div>
                                         <label for="terms" class="text-white font-bold cursor-pointer">
                                             Concordo com os Termos de Uso
                                         </label>
-                                        <p class="text-slate-400 text-sm mt-2">
-                                            Li e concordo com os <a href="termos.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso.
+                                        <p id="terms-description" class="text-slate-400 text-sm mt-2">
+                                            Li e concordo com os <a href="termos.html" class="text-blue-400 hover:text-blue-300 underline focus-visible" target="_blank">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso. <strong>Se não aceitar os termos, não será possível realizar a assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
                                 
                                 <div class="flex items-start gap-4">
                                     <input type="checkbox" id="privacy" name="privacy" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible">
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-privacy"
+                                           aria-describedby="privacy-description">
                                     <div>
                                         <label for="privacy" class="text-white font-bold cursor-pointer">
                                             Concordo com a Política de Privacidade
                                         </label>
-                                        <p class="text-slate-400 text-sm mt-2">
-                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Política de Privacidade</a> e estou ciente dos meus direitos LGPD.
+                                        <p id="privacy-description" class="text-slate-400 text-sm mt-2">
+                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible" target="_blank">Política de Privacidade</a> e estou ciente dos meus direitos LGPD. <strong>Se não aceitar a política de privacidade, não será possível processar sua assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -535,7 +600,7 @@
                     <i class="fas fa-check text-2xl text-green-500" aria-hidden="true"></i>
                 </div>
                 <h3 id="success-modal-title" class="text-2xl font-bold text-white mb-2">Assinatura processada!</h3>
-                <p class="text-slate-400">
+                                <p class="text-slate-400">
                     Sua assinatura foi recebida e está sendo processada.
                 </p>
             </div>
@@ -815,6 +880,31 @@
             `
         };
         
+        // Função para mostrar mensagem de erro
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            const textElement = document.getElementById(elementId.replace('-message', '-text'));
+            
+            if (errorElement && textElement) {
+                textElement.textContent = message;
+                errorElement.classList.add('active');
+                
+                // Focar no elemento de erro para acessibilidade
+                setTimeout(() => {
+                    errorElement.focus();
+                    errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+        
+        // Função para esconder mensagem de erro
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.classList.remove('active');
+            }
+        }
+        
         // Função para selecionar método de pagamento
         function selectPaymentMethod(method) {
             selectedPaymentMethod = method;
@@ -822,12 +912,16 @@
             // Remover seleção de todos os botões
             document.querySelectorAll('.payment-method').forEach(btn => {
                 btn.classList.remove('selected');
+                btn.classList.remove('payment-error');
                 btn.setAttribute('aria-pressed', 'false');
             });
             
             // Adicionar seleção ao botão clicado
             event.currentTarget.classList.add('selected');
             event.currentTarget.setAttribute('aria-pressed', 'true');
+            
+            // Esconder mensagem de erro de pagamento
+            hideError('payment-error-message');
             
             // Injetar formulário correspondente
             const container = document.getElementById('payment-form-container');
@@ -845,6 +939,21 @@
             const form = document.getElementById('checkout-form');
             const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
             let isValid = true;
+            
+            // Esconder todas as mensagens de erro
+            hideError('general-error-message');
+            hideError('payment-error-message');
+            hideError('terms-error-message');
+            
+            // Limpar classes de erro dos checkboxes
+            document.querySelectorAll('.checkbox-terms, .checkbox-privacy').forEach(checkbox => {
+                checkbox.classList.remove('checkbox-error');
+            });
+            
+            // Limpar classes de erro dos botões de pagamento
+            document.querySelectorAll('.payment-method').forEach(btn => {
+                btn.classList.remove('payment-error');
+            });
             
             // Validação básica de campos obrigatórios
             for (const input of requiredInputs) {
@@ -872,7 +981,12 @@
             
             // Verificar método de pagamento selecionado
             if (!selectedPaymentMethod) {
-                alert('Por favor, selecione um método de pagamento.');
+                // Adicionar classe de erro aos botões de pagamento
+                document.querySelectorAll('.payment-method').forEach(btn => {
+                    btn.classList.add('payment-error');
+                });
+                
+                showError('payment-error-message', 'Selecione um método de pagamento para continuar com a assinatura.');
                 isValid = false;
             }
             
@@ -880,9 +994,29 @@
             const termsCheckbox = document.getElementById('terms');
             const privacyCheckbox = document.getElementById('privacy');
             
-            if (!termsCheckbox.checked || !privacyCheckbox.checked) {
-                alert('Por favor, aceite os termos e a política de privacidade para continuar.');
+            // Lógica específica conforme solicitado
+            if (!termsCheckbox.checked && !privacyCheckbox.checked) {
+                termsCheckbox.classList.add('checkbox-error');
+                privacyCheckbox.classList.add('checkbox-error');
+                showError('terms-error-message', 'Para prosseguir, é necessário aceitar tanto os Termos de Uso quanto a Política de Privacidade. Caso não aceite, não será possível realizar a assinatura.');
                 isValid = false;
+            } else if (!termsCheckbox.checked) {
+                termsCheckbox.classList.add('checkbox-error');
+                showError('terms-error-message', 'Para prosseguir, é necessário aceitar os Termos de Uso. Caso não aceite, não será possível realizar a assinatura.');
+                isValid = false;
+            } else if (!privacyCheckbox.checked) {
+                privacyCheckbox.classList.add('checkbox-error');
+                showError('terms-error-message', 'Para prosseguir, é necessário aceitar a Política de Privacidade. Caso não aceite, não será possível realizar a assinatura.');
+                isValid = false;
+            }
+            
+            // Se houver outros erros (campos obrigatórios não preenchidos)
+            if (!isValid && !selectedPaymentMethod && (termsCheckbox.checked && privacyCheckbox.checked)) {
+                showError('general-error-message', 'Por favor, preencha todos os campos obrigatórios e selecione um método de pagamento.');
+            } else if (!isValid && selectedPaymentMethod && (!termsCheckbox.checked || !privacyCheckbox.checked)) {
+                // Já temos mensagens específicas para termos, não precisa de geral
+            } else if (!isValid) {
+                showError('general-error-message', 'Por favor, corrija os erros indicados no formulário antes de prosseguir.');
             }
             
             return isValid;
@@ -973,6 +1107,22 @@
             }
             
             e.target.value = value;
+        });
+        
+        // Remover mensagens de erro quando o usuário interagir com os campos
+        document.querySelectorAll('input, textarea').forEach(element => {
+            element.addEventListener('input', function() {
+                this.classList.remove('form-error');
+                hideError('general-error-message');
+            });
+        });
+        
+        document.querySelectorAll('.checkbox-terms, .checkbox-privacy').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                this.classList.remove('checkbox-error');
+                hideError('terms-error-message');
+                hideError('general-error-message');
+            });
         });
         
         // Adicionar foco visível dinamicamente para todos os elementos interativos
