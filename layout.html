@@ -63,6 +63,14 @@
             position: relative;
         }
         
+        /* Animação do Chat */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chat-animate-1 { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; animation-delay: 0.5s; }
+        .chat-animate-2 { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; animation-delay: 1.5s; }
         /* Melhorias de responsividade */
         @media (max-width: 768px) {
             .hero-title {
