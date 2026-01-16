@@ -11,6 +11,11 @@
     <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -18,7 +23,6 @@
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #020617; 
             overflow-x: hidden;
         }
         
@@ -147,7 +151,7 @@
         }
     </style>
 </head>
-<body class="text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col">
+<body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
     <!-- Skip to main content link -->
     <a href="#main-content" class="skip-to-main focus-visible">
@@ -175,6 +179,7 @@
     <!-- Main Navigation -->
     <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
@@ -183,24 +188,28 @@
             </a>
 
             <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="text-blue-500 hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
-                
-                <a href="quem-somos.html" class="hover:text-white transition px-2 py-1 focus-visible">Quem Somos</a>
-                
-                <a href="index.html#servicos" class="hover:text-white transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-white transition px-2 py-1 focus-visible">Produtos</a>
-                
-                <a href="contato.html" class="hover:text-white transition px-2 py-1 focus-visible">Contato</a>
+                <a href="index.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
-            <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
-                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                <span>Área do Cliente</span>
-            </a>
+            <div class="flex items-center gap-3 md:gap-4">
+                
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-white/10 transition text-slate-400 hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                    <i id="theme-icon" class="fas fa-sun"></i>
+                </button>
 
-            <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
-                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
-            </button>
+                <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>Área do Cliente</span>
+                </a>
+
+                <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
 
         <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
@@ -211,6 +220,10 @@
                 <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
                 <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
                 
+                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 w-full text-left" role="menuitem">
+                    <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
+                </button>
+
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
                     <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
                 </a>
@@ -459,6 +472,32 @@
     </a>
 
     <!-- Scripts -->
+    <script>
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+        
+        // 1. Verificar preferência salva
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            html.classList.remove('dark');
+            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // 2. Função de alternar
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Inicializar AOS com preferência de redução de movimento
