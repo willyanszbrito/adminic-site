@@ -33,7 +33,8 @@
             overflow-x: hidden;
         }
         
-        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        /* Glass effect controlado via Tailwind classes de cor */
+        .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         
         /* Menu mobile */
         .mobile-menu {
@@ -46,15 +47,7 @@
             transition: max-height 0.5s ease-in;
         }
         
-        /* WhatsApp button fixed para mobile */
-        .whatsapp-fixed {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        
-        /* Acessibilidade: skip to main content */
+        /* Acessibilidade */
         .skip-to-main {
             position: absolute;
             top: -40px;
@@ -67,68 +60,40 @@
             border-radius: 0 0 4px 0;
             font-weight: bold;
         }
+        .skip-to-main:focus { top: 0; }
+        .focus-visible:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
         
-        .skip-to-main:focus {
-            top: 0;
+        /* Links Hover */
+        a:not(.bg-blue-600):not(.bg-green-600):not(.text-white):not(.text-slate-900) {
+            transition: color 0.3s;
         }
         
-        /* Acessibilidade: focus styles */
-        .focus-visible:focus-visible {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
-        }
-        
-        /* Melhor contraste para links */
-        a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
-            color: #60a5fa;
-        }
-        
-        a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
-            color: #93c5fd;
-        }
-        
-        /* Animações com preferência de redução */
         @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-            
-            .mobile-menu {
-                transition: none !important;
-            }
-            
-            html {
-                scroll-behavior: auto !important;
-            }
+            * { animation: none !important; transition: none !important; }
+            .mobile-menu { transition: none !important; }
+            html { scroll-behavior: auto !important; }
         }
-        
-        /* Scroll suave apenas se não houver preferência por redução */
         @media (prefers-reduced-motion: no-preference) {
-            html {
-                scroll-behavior: smooth;
-            }
+            html { scroll-behavior: smooth; }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
-    <!-- Skip to main content link -->
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
     </a>
     
-    <!-- Top Bar (Desktop only) -->
-    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
                     <i class="fas fa-envelope" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">contato@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="https://wa.me/559284790794" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
@@ -136,28 +101,27 @@
         </div>
     </div>
 
-    <!-- Main Navigation -->
-    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
-                <a href="quem-somos.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
-                <a href="contato.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
                 
-                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-white/10 transition text-slate-400 hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
                     <i id="theme-icon" class="fas fa-sun"></i>
                 </button>
 
@@ -166,22 +130,22 @@
                     <span>Área do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Principal</a>
-                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
-                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
-                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
-                    <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
+                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
+                    <span class="mr-2">Tema</span> <i class="fas fa-sun w-5 text-center"></i>
                 </button>
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
@@ -191,91 +155,84 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow py-20 md:py-32 px-4 md:px-6" id="main-content" tabindex="-1">
-        <div class="max-w-4xl mx-auto text-center">
-            <!-- Ícone ilustrativo -->
+    <main class="flex-grow py-20 md:py-32 px-4 md:px-6 flex items-center" id="main-content" tabindex="-1">
+        <div class="max-w-4xl mx-auto text-center w-full">
             <div class="mb-8 md:mb-12">
-                <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-                    <i class="fas fa-map-signs text-3xl md:text-4xl text-blue-500" aria-hidden="true"></i>
+                <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-100 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 mb-6 transition-colors duration-300">
+                    <i class="fas fa-map-signs text-3xl md:text-4xl text-blue-600 dark:text-blue-500" aria-hidden="true"></i>
                 </div>
-                <span class="block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2" aria-hidden="true">Erro de navegação</span>
+                <span class="block text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2" aria-hidden="true">Erro de navegação</span>
             </div>
             
-            <!-- Mensagem principal -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 md:mb-8">
-                Página <span class="text-blue-500">não encontrada</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-8 transition-colors duration-300">
+                Página <span class="text-blue-600 dark:text-blue-500">não encontrada</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-slate-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
                 A página que você está procurando não existe ou foi movida para outro endereço. 
                 Não se preocupe, vamos ajudá-lo a encontrar o que precisa.
             </p>
             
-            <!-- Explicação amigável -->
-            <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5 mb-12 text-left max-w-2xl mx-auto">
-                <h2 class="text-white font-bold text-lg mb-4 flex items-center gap-3">
+            <div class="bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-white/5 mb-12 text-left max-w-2xl mx-auto shadow-sm dark:shadow-none transition-colors duration-300">
+                <h2 class="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-3 transition-colors duration-300">
                     <i class="fas fa-lightbulb text-yellow-500" aria-hidden="true"></i>
                     O que pode ter acontecido?
                 </h2>
-                <ul class="space-y-3 text-slate-400">
+                <ul class="space-y-3 text-slate-600 dark:text-slate-400 transition-colors duration-300">
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-link text-blue-400 mt-1" aria-hidden="true"></i>
+                        <i class="fas fa-link text-blue-500 mt-1" aria-hidden="true"></i>
                         <span>O endereço (URL) pode ter sido digitado incorretamente</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-folder-open text-blue-400 mt-1" aria-hidden="true"></i>
+                        <i class="fas fa-folder-open text-blue-500 mt-1" aria-hidden="true"></i>
                         <span>A página pode ter sido movida para outra seção do site</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-clock text-blue-400 mt-1" aria-hidden="true"></i>
+                        <i class="fas fa-clock text-blue-500 mt-1" aria-hidden="true"></i>
                         <span>O conteúdo pode estar temporariamente indisponível</span>
                     </li>
                 </ul>
             </div>
             
-            <!-- Ações principais -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <a href="index.html" class="group bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-base transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20 uppercase tracking-widest w-full sm:w-auto focus-visible">
                     <i class="fas fa-home text-lg" aria-hidden="true"></i>
                     Voltar para a página inicial
                 </a>
-                <a href="contato.html" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base border border-slate-800 hover:bg-slate-900 transition-all flex items-center justify-center gap-3 uppercase tracking-widest focus-visible">
+                <a href="contato.html" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all flex items-center justify-center gap-3 uppercase tracking-widest focus-visible">
                     <i class="fas fa-headset text-base" aria-hidden="true"></i>
                     Falar com suporte
                 </a>
             </div>
             
-            <!-- Links úteis -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <a href="index.html#servicos" class="p-4 rounded-lg border border-white/5 bg-slate-900/30 hover:bg-slate-800/50 transition flex flex-col items-center text-center focus-visible">
-                    <i class="fas fa-cogs text-blue-400 text-xl mb-3" aria-hidden="true"></i>
-                    <span class="text-white font-bold text-sm">Nossos Serviços</span>
+                <a href="index.html#servicos" class="p-4 rounded-lg border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none transition flex flex-col items-center text-center focus-visible group">
+                    <i class="fas fa-cogs text-blue-600 dark:text-blue-400 text-xl mb-3" aria-hidden="true"></i>
+                    <span class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Nossos Serviços</span>
                     <span class="text-slate-500 text-xs mt-1">Conheça o que oferecemos</span>
                 </a>
                 
-                <a href="index.html#produtos" class="p-4 rounded-lg border border-white/5 bg-slate-900/30 hover:bg-slate-800/50 transition flex flex-col items-center text-center focus-visible">
-                    <i class="fas fa-rocket text-blue-400 text-xl mb-3" aria-hidden="true"></i>
-                    <span class="text-white font-bold text-sm">Produtos</span>
+                <a href="index.html#produtos" class="p-4 rounded-lg border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none transition flex flex-col items-center text-center focus-visible group">
+                    <i class="fas fa-rocket text-blue-600 dark:text-blue-400 text-xl mb-3" aria-hidden="true"></i>
+                    <span class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Produtos</span>
                     <span class="text-slate-500 text-xs mt-1">Adminic IA e soluções</span>
                 </a>
                 
-                <a href="quem-somos.html" class="p-4 rounded-lg border border-white/5 bg-slate-900/30 hover:bg-slate-800/50 transition flex flex-col items-center text-center focus-visible">
-                    <i class="fas fa-users text-blue-400 text-xl mb-3" aria-hidden="true"></i>
-                    <span class="text-white font-bold text-sm">Quem Somos</span>
+                <a href="quem-somos.html" class="p-4 rounded-lg border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none transition flex flex-col items-center text-center focus-visible group">
+                    <i class="fas fa-users text-blue-600 dark:text-blue-400 text-xl mb-3" aria-hidden="true"></i>
+                    <span class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Quem Somos</span>
                     <span class="text-slate-500 text-xs mt-1">Conheça nossa empresa</span>
                 </a>
             </div>
             
-            <!-- Informação de contato -->
-            <div class="mt-16 pt-8 border-t border-white/10">
+            <div class="mt-16 pt-8 border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
                 <p class="text-slate-500 text-sm mb-4">Ainda precisa de ajuda? Entre em contato:</p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="mailto:contato@adminic.com.br" class="text-blue-400 hover:text-blue-300 transition flex items-center gap-2 focus-visible">
+                    <a href="mailto:contato@adminic.com.br" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition flex items-center gap-2 focus-visible">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         contato@adminic.com.br
                     </a>
-                    <a href="https://wa.me/559284790794" class="text-blue-400 hover:text-blue-300 transition flex items-center gap-2 focus-visible">
+                    <a href="https://wa.me/559284790794" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition flex items-center gap-2 focus-visible">
                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         (92) 98489-9955
                     </a>
@@ -284,46 +241,45 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
-                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0 transition-colors duration-300">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="pt-8 border-t border-white/5 text-center">
-                <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
-                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center transition-colors duration-300">
+                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <a href="mailto:comercial@adminic.com.br" 
-       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
+       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-900/90 dark:bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-slate-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
        aria-label="Fale com nosso Comercial por E-mail">
         
         <div class="relative w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-white/10 group-hover:bg-blue-500 transition-colors shadow-lg">
@@ -337,7 +293,6 @@
         </div>
     </a>
 
-    <!-- Scripts -->
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
