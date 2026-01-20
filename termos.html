@@ -14,6 +14,7 @@
     
     <link rel="manifest" href="/site.webmanifest">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,8 +23,10 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- AOS Animações -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -42,22 +45,18 @@
             outline-offset: 2px;
         }
         
-        /* Glass effect */
         .glass { 
+            background: rgba(15, 23, 42, 0.95); 
             backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
         }
         
         .term-section { 
-            border-left: 2px solid #cbd5e1; /* Slate-300 no light */
+            border-left: 2px solid #334155;
             padding-left: 1.5rem;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             transition: border-color 0.3s ease;
         }
-        
-        /* Dark mode border override via CSS ou manter Tailwind classes no HTML (optei por classes no HTML abaixo para consistência) */
-        
         .term-section:hover { 
             border-color: #3b82f6; 
         }
@@ -71,6 +70,14 @@
         .mobile-menu.active {
             max-height: 500px;
             transition: max-height 0.5s ease-in;
+        }
+        
+        /* WhatsApp button fixed para mobile */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
         }
         
         /* Link para pular para o conteúdo principal */
@@ -99,33 +106,44 @@
         
         /* Redução de movimento */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
-            .mobile-menu, .mobile-menu.active { transition: none !important; }
-            .term-section { transition: none !important; }
+            
+            .mobile-menu,
+            .mobile-menu.active {
+                transition: none !important;
+            }
+            
+            .term-section {
+                transition: none !important;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
+    <!-- Link para pular para conteúdo principal (Acessibilidade) -->
     <a href="#main-content" class="skip-to-main focus:top-0" aria-label="Pular para o conteúdo principal">
         Pular para conteúdo
     </a>
     
-    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300" 
+    <!-- Top Bar (Desktop only) -->
+    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:suporte@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="mailto:suporte@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fas fa-envelope" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">suporte@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
@@ -133,27 +151,28 @@
         </div>
     </div>
 
-    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
+    <!-- Main Navigation -->
+    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
-                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
-                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
-                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="index.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
                 
-                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-white/10 transition text-slate-400 hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
                     <i id="theme-icon" class="fas fa-sun"></i>
                 </button>
 
@@ -162,21 +181,21 @@
                     <span>Área do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
-                <a href="quem-somos.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
-                <a href="index.html#produtos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
-                <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 w-full text-left" role="menuitem">
+                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 w-full text-left" role="menuitem">
                     <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
                 </button>
 
@@ -187,72 +206,74 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding">
         <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="600">
             <header class="mb-12">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight uppercase leading-tight transition-colors duration-300">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight uppercase leading-tight">
                     Termos de Uso <br>
-                    <span class="text-blue-600 dark:text-blue-500 transition-colors duration-300">& Suporte Oficial</span>
+                    <span class="text-blue-500">& Suporte Oficial</span>
                 </h1>
-                <p class="text-slate-600 dark:text-slate-400 font-medium text-lg leading-relaxed max-w-2xl transition-colors duration-300">
+                <p class="text-slate-400 font-medium text-lg leading-relaxed max-w-2xl">
                     Documento oficial que regula o uso do assistente financeiro baseado em IA e estabelece os canais de comunicação com o desenvolvedor.
                 </p>
             </header>
 
+            <!-- Canais de Suporte -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 dark:border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-sm dark:shadow-lg group" data-aos="fade-right" data-aos-delay="100">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-500 mb-6 group-hover:scale-110 transition-transform">
+                <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-lg group" data-aos="fade-right" data-aos-delay="100">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-headset text-lg" aria-hidden="true"></i>
                     </div>
-                    <h2 class="text-slate-900 dark:text-white font-bold mb-4 uppercase tracking-widest text-xs opacity-70 dark:opacity-50 transition-colors duration-300">Canais de Atendimento</h2>
+                    <h2 class="text-white font-bold mb-4 uppercase tracking-widest text-xs opacity-50">Canais de Atendimento</h2>
                     <div class="space-y-6">
                         <div>
                             <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Suporte Técnico</p>
-                            <a href="mailto:suporte@adminic.com.br" class="text-slate-900 dark:text-white font-bold text-lg hover:text-blue-600 dark:hover:text-blue-400 transition-colors block break-words focus:text-blue-600 dark:focus:text-blue-400 focus:outline-none">suporte@adminic.com.br</a>
+                            <a href="mailto:suporte@adminic.com.br" class="text-white font-bold text-lg hover:text-blue-400 transition-colors block break-words focus:text-blue-400 focus:outline-none">suporte@adminic.com.br</a>
                         </div>
                         <div>
                             <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Jurídico & Contratos</p>
-                            <a href="mailto:juridico@adminic.com.br" class="text-slate-900 dark:text-white font-bold text-lg hover:text-blue-600 dark:hover:text-blue-400 transition-colors block break-words focus:text-blue-600 dark:focus:text-blue-400 focus:outline-none">juridico@adminic.com.br</a>
+                            <a href="mailto:juridico@adminic.com.br" class="text-white font-bold text-lg hover:text-blue-400 transition-colors block break-words focus:text-blue-400 focus:outline-none">juridico@adminic.com.br</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 dark:border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-sm dark:shadow-lg flex flex-col justify-center" data-aos="fade-left" data-aos-delay="100">
-                    <h2 class="text-slate-900 dark:text-white font-bold mb-6 uppercase tracking-widest text-xs opacity-70 dark:opacity-50 transition-colors duration-300">SLA & Disponibilidade</h2>
+                <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-lg flex flex-col justify-center" data-aos="fade-left" data-aos-delay="100">
+                    <h2 class="text-white font-bold mb-6 uppercase tracking-widest text-xs opacity-50">SLA & Disponibilidade</h2>
                     <div class="space-y-4 mb-6">
                         <div>
-                            <p class="text-slate-900 dark:text-white font-bold text-xl transition-colors duration-300">Segunda a Sexta</p>
-                            <p class="text-blue-600 dark:text-blue-400 font-medium transition-colors duration-300">08:00 às 18:00 <span class="text-slate-500 text-sm">(Horário de Manaus)</span></p>
+                            <p class="text-white font-bold text-xl">Segunda a Sexta</p>
+                            <p class="text-blue-400 font-medium">08:00 às 18:00 <span class="text-slate-500 text-sm">(Horário de Manaus)</span></p>
                         </div>
                         <div>
-                            <p class="text-slate-900 dark:text-white font-bold text-xl transition-colors duration-300">Sábado</p>
-                            <p class="text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300">09:00 às 12:00</p>
+                            <p class="text-white font-bold text-xl">Sábado</p>
+                            <p class="text-slate-400 font-medium">09:00 às 12:00</p>
                         </div>
                     </div>
-                    <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center gap-3 transition-colors duration-300">
+                    <div class="pt-4 border-t border-white/5 flex items-center gap-3">
                         <span class="relative flex h-3 w-3">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                         </span>
-                        <span class="text-xs text-slate-500 font-bold uppercase tracking-widest">Sistemas Operacionais</span>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Sistemas Operacionais</span>
                     </div>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-white/10 pb-4 transition-colors duration-300">📋 Termos de Aceitação e Uso</h3>
+            <h3 class="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">📋 Termos de Aceitação e Uso</h3>
             
-            <section class="space-y-12 text-slate-600 dark:text-slate-400 leading-relaxed transition-colors duration-300">
+            <section class="space-y-12 text-slate-400 leading-relaxed">
                 
-                <div class="term-section border-l-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">1. Aceite dos Termos</h4>
+                <div class="term-section">
+                    <h4 class="text-lg font-bold text-white mb-3">1. Aceite dos Termos</h4>
                     <p>Ao iniciar uma conversa com o número oficial do ADMINIC no WhatsApp e utilizar a senha de acesso, você concorda com estes termos. O serviço é oferecido "como está", em caráter de desenvolvimento contínuo.</p>
                 </div>
 
-                <div class="term-section border-l-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">2. O que é o Adminic IA?</h4>
+                <div class="term-section">
+                    <h4 class="text-lg font-bold text-white mb-3">2. O que é o Adminic IA?</h4>
                     <p>O <strong>Adminic IA</strong> é uma ferramenta de <strong>automação e organização pessoal</strong>. É como um assistente financeiro que entende suas mensagens (texto ou áudio) e organiza em planilhas automáticas.</p>
-                    <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg border border-blue-200 dark:border-blue-500/20 transition-colors duration-300">
-                        <p class="text-blue-700 dark:text-blue-300 text-sm transition-colors duration-300">
+                    <div class="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                        <p class="text-blue-300 text-sm">
                             <strong>⚠️ Importante entender:</strong><br>
                             • O sistema <strong>NÃO</strong> é um banco e não movimenta dinheiro<br>
                             • O sistema <strong>NÃO</strong> tem acesso à sua conta bancária<br>
@@ -261,115 +282,117 @@
                     </div>
                 </div>
 
-                <div class="term-section border-l-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">3. O que não nos responsabilizamos</h4>
+                <div class="term-section">
+                    <h4 class="text-lg font-bold text-white mb-3">3. O que não nos responsabilizamos</h4>
                     <p>Em conformidade com a legislação, o desenvolvedor (Willyan Souza Brito) não se responsabiliza por:</p>
-                    <ul class="mt-4 space-y-2 list-disc pl-5 text-sm text-slate-600 dark:text-slate-500 transition-colors duration-300">
+                    <ul class="mt-4 space-y-2 list-disc pl-5 text-sm text-slate-500">
                         <li>Erros de interpretação da Inteligência Artificial (a IA pode entender errado ocasionalmente);</li>
                         <li>Indisponibilidade das plataformas terceiras (WhatsApp/Meta ou Google Cloud);</li>
                         <li>Perda de dados por mau uso ou compartilhamento indevido de senha.</li>
                     </ul>
                 </div>
 
-                <div class="term-section border-l-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">4. Uso Aceitável</h4>
+                <div class="term-section">
+                    <h4 class="text-lg font-bold text-white mb-3">4. Uso Aceitável</h4>
                     <p>É estritamente proibido utilizar o Adminic IA para:</p>
                     <div class="mt-4 space-y-3">
                         <div class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded bg-red-100 dark:bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 transition-colors duration-300">
+                            <div class="w-5 h-5 rounded bg-red-500/20 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
                                 <i class="fas fa-times text-xs" aria-hidden="true"></i>
                             </div>
                             <span class="text-sm">Enviar conteúdos ilícitos, violentos ou pornográficos (o sistema reporta logs à Meta)</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded bg-red-100 dark:bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 transition-colors duration-300">
+                            <div class="w-5 h-5 rounded bg-red-500/20 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
                                 <i class="fas fa-times text-xs" aria-hidden="true"></i>
                             </div>
                             <span class="text-sm">Tentar realizar engenharia reversa ou ataques de negação de serviço</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded bg-red-100 dark:bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 transition-colors duration-300">
+                            <div class="w-5 h-5 rounded bg-red-500/20 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
                                 <i class="fas fa-times text-xs" aria-hidden="true"></i>
                             </div>
                             <span class="text-sm">Utilizar o bot para spam ou envio em massa</span>
                         </div>
                     </div>
-                    <p class="mt-4 text-sm italic text-blue-600 dark:text-blue-500 transition-colors duration-300">A violação destas regras resultará no bloqueio imediato do número do usuário.</p>
+                    <p class="mt-4 text-sm italic text-blue-500">A violação destas regras resultará no bloqueio imediato do número do usuário.</p>
                 </div>
 
-                <div class="term-section border-l-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">5. Direitos Autorais</h4>
+                <div class="term-section">
+                    <h4 class="text-lg font-bold text-white mb-3">5. Direitos Autorais</h4>
                     <p>Todo o código-fonte, marca ADMINIC e fluxos de conversa são propriedade intelectual de <strong>Willyan Souza Brito</strong>. O uso do sistema concede ao usuário apenas uma licença limitada, revogável e não exclusiva de uso.</p>
                 </div>
 
             </section>
 
+            <!-- FAQ (Perguntas Frequentes) -->
             <div class="mt-16">
-                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 transition-colors duration-300">❓ Perguntas Frequentes</h3>
+                <h3 class="text-2xl font-bold text-white mb-8">❓ Perguntas Frequentes</h3>
                 <div class="space-y-6">
-                    <div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none transition-colors duration-300">
-                        <h4 class="text-slate-900 dark:text-white font-bold mb-3 transition-colors duration-300">O Adminic IA acessa meu banco?</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300">Não. O Adminic IA apenas organiza as informações que VOCÊ envia via WhatsApp. Não temos acesso a nenhuma conta bancária.</p>
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
+                        <h4 class="text-white font-bold mb-3">O Adminic IA acessa meu banco?</h4>
+                        <p class="text-slate-400 text-sm">Não. O Adminic IA apenas organiza as informações que VOCÊ envia via WhatsApp. Não temos acesso a nenhuma conta bancária.</p>
                     </div>
-                    <div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none transition-colors duration-300">
-                        <h4 class="text-slate-900 dark:text-white font-bold mb-3 transition-colors duration-300">Meus dados são seguros?</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300">Sim. Usamos criptografia e seguimos rigorosamente a LGPD. Seus dados ficam em planilhas privadas do Google, acessíveis apenas por você e nosso sistema.</p>
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
+                        <h4 class="text-white font-bold mb-3">Meus dados são seguros?</h4>
+                        <p class="text-slate-400 text-sm">Sim. Usamos criptografia e seguimos rigorosamente a LGPD. Seus dados ficam em planilhas privadas do Google, acessíveis apenas por você e nosso sistema.</p>
                     </div>
-                    <div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none transition-colors duration-300">
-                        <h4 class="text-slate-900 dark:text-white font-bold mb-3 transition-colors duration-300">Posso excluir meus dados?</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300">Sim! É seu direito pela LGPD. Basta pedir "excluir meus dados" no WhatsApp ou enviar e-mail para <a href="mailto:lgpd@adminic.com.br" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 focus:text-blue-600 dark:focus:text-blue-300 focus:outline-none transition-colors">lgpd@adminic.com.br</a>.</p>
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5">
+                        <h4 class="text-white font-bold mb-3">Posso excluir meus dados?</h4>
+                        <p class="text-slate-400 text-sm">Sim! É seu direito pela LGPD. Basta pedir "excluir meus dados" no WhatsApp ou enviar e-mail para <a href="mailto:lgpd@adminic.com.br" class="text-blue-400 hover:text-blue-300 focus:text-blue-300 focus:outline-none">lgpd@adminic.com.br</a>.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-16 p-6 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-500/20 rounded-xl transition-colors duration-300">
-                <p class="text-sm text-blue-800 dark:text-blue-300 text-center font-medium transition-colors duration-300">
-                    Este termo foi atualizado em <span class="text-slate-900 dark:text-white font-bold">Janeiro de 2026</span> e é válido por prazo indeterminado.
+            <div class="mt-16 p-6 bg-blue-900/10 border border-blue-500/20 rounded-xl">
+                <p class="text-sm text-blue-300 text-center font-medium">
+                    Este termo foi atualizado em <span class="text-white font-bold">Janeiro de 2026</span> e é válido por prazo indeterminado.
                 </p>
             </div>
 
         </div>
     </main>
 
-    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+    <!-- Footer -->
+    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
-                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0 transition-colors duration-300">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Institucional</h4>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Contato</h4>
+                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center transition-colors duration-300">
-                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
-                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            <div class="pt-8 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <a href="mailto:comercial@adminic.com.br" 
-       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-900/90 dark:bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-slate-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
+       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
        aria-label="Fale com nosso Comercial por E-mail">
         
         <div class="relative w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-white/10 group-hover:bg-blue-500 transition-colors shadow-lg">
@@ -383,6 +406,7 @@
         </div>
     </a>
 
+    <!-- Scripts -->
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
@@ -456,21 +480,18 @@
                 });
                 
                 // Fechar menu ao clicar em um link
-                const mobileLinks = mobileMenu.querySelectorAll('a, button[role="menuitem"]');
+                const mobileLinks = mobileMenu.querySelectorAll('a');
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', () => {
-                        // Não fechar se for o botão de tema
-                        if(!link.innerHTML.includes('Alternar Tema')) {
-                            mobileMenu.classList.remove('active');
-                            mobileMenuButton.setAttribute('aria-expanded', 'false');
-                            const icon = mobileMenuButton.querySelector('i');
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
                     });
                 });
                 
-                // Fechar ao clicar fora
+                // Fechar menu ao clicar fora
                 document.addEventListener('click', (e) => {
                     if (mobileMenu && mobileMenuButton && 
                         !mobileMenu.contains(e.target) && 
