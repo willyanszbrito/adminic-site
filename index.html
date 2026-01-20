@@ -77,7 +77,7 @@
         .chat-animate-1 { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; animation-delay: 0.5s; }
         .chat-animate-2 { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; animation-delay: 1.5s; }
         
-        /* WhatsApp button fixed para mobile */
+        /* Whatsapp button fixed para mobile */
         .whatsapp-fixed {
             position: fixed;
             bottom: 20px;
@@ -151,6 +151,53 @@
             height: 2px;
             background-color: #3b82f6;
         }
+
+        /* Efeito Glitch Adminic - Estilos Adicionados */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-text::before {
+            color: #0ea5e9; /* Azul (Sky-500) */
+            z-index: -1;
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            color: #a855f7; /* Roxo (Purple-500) */
+            z-index: -2;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+            80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
+            20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+            80% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
+            100% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
+        }
         
         /* Animações com preferência de redução */
         @media (prefers-reduced-motion: reduce) {
@@ -186,12 +233,10 @@
 </head>
 <body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
-    <!-- Skip to main content link -->
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
     </a>
     
-    <!-- Top Bar (Desktop only) -->
     <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -209,7 +254,6 @@
         </div>
     </div>
 
-    <!-- Main Navigation -->
     <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
@@ -264,9 +308,7 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow" id="main-content" tabindex="-1">
-        <!-- Hero Section -->
         <section class="relative pt-20 md:pt-32 pb-16 md:pb-20 px-4 md:px-6 section-padding" aria-labelledby="hero-title">
             <div class="absolute inset-0 hero-gradient pointer-events-none" aria-hidden="true"></div>
             <div class="max-w-5xl mx-auto text-center relative z-10">
@@ -278,7 +320,7 @@
                     Tecnologia & Inovação
                 </div>
                 <h1 id="hero-title" data-aos="fade-up" data-aos-delay="100" class="hero-title text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 md:mb-8 leading-[1.05] tracking-tight text-white uppercase">
-                    ADMINIC <span class="text-blue-500">Serviços</span>
+                    <span class="glitch-text" data-text="ADMINIC">ADMINIC</span> <span class="text-blue-500">Serviços</span>
                 </h1>
                 <p data-aos="fade-up" data-aos-delay="200" class="hero-subtitle text-base md:text-lg lg:text-xl text-slate-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
                     Soluções completas em gestão administrativa, suporte técnico e desenvolvimento de software inteligente.
@@ -296,7 +338,6 @@
             </div>
         </section>
 
-        <!-- Serviços Section -->
         <section id="servicos" class="py-16 md:py-24 px-4 md:px-6 border-t border-white/5 bg-[#01040f]" aria-labelledby="servicos-title">
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -349,7 +390,6 @@
             </div>
         </section>
 
-        <!-- Produtos Section -->
         <section id="produtos" class="py-16 md:py-32 px-4 md:px-6 border-t border-white/5 bg-slate-900/10" aria-labelledby="produtos-title">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-12 md:mb-16">
@@ -373,11 +413,9 @@
                                     <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">ADMINIC IA</span>
                                 </div>
                                 <div class="space-y-3 md:space-y-4">
-                                    <!-- Usuário manda mensagem (à direita) -->
                                     <div class="chat-bubble-user p-3 text-[11px] md:text-[11px] text-slate-300">
                                         Adminic, gastei 50 reais no mercado agora
                                     </div>
-                                    <!-- Adminic IA responde (à esquerda) -->
                                     <div class="chat-bubble-ai p-3 text-[11px] md:text-[11px] text-blue-300 font-bold">
                                         ✅ R$ 50,00 registrado em <em>Alimentação</em>!
                                     </div>
@@ -410,7 +448,6 @@
             </div>
         </section>
 
-        <!-- Vantagens Section -->
         <section class="py-16 md:py-24 px-4 md:px-6 border-t border-white/5 bg-[#01040f]" aria-labelledby="vantagens-title">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 id="vantagens-title" class="text-2xl md:text-3xl font-extrabold text-white uppercase mb-8 md:mb-12 mobile-text-center">Por que escolher a Adminic?</h2>
@@ -447,7 +484,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
@@ -500,7 +536,6 @@
         </div>
     </a>
 
-    <!-- Scripts -->
     <script>
         // Lógica Dark/Light Mode
         const html = document.documentElement;
