@@ -722,54 +722,54 @@
     </footer>
 
     <style>
-    /* Efeito de Digitação */
-    .typing-cursor {
-        border-right: 2px solid rgba(59, 130, 246, 0.7);
-        white-space: pre-wrap;
-        overflow: hidden;
+    /* 1. Animação de Digitação (Typewriter) */
+    .typewriter-effect {
         display: inline-block;
-        animation: blink-caret 0.75s step-end infinite;
+        overflow: hidden;
+        white-space: normal; /* Permite quebra de linha */
+        border-right: 2px solid rgba(59, 130, 246, 0.8); /* Cursor piscando */
+        animation: blink-cursor 0.75s step-end infinite;
+        max-height: 0; /* Começa oculto */
     }
 
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: rgba(59, 130, 246, 0.7); }
-    }
-
-    /* Classe auxiliar para iniciar a digitação via JS */
-    .is-typing {
-        animation: typing 3s steps(60, end) forwards;
-        max-width: 0; /* Começa escondido */
+    /* Classe ativada via JS para iniciar a digitação */
+    .typing-active {
+        animation: 
+            typing 2.5s steps(50, end) forwards,
+            blink-cursor 0.75s step-end infinite;
+        max-height: 100px; /* Altura suficiente para o texto */
     }
 
     @keyframes typing {
-        from { max-width: 0; }
-        to { max-width: 100%; }
+        from { width: 0; max-height: 0; opacity: 0; }
+        1% { opacity: 1; max-height: 100px; }
+        to { width: 100%; max-height: 100px; opacity: 1; }
     }
 
-    /* Animação Stagger (Cascata) dos Ícones */
+    @keyframes blink-cursor {
+        from, to { border-color: transparent }
+        50% { border-color: rgba(59, 130, 246, 0.8); }
+    }
+
+    /* 2. Animação Cascata (Stagger) para os ícones */
     .stagger-item {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(20px);
+        transition: all 0.3s ease-out;
     }
 
+    /* Quando o menu abre, os itens entram */
     .menu-open .stagger-item {
-        animation: fadeInUp 0.4s ease forwards;
+        opacity: 1;
+        transform: translateX(0);
     }
 
-    /* Delays calculados para cada item */
-    .menu-open .stagger-item:nth-child(1) { animation-delay: 0.1s; }
-    .menu-open .stagger-item:nth-child(2) { animation-delay: 0.2s; }
-    .menu-open .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+    /* Delays progressivos */
+    .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+    .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+    .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
 
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Ripple Effect no Botão */
+    /* 3. Pulsação do Botão (Ripple) */
     @keyframes ripple-pulse {
         0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
         70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
@@ -781,7 +781,7 @@
     }
 </style>
 
-<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans group/widget">
+<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate">
 
     <div id="support-menu" 
          class="invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
@@ -789,73 +789,76 @@
          aria-modal="true" 
          aria-hidden="true">
         
-        <div class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+        <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
             <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-sm"></i>
+                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                    <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
                 </div>
-                <div>
-                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed typing-cursor">
-                        </p>
+                <div class="flex-1 min-w-0">
+                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed typewriter-effect">
+                        Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?
+                    </p>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <nav class="p-3 bg-white dark:bg-transparent" aria-label="Opções de contato">
+        <nav class="p-3 space-y-1" aria-label="Canais de suporte">
             
-            <a href="https://wa.me/559284790794" target="_blank" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-white/5 transition-all mb-1 group">
+            <a href="https://wa.me/559284790794" target="_blank" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                 <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     <i class="fab fa-whatsapp"></i>
                 </div>
                 <div>
                     <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta rápida</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
                 </div>
             </a>
 
-            <a href="mailto:comercial@adminic.com.br" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-white/5 transition-all mb-1 group">
+            <a href="mailto:comercial@adminic.com.br" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                 <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div>
                     <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
                 </div>
             </a>
 
-            <a href="index.html#faq" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-white/5 transition-all group">
+            <a href="index.html#faq" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                 <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     <i class="fas fa-question"></i>
                 </div>
                 <div>
-                    <span class="block font-bold text-slate-800 dark:text-white text-sm">Ajuda</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">FAQ</span>
+                    <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Perguntas frequentes</span>
                 </div>
             </a>
             
         </nav>
         
         <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic IA</span>
+            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic IA © 2026</span>
         </div>
     </div>
 
     <button id="support-trigger" onclick="toggleSupportWidget()" 
             class="relative flex items-center gap-3 pl-2 pr-5 py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
-                   bg-slate-900 dark:bg-blue-600 text-white
+                   bg-slate-900 dark:bg-blue-600 
                    border border-slate-700 dark:border-blue-400
-                   btn-pulse"
+                   btn-pulse group"
             aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
         
-        <div class="relative w-9 h-9 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden">
+        <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+            
             <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+            
             <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
             
-            <span class="absolute top-2 right-2 w-1.5 h-1.5 bg-green-400 border border-blue-600 dark:border-white rounded-full"></span>
+            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
         </div>
 
         <div class="text-left">
-            <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5">Precisa de Ajuda?</p>
+            <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
             <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
         </div>
     </button>
@@ -870,58 +873,57 @@
         const typingText = document.getElementById('typing-text');
         
         const isClosed = menu.classList.contains('invisible');
-        const textContent = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
 
         if (isClosed) {
-            // -- ABRIR --
+            // ============ ABRIR ============
             
-            // 1. Mostrar container
+            // 1. Mostrar Menu
             menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
-            menu.classList.add('menu-open'); // Dispara animação dos ícones (stagger)
+            menu.classList.add('menu-open'); 
             btn.setAttribute('aria-expanded', 'true');
-            btn.classList.remove('btn-pulse'); // Para pulsação ao abrir
+            btn.classList.remove('btn-pulse'); 
 
-            // 2. Animar Ícones do Botão
+            // 2. Animar Ícones (Girar)
             iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
             iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
 
-            // 3. Reiniciar e Disparar Digitação
-            typingText.textContent = textContent; // Garante o texto
-            typingText.classList.remove('is-typing'); // Reset
-            void typingText.offsetWidth; // Trigger reflow (hack para reiniciar animação CSS)
-            typingText.classList.add('is-typing'); // Start
+            // 3. Reiniciar Efeito de Digitação
+            typingText.classList.remove('typing-active');
+            void typingText.offsetWidth; // Força o navegador a reiniciar a animação (Reflow)
+            typingText.classList.add('typing-active'); 
 
         } else {
-            // -- FECHAR --
+            // ============ FECHAR ============
             
-            // 1. Esconder container
+            // 1. Esconder Menu
             menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
             menu.classList.remove('menu-open');
             btn.setAttribute('aria-expanded', 'false');
             btn.classList.add('btn-pulse');
 
-            // 2. Animar Ícones do Botão
+            // 2. Restaurar Ícones
             iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
             iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
             
-            // 3. Limpar digitação (opcional, para limpar visualmente ao fechar)
-            typingText.classList.remove('is-typing');
+            // 3. Parar digitação (opcional)
+            typingText.classList.remove('typing-active');
         }
     }
 
-    // Fechar ao clicar fora
+    // Fechar ao clicar fora do widget
     document.addEventListener('click', (e) => {
         const menu = document.getElementById('support-menu');
         const btn = document.getElementById('support-trigger');
         
-        if (!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
+        // Verifica se clicou fora do menu E fora do botão
+        if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
             toggleSupportWidget();
         }
     });
 </script>
-
+    
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
