@@ -516,16 +516,23 @@
     }
 
     // 3. Função auxiliar para atualizar AMBOS os ícones (Desktop e Mobile)
+    // 3. Função auxiliar para atualizar AMBOS os ícones (Desktop e Mobile)
     function updateIcons(isDark) {
-        if (isDark) {
-            // Se virou Dark, troca Sol por Lua
-            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-            if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            // Se virou Light, troca Lua por Sol
-            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
-            if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
+        const icons = [themeIcon, mobileThemeIcon];
+        
+        icons.forEach(icon => {
+            if (icon) {
+                // Remove ambas para garantir (limpeza)
+                icon.classList.remove('fa-sun', 'fa-moon');
+                
+                // Adiciona a correta baseada no estado
+                if (isDark) {
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.add('fa-sun');
+                }
+            }
+        });
     }
 </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
