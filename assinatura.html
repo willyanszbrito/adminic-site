@@ -349,58 +349,89 @@
                         <section aria-labelledby="personal-data-heading">
                             <h2 id="personal-data-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">1</span>
-                                Dados pessoais
+                                Seus Dados
                             </h2>
                             
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="full-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                            Nome Completo / Razão Social <span class="text-red-500 dark:text-red-400">*</span>
+                                        </label>
+                                        <input type="text" id="full-name" name="full_name" required
+                                               class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
+                                               placeholder="Seu nome ou da empresa">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="email" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                            E-mail <span class="text-red-500 dark:text-red-400">*</span>
+                                        </label>
+                                        <input type="email" id="email" name="email" required
+                                               class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
+                                               placeholder="Para envio da nota e acesso">
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <label for="full-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                        Nome completo <span class="text-red-500 dark:text-red-400">*</span>
+                                    <label for="document" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        CPF ou CNPJ <span class="text-red-500 dark:text-red-400">*</span>
                                     </label>
-                                    <input type="text" id="full-name" name="full_name" required
+                                    <input type="text" id="document" name="document" required
                                            class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                           placeholder="Seu nome completo"
-                                           aria-required="true">
+                                           placeholder="000.000.000-00 ou CNPJ">
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label for="cep" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                            CEP <span class="text-red-500 dark:text-red-400">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <input type="text" id="cep" name="cep" required maxlength="9"
+                                                   class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
+                                                   placeholder="00000-000">
+                                            <div id="cep-loading" class="absolute right-3 top-3.5 hidden">
+                                                <i class="fas fa-circle-notch fa-spin text-blue-500"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="md:col-span-2">
+                                        <label for="number" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                            Número <span class="text-red-500 dark:text-red-400">*</span>
+                                        </label>
+                                        <input type="text" id="number" name="number" required
+                                               class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
+                                               placeholder="Nº da casa/apto">
+                                    </div>
+                                </div>
+
+                                <div id="address-preview" class="hidden opacity-70 transition-all duration-500">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-100 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-white/5">
+                                        <div class="md:col-span-3">
+                                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Endereço Localizado:</p>
+                                        </div>
+                                        <div class="md:col-span-1">
+                                            <input type="text" id="address-street" readonly class="w-full bg-transparent border-none p-0 text-slate-700 dark:text-slate-300 font-medium focus:ring-0 text-sm" placeholder="Rua...">
+                                        </div>
+                                        <div>
+                                            <input type="text" id="address-neighborhood" readonly class="w-full bg-transparent border-none p-0 text-slate-700 dark:text-slate-300 font-medium focus:ring-0 text-sm" placeholder="Bairro...">
+                                        </div>
+                                        <div>
+                                            <input type="text" id="address-city" readonly class="w-full bg-transparent border-none p-0 text-slate-700 dark:text-slate-300 font-medium focus:ring-0 text-sm" placeholder="Cidade/UF">
+                                        </div>
+                                    </div>
                                 </div>
                                 
-                                <div>
-                                    <label for="email" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                        E-mail <span class="text-red-500 dark:text-red-400">*</span>
+                                <div class="mt-4">
+                                    <label for="notes" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        Observações (opcional)
                                     </label>
-                                    <input type="email" id="email" name="email" required
-                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                           placeholder="seu@email.com"
-                                           aria-required="true">
+                                    <textarea id="notes" name="notes" rows="2"
+                                              class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
+                                              placeholder="Alguma observação..."></textarea>
                                 </div>
-                                
-                                <div>
-                                    <label for="phone" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                        Telefone (WhatsApp) <span class="text-red-500 dark:text-red-400">*</span>
-                                    </label>
-                                    <input type="tel" id="phone" name="phone" required
-                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                           placeholder="(92) 99999-9999"
-                                           aria-required="true">
-                                </div>
-                                
-                                <div>
-                                    <label for="cpf" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                        CPF <span class="text-red-500 dark:text-red-400">*</span>
-                                    </label>
-                                    <input type="text" id="cpf" name="cpf" required
-                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                           placeholder="000.000.000-00"
-                                           aria-required="true">
-                                </div>
-                            </div>
-                            
-                            <div class="mt-4">
-                                <label for="notes" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                    Observações adicionais (opcional)
-                                </label>
-                                <textarea id="notes" name="notes" rows="3"
-                                          class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                          placeholder="Alguma observação importante sobre sua assinatura..."></textarea>
                             </div>
                         </section>
                         
@@ -1134,35 +1165,91 @@
             });
         }
         
-        // Máscaras para campos
-        document.getElementById('phone')?.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.substring(0, 11);
-            
-            if (value.length > 6) {
-                value = value.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
-            } else if (value.length > 2) {
-                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
-            } else if (value.length > 0) {
-                value = value.replace(/^(\d{0,2})/, '($1');
+        // --- LÓGICA DE CEP (ViaCEP) ---
+        const cepInput = document.getElementById('cep');
+        
+        cepInput?.addEventListener('blur', function(e) {
+            // Remove tudo que não é dígito
+            const cep = e.target.value.replace(/\D/g, '');
+
+            if (cep.length === 8) {
+                // Mostra loading
+                document.getElementById('cep-loading')?.classList.remove('hidden');
+                
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            // Preenche os campos ocultos/visuais
+                            const street = document.getElementById('address-street');
+                            const hood = document.getElementById('address-neighborhood');
+                            const city = document.getElementById('address-city');
+                            
+                            if(street) street.value = data.logradouro;
+                            if(hood) hood.value = data.bairro;
+                            if(city) city.value = `${data.localidade}/${data.uf}`;
+                            
+                            // Mostra o container de preview com animação
+                            document.getElementById('address-preview')?.classList.remove('hidden');
+                            
+                            // Foca no campo número (UX fluida)
+                            document.getElementById('number')?.focus();
+                            
+                            // Remove erro se houver
+                            cepInput.classList.remove('form-error');
+                            hideError('general-error-message');
+                        } else {
+                            // CEP não encontrado
+                            cepInput.classList.add('form-error');
+                            // Opcional: alert('CEP não encontrado.');
+                        }
+                    })
+                    .catch(() => {
+                        cepInput.classList.add('form-error');
+                    })
+                    .finally(() => {
+                        // Esconde loading
+                        document.getElementById('cep-loading')?.classList.add('hidden');
+                    });
             }
+        });
+
+        // Máscara de CEP visual
+        cepInput?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 8) value = value.substring(0, 8);
             
+            if (value.length > 5) {
+                value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            }
             e.target.value = value;
         });
-        
-        document.getElementById('cpf')?.addEventListener('input', function(e) {
+
+        // --- MÁSCARA INTELIGENTE CPF / CNPJ ---
+        document.getElementById('document')?.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.substring(0, 11);
             
-            if (value.length > 9) {
-                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
-            } else if (value.length > 6) {
-                value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
-            } else if (value.length > 3) {
-                value = value.replace(/^(\d{3})(\d{0,3})/, '$1.$2');
+            // Limita tamanho para CNPJ
+            if (value.length > 14) value = value.substring(0, 14);
+
+            // Aplica a máscara dinamicamente
+            if (value.length <= 11) {
+                // Máscara CPF: 000.000.000-00
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            } else {
+                // Máscara CNPJ: 00.000.000/0000-00
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
             }
             
             e.target.value = value;
+            
+            // Remove erro ao digitar
+            this.classList.remove('form-error');
         });
         
         // Remover mensagens de erro quando o usuário interagir com os campos
