@@ -489,13 +489,17 @@
     const html = document.documentElement;
     const themeIcon = document.getElementById('theme-icon');
     
-    // 1. Verificar preferência salva
+    // Tenta encontrar o ícone dentro do menu mobile (pode ser sol ou lua dependendo do estado inicial)
+    // O seletor busca qualquer elemento com classe fa-sun ou fa-moon dentro do #mobile-menu
+    const mobileThemeIcon = document.querySelector('#mobile-menu i.fa-sun, #mobile-menu i.fa-moon');
+    
+    // 1. Verificar preferência salva e atualizar ícones ao carregar
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
-        if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+        updateIcons(true);
     } else {
         html.classList.remove('dark');
-        if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        updateIcons(false);
     }
 
     // 2. Função de alternar
@@ -503,11 +507,24 @@
         if (html.classList.contains('dark')) {
             html.classList.remove('dark');
             localStorage.theme = 'light';
-            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            updateIcons(false);
         } else {
             html.classList.add('dark');
             localStorage.theme = 'dark';
+            updateIcons(true);
+        }
+    }
+
+    // 3. Função auxiliar para atualizar AMBOS os ícones (Desktop e Mobile)
+    function updateIcons(isDark) {
+        if (isDark) {
+            // Se virou Dark, troca Sol por Lua
             if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+            if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            // Se virou Light, troca Lua por Sol
+            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
         }
     }
 </script>
