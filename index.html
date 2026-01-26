@@ -650,26 +650,43 @@
 <script>
     const html = document.documentElement;
     const themeIcon = document.getElementById('theme-icon');
-    
-    // 1. Verificar preferência salva
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        html.classList.add('dark');
-        if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-    } else {
-        html.classList.remove('dark');
-        if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+    const mobileThemeIcon = document.getElementById('mobile-theme-icon'); // Agora ele acha o mobile
+
+    // Função auxiliar para atualizar AMBOS os ícones
+    function updateIcons(isDark) {
+        [themeIcon, mobileThemeIcon].forEach(icon => {
+            if (icon) {
+                // Remove qualquer estado anterior para evitar bugs
+                icon.classList.remove('fa-sun', 'fa-moon');
+                // Adiciona o correto
+                if (isDark) {
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.add('fa-sun');
+                }
+            }
+        });
     }
 
-    // 2. Função de alternar
+    // 1. Verificar preferência salva ao carregar
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        updateIcons(true);
+    } else {
+        html.classList.remove('dark');
+        updateIcons(false);
+    }
+
+    // 2. Função de alternar (chamada pelo clique)
     function toggleTheme() {
         if (html.classList.contains('dark')) {
             html.classList.remove('dark');
             localStorage.theme = 'light';
-            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            updateIcons(false);
         } else {
             html.classList.add('dark');
             localStorage.theme = 'dark';
-            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+            updateIcons(true);
         }
     }
 </script>
