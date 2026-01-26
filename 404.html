@@ -145,7 +145,7 @@
                 <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
                 <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
-                    <span class="mr-2">Tema</span> <i class="fas fa-sun w-5 text-center"></i>
+                    <span class="mr-2">Tema</span> <i id="mobile-theme-icon" class="fas fa-sun w-5 text-center"></i>
                 </button>
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
@@ -486,55 +486,46 @@
 </script>
     
 <script>
-    const html = document.documentElement;
-    const themeIcon = document.getElementById('theme-icon');
-    
-    // Tenta encontrar o ícone dentro do menu mobile (pode ser sol ou lua dependendo do estado inicial)
-    // O seletor busca qualquer elemento com classe fa-sun ou fa-moon dentro do #mobile-menu
-    const mobileThemeIcon = document.querySelector('#mobile-menu i.fa-sun, #mobile-menu i.fa-moon');
-    
-    // 1. Verificar preferência salva e atualizar ícones ao carregar
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        html.classList.add('dark');
-        updateIcons(true);
-    } else {
-        html.classList.remove('dark');
-        updateIcons(false);
-    }
-
-    // 2. Função de alternar
-    function toggleTheme() {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.theme = 'light';
-            updateIcons(false);
-        } else {
-            html.classList.add('dark');
-            localStorage.theme = 'dark';
-            updateIcons(true);
-        }
-    }
-
-    // 3. Função auxiliar para atualizar AMBOS os ícones (Desktop e Mobile)
-    // 3. Função auxiliar para atualizar AMBOS os ícones (Desktop e Mobile)
-    function updateIcons(isDark) {
-        const icons = [themeIcon, mobileThemeIcon];
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
         
-        icons.forEach(icon => {
-            if (icon) {
-                // Remove ambas para garantir (limpeza)
-                icon.classList.remove('fa-sun', 'fa-moon');
-                
-                // Adiciona a correta baseada no estado
-                if (isDark) {
-                    icon.classList.add('fa-moon');
-                } else {
-                    icon.classList.add('fa-sun');
+        // Função auxiliar para atualizar AMBOS os ícones
+        function updateIcons(isDark) {
+            [themeIcon, mobileThemeIcon].forEach(icon => {
+                if (icon) {
+                    icon.classList.remove('fa-sun', 'fa-moon');
+                    if (isDark) {
+                        icon.classList.add('fa-moon');
+                    } else {
+                        icon.classList.add('fa-sun');
+                    }
                 }
+            });
+        }
+
+        // 1. Verificar preferência salva e aplicar
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            updateIcons(true);
+        } else {
+            html.classList.remove('dark');
+            updateIcons(false);
+        }
+
+        // 2. Função de alternar (chamada pelo clique)
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateIcons(false);
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateIcons(true);
             }
-        });
-    }
-</script>
+        }
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Inicializar AOS com preferência de redução de movimento
