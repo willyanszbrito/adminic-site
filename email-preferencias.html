@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminic - Preferências de E-mail</title>
-    
     <link rel="icon" href="/favicon.ico" sizes="any">
+    
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
     <link rel="manifest" href="/site.webmanifest">
-
+    
     <meta property="og:title" content="Gerenciar Preferências de E-mail - ADMINIC">
     <meta property="og:description" content="Controle quais tipos de e-mails você deseja receber da Adminic.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://adminic.com.br/email-preferencias.html">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,14 +29,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
         body { 
-            font-family: 'Plus Jakarta Sans', sans-serif;  
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
         }
         
         .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%); }
-        .card-hover { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
-        .card-hover:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-5px); background: rgba(255,255,255,0.02); }
         
         /* Menu mobile */
         .mobile-menu {
@@ -55,16 +53,51 @@
             right: 20px;
             z-index: 1000;
         }
-
-        /* --- ESTILOS ESPECÍFICOS DESTA PÁGINA (CHECKBOX) --- */
+        
+        /* Acessibilidade: skip to main content */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+            font-weight: bold;
+        }
+        
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
+        /* Acessibilidade: focus styles */
+        .focus-visible:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        /* Melhor contraste para links */
+        a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #60a5fa;
+        }
+        
+        a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #93c5fd;
+        }
+        
+        /* Estados de formulário */
         .form-loading {
             opacity: 0.7;
             pointer-events: none;
         }
+        
         .form-success {
             border-color: #10b981 !important;
             background-color: rgba(16, 185, 129, 0.05) !important;
         }
+        
         .form-error {
             border-color: #ef4444 !important;
             background-color: rgba(239, 68, 68, 0.05) !important;
@@ -81,10 +114,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
+        
         .custom-checkbox.checked {
             background-color: #3b82f6;
             border-color: #3b82f6;
         }
+        
         .custom-checkbox.checked::after {
             content: '✓';
             position: absolute;
@@ -95,47 +130,42 @@
             transform: translate(-50%, -50%);
         }
         
-        /* Acessibilidade */
-        .skip-to-main {
-            position: absolute; top: -40px; left: 0; background: #3b82f6; color: white; padding: 8px 16px; z-index: 9999; text-decoration: none; border-radius: 0 0 4px 0; font-weight: bold;
-        }
-        .skip-to-main:focus { top: 0; }
-        .focus-visible:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
-        
-        a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) { color: #60a5fa; }
-        a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) { color: #93c5fd; }
-        
-        /* Responsividade e Redução de Movimento */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem !important; line-height: 1.2 !important; }
-            .hero-subtitle { font-size: 1rem !important; }
-            .section-padding { padding-left: 1rem !important; padding-right: 1rem !important; }
-            .mobile-text-center { text-align: center; }
-        }
-
+        /* Animações com preferência de redução */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            .mobile-menu {
+                transition: none !important;
+            }
+            
+            .custom-checkbox {
+                transition: none !important;
+            }
+            
+            html {
                 scroll-behavior: auto !important;
             }
-            .mobile-menu { transition: none !important; }
-            .custom-checkbox { transition: none !important; }
-            html { scroll-behavior: auto !important; }
         }
         
+        /* Scroll suave apenas se não houver preferência por redução */
         @media (prefers-reduced-motion: no-preference) {
-            html { scroll-behavior: smooth; }
+            html {
+                scroll-behavior: smooth;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
+    <!-- Skip to main content link -->
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
     </a>
     
+    <!-- Top Bar (Desktop only) -->
     <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -153,6 +183,7 @@
         </div>
     </div>
 
+    <!-- Main Navigation -->
     <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
@@ -196,7 +227,7 @@
                 <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
                 <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 w-full text-left" role="menuitem">
+                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
                     <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
                 </button>
 
@@ -207,107 +238,115 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="flex-grow py-12 px-4 md:px-6" id="main-content" tabindex="-1">
         <div class="max-w-2xl mx-auto">
-            <header class="mb-8 text-center" data-aos="fade-down">
+            <!-- Cabeçalho explicativo -->
+            <header class="mb-8 text-center">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 mb-4">
                     <i class="fas fa-envelope-open-text text-2xl text-blue-500" aria-hidden="true"></i>
                 </div>
-                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
                     Preferências de E-mail
                 </h1>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                <p class="text-slate-400 text-lg leading-relaxed">
                     Controle quais tipos de comunicação você recebe da Adminic.
                 </p>
             </header>
             
-            <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20 mb-8" data-aos="fade-up">
+            <!-- Explicação -->
+            <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20 mb-8">
                 <div class="flex items-start gap-4">
-                    <i class="fas fa-info-circle text-blue-600 dark:text-blue-400 text-xl mt-1" aria-hidden="true"></i>
+                    <i class="fas fa-info-circle text-blue-400 text-xl mt-1" aria-hidden="true"></i>
                     <div>
-                        <h2 class="text-slate-900 dark:text-white font-bold mb-2">Por que você está aqui?</h2>
-                        <p class="text-slate-700 dark:text-slate-300 text-sm">
+                        <h2 class="text-white font-bold mb-2">Por que você está aqui?</h2>
+                        <p class="text-slate-300 text-sm">
                             Você clicou em um link de gerenciamento de e-mails que enviamos para você. 
-                            <strong class="text-slate-900 dark:text-white">Nada será cancelado automaticamente</strong> - você escolhe quais comunicações deseja continuar recebendo.
+                            <strong class="text-white">Nada será cancelado automaticamente</strong> - você escolhe quais comunicações deseja continuar recebendo.
                         </p>
                     </div>
                 </div>
             </div>
             
-            <form id="email-preferences-form" class="space-y-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
-                    <h2 class="text-slate-900 dark:text-white font-bold text-xl mb-6">📧 Selecione suas preferências</h2>
+            <!-- Formulário de preferências -->
+            <form id="email-preferences-form" class="space-y-6">
+                <div class="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-white/5">
+                    <h2 class="text-white font-bold text-xl mb-6">📧 Selecione suas preferências</h2>
                     
                     <div class="space-y-6">
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
-                            <div class="custom-checkbox mt-1 border-slate-400 dark:border-slate-500" role="checkbox" aria-checked="false" tabindex="0" 
+                        <!-- Opção 1 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0" 
                                  onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
                             </div>
                             <div>
-                                <h3 class="text-slate-900 dark:text-white font-bold mb-2">Cancelar apenas e-mails promocionais</h3>
-                                <div class="text-slate-600 dark:text-slate-400 text-sm">
+                                <h3 class="text-white font-bold mb-2">Cancelar apenas e-mails promocionais</h3>
+                                <p class="text-slate-400 text-sm">
                                     Você continuará recebendo:
-                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-500 dark:text-slate-400">
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-400">
                                         <li>Faturas e cobranças</li>
                                         <li>Atualizações importantes do serviço</li>
                                         <li>Alertas de segurança</li>
                                     </ul>
-                                    <p class="mt-2 text-slate-500 dark:text-slate-500 text-xs">
+                                    <p class="mt-2 text-slate-500 text-xs">
                                         <strong>O que será cancelado:</strong> Ofertas especiais, descontos e promoções.
                                     </p>
-                                </div>
+                                </p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
-                            <div class="custom-checkbox mt-1 border-slate-400 dark:border-slate-500" role="checkbox" aria-checked="false" tabindex="0"
+                        <!-- Opção 2 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0"
                                  onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
                             </div>
                             <div>
-                                <h3 class="text-slate-900 dark:text-white font-bold mb-2">Cancelar novidades e campanhas</h3>
-                                <div class="text-slate-600 dark:text-slate-400 text-sm">
+                                <h3 class="text-white font-bold mb-2">Cancelar novidades e campanhas</h3>
+                                <p class="text-slate-400 text-sm">
                                     Você continuará recebendo:
-                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-500 dark:text-slate-400">
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-400">
                                         <li>Faturas e cobranças</li>
                                         <li>Alertas de segurança</li>
                                         <li>Comunicações essenciais</li>
                                     </ul>
-                                    <p class="mt-2 text-slate-500 dark:text-slate-500 text-xs">
+                                    <p class="mt-2 text-slate-500 text-xs">
                                         <strong>O que será cancelado:</strong> Novos recursos, estudos de caso e conteúdos educativos.
                                     </p>
-                                </div>
+                                </p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
-                            <div class="custom-checkbox mt-1 border-slate-400 dark:border-slate-500" role="checkbox" aria-checked="false" tabindex="0"
+                        <!-- Opção 3 -->
+                        <div class="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:bg-slate-800/30 transition">
+                            <div class="custom-checkbox mt-1" role="checkbox" aria-checked="false" tabindex="0"
                                  onclick="toggleCheckbox(this)" onkeydown="handleCheckboxKeydown(event, this)">
                             </div>
                             <div>
-                                <h3 class="text-slate-900 dark:text-white font-bold mb-2">Cancelar todos os e-mails</h3>
-                                <div class="text-slate-600 dark:text-slate-400 text-sm">
-                                    <strong class="text-red-600 dark:text-red-400">Atenção:</strong> Esta opção cancela TODOS os tipos de e-mail, incluindo:
-                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-red-500 dark:text-red-300/70">
+                                <h3 class="text-white font-bold mb-2">Cancelar todos os e-mails</h3>
+                                <p class="text-slate-400 text-sm">
+                                    <strong class="text-red-400">Atenção:</strong> Esta opção cancela TODOS os tipos de e-mail, incluindo:
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-red-300/70">
                                         <li>Faturas e cobranças</li>
                                         <li>Alertas de segurança</li>
                                         <li>Atualizações do serviço</li>
                                         <li>Todas as comunicações</li>
                                     </ul>
-                                    <p class="mt-2 text-slate-500 dark:text-slate-500 text-xs">
+                                    <p class="mt-2 text-slate-500 text-xs">
                                         <strong>Importante:</strong> Sem comunicações por e-mail, você pode perder informações importantes sobre sua conta.
                                     </p>
-                                </div>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-yellow-500/10 p-6 rounded-xl border border-yellow-500/20" data-aos="fade-up" data-aos-delay="200">
+                <!-- Informações importantes -->
+                <div class="bg-yellow-500/10 p-6 rounded-xl border border-yellow-500/20">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-clock text-yellow-600 dark:text-yellow-400 text-xl mt-1" aria-hidden="true"></i>
+                        <i class="fas fa-clock text-yellow-400 text-xl mt-1" aria-hidden="true"></i>
                         <div>
-                            <h3 class="text-slate-900 dark:text-white font-bold mb-2">Tempo de processamento</h3>
-                            <p class="text-slate-700 dark:text-slate-300 text-sm">
+                            <h3 class="text-white font-bold mb-2">Tempo de processamento</h3>
+                            <p class="text-slate-300 text-sm">
                                 As alterações podem levar <strong>até 48 horas</strong> para serem totalmente processadas. 
                                 Você pode receber alguns e-mails durante este período.
                             </p>
@@ -315,21 +354,23 @@
                     </div>
                 </div>
                 
-                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 flex items-center gap-3">
-                        <i class="fas fa-shield-alt text-blue-500" aria-hidden="true"></i>
+                <!-- Transparência de dados -->
+                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
+                    <h3 class="text-white font-bold mb-4 flex items-center gap-3">
+                        <i class="fas fa-shield-alt text-blue-400" aria-hidden="true"></i>
                         Transparência sobre seus dados
                     </h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                    <p class="text-slate-400 text-sm mb-4">
                         Respeitamos sua privacidade. Seus dados são usados apenas para comunicações relacionadas aos nossos serviços.
-                        <a href="politica.html" class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 underline focus-visible">Leia nossa Política de Privacidade completa</a>.
+                        <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible">Leia nossa Política de Privacidade completa</a>.
                     </p>
-                    <p class="text-slate-500 dark:text-slate-500 text-xs">
+                    <p class="text-slate-500 text-xs">
                         CNPJ: 64.146.685/0001-61 | Em conformidade com a LGPD (Lei Geral de Proteção de Dados)
                     </p>
                 </div>
                 
-                <div class="pt-6 border-t border-slate-200 dark:border-white/5" data-aos="fade-up" data-aos-delay="400">
+                <!-- Botão de confirmação -->
+                <div class="pt-6 border-t border-white/5">
                     <button type="button" id="confirm-button" 
                             class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-xl font-bold text-base transition-all flex items-center justify-center gap-3 shadow-lg shadow-blue-600/20 uppercase tracking-widest focus-visible">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -342,8 +383,9 @@
                 </div>
             </form>
             
-            <div class="mt-8 text-center" data-aos="fade-in" data-aos-delay="500">
-                <a href="index.html" class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition flex items-center justify-center gap-2 focus-visible">
+            <!-- Link para voltar -->
+            <div class="mt-8 text-center">
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 transition flex items-center justify-center gap-2 focus-visible">
                     <i class="fas fa-arrow-left" aria-hidden="true"></i>
                     Voltar para a página inicial da Adminic
                 </a>
@@ -351,20 +393,21 @@
         </div>
     </main>
 
+    <!-- Modal de confirmação (oculto inicialmente) -->
     <div id="confirmation-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/5 p-6 md:p-8 max-w-md w-full shadow-2xl">
+        <div class="bg-slate-900 rounded-2xl border border-white/5 p-6 md:p-8 max-w-md w-full">
             <div class="text-center mb-6">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
                     <i class="fas fa-check text-2xl text-green-500" aria-hidden="true"></i>
                 </div>
-                <h3 id="modal-title" class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Preferências salvas!</h3>
-                <p class="text-slate-600 dark:text-slate-400">
+                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Preferências salvas!</h3>
+                <p class="text-slate-400">
                     Suas escolhas foram registradas e serão processadas em breve.
                 </p>
             </div>
             
-            <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-lg mb-6">
-                <p class="text-sm text-slate-700 dark:text-slate-300">
+            <div class="bg-slate-800/50 p-4 rounded-lg mb-6">
+                <p class="text-sm text-slate-300">
                     <strong>Lembrete:</strong> As alterações podem levar até 48 horas para serem totalmente processadas.
                     Você receberá uma confirmação por e-mail quando o processo for concluído.
                 </p>
@@ -375,13 +418,14 @@
                         class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-bold transition-all focus-visible">
                     Entendi, obrigado!
                 </button>
-                <a href="index.html" class="w-full border border-slate-300 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
+                <a href="index.html" class="w-full border border-white/5 hover:bg-slate-800 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
                     Voltar para o site
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
@@ -418,7 +462,7 @@
             </div>
         </div>
     </footer>
-    
+
     <a href="mailto:comercial@adminic.com.br" 
        class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
        aria-label="Fale com nosso Comercial por E-mail">
@@ -434,6 +478,7 @@
         </div>
     </a>
 
+    <!-- Scripts -->
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
@@ -483,6 +528,7 @@
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
                 mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
+                // Alterar ícone
                 const icon = mobileMenuButton.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -490,6 +536,14 @@
                 } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                }
+                
+                // Focar no primeiro link do menu quando aberto
+                if (!isExpanded) {
+                    setTimeout(() => {
+                        const firstLink = mobileMenu.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }, 100);
                 }
             });
             
