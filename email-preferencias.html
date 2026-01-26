@@ -546,7 +546,7 @@
                 </div>
             </a>
 
-            <a href="index.html#faq" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+            <a href="central-ajuda.html" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                 <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     <i class="fas fa-question"></i>
                 </div>
@@ -669,33 +669,33 @@
         }
     });
 </script>
+    
+<script>
+    const html = document.documentElement;
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // 1. Verificar preferência salva
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+    } else {
+        html.classList.remove('dark');
+        if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
 
-    <script>
-        const html = document.documentElement;
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // 1. Verificar preferência salva
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
+    // 2. Função de alternar
+    function toggleTheme() {
+        if (html.classList.contains('dark')) {
             html.classList.remove('dark');
+            localStorage.theme = 'light';
             if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            html.classList.add('dark');
+            localStorage.theme = 'dark';
+            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
         }
-
-        // 2. Função de alternar
-        function toggleTheme() {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-                if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
-        }
-    </script>
+    }
+</script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Inicializar AOS com preferência de redução de movimento
