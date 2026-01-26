@@ -18,6 +18,11 @@
     <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -28,7 +33,14 @@
             overflow-x: hidden;
         }
         
-        .glass { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); }
+        /* Glass adaptativo */
+        .glass { 
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(12px); 
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.95);
+        }
         
         /* Menu mobile */
         .mobile-menu {
@@ -75,10 +87,16 @@
         
         /* Melhor contraste para links */
         a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #3b82f6;
+        }
+        .dark a:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
             color: #60a5fa;
         }
         
         a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
+            color: #2563eb;
+        }
+        .dark a:hover:not(.bg-blue-600):not(.bg-green-600):not(.text-white) {
             color: #93c5fd;
         }
         
@@ -107,6 +125,11 @@
         .payment-method.selected {
             border-color: #3b82f6;
             background-color: rgba(59, 130, 246, 0.05);
+        }
+        /* Ajuste para selected no light mode para ser visível */
+        html:not(.dark) .payment-method.selected {
+            background-color: #eff6ff; /* blue-50 */
+            border-color: #3b82f6;
         }
         
         /* Animações de loading */
@@ -185,24 +208,22 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
-    <!-- Skip to main content link -->
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
     </a>
     
-    <!-- Top Bar (Desktop only) -->
-    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
+    <div class="bg-slate-200 dark:bg-[#0f172a] border-b border-slate-300 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-500 hidden md:block transition-colors duration-300" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fas fa-envelope" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">financeiro@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
@@ -210,28 +231,27 @@
         </div>
     </div>
 
-    <!-- Main Navigation -->
-    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass transition-colors duration-300" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
-                <a href="quem-somos.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
-                <a href="contato.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
                 
-                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-white/10 transition text-slate-400 hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-yellow-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
                     <i id="theme-icon" class="fas fa-sun"></i>
                 </button>
 
@@ -240,21 +260,21 @@
                     <span>Área do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-lg" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Principal</a>
-                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
-                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
-                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
+                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
                     <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
                 </button>
 
@@ -265,265 +285,248 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow py-8 md:py-12 px-4 md:px-6" id="main-content" tabindex="-1">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Coluna da esquerda: Resumo do produto -->
                 <div class="lg:col-span-2">
                     <div class="mb-8">
-                        <a href="index.html" class="text-blue-400 hover:text-blue-300 transition flex items-center gap-2 mb-6 focus-visible">
+                        <a href="index.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition flex items-center gap-2 mb-6 focus-visible">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             Voltar para a página do Adminic IA
                         </a>
                         
-                        <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 transition-colors">
                             Finalizar Assinatura
                         </h1>
-                        <p class="text-slate-400">
+                        <p class="text-slate-600 dark:text-slate-400 transition-colors">
                             Complete sua assinatura do Adminic IA - o assistente financeiro inteligente no seu WhatsApp.
                         </p>
                     </div>
                     
-                    <!-- Container para mensagens de erro gerais -->
                     <div id="general-error-message" class="error-message" role="alert" aria-live="assertive">
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-exclamation-triangle text-red-400 mt-0.5" aria-hidden="true"></i>
+                            <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                             <div>
-                                <h3 class="font-bold text-white mb-1">Atenção</h3>
-                                <p id="general-error-text" class="text-slate-300"></p>
+                                <h3 class="font-bold text-slate-900 dark:text-white mb-1">Atenção</h3>
+                                <p id="general-error-text" class="text-slate-700 dark:text-slate-300"></p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Produto -->
-                    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/5 mb-8">
+                    <div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-white/5 mb-8 shadow-sm dark:shadow-none transition-all">
                         <div class="flex items-start gap-4">
-                            <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-600/20">
                                 <i class="fab fa-whatsapp text-white text-2xl" aria-hidden="true"></i>
                             </div>
                             <div class="flex-grow">
-                                <h2 class="text-white font-bold text-xl mb-2">Adminic IA</h2>
-                                <p class="text-slate-400 text-sm mb-4">
+                                <h2 class="text-slate-900 dark:text-white font-bold text-xl mb-2 transition-colors">Adminic IA</h2>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 transition-colors">
                                     Assistente financeiro inteligente via WhatsApp. Organize suas finanças conversando como se fosse com um amigo.
                                 </p>
                                 <div class="flex flex-wrap gap-4">
                                     <div class="flex items-center gap-2">
-                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                        <span class="text-slate-300 text-sm">WhatsApp 24/7</span>
+                                        <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-600 dark:text-slate-300 text-sm">WhatsApp 24/7</span>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                        <span class="text-slate-300 text-sm">Relatórios automáticos</span>
+                                        <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-600 dark:text-slate-300 text-sm">Relatórios automáticos</span>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                        <span class="text-slate-300 text-sm">Suporte humano</span>
+                                        <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                        <span class="text-slate-600 dark:text-slate-300 text-sm">Suporte humano</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-2xl font-bold text-white">R$ 47,90<span class="text-slate-400 text-sm font-normal">/mês</span></div>
+                                <div class="text-2xl font-bold text-slate-900 dark:text-white transition-colors">R$ 47,90<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/mês</span></div>
                                 <div class="text-slate-500 text-sm">Plano mensal</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Formulário de checkout -->
                     <form id="checkout-form" class="space-y-8" novalidate>
-                        <!-- Seção 1: Dados pessoais -->
                         <section aria-labelledby="personal-data-heading">
-                            <h2 id="personal-data-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <h2 id="personal-data-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">1</span>
                                 Dados pessoais
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label for="full-name" class="block text-slate-300 text-sm font-bold mb-2">
-                                        Nome completo <span class="text-red-400">*</span>
+                                    <label for="full-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        Nome completo <span class="text-red-500 dark:text-red-400">*</span>
                                     </label>
                                     <input type="text" id="full-name" name="full_name" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                            placeholder="Seu nome completo"
                                            aria-required="true">
                                 </div>
                                 
                                 <div>
-                                    <label for="email" class="block text-slate-300 text-sm font-bold mb-2">
-                                        E-mail <span class="text-red-400">*</span>
+                                    <label for="email" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        E-mail <span class="text-red-500 dark:text-red-400">*</span>
                                     </label>
                                     <input type="email" id="email" name="email" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                            placeholder="seu@email.com"
                                            aria-required="true">
                                 </div>
                                 
                                 <div>
-                                    <label for="phone" class="block text-slate-300 text-sm font-bold mb-2">
-                                        Telefone (WhatsApp) <span class="text-red-400">*</span>
+                                    <label for="phone" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        Telefone (WhatsApp) <span class="text-red-500 dark:text-red-400">*</span>
                                     </label>
                                     <input type="tel" id="phone" name="phone" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                            placeholder="(92) 99999-9999"
                                            aria-required="true">
                                 </div>
                                 
                                 <div>
-                                    <label for="cpf" class="block text-slate-300 text-sm font-bold mb-2">
-                                        CPF <span class="text-red-400">*</span>
+                                    <label for="cpf" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                        CPF <span class="text-red-500 dark:text-red-400">*</span>
                                     </label>
                                     <input type="text" id="cpf" name="cpf" required
-                                           class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                           class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                            placeholder="000.000.000-00"
                                            aria-required="true">
                                 </div>
                             </div>
                             
                             <div class="mt-4">
-                                <label for="notes" class="block text-slate-300 text-sm font-bold mb-2">
+                                <label for="notes" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
                                     Observações adicionais (opcional)
                                 </label>
                                 <textarea id="notes" name="notes" rows="3"
-                                          class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                          class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                           placeholder="Alguma observação importante sobre sua assinatura..."></textarea>
                             </div>
                         </section>
                         
-                        <!-- Seção 2: Método de pagamento -->
                         <section aria-labelledby="payment-method-heading">
-                            <h2 id="payment-method-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <h2 id="payment-method-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">2</span>
                                 Método de pagamento
                             </h2>
                             
-                            <!-- Mensagem de erro específica para método de pagamento -->
                             <div id="payment-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
                                 <div class="flex items-start gap-3">
-                                    <i class="fas fa-credit-card text-red-400 mt-0.5" aria-hidden="true"></i>
+                                    <i class="fas fa-credit-card text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                                     <div>
-                                        <h3 class="font-bold text-white mb-1">Método de pagamento necessário</h3>
-                                        <p id="payment-error-text" class="text-slate-300">Selecione um método de pagamento para continuar com a assinatura.</p>
+                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Método de pagamento necessário</h3>
+                                        <p id="payment-error-text" class="text-slate-700 dark:text-slate-300">Selecione um método de pagamento para continuar com a assinatura.</p>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <!-- Pix -->
-                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                <button type="button" class="payment-method p-4 rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 text-left focus-visible hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none"
                                         onclick="selectPaymentMethod('pix')">
                                     <div class="flex items-center gap-3 mb-3">
-                                        <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
-                                            <i class="fas fa-qrcode text-green-500" aria-hidden="true"></i>
+                                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-500/10 flex items-center justify-center">
+                                            <i class="fas fa-qrcode text-green-600 dark:text-green-500" aria-hidden="true"></i>
                                         </div>
-                                        <span class="text-white font-bold">Pix</span>
+                                        <span class="text-slate-900 dark:text-white font-bold transition-colors">Pix</span>
                                     </div>
-                                    <p class="text-slate-400 text-sm">
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
                                         Pagamento instantâneo. Gere o QR code e pague pelo seu banco.
                                     </p>
                                 </button>
                                 
-                                <!-- Cartão de Crédito -->
-                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                <button type="button" class="payment-method p-4 rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 text-left focus-visible hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none"
                                         onclick="selectPaymentMethod('credit_card')">
                                     <div class="flex items-center gap-3 mb-3">
-                                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                            <i class="far fa-credit-card text-blue-500" aria-hidden="true"></i>
+                                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center">
+                                            <i class="far fa-credit-card text-blue-600 dark:text-blue-500" aria-hidden="true"></i>
                                         </div>
-                                        <span class="text-white font-bold">Cartão</span>
+                                        <span class="text-slate-900 dark:text-white font-bold transition-colors">Cartão</span>
                                     </div>
-                                    <p class="text-slate-400 text-sm">
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
                                         Parcele em até 12x. Pagamento seguro com criptografia.
                                     </p>
                                 </button>
                                 
-                                <!-- Boleto -->
-                                <button type="button" class="payment-method p-4 rounded-xl border border-white/5 bg-slate-900/30 text-left focus-visible"
+                                <button type="button" class="payment-method p-4 rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30 text-left focus-visible hover:bg-slate-50 dark:hover:bg-slate-800/50 shadow-sm dark:shadow-none"
                                         onclick="selectPaymentMethod('boleto')">
                                     <div class="flex items-center gap-3 mb-3">
-                                        <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center">
-                                            <i class="fas fa-barcode text-yellow-500" aria-hidden="true"></i>
+                                        <div class="w-10 h-10 rounded-lg bg-yellow-100 dark:bg-yellow-500/10 flex items-center justify-center">
+                                            <i class="fas fa-barcode text-yellow-600 dark:text-yellow-500" aria-hidden="true"></i>
                                         </div>
-                                        <span class="text-white font-bold">Boleto</span>
+                                        <span class="text-slate-900 dark:text-white font-bold transition-colors">Boleto</span>
                                     </div>
-                                    <p class="text-slate-400 text-sm">
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
                                         Pague em qualquer banco. Vencimento em 3 dias úteis.
                                     </p>
                                 </button>
                             </div>
                             
-                            <!-- Formulários dinâmicos por método de pagamento -->
                             <div id="payment-form-container">
-                                <!-- Os formulários serão injetados aqui via JavaScript -->
-                            </div>
+                                </div>
                         </section>
                         
-                        <!-- Seção 3: Termos e condições -->
                         <section aria-labelledby="terms-heading">
-                            <h2 id="terms-heading" class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <h2 id="terms-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">3</span>
                                 Termos e condições
                             </h2>
                             
-                            <!-- Mensagem de erro específica para termos -->
                             <div id="terms-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
                                 <div class="flex items-start gap-3">
-                                    <i class="fas fa-file-contract text-red-400 mt-0.5" aria-hidden="true"></i>
+                                    <i class="fas fa-file-contract text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                                     <div>
-                                        <h3 class="font-bold text-white mb-1">Aceitação necessária</h3>
-                                        <p id="terms-error-text" class="text-slate-300">Para prosseguir, é necessário aceitar os termos e condições.</p>
+                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Aceitação necessária</h3>
+                                        <p id="terms-error-text" class="text-slate-700 dark:text-slate-300">Para prosseguir, é necessário aceitar os termos e condições.</p>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5 mb-6">
+                            <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 mb-6 shadow-sm dark:shadow-none transition-all">
                                 <div class="flex items-start gap-4 mb-6">
                                     <input type="checkbox" id="terms" name="terms" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-terms"
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-terms"
                                            aria-describedby="terms-description">
                                     <div>
-                                        <label for="terms" class="text-white font-bold cursor-pointer">
+                                        <label for="terms" class="text-slate-900 dark:text-white font-bold cursor-pointer transition-colors">
                                             Concordo com os Termos de Uso
                                         </label>
-                                        <p id="terms-description" class="text-slate-400 text-sm mt-2">
-                                            Li e concordo com os <a href="termos.html" class="text-blue-400 hover:text-blue-300 underline focus-visible" target="_blank">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso. <strong>Se não aceitar os termos, não será possível realizar a assinatura.</strong>
+                                        <p id="terms-description" class="text-slate-600 dark:text-slate-400 text-sm mt-2 transition-colors">
+                                            Li e concordo com os <a href="termos.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso. <strong>Se não aceitar os termos, não será possível realizar a assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
                                 
                                 <div class="flex items-start gap-4">
                                     <input type="checkbox" id="privacy" name="privacy" required
-                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-800 border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-privacy"
+                                           class="mt-1 w-5 h-5 text-blue-600 bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-white/5 rounded focus:ring-blue-500 focus:ring-2 focus-visible checkbox-privacy"
                                            aria-describedby="privacy-description">
                                     <div>
-                                        <label for="privacy" class="text-white font-bold cursor-pointer">
+                                        <label for="privacy" class="text-slate-900 dark:text-white font-bold cursor-pointer transition-colors">
                                             Concordo com a Política de Privacidade
                                         </label>
-                                        <p id="privacy-description" class="text-slate-400 text-sm mt-2">
-                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-400 hover:text-blue-300 underline focus-visible" target="_blank">Política de Privacidade</a> e estou ciente dos meus direitos LGPD. <strong>Se não aceitar a política de privacidade, não será possível processar sua assinatura.</strong>
+                                        <p id="privacy-description" class="text-slate-600 dark:text-slate-400 text-sm mt-2 transition-colors">
+                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">Política de Privacidade</a> e estou ciente dos meus direitos LGPD. <strong>Se não aceitar a política de privacidade, não será possível processar sua assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Informações importantes -->
-                            <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
+                            <div class="bg-blue-50 dark:bg-blue-500/10 p-6 rounded-xl border border-blue-200 dark:border-blue-500/20 transition-colors">
                                 <div class="flex items-start gap-4">
-                                    <i class="fas fa-shield-alt text-blue-400 text-xl mt-1" aria-hidden="true"></i>
+                                    <i class="fas fa-shield-alt text-blue-600 dark:text-blue-400 text-xl mt-1" aria-hidden="true"></i>
                                     <div>
-                                        <h3 class="text-white font-bold mb-2">Pagamento 100% seguro</h3>
-                                        <p class="text-slate-300 text-sm">
+                                        <h3 class="text-slate-900 dark:text-white font-bold mb-2 transition-colors">Pagamento 100% seguro</h3>
+                                        <p class="text-slate-600 dark:text-slate-300 text-sm transition-colors">
                                             Seus dados são protegidos com criptografia. Processamos pagamentos através do 
                                             <strong>Asaas PJ</strong>, uma plataforma de pagamentos brasileira certificada e segura.
-                                            <a href="https://www.asaas.com" target="_blank" class="text-blue-400 hover:text-blue-300 underline focus-visible" aria-label="Saiba mais sobre o Asaas (abre em nova janela)">Saiba mais sobre o Asaas</a>.
+                                            <a href="https://www.asaas.com" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" aria-label="Saiba mais sobre o Asaas (abre em nova janela)">Saiba mais sobre o Asaas</a>.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </section>
                         
-                        <!-- Botão de finalização -->
-                        <div class="pt-6 border-t border-white/5">
+                        <div class="pt-6 border-t border-slate-200 dark:border-white/5 transition-colors">
                             <button type="button" id="finalize-button"
                                     class="w-full bg-green-600 hover:bg-green-500 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-600/20 uppercase tracking-widest focus-visible"
                                     onclick="submitSubscription()">
@@ -538,67 +541,64 @@
                     </form>
                 </div>
                 
-                <!-- Coluna da direita: Resumo do pedido -->
                 <div class="lg:col-span-1">
                     <div class="sticky top-24">
-                        <div class="bg-slate-900/50 rounded-xl border border-white/5 p-6 mb-6">
-                            <h3 class="text-white font-bold text-xl mb-6">Resumo da assinatura</h3>
+                        <div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-white/5 p-6 mb-6 shadow-sm dark:shadow-none transition-all">
+                            <h3 class="text-slate-900 dark:text-white font-bold text-xl mb-6 transition-colors">Resumo da assinatura</h3>
                             
                             <div class="space-y-4 mb-6">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-slate-400">Adminic IA (mensal)</span>
-                                    <span class="text-white font-bold">R$ 47,90</span>
+                                    <span class="text-slate-600 dark:text-slate-400 transition-colors">Adminic IA (mensal)</span>
+                                    <span class="text-slate-900 dark:text-white font-bold transition-colors">R$ 47,90</span>
                                 </div>
                                 
                                 <div class="flex justify-between items-center">
-                                    <span class="text-slate-400">Taxa de instalação</span>
-                                    <span class="text-white font-bold">R$ 0,00</span>
+                                    <span class="text-slate-600 dark:text-slate-400 transition-colors">Taxa de instalação</span>
+                                    <span class="text-slate-900 dark:text-white font-bold transition-colors">R$ 0,00</span>
                                 </div>
                                 
-                                <div class="pt-4 border-t border-white/5">
+                                <div class="pt-4 border-t border-slate-100 dark:border-white/5 transition-colors">
                                     <div class="flex justify-between items-center">
-                                        <span class="text-slate-300 font-bold">Total</span>
+                                        <span class="text-slate-700 dark:text-slate-300 font-bold transition-colors">Total</span>
                                         <div class="text-right">
-                                            <div class="text-2xl font-bold text-white">R$ 47,90</div>
+                                            <div class="text-2xl font-bold text-slate-900 dark:text-white transition-colors">R$ 47,90</div>
                                             <div class="text-slate-500 text-sm">por mês</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Vantagens -->
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-300 text-sm">Cancelamento a qualquer momento</span>
+                                    <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Cancelamento a qualquer momento</span>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-300 text-sm">7 dias de teste gratuito</span>
+                                    <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">7 dias de teste gratuito</span>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-300 text-sm">Suporte prioritário</span>
+                                    <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Suporte prioritário</span>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-300 text-sm">Atualizações gratuitas</span>
+                                    <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Atualizações gratuitas</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Suporte -->
-                        <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
-                            <h3 class="text-white font-bold mb-4">Precisa de ajuda?</h3>
-                            <p class="text-slate-300 text-sm mb-4">
+                        <div class="bg-blue-50 dark:bg-blue-500/10 p-6 rounded-xl border border-blue-200 dark:border-blue-500/20 transition-colors">
+                            <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Precisa de ajuda?</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 transition-colors">
                                 Nossa equipe está pronta para ajudar você com qualquer dúvida sobre a assinatura.
                             </p>
                             <div class="space-y-3">
-                                <a href="https://wa.me/559284790794" class="flex items-center gap-3 text-blue-400 hover:text-blue-300 transition focus-visible">
+                                <a href="https://wa.me/559284790794" class="flex items-center gap-3 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition focus-visible">
                                     <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                     <span>WhatsApp: (92) 98489-9955</span>
                                 </a>
-                                <a href="mailto:suporte@adminic.com.br" class="flex items-center gap-3 text-blue-400 hover:text-blue-300 transition focus-visible">
+                                <a href="mailto:suporte@adminic.com.br" class="flex items-center gap-3 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition focus-visible">
                                     <i class="fas fa-envelope" aria-hidden="true"></i>
                                     <span>suporte@adminic.com.br</span>
                                 </a>
@@ -610,34 +610,33 @@
         </div>
     </main>
 
-    <!-- Modal de sucesso (oculto inicialmente) -->
     <div id="success-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="success-modal-title" aria-hidden="true">
-        <div class="bg-slate-900 rounded-2xl border border-white/5 p-6 md:p-8 max-w-md w-full">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/5 p-6 md:p-8 max-w-md w-full shadow-2xl transition-colors">
             <div class="text-center mb-6">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
-                    <i class="fas fa-check text-2xl text-green-500" aria-hidden="true"></i>
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 mb-4">
+                    <i class="fas fa-check text-2xl text-green-600 dark:text-green-500" aria-hidden="true"></i>
                 </div>
-                <h3 id="success-modal-title" class="text-2xl font-bold text-white mb-2">Assinatura processada!</h3>
-                                <p class="text-slate-400">
+                <h3 id="success-modal-title" class="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">Assinatura processada!</h3>
+                <p class="text-slate-600 dark:text-slate-400 transition-colors">
                     Sua assinatura foi recebida e está sendo processada.
                 </p>
             </div>
             
-            <div class="bg-slate-800/50 p-4 rounded-lg mb-6">
-                <p class="text-sm text-slate-300 mb-4">
+            <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg mb-6 transition-colors">
+                <p class="text-sm text-slate-700 dark:text-slate-300 mb-4 transition-colors">
                     <strong>Próximos passos:</strong>
                 </p>
-                <ul class="space-y-2 text-sm text-slate-400">
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400 transition-colors">
                     <li class="flex items-center gap-2">
-                        <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
+                        <i class="fas fa-envelope text-blue-500" aria-hidden="true"></i>
                         <span>Você receberá um e-mail de confirmação</span>
                     </li>
                     <li class="flex items-center gap-2">
-                        <i class="fab fa-whatsapp text-green-400" aria-hidden="true"></i>
+                        <i class="fab fa-whatsapp text-green-500" aria-hidden="true"></i>
                         <span>Nosso bot entrará em contato no WhatsApp</span>
                     </li>
                     <li class="flex items-center gap-2">
-                        <i class="fas fa-rocket text-purple-400" aria-hidden="true"></i>
+                        <i class="fas fa-rocket text-purple-500" aria-hidden="true"></i>
                         <span>Comece a usar o Adminic IA imediatamente</span>
                     </li>
                 </ul>
@@ -647,45 +646,44 @@
                 <a href="index.html" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
                     Voltar para o site
                 </a>
-                <a href="https://wa.me/559284790794" class="w-full border border-white/5 hover:bg-slate-800 text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
+                <a href="https://wa.me/559284790794" class="w-full border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white py-3 px-6 rounded-lg font-bold text-center transition-all focus-visible">
                     Falar com suporte
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
-                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="pt-8 border-t border-white/5 text-center">
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center">
                 <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
                 <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
             </div>
@@ -707,7 +705,6 @@
         </div>
     </a>
 
-    <!-- Scripts -->
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
@@ -739,12 +736,13 @@
         // Inicializar AOS com preferência de redução de movimento
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
-        AOS.init({ 
-            duration: 800, 
-            once: true,
-            offset: 100,
-            disable: prefersReducedMotion || window.innerWidth < 768
-        });
+        if (!prefersReducedMotion) {
+            AOS.init({ 
+                duration: 800, 
+                once: true,
+                offset: 100
+            });
+        }
         
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -840,15 +838,15 @@
         let selectedPaymentMethod = null;
         const paymentForms = {
             pix: `
-                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
-                    <h3 class="text-white font-bold mb-4">Pagamento via Pix</h3>
-                    <p class="text-slate-400 text-sm mb-6">
+                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
+                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Pagamento via Pix</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 transition-colors">
                         Após confirmar a assinatura, você receberá um QR code e código Pix para pagamento. 
                         O acesso ao Adminic IA será liberado em até 5 minutos após a confirmação do pagamento.
                     </p>
                     
-                    <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20 mb-6">
-                        <p class="text-blue-300 text-sm">
+                    <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 mb-6 transition-colors">
+                        <p class="text-blue-800 dark:text-blue-300 text-sm">
                             <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
                             Pagamento instantâneo - Liberação em até 5 minutos
                         </p>
@@ -856,54 +854,54 @@
                 </div>
             `,
             credit_card: `
-                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
-                    <h3 class="text-white font-bold mb-4">Cartão de Crédito</h3>
+                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
+                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Cartão de Crédito</h3>
                     
                     <div class="space-y-4">
                         <div>
-                            <label for="card-number" class="block text-slate-300 text-sm font-bold mb-2">
-                                Número do cartão <span class="text-red-400">*</span>
+                            <label for="card-number" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                Número do cartão <span class="text-red-500 dark:text-red-400">*</span>
                             </label>
                             <input type="text" id="card-number" name="card_number" required
-                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                   class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                    placeholder="0000 0000 0000 0000"
                                    aria-required="true">
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label for="card-expiry" class="block text-slate-300 text-sm font-bold mb-2">
-                                    Validade <span class="text-red-400">*</span>
+                                <label for="card-expiry" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                    Validade <span class="text-red-500 dark:text-red-400">*</span>
                                 </label>
                                 <input type="text" id="card-expiry" name="card_expiry" required
-                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                       class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                        placeholder="MM/AA"
                                        aria-required="true">
                             </div>
                             
                             <div>
-                                <label for="card-cvv" class="block text-slate-300 text-sm font-bold mb-2">
-                                    CVV <span class="text-red-400">*</span>
+                                <label for="card-cvv" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                    CVV <span class="text-red-500 dark:text-red-400">*</span>
                                 </label>
                                 <input type="text" id="card-cvv" name="card_cvv" required
-                                       class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                       class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                        placeholder="123"
                                        aria-required="true">
                             </div>
                         </div>
                         
                         <div>
-                            <label for="card-name" class="block text-slate-300 text-sm font-bold mb-2">
-                                Nome no cartão <span class="text-red-400">*</span>
+                            <label for="card-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
+                                Nome no cartão <span class="text-red-500 dark:text-red-400">*</span>
                             </label>
                             <input type="text" id="card-name" name="card_name" required
-                                   class="w-full bg-slate-900 border border-white/5 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition focus-visible"
+                                   class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
                                    placeholder="Como está no cartão"
                                    aria-required="true">
                         </div>
                         
-                        <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20 mt-6">
-                            <p class="text-blue-300 text-sm">
+                        <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 mt-6 transition-colors">
+                            <p class="text-blue-800 dark:text-blue-300 text-sm">
                                 <i class="fas fa-lock mr-2" aria-hidden="true"></i>
                                 Pagamento seguro processado pelo Asaas. Seus dados são criptografados.
                             </p>
@@ -912,23 +910,23 @@
                 </div>
             `,
             boleto: `
-                <div class="bg-slate-900/30 p-6 rounded-xl border border-white/5">
-                    <h3 class="text-white font-bold mb-4">Boleto Bancário</h3>
-                    <p class="text-slate-400 text-sm mb-6">
+                <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
+                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Boleto Bancário</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 transition-colors">
                         Após confirmar a assinatura, você receberá o boleto por e-mail. 
                         O acesso ao Adminic IA será liberado após a confirmação do pagamento, que pode levar até 3 dias úteis.
                     </p>
                     
                     <div class="space-y-4">
-                        <div class="bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20">
-                            <p class="text-yellow-300 text-sm">
+                        <div class="bg-yellow-50 dark:bg-yellow-500/10 p-4 rounded-lg border border-yellow-200 dark:border-yellow-500/20 transition-colors">
+                            <p class="text-yellow-800 dark:text-yellow-300 text-sm">
                                 <i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i>
                                 <strong>Atenção:</strong> O boleto tem vencimento de 3 dias úteis. Após o vencimento, a assinatura será cancelada automaticamente.
                             </p>
                         </div>
                         
-                        <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
-                            <p class="text-blue-300 text-sm">
+                        <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 transition-colors">
+                            <p class="text-blue-800 dark:text-blue-300 text-sm">
                                 <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
                                 <strong>Dica:</strong> Para liberação mais rápida, utilize Pix ou Cartão de Crédito.
                             </p>
