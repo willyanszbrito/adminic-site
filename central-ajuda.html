@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central de Ajuda - Adminic</title>
+    <title>Central de Ajuda | Adminic</title>
     
     <link rel="icon" href="/favicon.ico" sizes="any">
     
@@ -14,240 +14,209 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-bg': '#F6F8FF', // Fundo claro estilo referência
-                        'brand-purple': '#5865F2', // Tom estilo Discord/Referência
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'brand-bg': '#F6F8FF',
+                        'brand-purple': '#5865F2',
                     }
                 }
             }
         }
     </script>
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-
-        /* Animação de Flutuação para os Ícones 3D */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .icon-float { animation: float 4s ease-in-out infinite; }
-        .icon-float-delay { animation: float 4s ease-in-out 2s infinite; }
-
-        /* Simulação de Ícone 3D com CSS (Sombra e Gradiente) */
-        .icon-3d-wrapper {
-            transition: transform 0.3s ease;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
-        .card-hover:hover .icon-3d-wrapper {
-            transform: scale(1.1) rotate(-5deg);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        
+        /* Estilos específicos da Central de Ajuda */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .icon-float { animation: float 4s ease-in-out infinite; }
+        .icon-3d-wrapper { transition: transform 0.3s ease; }
+        .card-hover:hover .icon-3d-wrapper { transform: scale(1.1) rotate(-5deg); }
+        .glass-search { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1); }
+        .dark .glass-search { background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-        /* Glassmorphism da Barra de Pesquisa */
-        .glass-search {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-        }
-        .dark .glass-search {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        /* Menu mobile do Index */
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+        .mobile-menu.active { max-height: 500px; transition: max-height 0.5s ease-in; }
     </style>
 </head>
-<body class="bg-brand-bg dark:bg-[#020617] text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
-
-    <nav class="w-full py-4 px-6 flex justify-between items-center max-w-7xl mx-auto">
-        <a href="index.html" class="flex items-center gap-2 group">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
-                <i class="fas fa-cube text-white text-sm"></i>
+<body class="bg-brand-bg text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+    
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Central de Suporte</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition flex items-center gap-2">
+                    <i class="fas fa-envelope"></i> <span>contato@adminic.com.br</span>
+                </a>
             </div>
-            <span class="font-extrabold text-lg tracking-tighter uppercase dark:text-white">Adminic</span>
-        </a>
-        <div class="text-xs font-bold uppercase tracking-widest flex gap-6">
-            <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Feedback</a>
-            <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Enviar solicitação</a>
-            <button onclick="toggleTheme()" class="hover:text-yellow-500 transition"><i id="theme-icon" class="fas fa-sun"></i></button>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-500 transition">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase">ADMINIC</span>
+            </a>
+
+            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Principal</a>
+                <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Feedback</a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Enviar Solicitação</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400">
+                    <i id="theme-icon" class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl">
+            <div class="px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Principal</a>
+                <a href="#" class="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Feedback</a>
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center">Área do Cliente</a>
+            </div>
         </div>
     </nav>
 
-    <header class="relative pt-12 pb-20 px-4 text-center overflow-hidden">
-        
-        <div class="absolute top-10 left-[10%] text-blue-200 dark:text-blue-900/20 text-9xl opacity-20 select-none animate-pulse">
-            <i class="fas fa-shield-alt"></i>
-        </div>
-        <div class="absolute bottom-10 right-[10%] text-purple-200 dark:text-purple-900/20 text-8xl opacity-20 select-none">
-            <i class="fas fa-cog fa-spin" style="animation-duration: 10s;"></i>
-        </div>
-
-        <div class="max-w-4xl mx-auto relative z-10">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-2 tracking-tight text-slate-900 dark:text-white">
-                CENTRAL <br> <span class="text-blue-600 dark:text-blue-400">DE AJUDA</span>
-            </h1>
-            
-            <div class="mt-8 mb-6 relative max-w-2xl mx-auto">
-                <div class="glass-search rounded-full p-2 flex items-center shadow-xl transition-all focus-within:ring-4 focus-within:ring-blue-200 dark:focus-within:ring-blue-900">
-                    <i class="fas fa-search text-slate-400 ml-4 text-xl"></i>
-                    <input type="text" 
-                           placeholder="Qual a sua dúvida hoje?" 
-                           class="w-full bg-transparent border-none focus:ring-0 text-slate-700 dark:text-white px-4 py-3 text-lg placeholder-slate-400 font-medium h-12">
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105">
-                        Buscar
-                    </button>
-                </div>
+    <main class="flex-grow">
+        <header class="relative pt-12 pb-20 px-4 text-center overflow-hidden">
+            <div class="absolute top-10 left-[10%] text-blue-200 dark:text-blue-900/20 text-9xl opacity-20 select-none animate-pulse">
+                <i class="fas fa-shield-alt"></i>
             </div>
-
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
-                <div class="text-right hidden md:block">
-                    <h3 class="font-black text-xl uppercase tracking-wider text-slate-700 dark:text-slate-300">Precisa de Ajuda?</h3>
-                    <p class="font-bold text-slate-500 text-sm">NÓS DAMOS TODO O SUPORTE.</p>
-                </div>
+            
+            <div class="max-w-4xl mx-auto relative z-10" data-aos="fade-up">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-2 tracking-tight text-slate-900 dark:text-white uppercase">
+                    CENTRAL <br> <span class="text-blue-600 dark:text-blue-400">DE AJUDA</span>
+                </h1>
                 
-                <div class="icon-float">
-                    <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 border-4 border-white dark:border-slate-800">
-                        <i class="fas fa-robot text-4xl text-white"></i>
-                        <div class="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-ping"></div>
+                <div class="mt-8 mb-6 relative max-w-2xl mx-auto">
+                    <div class="glass-search rounded-full p-2 flex items-center shadow-xl focus-within:ring-4 focus-within:ring-blue-500/20">
+                        <i class="fas fa-search text-slate-400 ml-4 text-xl"></i>
+                        <input type="text" placeholder="Qual a sua dúvida hoje?" class="w-full bg-transparent border-none focus:ring-0 text-slate-700 dark:text-white px-4 py-3 text-lg placeholder-slate-400 font-medium">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">Buscar</button>
                     </div>
                 </div>
 
-                <div class="text-left hidden md:block max-w-xs">
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                        De configurações de conta a pagamentos, encontre ajuda para tudo no Adminic.
-                        Novo por aqui? Confira nosso <a href="#" class="text-blue-600 underline decoration-2">Guia do Iniciante</a>.
-                    </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+                    <div class="text-right hidden md:block">
+                        <h3 class="font-black text-xl uppercase text-slate-700 dark:text-slate-300">Precisa de Ajuda?</h3>
+                        <p class="font-bold text-slate-500 text-sm">NÓS DAMOS TODO O SUPORTE.</p>
+                    </div>
+                    <div class="icon-float">
+                        <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white dark:border-slate-800">
+                            <i class="fas fa-robot text-4xl text-white"></i>
+                        </div>
+                    </div>
+                    <div class="text-left hidden md:block max-w-xs">
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Confira nosso <a href="#" class="text-blue-600 underline">Guia do Iniciante</a> ou navegue pelas categorias abaixo.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main class="max-w-7xl mx-auto px-4 pb-24 flex-grow relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section class="max-w-7xl mx-auto px-4 pb-24 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-white/5" data-aos="fade-up">
+                    <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Anúncios</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Fique por dentro das últimas atualizações e novidades do sistema Adminic.</p>
+                </a>
 
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-bullhorn"></i>
+                <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-white/5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">O Básico</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Aprenda a configurar sua automação financeira do zero em poucos minutos.</p>
+                </a>
+
+                <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-white/5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Conexão WhatsApp</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Tudo sobre pareamento de dispositivos e fluxo de mensagens.</p>
+                </a>
+                
                 </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Anúncios</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Estamos atentos ao que acontece. Aqui está o que você precisa saber sobre atualizações e novidades.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">O Básico do Adminic</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Comece com o pé direito! Entenda como configurar sua automação financeira.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-slate-600 to-slate-800 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-user-cog"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Sua Conta</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Personalize seu perfil, segurança, notificações e dados da empresa.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Conexão WhatsApp</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Problemas com o QR Code? Mensagens não chegando? Resolva aqui.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Planos e Limites</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Entenda seu plano, upgrades de mensagens e recursos premium.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Pagamentos e Cobrança</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Dúvidas sobre faturas, métodos de pagamento (Pix/Cartão) e notas fiscais.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Segurança e Privacidade</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Mantenha seus dados seguros. LGPD, criptografia e boas práticas.
-                </p>
-            </a>
-
-            <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-bug"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Solução de Problemas</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Bugs conhecidos, erros de conexão e como resolvê-los rapidamente.
-                </p>
-            </a>
-
-             <a href="#" class="card-hover group bg-white dark:bg-slate-800/50 p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-white/5">
-                <div class="icon-3d-wrapper w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 text-white text-2xl">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Comunidade</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                    Dicas de outros usuários e novidades sobre o mundo financeiro.
-                </p>
-            </a>
-
-        </div>
+        </section>
     </main>
 
-    <footer class="border-t border-slate-200 dark:border-white/5 py-8 text-center bg-white dark:bg-[#0f172a]">
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Adminic © 2026 | Soluções Administrativas</p>
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter">ADMINIC</span>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-4 leading-relaxed max-w-sm mx-auto md:mx-0">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência dos seus dados.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-widest">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase">
+                        <li><a href="termos.html" class="hover:text-blue-600 transition">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 transition">Privacidade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-widest">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase">
+                        <li>contato@adminic.com.br</li>
+                        <li>(92) 98489-9955</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center">
+                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-400 text-[9px] uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Lógica de Tema
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
-
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            html.classList.remove('dark');
-            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        
+        function updateTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
         }
 
         function toggleTheme() {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-                if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            updateTheme();
         }
+        updateTheme();
+
+        // Menu Mobile
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
