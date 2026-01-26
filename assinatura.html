@@ -722,54 +722,24 @@
     </footer>
 
     <style>
-    /* 1. Animação de Digitação (Typewriter) */
-    .typewriter-effect {
-        display: inline-block;
-        overflow: hidden;
-        white-space: normal; /* Permite quebra de linha */
-        border-right: 2px solid rgba(59, 130, 246, 0.8); /* Cursor piscando */
-        animation: blink-cursor 0.75s step-end infinite;
-        max-height: 0; /* Começa oculto */
-    }
-
-    /* Classe ativada via JS para iniciar a digitação */
-    .typing-active {
-        animation: 
-            typing 2.5s steps(50, end) forwards,
-            blink-cursor 0.75s step-end infinite;
-        max-height: 100px; /* Altura suficiente para o texto */
-    }
-
-    @keyframes typing {
-        from { width: 0; max-height: 0; opacity: 0; }
-        1% { opacity: 1; max-height: 100px; }
-        to { width: 100%; max-height: 100px; opacity: 1; }
-    }
-
-    @keyframes blink-cursor {
-        from, to { border-color: transparent }
-        50% { border-color: rgba(59, 130, 246, 0.8); }
-    }
-
-    /* 2. Animação Cascata (Stagger) para os ícones */
+    /* Animação suave de entrada dos itens do menu */
     .stagger-item {
         opacity: 0;
         transform: translateX(20px);
-        transition: all 0.3s ease-out;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Quando o menu abre, os itens entram */
     .menu-open .stagger-item {
         opacity: 1;
         transform: translateX(0);
     }
 
-    /* Delays progressivos */
+    /* Delays para efeito cascata */
     .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
     .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
     .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
 
-    /* 3. Pulsação do Botão (Ripple) */
+    /* Pulsação do botão quando fechado */
     @keyframes ripple-pulse {
         0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
         70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
@@ -778,6 +748,17 @@
     
     .btn-pulse {
         animation: ripple-pulse 2s infinite;
+    }
+
+    /* Cursor piscando para o efeito de digitação */
+    .typing-cursor::after {
+        content: '|';
+        animation: blink 1s step-start infinite;
+        color: #3b82f6; /* Azul */
+    }
+    
+    @keyframes blink {
+        50% { opacity: 0; }
     }
 </style>
 
@@ -795,9 +776,8 @@
                     <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
                 </div>
                 <div class="flex-1 min-w-0">
-                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed typewriter-effect">
-                        Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?
-                    </p>
+                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]">
+                        </p>
                 </div>
             </div>
         </header>
@@ -849,9 +829,7 @@
             aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
         
         <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
-            
             <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
-            
             <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
             
             <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
@@ -865,12 +843,38 @@
 </aside>
 
 <script>
+    // Variáveis globais para controle da digitação
+    let typingTimeout;
+    const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
+    
+    function typeWriterEffect(element, text, speed = 30) {
+        let i = 0;
+        element.innerHTML = ""; // Limpa texto anterior
+        element.classList.add('typing-cursor'); // Adiciona cursor
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                typingTimeout = setTimeout(type, speed);
+            } else {
+                // Remove o cursor piscante após terminar de digitar (opcional)
+                setTimeout(() => {
+                   element.classList.remove('typing-cursor'); 
+                }, 1500);
+            }
+        }
+        
+        clearTimeout(typingTimeout); // Garante que não haja sobreposição
+        type();
+    }
+
     function toggleSupportWidget() {
         const menu = document.getElementById('support-menu');
         const btn = document.getElementById('support-trigger');
         const iconOpen = document.getElementById('icon-open');
         const iconClose = document.getElementById('icon-close');
-        const typingText = document.getElementById('typing-text');
+        const typingElement = document.getElementById('typing-text');
         
         const isClosed = menu.classList.contains('invisible');
 
@@ -883,15 +887,15 @@
             btn.setAttribute('aria-expanded', 'true');
             btn.classList.remove('btn-pulse'); 
 
-            // 2. Animar Ícones (Girar)
+            // 2. Animar Ícones
             iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
             iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
 
-            // 3. Reiniciar Efeito de Digitação
-            typingText.classList.remove('typing-active');
-            void typingText.offsetWidth; // Força o navegador a reiniciar a animação (Reflow)
-            typingText.classList.add('typing-active'); 
+            // 3. Iniciar Digitação Suave (com pequeno delay para o menu abrir antes)
+            setTimeout(() => {
+                typeWriterEffect(typingElement, welcomeMessage);
+            }, 300);
 
         } else {
             // ============ FECHAR ============
@@ -907,8 +911,9 @@
             iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
             
-            // 3. Parar digitação (opcional)
-            typingText.classList.remove('typing-active');
+            // 3. Limpar digitação
+            clearTimeout(typingTimeout);
+            typingElement.innerHTML = "";
         }
     }
 
@@ -917,7 +922,6 @@
         const menu = document.getElementById('support-menu');
         const btn = document.getElementById('support-trigger');
         
-        // Verifica se clicou fora do menu E fora do botão
         if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
             toggleSupportWidget();
         }
