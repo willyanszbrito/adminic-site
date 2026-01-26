@@ -14,7 +14,6 @@
     
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,10 +22,8 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- AOS Animações -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -45,9 +42,13 @@
             outline-offset: 2px;
         }
         
+        /* Glass adaptativo (CORRIGIDO PARA SUPORTAR TEMA CLARO) */
         .glass { 
-            background: rgba(15, 23, 42, 0.95); 
+            background: rgba(255, 255, 255, 0.90); 
             backdrop-filter: blur(12px); 
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.95);
         }
         
         /* Menu mobile acessível */
@@ -114,24 +115,22 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
-    <!-- Link para pular para conteúdo principal (Acessibilidade) -->
     <a href="#main-content" class="skip-to-main focus:top-0" aria-label="Pular para o conteúdo principal">
         Pular para conteúdo
     </a>
     
-    <!-- Top Bar (Desktop only) -->
-    <div class="bg-[#0f172a] border-b border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block" 
+    <div class="bg-slate-200 dark:bg-[#0f172a] border-b border-slate-300 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-500 hidden md:block transition-colors duration-300" 
          aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:privacidade@adminic.com.br" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="mailto:privacidade@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fas fa-envelope" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">privacidade@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-400 transition flex items-center gap-2 focus-visible">
+                <a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> 
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
@@ -139,28 +138,27 @@
         </div>
     </div>
 
-    <!-- Main Navigation -->
-    <nav class="sticky top-0 w-full z-50 border-b border-white/5 glass" aria-label="Navegação principal">
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass transition-colors duration-300" aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-white uppercase group-hover:text-blue-100 transition">ADMINIC</span>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
-                <a href="quem-somos.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
-                <a href="contato.html" class="hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
                 
-                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-white/10 transition text-slate-400 hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-yellow-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
                     <i id="theme-icon" class="fas fa-sun"></i>
                 </button>
 
@@ -169,22 +167,22 @@
                     <span>Área do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-[#0f172a] border-t border-white/5" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-lg" role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Principal</a>
-                <a href="quem-somos.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Serviços</a>
-                <a href="index.html#produtos" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Produtos</a>
-                <a href="contato.html" class="text-slate-300 hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="index.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="contato.html" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-300 hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-white/5 w-full text-left" role="menuitem">
-                    <i class="fas fa-sun w-5 text-center"></i> Alternar Tema
+                <button onclick="toggleTheme()" class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 w-full text-left" role="menuitem">
+                    <i id="mobile-theme-icon" class="fas fa-sun w-5 text-center"></i> Alternar Tema
                 </button>
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
@@ -194,40 +192,39 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding">
+    <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding transition-colors duration-300">
         <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="600">
             <header class="mb-12">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight uppercase leading-tight">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight uppercase leading-tight transition-colors">
                     Política de Privacidade <br>
-                    <span class="text-blue-500">e Proteção de Dados</span>
+                    <span class="text-blue-600 dark:text-blue-500">e Proteção de Dados</span>
                 </h1>
                 <div class="flex flex-wrap gap-3 mb-8">
-                    <div class="inline-block px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[11px] font-bold uppercase tracking-widest">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/20 bg-blue-50 dark:bg-blue-500/5 text-blue-600 dark:text-blue-400 text-[11px] font-bold uppercase tracking-widest transition-colors">
                         Vigência: Janeiro/2026
                     </div>
-                    <div class="inline-block px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 text-slate-400 text-[11px] font-bold uppercase tracking-widest">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 text-[11px] font-bold uppercase tracking-widest transition-colors">
                         Em conformidade com a LGPD
                     </div>
                 </div>
                 
-                <div class="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20 mb-8">
-                    <h3 class="text-white font-bold text-lg mb-3">🧠 O que é LGPD?</h3>
-                    <p class="text-slate-300 text-sm">
+                <div class="bg-blue-50 dark:bg-blue-500/10 p-6 rounded-xl border border-blue-100 dark:border-blue-500/20 mb-8 transition-colors">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg mb-3 transition-colors">🧠 O que é LGPD?</h3>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm transition-colors">
                         <strong>LGPD (Lei Geral de Proteção de Dados)</strong> é a lei brasileira que protege suas informações pessoais. 
                         Ela garante que empresas como a Adminic cuidem bem dos seus dados, com transparência e segurança.
                     </p>
                 </div>
             </header>
 
-            <div class="space-y-12 legal-text text-sm md:text-base leading-relaxed text-slate-400">
+            <div class="space-y-12 legal-text text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400 transition-colors">
                 
                 <section data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
                         <span class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-xs text-white">01</span>
                         Informações Introdutórias
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>
                             Esta Política de Privacidade descreve como a <strong>ADMINIC</strong> (sob responsabilidade de <strong>Willyan Souza Brito</strong>, CNPJ 64.146.685/0001-61), doravante referida como "nós" ou "Empresa", coleta, utiliza e protege suas informações ao utilizar nosso sistema de gestão financeira via WhatsApp.
                         </p>
@@ -238,11 +235,11 @@
                 </section>
 
                 <section data-aos="fade-up" data-aos-delay="150">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">02</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center text-xs transition-colors">02</span>
                         Dados que Coletamos
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>Para a prestação do serviço de automação financeira, coletamos os seguintes dados, estritamente necessários:</p>
                         <ul class="list-disc pl-5 space-y-2 mt-4">
                             <li><strong>Identificação:</strong> Número de telefone (WhatsApp ID) e Nome de Perfil público do WhatsApp.</li>
@@ -254,36 +251,36 @@
                 </section>
 
                 <section data-aos="fade-up" data-aos-delay="200">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">03</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center text-xs transition-colors">03</span>
                         Processamento e Terceiros
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>O funcionamento do Adminic depende da integração com serviços de terceiros de nível global. Seus dados trafegam pelas seguintes infraestruturas:</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 mb-6">
-                            <div class="bg-slate-900/50 p-4 rounded-lg border border-white/5">
-                                <h3 class="text-blue-400 font-bold text-sm uppercase mb-2">Google Cloud & Gemini AI</h3>
+                            <div class="bg-white dark:bg-slate-900/50 p-4 rounded-lg border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none transition-colors">
+                                <h3 class="text-blue-600 dark:text-blue-400 font-bold text-sm uppercase mb-2 transition-colors">Google Cloud & Gemini AI</h3>
                                 <p class="text-xs">Utilizamos a API do Google Gemini para processamento de linguagem natural (texto e áudio) e o Google Sheets como banco de dados pessoal.</p>
                             </div>
-                            <div class="bg-slate-900/50 p-4 rounded-lg border border-white/5">
-                                <h3 class="text-green-400 font-bold text-sm uppercase mb-2">Meta (WhatsApp)</h3>
+                            <div class="bg-white dark:bg-slate-900/50 p-4 rounded-lg border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none transition-colors">
+                                <h3 class="text-green-600 dark:text-green-400 font-bold text-sm uppercase mb-2 transition-colors">Meta (WhatsApp)</h3>
                                 <p class="text-xs">Toda a comunicação trafega pela API Oficial do WhatsApp Business (Meta), sujeita à criptografia em trânsito.</p>
                             </div>
                         </div>
 
-                        <p class="bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20 text-yellow-300 text-sm">
+                        <p class="bg-yellow-50 dark:bg-yellow-500/10 p-4 rounded-lg border border-yellow-200 dark:border-yellow-500/20 text-yellow-800 dark:text-yellow-300 text-sm transition-colors">
                             <strong>Atenção:</strong> Não compartilhamos seus dados com agências de marketing, corretores de dados ou terceiros não listados acima.
                         </p>
                     </div>
                 </section>
 
                 <section data-aos="fade-up" data-aos-delay="250">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">04</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center text-xs transition-colors">04</span>
                         Segurança e Armazenamento
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>
                             Seus dados são armazenados principalmente em planilhas do Google Sheets (Google Cloud Platform), acessíveis apenas pelo sistema Adminic e pelos administradores autorizados.
                         </p>
@@ -294,40 +291,40 @@
                 </section>
 
                 <section data-aos="fade-up" data-aos-delay="300">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">05</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center text-xs transition-colors">05</span>
                         Seus Direitos (LGPD)
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>Conforme o Art. 18 da LGPD, você tem direito a:</p>
                         <ul class="space-y-3 mt-4">
                             <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded bg-green-500/20 flex items-center justify-center text-green-400">
+                                <div class="w-6 h-6 rounded bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 transition-colors">
                                     <i class="fas fa-check text-xs" aria-hidden="true"></i>
                                 </div>
                                 <span>Confirmar a existência de tratamento de dados.</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded bg-green-500/20 flex items-center justify-center text-green-400">
+                                <div class="w-6 h-6 rounded bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 transition-colors">
                                     <i class="fas fa-check text-xs" aria-hidden="true"></i>
                                 </div>
                                 <span>Acessar seus dados (disponível via comando "Resumo" ou "Pendentes" no bot).</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded bg-green-500/20 flex items-center justify-center text-green-400">
+                                <div class="w-6 h-6 rounded bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 transition-colors">
                                     <i class="fas fa-check text-xs" aria-hidden="true"></i>
                                 </div>
                                 <span>Corrigir dados incompletos ou desatualizados.</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded bg-green-500/20 flex items-center justify-center text-green-400">
+                                <div class="w-6 h-6 rounded bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 transition-colors">
                                     <i class="fas fa-check text-xs" aria-hidden="true"></i>
                                 </div>
                                 <span>Solicitar a eliminação dos dados pessoais tratados (Direito ao Esquecimento).</span>
                             </li>
                         </ul>
-                        <div class="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                            <p class="text-blue-300 text-sm">
+                        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg border border-blue-100 dark:border-blue-500/20 transition-colors">
+                            <p class="text-blue-800 dark:text-blue-300 text-sm transition-colors">
                                 <strong>📱 Como exercer seus direitos?</strong><br>
                                 Envie uma mensagem no WhatsApp com o termo "Falar com Humano" ou entre em contato pelo e-mail oficial.
                             </p>
@@ -336,31 +333,31 @@
                 </section>
 
                 <section data-aos="fade-up" data-aos-delay="350">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <span class="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-xs text-white">06</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center text-xs transition-colors">06</span>
                         Contato do Controlador
                     </h2>
-                    <div class="pl-11 border-l border-white/10 ml-4">
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4 transition-colors">
                         <p>Para questões sobre privacidade e dados, entre em contato com o desenvolvedor e controlador dos dados:</p>
-                        <div class="bg-white/5 p-6 rounded-xl border border-white/10 mt-4">
-                            <p class="font-bold text-white text-lg mb-1">Willyan Souza Brito</p>
+                        <div class="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 mt-4 shadow-sm dark:shadow-none transition-colors">
+                            <p class="font-bold text-slate-900 dark:text-white text-lg mb-1 transition-colors">Willyan Souza Brito</p>
                             <p class="text-sm text-slate-500 uppercase tracking-wider font-bold mb-4">Adminic Founder & Dev</p>
                             <div class="space-y-3">
                                 <p class="flex items-center gap-2">
-                                    <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
-                                    <a href="mailto:will@adminic.com.br" class="text-blue-400 hover:text-blue-300 focus:text-blue-300 focus:outline-none">will@adminic.com.br</a>
+                                    <i class="fas fa-envelope text-blue-600 dark:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                    <a href="mailto:will@adminic.com.br" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 focus:text-blue-500 dark:focus:text-blue-300 focus:outline-none transition-colors">will@adminic.com.br</a>
                                 </p>
                                 <p class="flex items-center gap-2">
-                                    <i class="fas fa-shield-alt text-blue-400" aria-hidden="true"></i>
-                                    <a href="mailto:lgpd@adminic.com.br" class="text-blue-400 hover:text-blue-300 focus:text-blue-300 focus:outline-none">lgpd@adminic.com.br</a>
+                                    <i class="fas fa-shield-alt text-blue-600 dark:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                    <a href="mailto:lgpd@adminic.com.br" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 focus:text-blue-500 dark:focus:text-blue-300 focus:outline-none transition-colors">lgpd@adminic.com.br</a>
                                 </p>
-                                <p class="flex items-center gap-2">
-                                    <i class="fas fa-map-marker-alt text-blue-400" aria-hidden="true"></i>
+                                <p class="flex items-center gap-2 text-slate-600 dark:text-slate-400 transition-colors">
+                                    <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400 transition-colors" aria-hidden="true"></i>
                                     <span>Manaus, AM - Brasil</span>
                                 </p>
                                 <p class="flex items-center gap-2">
-                                    <i class="fab fa-whatsapp text-blue-400" aria-hidden="true"></i>
-                                    <a href="https://wa.me/5592984899955" class="text-blue-400 hover:text-blue-300 focus:text-blue-300 focus:outline-none">(92) 98489-9955</a>
+                                    <i class="fab fa-whatsapp text-blue-600 dark:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                    <a href="https://wa.me/5592984899955" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 focus:text-blue-500 dark:focus:text-blue-300 focus:outline-none transition-colors">(92) 98489-9955</a>
                                 </p>
                             </div>
                         </div>
@@ -371,38 +368,37 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 pt-12 pb-8 px-4 md:px-6 bg-[#020617] mt-auto">
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
                 
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tighter inline-block hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
-                    <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
                         Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors">Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors">Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="pt-8 border-t border-white/5 text-center">
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center transition-colors">
                 <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
                 <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
             </div>
@@ -410,32 +406,32 @@
     </footer>
     
     <a href="mailto:comercial@adminic.com.br" 
-       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-slate-800/90 hover:bg-blue-600 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-[#020617]"
+       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-white/90 dark:bg-slate-800/90 hover:bg-blue-50 dark:hover:bg-blue-600 backdrop-blur-md border border-slate-200 dark:border-white/10 p-3 pr-5 rounded-full shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-[#020617]"
        aria-label="Fale com nosso Comercial por E-mail">
         
         <div class="relative w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-white/10 group-hover:bg-blue-500 transition-colors shadow-lg">
             <i class="fas fa-comments text-white text-lg"></i>
-            <span class="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full animate-pulse"></span>
+            <span class="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full animate-pulse"></span>
         </div>
 
         <div class="text-left">
-            <p class="text-[10px] uppercase font-bold tracking-widest text-slate-400 group-hover:text-blue-100 leading-none mb-1">Fale Conosco</p>
-            <p class="text-xs font-bold text-white leading-none">Comercial</p>
+            <p class="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-100 leading-none mb-1 transition-colors">Fale Conosco</p>
+            <p class="text-xs font-bold text-slate-900 dark:text-white leading-none transition-colors">Comercial</p>
         </div>
     </a>
 
-    <!-- Scripts -->
     <script>
         const html = document.documentElement;
         const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
         
         // 1. Verificar preferência salva
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
-            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+            updateIcons(true);
         } else {
             html.classList.remove('dark');
-            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            updateIcons(false);
         }
 
         // 2. Função de alternar
@@ -443,11 +439,22 @@
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 localStorage.theme = 'light';
-                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+                updateIcons(false);
             } else {
                 html.classList.add('dark');
                 localStorage.theme = 'dark';
+                updateIcons(true);
+            }
+        }
+
+        // 3. Função auxiliar para atualizar todos os ícones
+        function updateIcons(isDark) {
+            if (isDark) {
                 if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+                if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+                if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
             }
         }
     </script>
