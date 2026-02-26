@@ -583,20 +583,24 @@
         const mobileMenu = document.getElementById('mobile-menu');
         
         if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isExpanded = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('overflow-hidden'); // Opcional: impede scroll ao abrir menu
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
                 const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                icon.className = mobileMenu.classList.contains('active') ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
+            });
+        
+            // Fecha o menu ao clicar em qualquer link lá dentro
+            mobileMenu.querySelectorAll('a, button').forEach(item => {
+                item.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('overflow-hidden');
+                    mobileMenuButton.querySelector('i').className = 'fas fa-bars text-xl';
+                });
             });
         }
 
