@@ -551,16 +551,12 @@
 
         function forcarAberturaGrupo() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            // Verifica se está num dispositivo móvel (Android, iOS)
-            const isMobile = /android|ipad|iphone|ipod/i.test(ua);
+            const isInApp = /WhatsApp|wv|FB|Instagram/i.test(ua);
             
-            if (isMobile) {
-                // No celular, como viemos de um template, o bloqueio do In-App é quase certo.
-                // Exibe a mãozinha ensinando os 3 pontinhos imediatamente ao clicar.
+            if (isInApp) {
                 document.getElementById('in-app-warning').classList.remove('hidden');
             } else {
-                // No WhatsApp Web (Computador), não há In-App browser, então o link funciona direto.
-                window.open(urlDoGrupo, '_blank');
+                window.location.href = urlDoGrupo;
             }
         }
         
