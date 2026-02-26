@@ -218,7 +218,7 @@
             <div class="flex items-center gap-3 md:gap-4">
                 
                 <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
-                    <i id="theme-icon" class="fas fa-sun"></i>
+                    <i class="fas fa-sun theme-toggle-icon"></i>
                 </button>
 
                 <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
@@ -241,7 +241,7 @@
                 <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
                 <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
-                    <span class="mr-2">Tema</span> <i class="fas fa-sun w-5 text-center"></i>
+                    <span class="mr-2">Tema</span> <i class="fas fa-sun w-5 text-center theme-toggle-icon"></i>
                 </button>
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
@@ -308,8 +308,8 @@
                                     <i class="fab fa-whatsapp"></i>
                                 </div>
                                 <div class="text-left">
-                                    <span class="block font-bold text-slate-800 dark:text-white text-sm">Acessar Grupo</span>
-                                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Abrir no WhatsApp</span>
+                                    <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
+                                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Abrir no WhatsApp o Grupo "Inteligência Artificial e Educação - 2026/1"</span>
                                 </div>
                             </a>
                         </nav>
@@ -438,7 +438,6 @@
     <script>
         // Lógica Global (Tema, Menu Mobile, Scroll e Botão de Suporte)
         const html = document.documentElement;
-        const themeIcon = document.getElementById('theme-icon');
         let typingTimeout;
         const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
         
@@ -479,10 +478,11 @@
             }
         }
         function updateIcons(isDark) {
-            if (themeIcon) {
-                themeIcon.classList.remove('fa-sun', 'fa-moon');
-                themeIcon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
-            }
+            const themeIcons = document.querySelectorAll('.theme-toggle-icon');
+            themeIcons.forEach(icon => {
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+            });
         }
 
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
