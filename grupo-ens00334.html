@@ -175,24 +175,6 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
-
-    <div id="in-app-warning" class="hidden fixed inset-0 z-[100] flex items-start justify-end pt-12 pr-4 bg-slate-900/80 backdrop-blur-sm transition-opacity">
-        <div class="relative max-w-xs bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-2xl border border-blue-500 text-center mt-4">
-            <div class="absolute -top-10 right-2 text-blue-500 text-5xl animate-point drop-shadow-lg">
-                <i class="fas fa-hand-point-up"></i>
-            </div>
-            
-            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 dark:text-blue-400">
-                <i class="fas fa-ellipsis-v text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Quase lá!</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
-                O WhatsApp bloqueia a entrada em grupos por aqui. Para acessar, clique nos <strong>3 pontinhos</strong> ali em cima e escolha:<br>
-                <span class="inline-block mt-3 font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-slate-700 px-3 py-1.5 rounded-lg border border-blue-100 dark:border-blue-900">Abrir no Navegador</span>
-            </p>
-            <button onclick="document.getElementById('in-app-warning').classList.add('hidden')" class="w-full text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 py-2">Entendi</button>
-        </div>
-    </div>
     
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
@@ -294,18 +276,22 @@
                 </div>
 
                 <div id="manual-access" class="hidden opacity-0 transition-opacity duration-500">
-                    <button onclick="forcarAberturaGrupo()" 
+                    <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-white/5 text-left flex gap-3 items-start">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed">
+                                Olá! 👋 Como o aplicativo bloqueia links de grupos por aqui, clique no botão abaixo para receber o link de acesso direto no nosso chat.
+                            </p>
+                        </div>
+                    </div>
+                
+                    <a href="https://wa.me/559284790794?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20o%20link%20do%20grupo%20da%20disciplina%20ENS00334." 
                        class="w-full bg-green-600 hover:bg-green-500 text-white px-6 py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-600/20 uppercase tracking-widest focus-visible btn-pulse">
                         <i class="fab fa-whatsapp text-lg"></i>
-                        Acessar Grupo
-                    </button>
-                    
-                    <div class="mt-4 p-3 bg-blue-50 dark:bg-slate-800 rounded-lg border border-blue-100 dark:border-slate-700">
-                        <p class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
-                            ⚠️ Dica de Acesso: <br>
-                            Se o botão acima não funcionar, clique nos <strong>3 pontinhos (⋮)</strong> no canto superior direito da tela e escolha <strong>"Abrir no Navegador"</strong> e clique novamente no botão verde.
-                        </p>
-                    </div>
+                        Receber Link no Chat
+                    </a>
                 </div>
             
             <div class="mt-8 text-center text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">
@@ -546,37 +532,7 @@
             });
         }
 
-        // Lógica Específica para Contornar Bloqueio de Templates da Meta
-        const urlDoGrupo = "https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX";
-
-        function forcarAberturaGrupo() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            // Removido o "wv" para evitar falsos positivos nos navegadores padrão do Android.
-            const isInApp = /WhatsApp|FBAN|FBAV|Instagram/i.test(ua);
-            
-            if (isInApp) {
-                document.getElementById('in-app-warning').classList.remove('hidden');
-            } else {
-                // Simular clique em um link dinâmico é a forma mais confiável de acionar o app no mobile
-                const link = document.createElement('a');
-                link.href = urlDoGrupo;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-        
         window.addEventListener('load', () => {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            const isInApp = /WhatsApp|FBAN|FBAV|Instagram/i.test(ua);
-
-            if (isInApp) {
-                document.getElementById('in-app-warning').classList.remove('hidden');
-            }
-
-            // Remove o "carregando" e mostra o botão verde
             setTimeout(() => {
                 document.getElementById('status-container').classList.add('hidden');
                 const manualAccess = document.getElementById('manual-access');
