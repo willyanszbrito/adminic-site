@@ -546,33 +546,35 @@
             });
         }
 
-        // Lógica Específica de Redirecionamento e Bloqueio In-App
+        // Lógica Específica para Contornar Bloqueio de Templates da Meta
         const urlDoGrupo = "https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX";
 
-        // Deixamos a verificação para os casos mais fáceis de detectar (Instagram, FB, etc)
-        function checkInAppBrowser() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            return /FBAN|FBAV|Instagram|WhatsApp|wv/i.test(ua);
-        }
-
         function forcarAberturaGrupo() {
-            // 1. Tenta forçar a saída para o aplicativo do WhatsApp
-            window.location.href = urlDoGrupo;
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            // Verifica se está num dispositivo móvel (Android, iOS)
+            const isMobile = /android|ipad|iphone|ipod/i.test(ua);
             
-            // 2. O Pulo do Gato: Se o navegador interno bloquear o redirecionamento, 
-            // a página não vai mudar. Então, armamos um cronômetro para mostrar o pop-up!
-            setTimeout(() => {
+            if (isMobile) {
+                // No celular, como viemos de um template, o bloqueio do In-App é quase certo.
+                // Exibe a mãozinha ensinando os 3 pontinhos imediatamente ao clicar.
                 document.getElementById('in-app-warning').classList.remove('hidden');
-            }, 800); // 800 milissegundos de tolerância
+            } else {
+                // No WhatsApp Web (Computador), não há In-App browser, então o link funciona direto.
+                window.open(urlDoGrupo, '_blank');
+            }
         }
         
         window.addEventListener('load', () => {
-            // Se já detectar in-app logo de cara, mostra o aviso preventivamente
-            if (checkInAppBrowser()) {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isInApp = /WhatsApp|wv|FB/i.test(ua);
+
+            // Se o navegador já confessar que é In-App logo no carregamento, 
+            // já deixamos a mãozinha na tela por precaução.
+            if (isInApp) {
                 document.getElementById('in-app-warning').classList.remove('hidden');
             }
 
-            // Mostra o botão verde na tela após o "carregamento"
+            // Remove o "carregando" e mostra o botão verde
             setTimeout(() => {
                 document.getElementById('status-container').classList.add('hidden');
                 const manualAccess = document.getElementById('manual-access');
