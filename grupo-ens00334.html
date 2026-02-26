@@ -269,17 +269,19 @@
                 </div>
 
                 <div id="manual-access" class="hidden opacity-0 transition-opacity duration-500">
-                    <a href="https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX?mode=hq2tcla" target="_blank" rel="noopener noreferrer"
-                       class="w-full bg-green-600 hover:bg-green-500 text-white px-6 py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-600/20 uppercase tracking-widest focus-visible">
+                    <button onclick="forcarAberturaGrupo()" 
+                       class="w-full bg-green-600 hover:bg-green-500 text-white px-6 py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-600/20 uppercase tracking-widest focus-visible btn-pulse">
                         <i class="fab fa-whatsapp text-lg"></i>
-                        Entrar no Grupo
-                    </a>
-                    <p class="text-[10px] text-slate-400 mt-4 uppercase tracking-widest">
-                        Caso não seja redirecionado, clique no botão acima.
-                    </p>
+                        Acessar Grupo
+                    </button>
+                    
+                    <div class="mt-4 p-3 bg-blue-50 dark:bg-slate-800 rounded-lg border border-blue-100 dark:border-slate-700">
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
+                            ⚠️ Dica de Acesso: <br>
+                            Se o botão acima não funcionar, clique nos <strong>3 pontinhos (⋮)</strong> no canto superior direito da tela e escolha <strong>"Abrir no Navegador"</strong>.
+                        </p>
+                    </div>
                 </div>
-
-            </div>
             
             <div class="mt-8 text-center text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">
                 Apoio Tecnológico: <span class="glitch-text-sm" data-text="ADMINIC">ADMINIC</span>
@@ -520,11 +522,25 @@
         }
 
         // Lógica Específica de Redirecionamento da Página
-        const whatsappLink = "https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX?mode=hq2tcla";
+        function forcarAberturaGrupo() {
+            // O código oficial do seu convite
+            const codigoConvite = "JOIStxjtrY8B5d146UoXiX";
+            
+            // 1ª Tentativa: Protocolo Nativo (Fura o bloqueio do navegador interno)
+            window.location.href = "whatsapp://chat?code=" + codigoConvite;
+            
+            // 2ª Tentativa (Fallback): Se o celular não entender o protocolo, tenta o link normal 1 segundo depois
+            setTimeout(() => {
+                window.location.href = "https://chat.whatsapp.com/" + codigoConvite;
+            }, 1000);
+        }
         
         window.addEventListener('load', () => {
+            // Oculta o "Verificando..." mais rápido (800ms)
             setTimeout(() => {
                 document.getElementById('status-container').classList.add('hidden');
+                
+                // Exibe o botão e exige a ação humana (o clique fura o bloqueio)
                 const manualAccess = document.getElementById('manual-access');
                 manualAccess.classList.remove('hidden');
                 
@@ -532,10 +548,13 @@
                     manualAccess.classList.remove('opacity-0');
                     manualAccess.classList.add('opacity-100');
                 }, 50);
-
-                window.location.replace(whatsappLink);
-            }, 2000);
+                
+            }, 800); 
+            // FIM. Tiramos o redirecionamento automático. O usuário clica.
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
