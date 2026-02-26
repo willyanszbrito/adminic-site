@@ -551,21 +551,27 @@
 
         function forcarAberturaGrupo() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            const isInApp = /WhatsApp|wv|FB|Instagram/i.test(ua);
+            // Removido o "wv" para evitar falsos positivos nos navegadores padrão do Android.
+            const isInApp = /WhatsApp|FBAN|FBAV|Instagram/i.test(ua);
             
             if (isInApp) {
                 document.getElementById('in-app-warning').classList.remove('hidden');
             } else {
-                window.location.href = urlDoGrupo;
+                // Simular clique em um link dinâmico é a forma mais confiável de acionar o app no mobile
+                const link = document.createElement('a');
+                link.href = urlDoGrupo;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         }
         
         window.addEventListener('load', () => {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            const isInApp = /WhatsApp|wv|FB/i.test(ua);
+            const isInApp = /WhatsApp|FBAN|FBAV|Instagram/i.test(ua);
 
-            // Se o navegador já confessar que é In-App logo no carregamento, 
-            // já deixamos a mãozinha na tela por precaução.
             if (isInApp) {
                 document.getElementById('in-app-warning').classList.remove('hidden');
             }
