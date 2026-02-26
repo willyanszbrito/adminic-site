@@ -547,22 +547,31 @@
         }
 
         // Lógica Específica de Redirecionamento e Bloqueio In-App
+        const urlDoGrupo = "https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX";
+
+        // Inteligência melhorada: Verifica WhatsApp, Instagram, FB e WebViews ('wv') padrão do Android
+        function checkInAppBrowser() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            return /FBAN|FBAV|Instagram|WhatsApp|wv/i.test(ua);
+        }
+
         function forcarAberturaGrupo() {
-            // Voltamos ao link universal que funciona 100% no Chrome, Safari, etc.
-            window.location.href = "https://chat.whatsapp.com/JOIStxjtrY8B5d146UoXiX";
+            if (checkInAppBrowser()) {
+                // Se detectou navegador in-app, o clique no botão solta o pop-up animado na cara do usuário
+                document.getElementById('in-app-warning').classList.remove('hidden');
+            } else {
+                // Se estiver num navegador normal (Chrome, Safari), abre em nova guia com segurança
+                window.open(urlDoGrupo, '_blank');
+            }
         }
         
         window.addEventListener('load', () => {
-            // Inteligência: Verifica se o usuário abriu por dentro do WhatsApp ou Instagram
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            const isInAppBrowser = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Instagram") > -1) || (ua.indexOf("WhatsApp") > -1);
-
-            if (isInAppBrowser) {
-                // Se estiver preso no WhatsApp, solta o pop-up na cara dele
+            // Se já detectar in-app logo de cara, mostra o aviso preventivamente
+            if (checkInAppBrowser()) {
                 document.getElementById('in-app-warning').classList.remove('hidden');
             }
 
-            // Mostra o botão verde na tela
+            // Mostra o botão verde na tela após o "carregamento falso"
             setTimeout(() => {
                 document.getElementById('status-container').classList.add('hidden');
                 const manualAccess = document.getElementById('manual-access');
