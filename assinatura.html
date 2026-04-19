@@ -834,7 +834,7 @@
             <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
         </div>
 
-        <div class="text-left">
+        <div class="text-left hidden md:block">
             <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
             <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
         </div>
@@ -984,6 +984,7 @@
             mobileMenuButton.addEventListener('click', () => {
                 const isExpanded = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('overflow-hidden');
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
                 mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
@@ -1007,10 +1008,11 @@
             });
             
             // Fechar menu ao clicar em um link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
+            const mobileLinks = mobileMenu.querySelectorAll('a, button[role=\"menuitem\"]');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('active');
+                    document.body.classList.remove('overflow-hidden');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     const icon = mobileMenuButton.querySelector('i');
@@ -1023,6 +1025,7 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
+                    document.body.classList.remove('overflow-hidden');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     const icon = mobileMenuButton.querySelector('i');
@@ -1037,7 +1040,8 @@
         document.addEventListener('click', (e) => {
             if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
                 mobileMenu.classList.remove('active');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('overflow-hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
                 mobileMenu.setAttribute('aria-hidden', 'true');
                 const icon = mobileMenuButton.querySelector('i');
                 if (icon) {

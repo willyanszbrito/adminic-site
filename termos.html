@@ -503,7 +503,7 @@
             <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
         </div>
 
-        <div class="text-left">
+        <div class="text-left hidden md:block">
             <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
             <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
         </div>
@@ -679,7 +679,7 @@
                 });
                 
                 // Fechar menu ao clicar em um link
-                const mobileLinks = mobileMenu.querySelectorAll('a');
+                const mobileLinks = mobileMenu.querySelectorAll('a, button[role=\"menuitem\"]');
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         mobileMenu.classList.remove('active');
