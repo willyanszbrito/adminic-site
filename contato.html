@@ -403,10 +403,10 @@
     }
 </style>
 
-<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate">
+<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
 
     <div id="support-menu" 
-         class="invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
+         class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
          role="dialog" 
          aria-modal="true" 
          aria-hidden="true">
@@ -463,7 +463,7 @@
     </div>
 
     <button id="support-trigger" onclick="toggleSupportWidget()" 
-            class="relative flex items-center gap-3 pl-2 pr-5 py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
+            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
                    bg-slate-900 dark:bg-blue-600 
                    border border-slate-700 dark:border-blue-400
                    btn-pulse group"
