@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminic | Central de Ajuda</title>
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta property="og:title" content="Central de Ajuda - Adminic">
+    <meta property="og:description" content="Encontre respostas, tutoriais e suporte para os serviços Adminic.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif;  
+        }
+        
+        .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* === ESTILOS ESPECÍFICOS DA CENTRAL DE AJUDA === */
+        
+        /* Animação de Flutuação */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .icon-float { animation: float 4s ease-in-out infinite; }
+        
+        /* Ícone 3D Wrapper */
+        .icon-3d-wrapper {
+            transition: transform 0.3s ease;
+        }
+        .card-hover:hover .icon-3d-wrapper {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Barra de Pesquisa Glass */
+        .glass-search {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-search {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Acessibilidade */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+            font-weight: bold;
+        }
+        .skip-to-main:focus { top: 0; }
+        .focus-visible:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+    
+    <a href="#main-content" class="skip-to-main focus-visible">
+        Pular para o conteúdo principal
+    </a>
+    
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300" 
+         aria-label="Barra de informações">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> 
+                    <span class="hidden lg:inline">contato@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> 
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
+            </a>
+
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                <button onclick="toggleTheme()" class="hidden md:flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                    <i class="fas fa-sun theme-toggle-icon"></i>
+                </button>
+
+                <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>Área do Cliente</span>
+                </a>
+
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="#" class="text-blue-600 dark:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
+                <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
+                
+                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-yellow-400 text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
+                    <span class="mr-2">Tema</span> <i class="fas fa-sun w-5 text-center theme-toggle-icon"></i>
+                </button>
+
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
+                    <i class="fab fa-whatsapp mr-2"></i>Suporte Direto
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow relative" id="main-content" tabindex="-1">
+        
+        <section class="relative pt-20 md:pt-32 pb-16 px-4 md:px-6 overflow-hidden">
+            <div class="absolute inset-0 hero-gradient pointer-events-none" aria-hidden="true"></div>
+            
+            <div class="absolute top-20 left-[5%] text-blue-200 dark:text-blue-900/20 text-8xl md:text-9xl opacity-20 select-none animate-pulse hidden sm:block">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="absolute bottom-10 right-[5%] text-purple-200 dark:text-purple-900/20 text-7xl md:text-8xl opacity-20 select-none hidden sm:block">
+                <i class="fas fa-cog fa-spin" style="animation-duration: 10s;"></i>
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-blue-600 dark:text-blue-400 uppercase bg-blue-100/50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-full">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Oráculo
+                </div>
+
+                <h1 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight text-slate-900 dark:text-white uppercase">
+                    Central <br> <span class="text-blue-600 dark:text-blue-500">de Ajuda</span>
+                </h1>
+                
+                <p data-aos="fade-up" data-aos-delay="200" class="text-base md:text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
+                    De configurações de conta a pagamentos, encontre tudo o que você precisa.
+                </p>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="relative max-w-2xl mx-auto mb-12">
+                    <div class="glass-search rounded-full p-2 flex items-center shadow-xl transition-all focus-within:ring-4 focus-within:ring-blue-100 dark:focus-within:ring-blue-900">
+                        <i class="fas fa-search text-slate-400 ml-4 text-lg"></i>
+                        <input type="text" 
+                               placeholder="Qual a sua dúvida hoje?" 
+                               class="w-full bg-transparent border-none focus:ring-0 text-slate-700 dark:text-white px-4 py-2 md:py-3 text-base placeholder-slate-400 font-medium focus:outline-none">
+                        <button class="bg-blue-600 hover:bg-blue-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-sm uppercase tracking-wide transition-all transform hover:scale-105 shadow-lg shadow-blue-600/20">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="icon-float mt-8 hidden md:flex justify-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 border-4 border-white dark:border-slate-800">
+                        <i class="fas fa-robot text-3xl md:text-4xl text-white"></i>
+                        <div class="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-ping"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-50 dark:bg-[#01040f] border-t border-slate-200 dark:border-white/5 relative z-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Anúncios</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Fique por dentro das últimas atualizações, novidades do sistema e manutenções programadas.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Básico do Adminic</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Tutoriais passo-a-passo para configurar sua conta e começar a usar a IA financeira.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-slate-600 to-slate-800 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Sua Conta</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Gerencie seu perfil, preferências de notificação e configurações de segurança.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Conexão WhatsApp</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Resolva problemas de conexão, QR Code e envio de mensagens da IA.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Planos e Limites</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Detalhes sobre planos, upgrades de cotas de mensagens e recursos premium.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Pagamentos</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Dúvidas sobre faturas, métodos de pagamento (Pix/Cartão) e segunda via.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Segurança LGPD</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Entenda como protegemos seus dados e suas configurações de privacidade.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Solução de Erros</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Encontrou um bug? Veja aqui as soluções para os problemas mais comuns.
+                        </p>
+                    </a>
+
+                    <a href="#" class="card-hover group bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-white/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-3d-wrapper w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg mb-5 md:mb-6 text-white text-xl md:text-2xl">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Comunidade</h3>
+                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                            Participe, dê sugestões e veja como outros usuários utilizam o Adminic.
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+                
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0 transition-colors duration-300">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li>Manaus, AM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center transition-colors duration-300">
+                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+    /* Animação suave de entrada dos itens do menu */
+    .stagger-item {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-open .stagger-item {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Delays para efeito cascata */
+    .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+    .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+    .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+
+    /* Pulsação do botão quando fechado */
+    @keyframes ripple-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    
+    .btn-pulse {
+        animation: ripple-pulse 2s infinite;
+    }
+
+    /* Cursor piscando para o efeito de digitação */
+    .typing-cursor::after {
+        content: '|';
+        animation: blink 1s step-start infinite;
+        color: #3b82f6; /* Azul */
+    }
+    
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+</style>
+
+<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate">
+
+    <div id="support-menu" 
+         class="invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
+         role="dialog" 
+         aria-modal="true" 
+         aria-hidden="true">
+        
+        <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+            <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                    <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]">
+                        </p>
+                </div>
+            </div>
+        </header>
+
+        <nav class="p-3 space-y-1" aria-label="Canais de suporte">
+            
+            <a href="https://wa.me/559284790794" target="_blank" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
+                </div>
+            </a>
+
+            <a href="mailto:comercial@adminic.com.br" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
+                </div>
+            </a>
+
+            <a href="central-ajuda.html" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-question"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Perguntas frequentes</span>
+                </div>
+            </a>
+            
+        </nav>
+        
+        <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
+            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+        </div>
+    </div>
+
+    <button id="support-trigger" onclick="toggleSupportWidget()" 
+            class="relative flex items-center gap-3 pl-2 pr-5 py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
+                   bg-slate-900 dark:bg-blue-600 
+                   border border-slate-700 dark:border-blue-400
+                   btn-pulse group"
+            aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
+        
+        <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+            <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+            <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+            
+            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
+        </div>
+
+        <div class="text-left">
+            <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
+            <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
+        </div>
+    </button>
+</aside>
+
+<script>
+    // Variáveis globais para controle da digitação
+    let typingTimeout;
+    const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
+    
+    function typeWriterEffect(element, text, speed = 30) {
+        let i = 0;
+        element.innerHTML = ""; // Limpa texto anterior
+        element.classList.add('typing-cursor'); // Adiciona cursor
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                typingTimeout = setTimeout(type, speed);
+            } else {
+                // Remove o cursor piscante após terminar de digitar (opcional)
+                setTimeout(() => {
+                   element.classList.remove('typing-cursor'); 
+                }, 1500);
+            }
+        }
+        
+        clearTimeout(typingTimeout); // Garante que não haja sobreposição
+        type();
+    }
+
+    function toggleSupportWidget() {
+        const menu = document.getElementById('support-menu');
+        const btn = document.getElementById('support-trigger');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const typingElement = document.getElementById('typing-text');
+        
+        const isClosed = menu.classList.contains('invisible');
+
+        if (isClosed) {
+            // ============ ABRIR ============
+            
+            // 1. Mostrar Menu
+            menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+            menu.classList.add('menu-open'); 
+            btn.setAttribute('aria-expanded', 'true');
+            btn.classList.remove('btn-pulse'); 
+
+            // 2. Animar Ícones
+            iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
+            iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+            iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
+
+            // 3. Iniciar Digitação Suave (com pequeno delay para o menu abrir antes)
+            setTimeout(() => {
+                typeWriterEffect(typingElement, welcomeMessage);
+            }, 300);
+
+        } else {
+            // ============ FECHAR ============
+            
+            // 1. Esconder Menu
+            menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
+            menu.classList.remove('menu-open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.classList.add('btn-pulse');
+
+            // 2. Restaurar Ícones
+            iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
+            iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
+            iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+            
+            // 3. Limpar digitação
+            clearTimeout(typingTimeout);
+            typingElement.innerHTML = "";
+        }
+    }
+
+    // Fechar ao clicar fora do widget
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('support-menu');
+        const btn = document.getElementById('support-trigger');
+        
+        if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
+            toggleSupportWidget();
+        }
+    });
+</script>
+    
+<script>
+    // ==========================================
+    // 1. LÓGICA DO TEMA (Claro/Escuro)
+    // ==========================================
+    const html = document.documentElement;
+
+    function updateIcons(isDark) {
+        const themeIcons = document.querySelectorAll('.theme-toggle-icon');
+        themeIcons.forEach(icon => {
+            icon.classList.remove('fa-sun', 'fa-moon');
+            icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+        });
+    }
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        updateIcons(true);
+    } else {
+        html.classList.remove('dark');
+        updateIcons(false);
+    }
+
+    function toggleTheme() {
+        if (html.classList.contains('dark')) {
+            html.classList.remove('dark');
+            localStorage.theme = 'light';
+            updateIcons(false);
+        } else {
+            html.classList.add('dark');
+            localStorage.theme = 'dark';
+            updateIcons(true);
+        }
+    }
+
+    
+</script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Verificar preferência de redução de movimento
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Inicializar AOS com base na preferência
+        AOS.init({ 
+            duration: 800, 
+            once: true,
+            offset: 100,
+            disable: prefersReducedMotion
+        });
+        
+        // Menu mobile toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenu.classList.contains('active');
+                mobileMenu.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.setAttribute('aria-hidden', isExpanded);
+                
+                // Alterar ícone
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Focar no primeiro link do menu quando aberto
+                if (!isExpanded) {
+                    setTimeout(() => {
+                        const firstLink = mobileMenu.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }, 100);
+                }
+            });
+            
+            // Fechar menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Fechar menu com tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    mobileMenuButton.focus();
+                }
+            });
+        }
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                const icon = mobileMenuButton.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Scroll suave com acessibilidade
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    if (!prefersReducedMotion) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        targetElement.scrollIntoView();
+                    }
+                    
+                    targetElement.setAttribute('tabindex', '-1');
+                    targetElement.focus();
+                    
+                    targetElement.addEventListener('blur', () => {
+                        targetElement.removeAttribute('tabindex');
+                    }, { once: true });
+                    
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // Focar no conteúdo principal após carregamento
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    setTimeout(() => {
+                        target.setAttribute('tabindex', '-1');
+                        target.focus();
+                    }, 100);
+                }
+            }
+        });
+        
+        // Adicionar foco visível dinamicamente
+        document.addEventListener('DOMContentLoaded', () => {
+            const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+            const focusableContent = document.querySelectorAll(focusableElements);
+            
+            focusableContent.forEach(element => {
+                element.classList.add('focus-visible');
+            });
+        });
+        
+        // Navegação por teclado dentro do menu mobile
+        document.addEventListener('keydown', (e) => {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
