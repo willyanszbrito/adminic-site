@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adminic - Demonstração do Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wa-bg: #e5ddd5;
+            --wa-header: #075e54;
+            --wa-header-light: #128c7e;
+            --wa-msg-in: #ffffff;
+            --wa-msg-out: #dcf8c6;
+            --wa-text: #303030;
+            --wa-text-muted: #999;
+            --wa-input-bg: #f0f0f0;
+        }
+
+        body.dark-mode {
+            --wa-bg: #0b141a;
+            --wa-header: #202c33;
+            --wa-header-light: #2a3942;
+            --wa-msg-in: #202c33;
+            --wa-msg-out: #005c4b;
+            --wa-text: #e9edef;
+            --wa-text-muted: #8696a0;
+            --wa-input-bg: #202c33;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--wa-bg);
+            color: var(--wa-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Fundo padrão do WhatsApp */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.06;
+            background-image: url('https://w7.pngwing.com/pngs/353/193/png-transparent-whatsapp-computer-icons-pattern-whatsapp-pattern-texture-angle-text-thumbnail.png');
+            background-repeat: repeat;
+            z-index: -1;
+        }
+
+        body.dark-mode .bg-pattern {
+            opacity: 0.03;
+        }
+
+        .header {
+            background-color: var(--wa-header);
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            object-fit: contain;
+            margin-right: 15px;
+            padding: 2px;
+        }
+
+        .contact-info {
+            flex-grow: 1;
+        }
+
+        .contact-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .contact-status {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .credits-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            position: relative;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease;
+            word-wrap: break-word;
+        }
+
+        .msg-in {
+            align-self: flex-start;
+            background-color: var(--wa-msg-in);
+            border-top-left-radius: 0;
+        }
+
+        .msg-out {
+            align-self: flex-end;
+            background-color: var(--wa-msg-out);
+            border-top-right-radius: 0;
+        }
+
+        .msg-time {
+            font-size: 0.7rem;
+            color: var(--wa-text-muted);
+            float: right;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+
+        .msg-btn {
+            display: block;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--wa-header-light);
+            text-align: center;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .msg-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .msg-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #00a884;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background-color: var(--wa-msg-in);
+            padding: 10px 15px;
+            border-radius: 15px;
+            border-top-left-radius: 0;
+            display: none;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--wa-text-muted);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        .input-area {
+            background-color: var(--wa-input-bg);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border-radius: 20px;
+            border: none;
+            background-color: var(--wa-msg-in);
+            color: var(--wa-text);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .send-btn {
+            background-color: var(--wa-header-light);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .send-btn:active {
+            transform: scale(0.9);
+        }
+
+        .send-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            margin-left: 2px;
+        }
+
+        .overlay-cta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.7) 80%, transparent);
+            padding: 40px 20px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 20;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .overlay-cta.show {
+            transform: translateY(0);
+        }
+
+        .overlay-cta h2 {
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .overlay-cta p {
+            color: #ddd;
+            margin: 0 0 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-whatsapp svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="header">
+        <a href="demo-dashboard.html" class="back-btn" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </a>
+        <img src="android-chrome-192x192.png" alt="Adminic Bot" class="avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzA3NWU1NCI+PHBhdGggZD0iTTEyIDJDMi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMyMS41MiAyIDEyIDJ6bTAtMmM1LjUyIDAgMTAgNC40OCAxMCAxMHMtNC40OCAxMC0xMCAxMEM0LjQ4IDIyIDAgMTcuNTIgMCAxMlM0LjQ4IDIgMTAgMnoiLz48L3N2Zz4='">
+        <div class="contact-info">
+            <p class="contact-name">Adminic IA</p>
+            <p class="contact-status">Online</p>
+        </div>
+        <div class="credits-badge" id="credits-badge">
+            Créditos: 5
+        </div>
+    </div>
+
+    <div class="chat-container" id="chat-container">
+        <!-- Mensagens serão inseridas aqui via JS -->
+        
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div class="overlay-cta" id="cta-overlay">
+        <h2>Fim da Demonstração! 🚀</h2>
+        <p>Seus créditos de teste acabaram. Que tal conectar-se ao WhatsApp oficial para usar todas as funcionalidades com seus próprios dados e planilhas?</p>
+        <a href="https://wa.me/559284790794" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.445-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Assinar Agora
+        </a>
+    </div>
+
+    <div class="input-area" id="input-area">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Mensagem..." autocomplete="off">
+        <button class="send-btn" onclick="enviarMensagem()" id="send-btn" aria-label="Enviar">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        // Configurações do Simulador
+        const CREDITS_LIMIT = 5;
+        const LOCKOUT_MS = 30 * 60 * 1000; // 30 minutos
+
+        // Aplica o tema salvo no localStorage
+        let theme = localStorage.getItem('adminic_theme') || 'light';
+        if(theme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        const chatContainer = document.getElementById('chat-container');
+        const typingIndicator = document.getElementById('typing-indicator');
+        const chatInput = document.getElementById('chat-input');
+        const creditsBadge = document.getElementById('credits-badge');
+        const overlay = document.getElementById('cta-overlay');
+
+        let isTyping = false;
+
+        // Gerenciamento de Sessão / Créditos
+        function getSessionData() {
+            let sessionData = JSON.parse(localStorage.getItem('adminic_demo_session') || 'null');
+            const now = Date.now();
+            
+            if (sessionData) {
+                // Reseta se passou de 30 minutos
+                if (now - sessionData.timestamp > LOCKOUT_MS) {
+                    sessionData = { credits: CREDITS_LIMIT, timestamp: now };
+                    localStorage.setItem('adminic_demo_session', JSON.stringify(sessionData));
+                }
+            } else {
+                sessionData = { credits: CREDITS_LIMIT, timestamp: now };
+                localStorage.setItem('adminic_demo_session', JSON.stringify(sessionData));
+            }
+            return sessionData;
+        }
+
+        function updateCreditsUI(credits) {
+            creditsBadge.textContent = `Créditos: ${credits}`;
+            if (credits <= 0) {
+                chatInput.disabled = true;
+                chatInput.placeholder = "Demonstração encerrada...";
+                document.getElementById('send-btn').style.opacity = '0.5';
+                document.getElementById('send-btn').style.pointerEvents = 'none';
+                
+                // Mostra CTA após pequeno delay
+                setTimeout(() => {
+                    overlay.classList.add('show');
+                }, 1000);
+            }
+        }
+
+        function decreaseCredit() {
+            let sessionData = getSessionData();
+            if (sessionData.credits > 0) {
+                sessionData.credits--;
+                localStorage.setItem('adminic_demo_session', JSON.stringify(sessionData));
+                updateCreditsUI(sessionData.credits);
+                return true;
+            }
+            return false;
+        }
+
+        // Sistema de Mensagens
+        function getHoraAtual() {
+            const now = new Date();
+            return String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        }
+
+        function addMessage(text, isBot = false, isHtml = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${isBot ? 'msg-in' : 'msg-out'}`;
+            
+            let content = isHtml ? text : text.replace(/\n/g, '<br>');
+            
+            msgDiv.innerHTML = `
+                ${content}
+                <span class="msg-time">${getHoraAtual()}</span>
+            `;
+            
+            chatContainer.insertBefore(msgDiv, typingIndicator);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            isTyping = true;
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            isTyping = false;
+            typingIndicator.style.display = 'none';
+        }
+
+        // Ação do botão (fake bot options)
+        window.enviarOpcao = function(texto) {
+            if (isTyping) return;
+            chatInput.value = texto;
+            enviarMensagem();
+        }
+
+        // Lógica Principal de Resposta
+        function enviarMensagem() {
+            if (isTyping) return;
+            
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            let session = getSessionData();
+            if (session.credits <= 0) {
+                updateCreditsUI(0);
+                return;
+            }
+
+            // Adiciona msg do usuário
+            addMessage(text, false);
+            chatInput.value = '';
+            
+            if (!decreaseCredit()) return;
+
+            // Simula processamento
+            showTyping();
+            
+            setTimeout(() => {
+                hideTyping();
+                
+                const lowerText = text.toLowerCase();
+                
+                // Mock Responses Intelligence
+                if (lowerText.includes('dashboard')) {
+                    addMessage(`Aqui está o link para você visualizar seus dados:\n\n<a href="demo-dashboard.html" class="msg-btn">📊 Acessar Dashboard</a>`, true, true);
+                } else if (lowerText.includes('resumo')) {
+                    addMessage(`*Resumo do Mês (Demonstração):*\n\n💰 *Saldo:* R$ 1.500,00\n💸 *Gastos:* R$ 2.500,00\n🧾 *A Pagar:* R$ 300,00\n\nGostaria de ver esses dados no *Dashboard*?`, true, false);
+                } else if (lowerText.includes('lançamento') || /\d/.test(lowerText) || lowerText.includes('gasto')) {
+                    addMessage(`✅ Lançamento capturado e inserido na sua planilha financeira com sucesso!\n\n_Dica: Eu sou capaz de entender áudios, textos soltos e até fotos de recibos no ambiente real!_`, true, false);
+                } else {
+                    addMessage(`Legal! No ambiente real eu interpretaria esse texto ou áudio e cadastraria os valores automaticamente na sua planilha. 😉\n\nTente mandar um gasto como: *"Gastei 50 com Ifood"* ou digite *"Resumo"*.`, true, false);
+                }
+                
+                // Se acabou os créditos após essa resposta, mostra o popup
+                if (getSessionData().credits <= 0) {
+                    updateCreditsUI(0);
+                }
+            }, 1200 + Math.random() * 800);
+        }
+
+        // Enter para enviar
+        chatInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                enviarMensagem();
+            }
+        });
+
+        // Inicialização
+        window.onload = () => {
+            const session = getSessionData();
+            updateCreditsUI(session.credits);
+            
+            if (session.credits > 0) {
+                // Mensagem de boas vindas se for novo acesso
+                setTimeout(() => {
+                    showTyping();
+                    setTimeout(() => {
+                        hideTyping();
+                        addMessage(`Olá! 👋 Sou o *Adminic IA*.\nNeste ambiente de testes, você tem *${session.credits} créditos* para interagir comigo.\n\nEscolha uma opção para testar:\n<div class="msg-btn" onclick="enviarOpcao('Comprei gasolina 50 reais')">⛽ Mandar um Gasto</div><div class="msg-btn" onclick="enviarOpcao('Resumo')">📊 Ver Resumo</div><div class="msg-btn" onclick="enviarOpcao('Dashboard')">📈 Acessar Dashboard</div>`, true, true);
+                    }, 1000);
+                }, 500);
+            }
+        };
+
+    </script>
+</body>
+</html>
