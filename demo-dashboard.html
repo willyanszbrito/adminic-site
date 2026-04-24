@@ -836,7 +836,15 @@
 
         function atualizarTela(dados) {
             document.getElementById('loading').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
+            const content = document.getElementById('content');
+            content.classList.remove('hidden');
+
+            // Re-trigger card & chart entrance animations
+            content.querySelectorAll('.card, .chart-container').forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; // force reflow
+                el.style.animation = '';
+            });
 
             // Atualiza valores com animação
             const elSaldo = document.getElementById('val-saldo');
@@ -979,7 +987,13 @@
                             }
                         }
                     },
-                    cutout: '60%'
+                    cutout: '60%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 900,
+                        easing: 'easeOutQuart'
+                    }
                 }
             });
 
@@ -1030,6 +1044,10 @@
                                 color: fontColor
                             }
                         }
+                    },
+                    animation: {
+                        duration: 900,
+                        easing: 'easeOutQuart'
                     }
                 }
             });

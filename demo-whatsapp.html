@@ -69,6 +69,65 @@
             z-index: 10;
         }
 
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-btn {
+            background: none; border: none; color: white; font-size: 1.2rem;
+            cursor: pointer; padding: 6px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .theme-btn:hover { background: rgba(255,255,255,0.15); }
+
+        /* Sales Toast */
+        .sales-toast {
+            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, #075e54, #128c7e);
+            color: white; padding: 14px 22px; border-radius: 16px;
+            font-size: 0.85rem; z-index: 100; max-width: 90%; text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3); transition: top 0.5s cubic-bezier(.68,-.55,.27,1.55);
+            line-height: 1.5;
+        }
+        .sales-toast.visible { top: 20px; }
+        .sales-toast .close-toast {
+            position: absolute; top: 6px; right: 10px; background: none;
+            border: none; color: rgba(255,255,255,0.7); font-size: 1.1rem; cursor: pointer;
+        }
+
+        /* Bottom Sheet */
+        .bottom-sheet-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 50; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .bottom-sheet-overlay.active { opacity: 1; pointer-events: auto; }
+        .bottom-sheet {
+            position: fixed; bottom: -100%; left: 0; width: 100%;
+            background: var(--wa-msg-in); border-radius: 20px 20px 0 0;
+            z-index: 51; padding: 10px 0 20px; transition: bottom 0.4s cubic-bezier(.4,0,.2,1);
+            max-height: 60vh; overflow-y: auto;
+        }
+        .bottom-sheet-overlay.active .bottom-sheet { bottom: 0; }
+        .bottom-sheet-handle {
+            width: 40px; height: 4px; background: var(--wa-text-muted);
+            border-radius: 2px; margin: 8px auto 16px; opacity: 0.4;
+        }
+        .bottom-sheet-title {
+            font-size: 0.8rem; font-weight: 700; color: var(--wa-text-muted);
+            text-transform: uppercase; letter-spacing: 1px; padding: 0 20px 10px;
+            border-bottom: 1px solid rgba(128,128,128,0.15);
+        }
+        .bs-section-title {
+            font-size: 0.7rem; font-weight: 700; color: var(--wa-header-light);
+            padding: 14px 20px 6px; text-transform: uppercase;
+        }
+        .bs-row {
+            display: flex; flex-direction: column; padding: 12px 20px; cursor: pointer;
+            transition: background 0.15s;
+        }
+        .bs-row:hover, .bs-row:active { background: rgba(0,168,132,0.08); }
+        .bs-row-title { font-size: 0.95rem; font-weight: 500; color: var(--wa-text); }
+        .bs-row-desc { font-size: 0.75rem; color: var(--wa-text-muted); margin-top: 2px; }
+
         .back-btn {
             background: none;
             border: none;
@@ -365,8 +424,9 @@
             <p class="contact-name">Adminic IA</p>
             <p class="contact-status">Online</p>
         </div>
-        <div class="credits-badge" id="credits-badge">
-            Créditos: 5
+        <div class="header-actions">
+            <div class="credits-badge" id="credits-badge">Créditos: 5</div>
+            <button class="theme-btn" onclick="toggleWATheme()" aria-label="Alternar tema" id="wa-theme-btn">☀️</button>
         </div>
     </div>
 
@@ -389,6 +449,42 @@
         </a>
     </div>
 
+    <!-- Sales Toast -->
+    <div class="sales-toast" id="sales-toast">
+        <button class="close-toast" onclick="closeSalesToast()">&times;</button>
+        💡 <strong>Sabia?</strong> No ambiente real, a Adminic IA entende <em>áudios</em>, <em>textos soltos</em> e até <em>fotos de recibos</em>!
+    </div>
+
+    <!-- Bottom Sheet Menu -->
+    <div class="bottom-sheet-overlay" id="bs-overlay" onclick="closeBottomSheet()">
+        <div class="bottom-sheet" onclick="event.stopPropagation()">
+            <div class="bottom-sheet-handle"></div>
+            <div class="bottom-sheet-title">≡ Menu Principal</div>
+            <div class="bs-section-title">⚡ Ações Rápidas</div>
+            <div class="bs-row" onclick="selectBSOption('Comprei gasolina 50 reais')">
+                <span class="bs-row-title">Novo Gasto</span>
+                <span class="bs-row-desc">Registrar um lançamento</span>
+            </div>
+            <div class="bs-row" onclick="selectBSOption('Dashboard')">
+                <span class="bs-row-title">📊 Meu Dashboard</span>
+                <span class="bs-row-desc">Link do seu painel</span>
+            </div>
+            <div class="bs-row" onclick="selectBSOption('Resumo')">
+                <span class="bs-row-title">Ver Resumo</span>
+                <span class="bs-row-desc">Saldo atual</span>
+            </div>
+            <div class="bs-section-title">📂 Gerenciamento</div>
+            <div class="bs-row" onclick="selectBSOption('Pendentes')">
+                <span class="bs-row-title">Pendentes</span>
+                <span class="bs-row-desc">O que falta pagar</span>
+            </div>
+            <div class="bs-row" onclick="selectBSOption('Paguei tudo')">
+                <span class="bs-row-title">Baixar Tudo</span>
+                <span class="bs-row-desc">Marcar mês como pago</span>
+            </div>
+        </div>
+    </div>
+
     <div class="input-area" id="input-area">
         <input type="text" id="chat-input" class="chat-input" placeholder="Mensagem..." autocomplete="off">
         <button class="send-btn" onclick="enviarMensagem()" id="send-btn" aria-label="Enviar">
@@ -402,9 +498,39 @@
         const LOCKOUT_MS = 30 * 60 * 1000; // 30 minutos
 
         // Aplica o tema salvo no localStorage
-        let theme = localStorage.getItem('adminic_theme') || 'light';
+        let theme = localStorage.getItem('adminic_wa_theme') || 'light';
         if(theme === 'dark') {
             document.body.classList.add('dark-mode');
+            document.getElementById('wa-theme-btn').textContent = '🌙';
+        }
+
+        // Theme Toggle
+        function toggleWATheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('adminic_wa_theme', isDark ? 'dark' : 'light');
+            document.getElementById('wa-theme-btn').textContent = isDark ? '🌙' : '☀️';
+        }
+
+        // Bottom Sheet
+        function openBottomSheet() { document.getElementById('bs-overlay').classList.add('active'); }
+        function closeBottomSheet() { document.getElementById('bs-overlay').classList.remove('active'); }
+        function selectBSOption(text) {
+            closeBottomSheet();
+            chatInput.value = text;
+            enviarMensagem();
+        }
+
+        // Sales Toast
+        let salesToastShown = false;
+        function showSalesToast() {
+            if (salesToastShown) return;
+            salesToastShown = true;
+            document.getElementById('sales-toast').classList.add('visible');
+            setTimeout(() => closeSalesToast(), 8000);
+        }
+        function closeSalesToast() {
+            document.getElementById('sales-toast').classList.remove('visible');
         }
 
         const chatContainer = document.getElementById('chat-container');
@@ -601,15 +727,22 @@
                     addMessage(`Aqui está o link para você visualizar seus dados:\n\n<a href="demo-dashboard.html" class="msg-btn">📊 Acessar Dashboard</a>`, true, null, true, true);
                 } else if (lowerText.includes('resumo')) {
                     addMessage(`*Resumo do Mês (Demonstração):*\n\n💰 *Saldo:* R$ 1.500,00\n💸 *Gastos:* R$ 2.500,00\n🧾 *A Pagar:* R$ 300,00\n\nGostaria de ver esses dados no *Dashboard*?`, true, null, true, true);
+                } else if (lowerText.includes('pendente')) {
+                    addMessage(`🧾 *Contas Pendentes:*\n\n1. Internet — R$ 120,00\n2. Cartão de Crédito — R$ 450,00\n3. Energia — R$ 185,00\n\n_Total: R$ 755,00_`, true, null, true, true);
+                } else if (lowerText.includes('paguei tudo') || lowerText.includes('baixar tudo')) {
+                    addMessage(`✅ *Todas as contas foram marcadas como pagas!*\n\n_3 registros atualizados com sucesso._`, true, null, true, true);
                 } else if (lowerText.includes('lançamento') || /\d/.test(lowerText) || lowerText.includes('gasto') || lowerText.includes('comprei')) {
                     let valorMatch = lowerText.match(/\d+(?:[.,]\d+)?/);
                     let valorStr = valorMatch ? valorMatch[0] : "0";
                     let valor = parseFloat(valorStr.replace(',', '.')).toFixed(2).replace('.', ',');
                     
-                    addMessage(`✅ *Lançamento capturado:*\n\n💸 *Valor:* R$ ${valor}\n📝 *Descrição:* ${text}\n\n_Inserido na sua planilha financeira com sucesso!_\n\n_Dica: No ambiente real, a IA também detecta a categoria automaticamente e lê fotos de recibos!_`, true, null, true, true);
+                    addMessage(`✅ *Lançamento capturado:*\n\n💸 *Valor:* R$ ${valor}\n📝 *Descrição:* ${text}\n\n_Inserido na sua planilha financeira com sucesso!_`, true, null, true, true);
                 } else {
                     addMessage(`Legal! No ambiente real eu interpretaria esse texto ou áudio e cadastraria os valores automaticamente na sua planilha. 😉\n\nTente mandar um gasto como: *"Gastei 50 com Ifood"* ou digite *"Resumo"*.`, true, null, true, true);
                 }
+
+                // Sales toast popup (estratégia de venda)
+                setTimeout(() => showSalesToast(), 2000);
                 
                 // Se acabou os créditos após essa resposta, mostra o popup
                 if (getSessionData().credits <= 0) {
@@ -645,7 +778,7 @@
                     showTyping();
                     setTimeout(() => {
                         hideTyping();
-                        addMessage(`Olá! 👋 Sou o *Adminic IA*.\nNeste ambiente de testes, você tem *${session.credits} créditos* para interagir comigo.\n\nEscolha uma opção para testar:\n<div class="msg-btn" onclick="enviarOpcao('Comprei gasolina 50 reais')">⛽ Mandar um Gasto</div><div class="msg-btn" onclick="enviarOpcao('Resumo')">📊 Ver Resumo</div><div class="msg-btn" onclick="enviarOpcao('Dashboard')">📈 Acessar Dashboard</div>`, true, null, true, true);
+                        addMessage(`Olá! 👋 Sou o *Adminic IA*.\nNeste ambiente de testes, você tem *${session.credits} créditos* para interagir comigo.\n\nEscolha uma opção no menu abaixo ou me mande um texto livre!\n<div class="msg-btn" onclick="openBottomSheet()">☰ Menu Principal</div>`, true, null, true, true);
                     }, 1000);
                 }, 500);
             }
