@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -506,22 +506,22 @@
                 d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
         </svg>
         <h3>Nenhum registro encontrado</h3>
-        <p>NÃ£o hÃ¡ dados lanÃ§ados para o mÃªs selecionado.</p>
+        <p>Não há dados lançados para o mês selecionado.</p>
         <p style="margin-top: 15px; font-size: 0.8rem; color: #78909C;">
-            O sistema criarÃ¡ automaticamente uma nova aba ao inserir o primeiro registro.
+            O sistema criará automaticamente uma nova aba ao inserir o primeiro registro.
         </p>
     </div>
 
     <div id="content" class="hidden">
 
         <div id="insight-box" class="insight-box hidden">
-            <span id="insight-icon" class="insight-icon">ðŸ’¡</span>
-            <span id="insight-texto">Carregando anÃ¡lise...</span>
+            <span id="insight-icon" class="insight-icon">💡</span>
+            <span id="insight-texto">Carregando análise...</span>
         </div>
 
         <div class="card-grid">
             <div class="card card-full anim-delay-1">
-                <span class="card-label">Saldo DisponÃ­vel</span>
+                <span class="card-label">Saldo Disponível</span>
                 <span id="val-saldo" class="card-value">R$ 0,00</span>
                 <span class="card-sub" id="saldo-desc"></span>
             </div>
@@ -584,7 +584,7 @@
         </button>
     </div>
 
-    <div id="toast">No modo demonstraÃ§Ã£o, a planilha real do Google Sheets estÃ¡ bloqueada por privacidade. ðŸ”’</div>
+    <div id="toast">No modo demonstração, a planilha real do Google Sheets está bloqueada por privacidade. 🔒</div>
 
     <script>
         let mesesDisponiveis = [];
@@ -613,7 +613,7 @@
                 localStorage.setItem('adminic_theme', 'light');
             }
 
-            // Atualizar grÃ¡ficos para o novo tema
+            // Atualizar gráficos para o novo tema
             if(doughnutChart && barChart && dadosAtuais) {
                 renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
             }
@@ -649,10 +649,10 @@
         async function iniciarPagina() {
             document.getElementById('loading').classList.remove('hidden');
 
-            // Carrega meses disponÃ­veis
+            // Carrega meses disponíveis
             try {
-                // Gera 12 meses de dados fictÃ­cios para demonstraÃ§Ã£o
-                const mesesNomes = ['Janeiro', 'Fevereiro', 'MarÃ§o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                // Gera 12 meses de dados fictícios para demonstração
+                const mesesNomes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
                 const dataAtual = new Date();
                 let ano = dataAtual.getFullYear();
                 let mesIdx = dataAtual.getMonth();
@@ -670,7 +670,7 @@
 
                 preencherSelectMeses();
 
-                // Define mÃªs atual (primeiro da lista)
+                // Define mês atual (primeiro da lista)
                 if (mesesDisponiveis.length > 0) {
                     mesAtual = mesesDisponiveis[0].value;
                     document.getElementById('mes-selecionado').value = mesAtual;
@@ -703,7 +703,7 @@
             if (mesObj) {
                 document.getElementById('mes-atual').textContent = mesObj.label;
 
-                // Verifica se Ã© o mÃªs atual
+                // Verifica se é o mês atual
                 const hoje = new Date();
                 const anoAtual = hoje.getFullYear();
                 const mesAtualNum = String(hoje.getMonth() + 1).padStart(2, '0');
@@ -726,7 +726,7 @@
             document.getElementById('empty-state').classList.add('hidden');
 
             try {
-                // Gera dados variados baseado no mÃªs
+                // Gera dados variados baseado no mês
                 const strMes = mesSelecionado; // ex "2026-04"
                 const seed = parseInt(strMes.replace('-', '')) || 202604;
                 const mesIdx = mesesDisponiveis.findIndex(m => m.value === mesSelecionado);
@@ -770,7 +770,7 @@
                     valOutr = Math.abs(fakeGastos * 0.05);
                 }
 
-                let maiorCatNome = "AlimentaÃ§Ã£o";
+                let maiorCatNome = "Alimentação";
                 let maiorCatVal = valAlim;
                 if (valLaze > valAlim) {
                     maiorCatNome = "Lazer";
@@ -784,7 +784,7 @@
                     gastos: fakeGastos,
                     pendente: fakePendente,
                     maiorGasto: { categoria: maiorCatNome, valor: -maiorCatVal },
-                    categorias: ["AlimentaÃ§Ã£o", "Moradia", "Transporte", "Lazer", "Outros"],
+                    categorias: ["Alimentação", "Moradia", "Transporte", "Lazer", "Outros"],
                     valoresCategorias: [valAlim, valMora, valTran, valLaze, valOutr]
                 };
 
@@ -837,12 +837,12 @@
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('content').classList.remove('hidden');
 
-            // Atualiza valores com animaÃ§Ã£o
+            // Atualiza valores com animação
             const elSaldo = document.getElementById('val-saldo');
             elSaldo.className = 'card-value ' + (dados.saldo >= 0 ? 'positivo' : 'negativo');
             animarNumero(elSaldo, dados.saldo, formatarMoeda);
 
-            // DescriÃ§Ã£o do saldo
+            // Descrição do saldo
             const saldoDesc = document.getElementById('saldo-desc');
             if (dados.saldo > 0) {
                 saldoDesc.textContent = 'Saldo positivo';
@@ -864,7 +864,7 @@
             gerarInsight(dados);
             renderizarGraficos(dados.categorias, dados.valoresCategorias);
 
-            // Atualiza link da planilha com mÃªs atual
+            // Atualiza link da planilha com mês atual
             const linkPlanilha = document.getElementById('link-planilha');
             linkPlanilha.href = "#";
             linkPlanilha.onclick = function(e) {
@@ -874,7 +874,7 @@
         }
 
         function getSheetIdFromName(mesNome) {
-            // Esta funÃ§Ã£o precisaria ser implementada no Google Apps Script
+            // Esta função precisaria ser implementada no Google Apps Script
             // Retorna 0 como fallback (primeira aba)
             return 0;
         }
@@ -890,27 +890,27 @@
             const saldo = dados.saldo;
             const pendente = Math.abs(dados.pendente);
 
-            // LÃ³gica de insights melhorada
+            // Lógica de insights melhorada
             if (saldo < 0) {
                 box.classList.add('insight-alerta');
-                icon.textContent = 'âš ï¸';
-                txt.textContent = 'ATENÃ‡ÃƒO: Saldo negativo! Revise seus gastos imediatamente.';
+                icon.textContent = '⚠️';
+                txt.textContent = 'ATENÇÃO: Saldo negativo! Revise seus gastos imediatamente.';
             } else if (pendente > saldo * 0.5) {
                 box.classList.add('insight-alerta');
-                icon.textContent = 'ðŸ“Š';
-                txt.textContent = 'Cuidado: Mais de 50% do seu saldo estÃ¡ comprometido com pendÃªncias.';
+                icon.textContent = '📊';
+                txt.textContent = 'Cuidado: Mais de 50% do seu saldo está comprometido com pendências.';
             } else if (gastoTotal === 0) {
                 box.classList.add('insight-ok');
-                icon.textContent = 'ðŸ“ˆ';
-                txt.textContent = 'Excelente! Nenhum gasto registrado este mÃªs.';
+                icon.textContent = '📈';
+                txt.textContent = 'Excelente! Nenhum gasto registrado este mês.';
             } else if (saldo > gastoTotal * 2) {
                 box.classList.add('insight-ok');
-                icon.textContent = 'âœ…';
-                txt.textContent = 'Ã“timo controle financeiro! Saldo estÃ¡ saudÃ¡vel.';
+                icon.textContent = '✅';
+                txt.textContent = 'Ótimo controle financeiro! Saldo está saudável.';
             } else {
                 box.classList.add('insight-ok');
-                icon.textContent = 'ðŸ’°';
-                txt.textContent = 'Sua situaÃ§Ã£o financeira estÃ¡ equilibrada este mÃªs.';
+                icon.textContent = '💰';
+                txt.textContent = 'Sua situação financeira está equilibrada este mês.';
             }
         }
 
@@ -923,7 +923,7 @@
             const isDark = document.body.classList.contains('dark-mode');
             const fontColor = isDark ? '#E0E0E0' : '#546E7A';
 
-            // GrÃ¡fico de Rosca
+            // Gráfico de Rosca
             const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
             if (doughnutChart) doughnutChart.destroy();
 
@@ -958,7 +958,7 @@
                                     ci.toggleDataVisibility(index);
                                     ci.update();
                                     
-                                    // Sincroniza o grÃ¡fico de barras
+                                    // Sincroniza o gráfico de barras
                                     if(barChart) {
                                         barChart.toggleDataVisibility(index);
                                         barChart.update();
@@ -982,7 +982,7 @@
                 }
             });
 
-            // GrÃ¡fico de Barras Horizontal
+            // Gráfico de Barras Horizontal
             const ctxBar = document.getElementById('barChart').getContext('2d');
             if (barChart) barChart.destroy();
 
@@ -1045,7 +1045,7 @@
             alert('Erro ao carregar dados. Por favor, tente novamente.');
         }
 
-        // Inicializa a pÃ¡gina
+        // Inicializa a página
         document.addEventListener('DOMContentLoaded', iniciarPagina);
 
         // Adiciona atalhos de teclado
