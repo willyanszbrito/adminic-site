@@ -128,6 +128,50 @@
         .bs-row-title { font-size: 0.95rem; font-weight: 500; color: var(--wa-text); }
         .bs-row-desc { font-size: 0.75rem; color: var(--wa-text-muted); margin-top: 2px; }
 
+        /* Flow Form Modal */
+        .flow-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            display: flex; align-items: flex-end; justify-content: center;
+        }
+        .flow-overlay.active { opacity: 1; pointer-events: auto; }
+        .flow-modal {
+            background: var(--wa-input-bg); width: 100%; max-width: 420px;
+            border-radius: 20px 20px 0 0; transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+            display: flex; flex-direction: column; max-height: 85vh;
+        }
+        .flow-overlay.active .flow-modal { transform: translateY(0); }
+        .flow-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px; border-bottom: 1px solid rgba(128,128,128,0.15);
+        }
+        .flow-header-title { font-weight: 700; font-size: 1rem; color: var(--wa-text); }
+        .flow-close { background: none; border: none; color: var(--wa-text-muted); font-size: 1.4rem; cursor: pointer; }
+        .flow-body { padding: 20px; flex: 1; overflow-y: auto; }
+        .flow-body h2 { font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; color: var(--wa-text); }
+        .flow-body p { font-size: 0.85rem; color: var(--wa-text-muted); margin: 0 0 20px; }
+        .flow-field { margin-bottom: 16px; }
+        .flow-field label {
+            display: block; font-size: 0.75rem; font-weight: 600; color: var(--wa-text-muted);
+            text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;
+        }
+        .flow-field input, .flow-field select {
+            width: 100%; padding: 12px 14px; border-radius: 10px;
+            border: 1px solid rgba(128,128,128,0.25); background: var(--wa-msg-in);
+            color: var(--wa-text); font-size: 0.95rem; outline: none;
+            transition: border-color 0.2s; box-sizing: border-box;
+        }
+        .flow-field input:focus, .flow-field select:focus { border-color: var(--wa-header-light); }
+        .flow-field .hint { font-size: 0.7rem; color: var(--wa-text-muted); margin-top: 4px; }
+        .flow-submit {
+            width: 100%; padding: 14px; border: none; border-radius: 12px;
+            background: var(--wa-header); color: white; font-size: 1rem;
+            font-weight: 700; cursor: pointer; margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .flow-submit:hover { background: var(--wa-header-light); }
+
         .back-btn {
             background: none;
             border: none;
@@ -461,9 +505,9 @@
             <div class="bottom-sheet-handle"></div>
             <div class="bottom-sheet-title">≡ Menu Principal</div>
             <div class="bs-section-title">⚡ Ações Rápidas</div>
-            <div class="bs-row" onclick="selectBSOption('Comprei gasolina 50 reais')">
-                <span class="bs-row-title">Novo Gasto</span>
-                <span class="bs-row-desc">Registrar um lançamento</span>
+            <div class="bs-row" onclick="selectBSNovoGasto()">
+                <span class="bs-row-title">Novo Gasto (App)</span>
+                <span class="bs-row-desc">Formulário visual</span>
             </div>
             <div class="bs-row" onclick="selectBSOption('Dashboard')">
                 <span class="bs-row-title">📊 Meu Dashboard</span>
@@ -481,6 +525,47 @@
             <div class="bs-row" onclick="selectBSOption('Paguei tudo')">
                 <span class="bs-row-title">Baixar Tudo</span>
                 <span class="bs-row-desc">Marcar mês como pago</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flow Form Modal (simula WhatsApp Flow) -->
+    <div class="flow-overlay" id="flow-overlay" onclick="closeFlowForm()">
+        <div class="flow-modal" onclick="event.stopPropagation()">
+            <div class="flow-header">
+                <span class="flow-header-title">💰 Novo Gasto</span>
+                <button class="flow-close" onclick="closeFlowForm()">&times;</button>
+            </div>
+            <div class="flow-body">
+                <h2>📝 Cadastro de Gasto</h2>
+                <p>Preencha os dados do seu gasto abaixo:</p>
+                <div class="flow-field">
+                    <label>Descrição</label>
+                    <input type="text" id="flow-desc" placeholder="Ex: Almoço, Uber, Mercado">
+                    <div class="hint">Ex: Almoço, Uber, Mercado</div>
+                </div>
+                <div class="flow-field">
+                    <label>Valor (R$)</label>
+                    <input type="text" id="flow-valor" placeholder="0,00" inputmode="decimal">
+                    <div class="hint">Apenas números, use . ou ,</div>
+                </div>
+                <div class="flow-field">
+                    <label>Categoria</label>
+                    <select id="flow-cat">
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="flow-field">
+                    <label>Data do Gasto</label>
+                    <input type="date" id="flow-data">
+                </div>
+                <button class="flow-submit" onclick="submitFlowForm()">📊 Salvar Gasto</button>
             </div>
         </div>
     </div>
@@ -519,6 +604,57 @@
             closeBottomSheet();
             chatInput.value = text;
             enviarMensagem();
+        }
+
+        // Flow Form (Novo Gasto via formulário)
+        function selectBSNovoGasto() {
+            closeBottomSheet();
+
+            let session = getSessionData();
+            if (session.credits <= 0) { updateCreditsUI(0); return; }
+
+            // Bot envia a mensagem de "Novo Lançamento" (igual ao WhatsApp real)
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                addMessage(`💰 *Novo Lançamento*\n\nToque abaixo para abrir o formulário seguro.\n\n_Adminic v1.0_\n\n<div class="msg-btn" onclick="openFlowForm()">📝 Abrir Formulário</div>`, true, null, true, true);
+            }, 800);
+        }
+
+        function openFlowForm() {
+            // Set default date to today
+            document.getElementById('flow-data').value = new Date().toISOString().split('T')[0];
+            document.getElementById('flow-desc').value = '';
+            document.getElementById('flow-valor').value = '';
+            document.getElementById('flow-cat').value = 'Alimentação';
+            document.getElementById('flow-overlay').classList.add('active');
+        }
+        function closeFlowForm() { document.getElementById('flow-overlay').classList.remove('active'); }
+
+        function submitFlowForm() {
+            const desc = document.getElementById('flow-desc').value.trim() || 'Gasto';
+            const valorRaw = document.getElementById('flow-valor').value.trim().replace(',', '.') || '0';
+            const valor = parseFloat(valorRaw).toFixed(2).replace('.', ',');
+            const cat = document.getElementById('flow-cat').value;
+
+            closeFlowForm();
+
+            let session = getSessionData();
+            if (session.credits <= 0) { updateCreditsUI(0); return; }
+
+            // Msg do usuário (texto livre descrevendo o gasto)
+            addMessage(`${desc} — R$ ${valor}`, false);
+            if (!decreaseCredit()) return;
+
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                addMessage(`✅ R$ ${valor} registrado em *${cat}*!\n\n📝 *Descrição:* ${desc}\n📅 *Data:* ${document.getElementById('flow-data').value.split('-').reverse().join('/')}\n\n_Inserido na sua planilha financeira com sucesso!_`, true, null, true, true);
+
+                setTimeout(() => showSalesToast(), 2000);
+
+                if (getSessionData().credits <= 0) { updateCreditsUI(0); }
+            }, 1200 + Math.random() * 600);
         }
 
         // Sales Toast

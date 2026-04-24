@@ -385,19 +385,29 @@
         }
 
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes chartReveal {
             from {
                 opacity: 0;
+                transform: translateY(40px) scale(0.9);
             }
-
             to {
                 opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -406,23 +416,23 @@
         }
 
         .anim-delay-1 {
-            animation: fadeInUp 0.5s ease forwards 0.1s;
+            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.1s;
         }
 
         .anim-delay-2 {
-            animation: fadeInUp 0.5s ease forwards 0.2s;
+            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.25s;
         }
 
         .anim-delay-3 {
-            animation: fadeInUp 0.5s ease forwards 0.3s;
+            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.4s;
         }
 
         .anim-delay-4 {
-            animation: fadeInUp 0.5s ease forwards 0.4s;
+            animation: chartReveal 0.8s cubic-bezier(.22,1,.36,1) forwards 0.55s;
         }
 
         .anim-delay-5 {
-            animation: fadeInUp 0.5s ease forwards 0.5s;
+            animation: chartReveal 0.8s cubic-bezier(.22,1,.36,1) forwards 0.7s;
         }
 
         @media (max-width: 480px) {
