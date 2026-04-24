@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -8,20 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --wa-bg: #e5ddd5;
-            --wa-header: #075e54;
-            --wa-header-light: #128c7e;
+            /* Light Mode - Modern WA */
+            --wa-bg: #efeae2;
+            --wa-header: #008069;
+            --wa-header-light: #00a884;
             --wa-msg-in: #ffffff;
-            --wa-msg-out: #dcf8c6;
-            --wa-text: #303030;
-            --wa-text-muted: #999;
-            --wa-input-bg: #f0f0f0;
+            --wa-msg-out: #d9fdd3;
+            --wa-text: #111b21;
+            --wa-text-muted: #667781;
+            --wa-input-bg: #f0f2f5;
         }
 
         body.dark-mode {
+            /* Dark Mode - Modern WA */
             --wa-bg: #0b141a;
             --wa-header: #202c33;
-            --wa-header-light: #2a3942;
+            --wa-header-light: #00a884;
             --wa-msg-in: #202c33;
             --wa-msg-out: #005c4b;
             --wa-text: #e9edef;
@@ -31,7 +33,7 @@
 
         body {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--wa-bg);
             color: var(--wa-text);
             height: 100vh;
@@ -147,16 +149,18 @@
         }
 
         .msg-time {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--wa-text-muted);
             float: right;
-            margin-top: 5px;
-            margin-left: 10px;
+            margin-top: 4px;
+            margin-left: 12px;
+            position: relative;
+            top: 4px;
         }
 
         .msg-btn {
             display: block;
-            background: rgba(0, 0, 0, 0.05);
+            background: rgba(0, 168, 132, 0.1);
             color: var(--wa-header-light);
             text-align: center;
             padding: 8px;
@@ -164,7 +168,7 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 168, 132, 0.2);
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -380,7 +384,27 @@
 
         let isTyping = false;
 
-        // Gerenciamento de SessÃ£o / CrÃ©ditos
+        // Segurança e Formatação
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        function formatWhatsAppText(text) {
+            text = text.replace(/\*([^\*]+)\*/g, '<strong>$1</strong>');
+            text = text.replace(/_([^_]+)_/g, '<em>$1</em>');
+            text = text.replace(/~([^~]+)~/g, '<del>$1</del>');
+            return text;
+        }
+
+        // Gerenciamento de Sessão / Créditos
         function getSessionData() {
             let sessionData = JSON.parse(localStorage.getItem('adminic_demo_session') || 'null');
             const now = Date.now();
@@ -388,25 +412,26 @@
             if (sessionData) {
                 // Reseta se passou de 30 minutos
                 if (now - sessionData.timestamp > LOCKOUT_MS) {
-                    sessionData = { credits: CREDITS_LIMIT, timestamp: now };
+                    sessionData = { credits: CREDITS_LIMIT, timestamp: now, messages: [] };
                     localStorage.setItem('adminic_demo_session', JSON.stringify(sessionData));
                 }
             } else {
-                sessionData = { credits: CREDITS_LIMIT, timestamp: now };
+                sessionData = { credits: CREDITS_LIMIT, timestamp: now, messages: [] };
                 localStorage.setItem('adminic_demo_session', JSON.stringify(sessionData));
             }
+            if (!sessionData.messages) sessionData.messages = [];
             return sessionData;
         }
 
         function updateCreditsUI(credits) {
-            creditsBadge.textContent = `CrÃ©ditos: ${credits}`;
+            creditsBadge.textContent = `Créditos: ${credits}`;
             if (credits <= 0) {
                 chatInput.disabled = true;
-                chatInput.placeholder = "DemonstraÃ§Ã£o encerrada...";
+                chatInput.placeholder = "Demonstração encerrada...";
                 document.getElementById('send-btn').style.opacity = '0.5';
                 document.getElementById('send-btn').style.pointerEvents = 'none';
                 
-                // Mostra CTA apÃ³s pequeno delay
+                // Mostra CTA após pequeno delay
                 setTimeout(() => {
                     overlay.classList.add('show');
                 }, 1000);
@@ -430,19 +455,64 @@
             return String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
         }
 
-        function addMessage(text, isBot = false, isHtml = false) {
+        function addMessage(text, isBot = false, time = null, save = true, typeEffect = false) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `message ${isBot ? 'msg-in' : 'msg-out'}`;
             
-            let content = isHtml ? text : text.replace(/\n/g, '<br>');
+            let content = text;
+            if (!isBot) {
+                content = escapeHTML(content);
+            }
+            content = content.replace(/\n/g, '<br>');
+            content = formatWhatsAppText(content);
             
-            msgDiv.innerHTML = `
-                ${content}
-                <span class="msg-time">${getHoraAtual()}</span>
-            `;
+            let msgTime = time || getHoraAtual();
+            
+            if (save) {
+                let session = getSessionData();
+                session.messages.push({ text: text, isBot: isBot, time: msgTime });
+                localStorage.setItem('adminic_demo_session', JSON.stringify(session));
+            }
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'msg-content';
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'msg-time';
+            timeSpan.innerHTML = msgTime;
+
+            msgDiv.appendChild(textSpan);
+            msgDiv.appendChild(timeSpan);
             
             chatContainer.insertBefore(msgDiv, typingIndicator);
             scrollToBottom();
+
+            if (typeEffect && isBot) {
+                let i = 0;
+                let currentHTML = '';
+                function type() {
+                    if (i < content.length) {
+                        if (content[i] === '<') {
+                            let tag = '';
+                            while (content[i] !== '>' && i < content.length) {
+                                tag += content[i];
+                                i++;
+                            }
+                            tag += '>';
+                            currentHTML += tag;
+                        } else {
+                            currentHTML += content[i];
+                        }
+                        textSpan.innerHTML = currentHTML;
+                        i++;
+                        setTimeout(type, 10);
+                        scrollToBottom();
+                    }
+                }
+                type();
+            } else {
+                textSpan.innerHTML = content;
+            }
         }
 
         function scrollToBottom() {
@@ -460,14 +530,14 @@
             typingIndicator.style.display = 'none';
         }
 
-        // AÃ§Ã£o do botÃ£o (fake bot options)
+        // Ação do botão (fake bot options)
         window.enviarOpcao = function(texto) {
             if (isTyping) return;
             chatInput.value = texto;
             enviarMensagem();
         }
 
-        // LÃ³gica Principal de Resposta
+        // Lógica Principal de Resposta
         function enviarMensagem() {
             if (isTyping) return;
             
@@ -480,7 +550,7 @@
                 return;
             }
 
-            // Adiciona msg do usuÃ¡rio
+            // Adiciona msg do usuário
             addMessage(text, false);
             chatInput.value = '';
             
@@ -496,16 +566,16 @@
                 
                 // Mock Responses Intelligence
                 if (lowerText.includes('dashboard')) {
-                    addMessage(`Aqui estÃ¡ o link para vocÃª visualizar seus dados:\n\n<a href="demo-dashboard.html" class="msg-btn">ðŸ“Š Acessar Dashboard</a>`, true, true);
+                    addMessage(`Aqui está o link para você visualizar seus dados:\n\n<a href="demo-dashboard.html" class="msg-btn">📊 Acessar Dashboard</a>`, true, null, true, true);
                 } else if (lowerText.includes('resumo')) {
-                    addMessage(`*Resumo do MÃªs (DemonstraÃ§Ã£o):*\n\nðŸ’° *Saldo:* R$ 1.500,00\nðŸ’¸ *Gastos:* R$ 2.500,00\nðŸ§¾ *A Pagar:* R$ 300,00\n\nGostaria de ver esses dados no *Dashboard*?`, true, false);
-                } else if (lowerText.includes('lanÃ§amento') || /\d/.test(lowerText) || lowerText.includes('gasto')) {
-                    addMessage(`âœ… LanÃ§amento capturado e inserido na sua planilha financeira com sucesso!\n\n_Dica: Eu sou capaz de entender Ã¡udios, textos soltos e atÃ© fotos de recibos no ambiente real!_`, true, false);
+                    addMessage(`*Resumo do Mês (Demonstração):*\n\n💰 *Saldo:* R$ 1.500,00\n💸 *Gastos:* R$ 2.500,00\n🧾 *A Pagar:* R$ 300,00\n\nGostaria de ver esses dados no *Dashboard*?`, true, null, true, true);
+                } else if (lowerText.includes('lançamento') || /\d/.test(lowerText) || lowerText.includes('gasto')) {
+                    addMessage(`✅ Lançamento capturado e inserido na sua planilha financeira com sucesso!\n\n_Dica: Eu sou capaz de entender áudios, textos soltos e até fotos de recibos no ambiente real!_`, true, null, true, true);
                 } else {
-                    addMessage(`Legal! No ambiente real eu interpretaria esse texto ou Ã¡udio e cadastraria os valores automaticamente na sua planilha. ðŸ˜‰\n\nTente mandar um gasto como: *"Gastei 50 com Ifood"* ou digite *"Resumo"*.`, true, false);
+                    addMessage(`Legal! No ambiente real eu interpretaria esse texto ou áudio e cadastraria os valores automaticamente na sua planilha. 😉\n\nTente mandar um gasto como: *"Gastei 50 com Ifood"* ou digite *"Resumo"*.`, true, null, true, true);
                 }
                 
-                // Se acabou os crÃ©ditos apÃ³s essa resposta, mostra o popup
+                // Se acabou os créditos após essa resposta, mostra o popup
                 if (getSessionData().credits <= 0) {
                     updateCreditsUI(0);
                 }
@@ -519,18 +589,27 @@
             }
         });
 
-        // InicializaÃ§Ã£o
+        // Inicialização
         window.onload = () => {
             const session = getSessionData();
             updateCreditsUI(session.credits);
             
-            if (session.credits > 0) {
+            if (session.messages && session.messages.length > 0) {
+                // Load history
+                session.messages.forEach(msg => {
+                    addMessage(msg.text, msg.isBot, msg.time, false, false);
+                });
+                
+                if (session.credits <= 0) {
+                    overlay.classList.add('show');
+                }
+            } else if (session.credits > 0) {
                 // Mensagem de boas vindas se for novo acesso
                 setTimeout(() => {
                     showTyping();
                     setTimeout(() => {
                         hideTyping();
-                        addMessage(`OlÃ¡! ðŸ‘‹ Sou o *Adminic IA*.\nNeste ambiente de testes, vocÃª tem *${session.credits} crÃ©ditos* para interagir comigo.\n\nEscolha uma opÃ§Ã£o para testar:\n<div class="msg-btn" onclick="enviarOpcao('Comprei gasolina 50 reais')">â›½ Mandar um Gasto</div><div class="msg-btn" onclick="enviarOpcao('Resumo')">ðŸ“Š Ver Resumo</div><div class="msg-btn" onclick="enviarOpcao('Dashboard')">ðŸ“ˆ Acessar Dashboard</div>`, true, true);
+                        addMessage(`Olá! 👋 Sou o *Adminic IA*.\nNeste ambiente de testes, você tem *${session.credits} créditos* para interagir comigo.\n\nEscolha uma opção para testar:\n<div class="msg-btn" onclick="enviarOpcao('Comprei gasolina 50 reais')">⛽ Mandar um Gasto</div><div class="msg-btn" onclick="enviarOpcao('Resumo')">📊 Ver Resumo</div><div class="msg-btn" onclick="enviarOpcao('Dashboard')">📈 Acessar Dashboard</div>`, true, null, true, true);
                     }, 1000);
                 }, 500);
             }
