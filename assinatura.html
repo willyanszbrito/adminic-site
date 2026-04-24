@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -99,7 +99,7 @@
             color: #93c5fd;
         }
         
-        /* Estados de formulário */
+        /* Estados de formulÃ¡rio */
         .form-loading {
             opacity: 0.7;
             pointer-events: none;
@@ -115,7 +115,7 @@
             background-color: rgba(239, 68, 68, 0.05) !important;
         }
         
-        /* Método de pagamento selecionado */
+        /* MÃ©todo de pagamento selecionado */
         .payment-method {
             border: 2px solid transparent;
             transition: all 0.3s ease;
@@ -125,13 +125,13 @@
             border-color: #3b82f6;
             background-color: rgba(59, 130, 246, 0.05);
         }
-        /* Ajuste para selected no light mode para ser visível */
+        /* Ajuste para selected no light mode para ser visÃ­vel */
         html:not(.dark) .payment-method.selected {
             background-color: #eff6ff; /* blue-50 */
             border-color: #3b82f6;
         }
         
-        /* Animações de loading */
+        /* AnimaÃ§Ãµes de loading */
         .loading-dots:after {
             content: '.';
             animation: dots 1.5s steps(5, end) infinite;
@@ -144,7 +144,7 @@
             80%, 100% { content: ''; }
         }
         
-        /* Animações com preferência de redução */
+        /* AnimaÃ§Ãµes com preferÃªncia de reduÃ§Ã£o */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation: none !important;
@@ -169,7 +169,7 @@
             }
         }
         
-        /* Scroll suave apenas se não houver preferência por redução */
+        /* Scroll suave apenas se nÃ£o houver preferÃªncia por reduÃ§Ã£o */
         @media (prefers-reduced-motion: no-preference) {
             html {
                 scroll-behavior: smooth;
@@ -210,13 +210,13 @@
 <body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     
     <a href="#main-content" class="skip-to-main focus-visible">
-        Pular para o conteúdo principal
+        Pular para o conteÃºdo principal
     </a>
     
     <div class="bg-slate-200 dark:bg-[#0f172a] border-b border-slate-300 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-500 hidden md:block transition-colors duration-300" 
-         aria-label="Barra de informações">
+         aria-label="Barra de informaÃ§Ãµes">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <span>Adminic Â© 2026 | SoluÃ§Ãµes Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
                 <a href="mailto:financeiro@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2 focus-visible">
                     <i class="fas fa-envelope" aria-hidden="true"></i> 
@@ -230,10 +230,10 @@
         </div>
     </div>
 
-    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="NavegaÃ§Ã£o principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
             
-            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
+            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar Ã  pÃ¡gina inicial">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
@@ -243,7 +243,7 @@
             <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
                 <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
                 <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">ServiÃ§os</a>
                 <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
                 <a href="central-ajuda.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Ajuda</a>
                 <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
@@ -257,20 +257,20 @@
 
                 <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                    <span>Área do Cliente</span>
+                    <span>Ãrea do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegaÃ§Ã£o" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu mÃ³vel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
                 <a href="index.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
                 <a href="quem-somos.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#servicos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">ServiÃ§os</a>
                 <a href="index.html#produtos" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
                 <a href="central-ajuda.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
                 <a href="contato.html" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
@@ -280,7 +280,7 @@
                 </button>
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
-                    <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
+                    <i class="fab fa-whatsapp mr-2"></i>Ãrea do Cliente
                 </a>
             </div>
         </div>
@@ -293,7 +293,7 @@
                     <div class="mb-8">
                         <a href="index.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition flex items-center gap-2 mb-6 focus-visible">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                            Voltar para a página do Adminic IA
+                            Voltar para a pÃ¡gina do Adminic IA
                         </a>
                         
                         <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 transition-colors">
@@ -308,7 +308,7 @@
                         <div class="flex items-start gap-3">
                             <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                             <div>
-                                <h3 class="font-bold text-slate-900 dark:text-white mb-1">Atenção</h3>
+                                <h3 class="font-bold text-slate-900 dark:text-white mb-1">AtenÃ§Ã£o</h3>
                                 <p id="general-error-text" class="text-slate-700 dark:text-slate-300"></p>
                             </div>
                         </div>
@@ -322,7 +322,7 @@
                             <div class="flex-grow">
                                 <h2 class="text-slate-900 dark:text-white font-bold text-xl mb-2 transition-colors">Adminic IA</h2>
                                 <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 transition-colors">
-                                    Assistente financeiro inteligente via WhatsApp. Organize suas finanças conversando como se fosse com um amigo.
+                                    Assistente financeiro inteligente via WhatsApp. Organize suas finanÃ§as conversando como se fosse com um amigo.
                                 </p>
                                 <div class="flex flex-wrap gap-4">
                                     <div class="flex items-center gap-2">
@@ -331,7 +331,7 @@
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
-                                        <span class="text-slate-600 dark:text-slate-300 text-sm">Relatórios automáticos</span>
+                                        <span class="text-slate-600 dark:text-slate-300 text-sm">RelatÃ³rios automÃ¡ticos</span>
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
@@ -340,7 +340,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-2xl font-bold text-slate-900 dark:text-white transition-colors">R$ 47,90<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/mês</span></div>
+                                <div class="text-2xl font-bold text-slate-900 dark:text-white transition-colors">R$ 47,90<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/mÃªs</span></div>
                                 <div class="text-slate-500 text-sm">Plano mensal</div>
                             </div>
                         </div>
@@ -357,7 +357,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="full-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                            Nome Completo / Razão Social <span class="text-red-500 dark:text-red-400">*</span>
+                                            Nome Completo / RazÃ£o Social <span class="text-red-500 dark:text-red-400">*</span>
                                         </label>
                                         <input type="text" id="full-name" name="full_name" required
                                                class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
@@ -400,18 +400,18 @@
                                     
                                     <div class="md:col-span-2">
                                         <label for="number" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                            Número <span class="text-red-500 dark:text-red-400">*</span>
+                                            NÃºmero <span class="text-red-500 dark:text-red-400">*</span>
                                         </label>
                                         <input type="text" id="number" name="number" required
                                                class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                               placeholder="Nº da casa/apto">
+                                               placeholder="NÂº da casa/apto">
                                     </div>
                                 </div>
 
                                 <div id="address-preview" class="hidden opacity-70 transition-all duration-500">
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-100 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-white/5">
                                         <div class="md:col-span-3">
-                                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Endereço Localizado:</p>
+                                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">EndereÃ§o Localizado:</p>
                                         </div>
                                         <div class="md:col-span-1">
                                             <input type="text" id="address-street" readonly class="w-full bg-transparent border-none p-0 text-slate-700 dark:text-slate-300 font-medium focus:ring-0 text-sm" placeholder="Rua...">
@@ -427,11 +427,11 @@
                                 
                                 <div class="mt-4">
                                     <label for="notes" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                        Observações (opcional)
+                                        ObservaÃ§Ãµes (opcional)
                                     </label>
                                     <textarea id="notes" name="notes" rows="2"
                                               class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                              placeholder="Alguma observação..."></textarea>
+                                              placeholder="Alguma observaÃ§Ã£o..."></textarea>
                                 </div>
                             </div>
                         </section>
@@ -439,15 +439,15 @@
                         <section aria-labelledby="payment-method-heading">
                             <h2 id="payment-method-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">2</span>
-                                Método de pagamento
+                                MÃ©todo de pagamento
                             </h2>
                             
                             <div id="payment-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
                                 <div class="flex items-start gap-3">
                                     <i class="fas fa-credit-card text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                                     <div>
-                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Método de pagamento necessário</h3>
-                                        <p id="payment-error-text" class="text-slate-700 dark:text-slate-300">Selecione um método de pagamento para continuar com a assinatura.</p>
+                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">MÃ©todo de pagamento necessÃ¡rio</h3>
+                                        <p id="payment-error-text" class="text-slate-700 dark:text-slate-300">Selecione um mÃ©todo de pagamento para continuar com a assinatura.</p>
                                     </div>
                                 </div>
                             </div>
@@ -462,7 +462,7 @@
                                         <span class="text-slate-900 dark:text-white font-bold transition-colors">Pix</span>
                                     </div>
                                     <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
-                                        Pagamento instantâneo. Gere o QR code e pague pelo seu banco.
+                                        Pagamento instantÃ¢neo. Gere o QR code e pague pelo seu banco.
                                     </p>
                                 </button>
                                 
@@ -472,10 +472,10 @@
                                         <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center">
                                             <i class="far fa-credit-card text-blue-600 dark:text-blue-500" aria-hidden="true"></i>
                                         </div>
-                                        <span class="text-slate-900 dark:text-white font-bold transition-colors">Cartão</span>
+                                        <span class="text-slate-900 dark:text-white font-bold transition-colors">CartÃ£o</span>
                                     </div>
                                     <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
-                                        Parcele em até 12x. Pagamento seguro com criptografia.
+                                        Parcele em atÃ© 12x. Pagamento seguro com criptografia.
                                     </p>
                                 </button>
                                 
@@ -488,7 +488,7 @@
                                         <span class="text-slate-900 dark:text-white font-bold transition-colors">Boleto</span>
                                     </div>
                                     <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">
-                                        Pague em qualquer banco. Vencimento em 3 dias úteis.
+                                        Pague em qualquer banco. Vencimento em 3 dias Ãºteis.
                                     </p>
                                 </button>
                             </div>
@@ -500,15 +500,15 @@
                         <section aria-labelledby="terms-heading">
                             <h2 id="terms-heading" class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
                                 <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm">3</span>
-                                Termos e condições
+                                Termos e condiÃ§Ãµes
                             </h2>
                             
                             <div id="terms-error-message" class="error-message mb-4" role="alert" aria-live="assertive">
                                 <div class="flex items-start gap-3">
                                     <i class="fas fa-file-contract text-red-600 dark:text-red-400 mt-0.5" aria-hidden="true"></i>
                                     <div>
-                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Aceitação necessária</h3>
-                                        <p id="terms-error-text" class="text-slate-700 dark:text-slate-300">Para prosseguir, é necessário aceitar os termos e condições.</p>
+                                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">AceitaÃ§Ã£o necessÃ¡ria</h3>
+                                        <p id="terms-error-text" class="text-slate-700 dark:text-slate-300">Para prosseguir, Ã© necessÃ¡rio aceitar os termos e condiÃ§Ãµes.</p>
                                     </div>
                                 </div>
                             </div>
@@ -523,7 +523,7 @@
                                             Concordo com os Termos de Uso
                                         </label>
                                         <p id="terms-description" class="text-slate-600 dark:text-slate-400 text-sm mt-2 transition-colors">
-                                            Li e concordo com os <a href="termos.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">Termos de Uso</a> do Adminic IA, incluindo as condições de cancelamento e política de reembolso. <strong>Se não aceitar os termos, não será possível realizar a assinatura.</strong>
+                                            Li e concordo com os <a href="termos.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">Termos de Uso</a> do Adminic IA, incluindo as condiÃ§Ãµes de cancelamento e polÃ­tica de reembolso. <strong>Se nÃ£o aceitar os termos, nÃ£o serÃ¡ possÃ­vel realizar a assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -534,10 +534,10 @@
                                            aria-describedby="privacy-description">
                                     <div>
                                         <label for="privacy" class="text-slate-900 dark:text-white font-bold cursor-pointer transition-colors">
-                                            Concordo com a Política de Privacidade
+                                            Concordo com a PolÃ­tica de Privacidade
                                         </label>
                                         <p id="privacy-description" class="text-slate-600 dark:text-slate-400 text-sm mt-2 transition-colors">
-                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">Política de Privacidade</a> e estou ciente dos meus direitos LGPD. <strong>Se não aceitar a política de privacidade, não será possível processar sua assinatura.</strong>
+                                            Autorizo o tratamento dos meus dados conforme a <a href="politica.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" target="_blank">PolÃ­tica de Privacidade</a> e estou ciente dos meus direitos LGPD. <strong>Se nÃ£o aceitar a polÃ­tica de privacidade, nÃ£o serÃ¡ possÃ­vel processar sua assinatura.</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -549,7 +549,7 @@
                                     <div>
                                         <h3 class="text-slate-900 dark:text-white font-bold mb-2 transition-colors">Pagamento 100% seguro</h3>
                                         <p class="text-slate-600 dark:text-slate-300 text-sm transition-colors">
-                                            Seus dados são protegidos com criptografia. Processamos pagamentos através do 
+                                            Seus dados sÃ£o protegidos com criptografia. Processamos pagamentos atravÃ©s do 
                                             <strong>Asaas PJ</strong>, uma plataforma de pagamentos brasileira certificada e segura.
                                             <a href="https://www.asaas.com" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 underline focus-visible" aria-label="Saiba mais sobre o Asaas (abre em nova janela)">Saiba mais sobre o Asaas</a>.
                                         </p>
@@ -567,7 +567,7 @@
                             </button>
                             
                             <p class="text-center text-slate-500 text-sm mt-4">
-                                Você será redirecionado para um ambiente seguro para completar o pagamento.
+                                VocÃª serÃ¡ redirecionado para um ambiente seguro para completar o pagamento.
                             </p>
                         </div>
                     </form>
@@ -585,7 +585,7 @@
                                 </div>
                                 
                                 <div class="flex justify-between items-center">
-                                    <span class="text-slate-600 dark:text-slate-400 transition-colors">Taxa de instalação</span>
+                                    <span class="text-slate-600 dark:text-slate-400 transition-colors">Taxa de instalaÃ§Ã£o</span>
                                     <span class="text-slate-900 dark:text-white font-bold transition-colors">R$ 0,00</span>
                                 </div>
                                 
@@ -594,7 +594,7 @@
                                         <span class="text-slate-700 dark:text-slate-300 font-bold transition-colors">Total</span>
                                         <div class="text-right">
                                             <div class="text-2xl font-bold text-slate-900 dark:text-white transition-colors">R$ 47,90</div>
-                                            <div class="text-slate-500 text-sm">por mês</div>
+                                            <div class="text-slate-500 text-sm">por mÃªs</div>
                                         </div>
                                     </div>
                                 </div>
@@ -611,11 +611,11 @@
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Suporte prioritário</span>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Suporte prioritÃ¡rio</span>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <i class="fas fa-check text-green-500 dark:text-green-400" aria-hidden="true"></i>
-                                    <span class="text-slate-600 dark:text-slate-300 text-sm">Atualizações gratuitas</span>
+                                    <span class="text-slate-600 dark:text-slate-300 text-sm">AtualizaÃ§Ãµes gratuitas</span>
                                 </div>
                             </div>
                         </div>
@@ -623,7 +623,7 @@
                         <div class="bg-blue-50 dark:bg-blue-500/10 p-6 rounded-xl border border-blue-200 dark:border-blue-500/20 transition-colors">
                             <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Precisa de ajuda?</h3>
                             <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 transition-colors">
-                                Nossa equipe está pronta para ajudar você com qualquer dúvida sobre a assinatura.
+                                Nossa equipe estÃ¡ pronta para ajudar vocÃª com qualquer dÃºvida sobre a assinatura.
                             </p>
                             <div class="space-y-3">
                                 <a href="https://wa.me/559284790794" class="flex items-center gap-3 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition focus-visible">
@@ -650,22 +650,22 @@
                 </div>
                 <h3 id="success-modal-title" class="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">Assinatura processada!</h3>
                 <p class="text-slate-600 dark:text-slate-400 transition-colors">
-                    Sua assinatura foi recebida e está sendo processada.
+                    Sua assinatura foi recebida e estÃ¡ sendo processada.
                 </p>
             </div>
             
             <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg mb-6 transition-colors">
                 <p class="text-sm text-slate-700 dark:text-slate-300 mb-4 transition-colors">
-                    <strong>Próximos passos:</strong>
+                    <strong>PrÃ³ximos passos:</strong>
                 </p>
                 <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400 transition-colors">
                     <li class="flex items-center gap-2">
                         <i class="fas fa-envelope text-blue-500" aria-hidden="true"></i>
-                        <span>Você receberá um e-mail de confirmação</span>
+                        <span>VocÃª receberÃ¡ um e-mail de confirmaÃ§Ã£o</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <i class="fab fa-whatsapp text-green-500" aria-hidden="true"></i>
-                        <span>Nosso bot entrará em contato no WhatsApp</span>
+                        <span>Nosso bot entrarÃ¡ em contato no WhatsApp</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <i class="fas fa-rocket text-purple-500" aria-hidden="true"></i>
@@ -692,7 +692,7 @@
                 <div class="col-span-1 md:col-span-2">
                     <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
                     <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
-                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovaÃ§Ã£o tecnolÃ³gica. Nosso compromisso Ã© com a eficiÃªncia e seguranÃ§a dos seus dados.
                     </p>
                 </div>
                 
@@ -701,7 +701,7 @@
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
                         <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
                         <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre NÃ³s</a></li>
                     </ul>
                 </div>
                 
@@ -717,13 +717,13 @@
             
             <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center">
                 <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
-                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic ServiÃ§os. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <style>
-    /* Animação suave de entrada dos itens do menu */
+    /* AnimaÃ§Ã£o suave de entrada dos itens do menu */
     .stagger-item {
         opacity: 0;
         transform: translateX(20px);
@@ -740,7 +740,7 @@
     .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
     .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
 
-    /* Pulsação do botão quando fechado */
+    /* PulsaÃ§Ã£o do botÃ£o quando fechado */
     @keyframes ripple-pulse {
         0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
         70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
@@ -751,7 +751,7 @@
         animation: ripple-pulse 2s infinite;
     }
 
-    /* Cursor piscando para o efeito de digitação */
+    /* Cursor piscando para o efeito de digitaÃ§Ã£o */
     .typing-cursor::after {
         content: '|';
         animation: blink 1s step-start infinite;
@@ -791,7 +791,7 @@
                 </div>
                 <div>
                     <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantÃ¢nea</span>
                 </div>
             </a>
 
@@ -801,7 +801,7 @@
                 </div>
                 <div>
                     <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
+                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">OrÃ§amentos e dÃºvidas</span>
                 </div>
             </a>
 
@@ -818,7 +818,7 @@
         </nav>
         
         <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic Â© 2026</span>
         </div>
     </div>
 
@@ -844,9 +844,9 @@
 </aside>
 
 <script>
-    // Variáveis globais para controle da digitação
+    // VariÃ¡veis globais para controle da digitaÃ§Ã£o
     let typingTimeout;
-    const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
+    const welcomeMessage = "OlÃ¡! ðŸ‘‹ Como podemos ajudar vocÃª a otimizar seu tempo hoje?";
     
     function typeWriterEffect(element, text, speed = 30) {
         let i = 0;
@@ -859,14 +859,14 @@
                 i++;
                 typingTimeout = setTimeout(type, speed);
             } else {
-                // Remove o cursor piscante após terminar de digitar (opcional)
+                // Remove o cursor piscante apÃ³s terminar de digitar (opcional)
                 setTimeout(() => {
                    element.classList.remove('typing-cursor'); 
                 }, 1500);
             }
         }
         
-        clearTimeout(typingTimeout); // Garante que não haja sobreposição
+        clearTimeout(typingTimeout); // Garante que nÃ£o haja sobreposiÃ§Ã£o
         type();
     }
 
@@ -888,12 +888,12 @@
             btn.setAttribute('aria-expanded', 'true');
             btn.classList.remove('btn-pulse'); 
 
-            // 2. Animar Ícones
+            // 2. Animar Ãcones
             iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
             iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
 
-            // 3. Iniciar Digitação Suave (com pequeno delay para o menu abrir antes)
+            // 3. Iniciar DigitaÃ§Ã£o Suave (com pequeno delay para o menu abrir antes)
             setTimeout(() => {
                 typeWriterEffect(typingElement, welcomeMessage);
             }, 300);
@@ -907,12 +907,12 @@
             btn.setAttribute('aria-expanded', 'false');
             btn.classList.add('btn-pulse');
 
-            // 2. Restaurar Ícones
+            // 2. Restaurar Ãcones
             iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
             iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
             iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
             
-            // 3. Limpar digitação
+            // 3. Limpar digitaÃ§Ã£o
             clearTimeout(typingTimeout);
             typingElement.innerHTML = "";
         }
@@ -931,7 +931,7 @@
     
 <script>
     // ==========================================
-    // 1. LÓGICA DO TEMA (Claro/Escuro)
+    // 1. LÃ“GICA DO TEMA (Claro/Escuro)
     // ==========================================
     const html = document.documentElement;
 
@@ -967,7 +967,7 @@
 </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicializar AOS com preferência de redução de movimento
+        // Inicializar AOS com preferÃªncia de reduÃ§Ã£o de movimento
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         if (!prefersReducedMotion) {
@@ -990,7 +990,7 @@
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
                 mobileMenu.setAttribute('aria-hidden', isExpanded);
                 
-                // Alterar ícone
+                // Alterar Ã­cone
                 const icon = mobileMenuButton.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -1053,7 +1053,7 @@
             }
         });
         
-        // Navegação por teclado dentro do menu mobile
+        // NavegaÃ§Ã£o por teclado dentro do menu mobile
         document.addEventListener('keydown', (e) => {
             if (mobileMenu && mobileMenu.classList.contains('active')) {
                 const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
@@ -1072,33 +1072,33 @@
             }
         });
         
-        // Variáveis globais
+        // VariÃ¡veis globais
         let selectedPaymentMethod = null;
         const paymentForms = {
             pix: `
                 <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
                     <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Pagamento via Pix</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 transition-colors">
-                        Após confirmar a assinatura, você receberá um QR code e código Pix para pagamento. 
-                        O acesso ao Adminic IA será liberado em até 5 minutos após a confirmação do pagamento.
+                        ApÃ³s confirmar a assinatura, vocÃª receberÃ¡ um QR code e cÃ³digo Pix para pagamento. 
+                        O acesso ao Adminic IA serÃ¡ liberado em atÃ© 5 minutos apÃ³s a confirmaÃ§Ã£o do pagamento.
                     </p>
                     
                     <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 mb-6 transition-colors">
                         <p class="text-blue-800 dark:text-blue-300 text-sm">
                             <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
-                            Pagamento instantâneo - Liberação em até 5 minutos
+                            Pagamento instantÃ¢neo - LiberaÃ§Ã£o em atÃ© 5 minutos
                         </p>
                     </div>
                 </div>
             `,
             credit_card: `
                 <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
-                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Cartão de Crédito</h3>
+                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">CartÃ£o de CrÃ©dito</h3>
                     
                     <div class="space-y-4">
                         <div>
                             <label for="card-number" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                Número do cartão <span class="text-red-500 dark:text-red-400">*</span>
+                                NÃºmero do cartÃ£o <span class="text-red-500 dark:text-red-400">*</span>
                             </label>
                             <input type="text" id="card-number" name="card_number" required
                                    class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
@@ -1130,18 +1130,18 @@
                         
                         <div>
                             <label for="card-name" class="block text-slate-700 dark:text-slate-300 text-sm font-bold mb-2 transition-colors">
-                                Nome no cartão <span class="text-red-500 dark:text-red-400">*</span>
+                                Nome no cartÃ£o <span class="text-red-500 dark:text-red-400">*</span>
                             </label>
                             <input type="text" id="card-name" name="card_name" required
                                    class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/5 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none transition focus-visible placeholder-slate-400"
-                                   placeholder="Como está no cartão"
+                                   placeholder="Como estÃ¡ no cartÃ£o"
                                    aria-required="true">
                         </div>
                         
                         <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 mt-6 transition-colors">
                             <p class="text-blue-800 dark:text-blue-300 text-sm">
                                 <i class="fas fa-lock mr-2" aria-hidden="true"></i>
-                                Pagamento seguro processado pelo Asaas. Seus dados são criptografados.
+                                Pagamento seguro processado pelo Asaas. Seus dados sÃ£o criptografados.
                             </p>
                         </div>
                     </div>
@@ -1149,24 +1149,24 @@
             `,
             boleto: `
                 <div class="bg-white dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-white/5 transition-all">
-                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Boleto Bancário</h3>
+                    <h3 class="text-slate-900 dark:text-white font-bold mb-4 transition-colors">Boleto BancÃ¡rio</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 transition-colors">
-                        Após confirmar a assinatura, você receberá o boleto por e-mail. 
-                        O acesso ao Adminic IA será liberado após a confirmação do pagamento, que pode levar até 3 dias úteis.
+                        ApÃ³s confirmar a assinatura, vocÃª receberÃ¡ o boleto por e-mail. 
+                        O acesso ao Adminic IA serÃ¡ liberado apÃ³s a confirmaÃ§Ã£o do pagamento, que pode levar atÃ© 3 dias Ãºteis.
                     </p>
                     
                     <div class="space-y-4">
                         <div class="bg-yellow-50 dark:bg-yellow-500/10 p-4 rounded-lg border border-yellow-200 dark:border-yellow-500/20 transition-colors">
                             <p class="text-yellow-800 dark:text-yellow-300 text-sm">
                                 <i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i>
-                                <strong>Atenção:</strong> O boleto tem vencimento de 3 dias úteis. Após o vencimento, a assinatura será cancelada automaticamente.
+                                <strong>AtenÃ§Ã£o:</strong> O boleto tem vencimento de 3 dias Ãºteis. ApÃ³s o vencimento, a assinatura serÃ¡ cancelada automaticamente.
                             </p>
                         </div>
                         
                         <div class="bg-blue-50 dark:bg-blue-500/10 p-4 rounded-lg border border-blue-200 dark:border-blue-500/20 transition-colors">
                             <p class="text-blue-800 dark:text-blue-300 text-sm">
                                 <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
-                                <strong>Dica:</strong> Para liberação mais rápida, utilize Pix ou Cartão de Crédito.
+                                <strong>Dica:</strong> Para liberaÃ§Ã£o mais rÃ¡pida, utilize Pix ou CartÃ£o de CrÃ©dito.
                             </p>
                         </div>
                     </div>
@@ -1174,7 +1174,7 @@
             `
         };
         
-        // Função para mostrar mensagem de erro
+        // FunÃ§Ã£o para mostrar mensagem de erro
         function showError(elementId, message) {
             const errorElement = document.getElementById(elementId);
             const textElement = document.getElementById(elementId.replace('-message', '-text'));
@@ -1191,7 +1191,7 @@
             }
         }
         
-        // Função para esconder mensagem de erro
+        // FunÃ§Ã£o para esconder mensagem de erro
         function hideError(elementId) {
             const errorElement = document.getElementById(elementId);
             if (errorElement) {
@@ -1199,36 +1199,36 @@
             }
         }
         
-        // Função para selecionar método de pagamento
+        // FunÃ§Ã£o para selecionar mÃ©todo de pagamento
         function selectPaymentMethod(method) {
             selectedPaymentMethod = method;
             
-            // Remover seleção de todos os botões
+            // Remover seleÃ§Ã£o de todos os botÃµes
             document.querySelectorAll('.payment-method').forEach(btn => {
                 btn.classList.remove('selected');
                 btn.classList.remove('payment-error');
                 btn.setAttribute('aria-pressed', 'false');
             });
             
-            // Adicionar seleção ao botão clicado
+            // Adicionar seleÃ§Ã£o ao botÃ£o clicado
             event.currentTarget.classList.add('selected');
             event.currentTarget.setAttribute('aria-pressed', 'true');
             
             // Esconder mensagem de erro de pagamento
             hideError('payment-error-message');
             
-            // Injetar formulário correspondente
+            // Injetar formulÃ¡rio correspondente
             const container = document.getElementById('payment-form-container');
             container.innerHTML = paymentForms[method];
             
-            // Focar no primeiro campo do formulário, se houver
+            // Focar no primeiro campo do formulÃ¡rio, se houver
             const firstInput = container.querySelector('input');
             if (firstInput) {
                 setTimeout(() => firstInput.focus(), 100);
             }
         }
         
-        // Função para validar formulário
+        // FunÃ§Ã£o para validar formulÃ¡rio
         function validateForm() {
             const form = document.getElementById('checkout-form');
             const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
@@ -1244,12 +1244,12 @@
                 checkbox.classList.remove('checkbox-error');
             });
             
-            // Limpar classes de erro dos botões de pagamento
+            // Limpar classes de erro dos botÃµes de pagamento
             document.querySelectorAll('.payment-method').forEach(btn => {
                 btn.classList.remove('payment-error');
             });
             
-            // Validação básica de campos obrigatórios
+            // ValidaÃ§Ã£o bÃ¡sica de campos obrigatÃ³rios
             for (const input of requiredInputs) {
                 if (!input.value.trim()) {
                     input.classList.add('form-error');
@@ -1259,28 +1259,28 @@
                 }
             }
             
-            // Validação de e-mail
+            // ValidaÃ§Ã£o de e-mail
             const emailInput = document.getElementById('email');
             if (emailInput.value && !/\S+@\S+\.\S+/.test(emailInput.value)) {
                 emailInput.classList.add('form-error');
                 isValid = false;
             }
             
-            // Validação de CPF (simplificada)
+            // ValidaÃ§Ã£o de CPF (simplificada)
             const cpfInput = document.getElementById('cpf');
             if (cpfInput.value && cpfInput.value.replace(/\D/g, '').length !== 11) {
                 cpfInput.classList.add('form-error');
                 isValid = false;
             }
             
-            // Verificar método de pagamento selecionado
+            // Verificar mÃ©todo de pagamento selecionado
             if (!selectedPaymentMethod) {
-                // Adicionar classe de erro aos botões de pagamento
+                // Adicionar classe de erro aos botÃµes de pagamento
                 document.querySelectorAll('.payment-method').forEach(btn => {
                     btn.classList.add('payment-error');
                 });
                 
-                showError('payment-error-message', 'Selecione um método de pagamento para continuar com a assinatura.');
+                showError('payment-error-message', 'Selecione um mÃ©todo de pagamento para continuar com a assinatura.');
                 isValid = false;
             }
             
@@ -1288,35 +1288,35 @@
             const termsCheckbox = document.getElementById('terms');
             const privacyCheckbox = document.getElementById('privacy');
             
-            // Lógica específica conforme solicitado
+            // LÃ³gica especÃ­fica conforme solicitado
             if (!termsCheckbox.checked && !privacyCheckbox.checked) {
                 termsCheckbox.classList.add('checkbox-error');
                 privacyCheckbox.classList.add('checkbox-error');
-                showError('terms-error-message', 'Para prosseguir, é necessário aceitar tanto os Termos de Uso quanto a Política de Privacidade. Caso não aceite, não será possível realizar a assinatura.');
+                showError('terms-error-message', 'Para prosseguir, Ã© necessÃ¡rio aceitar tanto os Termos de Uso quanto a PolÃ­tica de Privacidade. Caso nÃ£o aceite, nÃ£o serÃ¡ possÃ­vel realizar a assinatura.');
                 isValid = false;
             } else if (!termsCheckbox.checked) {
                 termsCheckbox.classList.add('checkbox-error');
-                showError('terms-error-message', 'Para prosseguir, é necessário aceitar os Termos de Uso. Caso não aceite, não será possível realizar a assinatura.');
+                showError('terms-error-message', 'Para prosseguir, Ã© necessÃ¡rio aceitar os Termos de Uso. Caso nÃ£o aceite, nÃ£o serÃ¡ possÃ­vel realizar a assinatura.');
                 isValid = false;
             } else if (!privacyCheckbox.checked) {
                 privacyCheckbox.classList.add('checkbox-error');
-                showError('terms-error-message', 'Para prosseguir, é necessário aceitar a Política de Privacidade. Caso não aceite, não será possível realizar a assinatura.');
+                showError('terms-error-message', 'Para prosseguir, Ã© necessÃ¡rio aceitar a PolÃ­tica de Privacidade. Caso nÃ£o aceite, nÃ£o serÃ¡ possÃ­vel realizar a assinatura.');
                 isValid = false;
             }
             
-            // Se houver outros erros (campos obrigatórios não preenchidos)
+            // Se houver outros erros (campos obrigatÃ³rios nÃ£o preenchidos)
             if (!isValid && !selectedPaymentMethod && (termsCheckbox.checked && privacyCheckbox.checked)) {
-                showError('general-error-message', 'Por favor, preencha todos os campos obrigatórios e selecione um método de pagamento.');
+                showError('general-error-message', 'Por favor, preencha todos os campos obrigatÃ³rios e selecione um mÃ©todo de pagamento.');
             } else if (!isValid && selectedPaymentMethod && (!termsCheckbox.checked || !privacyCheckbox.checked)) {
-                // Já temos mensagens específicas para termos, não precisa de geral
+                // JÃ¡ temos mensagens especÃ­ficas para termos, nÃ£o precisa de geral
             } else if (!isValid) {
-                showError('general-error-message', 'Por favor, corrija os erros indicados no formulário antes de prosseguir.');
+                showError('general-error-message', 'Por favor, corrija os erros indicados no formulÃ¡rio antes de prosseguir.');
             }
             
             return isValid;
         }
         
-        // Função para enviar assinatura
+        // FunÃ§Ã£o para enviar assinatura
         function submitSubscription() {
             if (!validateForm()) {
                 return;
@@ -1343,11 +1343,11 @@
                 // Focar no modal para acessibilidade
                 document.getElementById('success-modal-title').focus();
                 
-                // Aqui normalmente enviaríamos os dados para o backend
+                // Aqui normalmente enviarÃ­amos os dados para o backend
                 // Exemplo: fetch('/criar-assinatura', { method: 'POST', body: new FormData(form) })
-                console.log('Dados da assinatura (simulação):', {
+                console.log('Dados da assinatura (simulaÃ§Ã£o):', {
                     payment_method: selectedPaymentMethod,
-                    // ... outros dados do formulário
+                    // ... outros dados do formulÃ¡rio
                 });
                 
             }, 2000);
@@ -1372,11 +1372,11 @@
             });
         }
         
-        // --- LÓGICA DE CEP (ViaCEP) ---
+        // --- LÃ“GICA DE CEP (ViaCEP) ---
         const cepInput = document.getElementById('cep');
         
         cepInput?.addEventListener('blur', function(e) {
-            // Remove tudo que não é dígito
+            // Remove tudo que nÃ£o Ã© dÃ­gito
             const cep = e.target.value.replace(/\D/g, '');
 
             if (cep.length === 8) {
@@ -1396,19 +1396,19 @@
                             if(hood) hood.value = data.bairro;
                             if(city) city.value = `${data.localidade}/${data.uf}`;
                             
-                            // Mostra o container de preview com animação
+                            // Mostra o container de preview com animaÃ§Ã£o
                             document.getElementById('address-preview')?.classList.remove('hidden');
                             
-                            // Foca no campo número (UX fluida)
+                            // Foca no campo nÃºmero (UX fluida)
                             document.getElementById('number')?.focus();
                             
                             // Remove erro se houver
                             cepInput.classList.remove('form-error');
                             hideError('general-error-message');
                         } else {
-                            // CEP não encontrado
+                            // CEP nÃ£o encontrado
                             cepInput.classList.add('form-error');
-                            // Opcional: alert('CEP não encontrado.');
+                            // Opcional: alert('CEP nÃ£o encontrado.');
                         }
                     })
                     .catch(() => {
@@ -1421,7 +1421,7 @@
             }
         });
 
-        // Máscara de CEP visual
+        // MÃ¡scara de CEP visual
         cepInput?.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 8) value = value.substring(0, 8);
@@ -1432,21 +1432,21 @@
             e.target.value = value;
         });
 
-        // --- MÁSCARA INTELIGENTE CPF / CNPJ ---
+        // --- MÃSCARA INTELIGENTE CPF / CNPJ ---
         document.getElementById('document')?.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             
             // Limita tamanho para CNPJ
             if (value.length > 14) value = value.substring(0, 14);
 
-            // Aplica a máscara dinamicamente
+            // Aplica a mÃ¡scara dinamicamente
             if (value.length <= 11) {
-                // Máscara CPF: 000.000.000-00
+                // MÃ¡scara CPF: 000.000.000-00
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
                 value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
             } else {
-                // Máscara CNPJ: 00.000.000/0000-00
+                // MÃ¡scara CNPJ: 00.000.000/0000-00
                 value = value.replace(/^(\d{2})(\d)/, '$1.$2');
                 value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
                 value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
@@ -1459,7 +1459,7 @@
             this.classList.remove('form-error');
         });
         
-        // Remover mensagens de erro quando o usuário interagir com os campos
+        // Remover mensagens de erro quando o usuÃ¡rio interagir com os campos
         document.querySelectorAll('input, textarea').forEach(element => {
             element.addEventListener('input', function() {
                 this.classList.remove('form-error');
@@ -1475,7 +1475,7 @@
             });
         });
         
-        // Adicionar foco visível dinamicamente para todos os elementos interativos
+        // Adicionar foco visÃ­vel dinamicamente para todos os elementos interativos
         document.addEventListener('DOMContentLoaded', () => {
             const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
             const focusableContent = document.querySelectorAll(focusableElements);
@@ -1485,8 +1485,10 @@
             });
         });
         
-        // Foco no conteúdo principal
+        // Foco no conteÃºdo principal
         document.getElementById('main-content').focus();
     </script>
+<script src="cookie-consent.js"></script>
 </body>
 </html>
+
