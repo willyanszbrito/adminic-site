@@ -408,6 +408,32 @@
                 justify-content: space-around;
             }
         }
+
+        /* Toast Notification CSS */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
     </style>
 </head>
 
@@ -519,20 +545,40 @@
         </a>
     </div>
 
+    <div id="toast">No modo demonstração, a planilha real do Google Sheets está bloqueada por privacidade. 🔒</div>
+
     <script>
         let mesesDisponiveis = [];
         let mesAtual = '';
         let dadosAtuais = null;
+
+        function mostrarToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 4000);
+        }
 
         async function iniciarPagina() {
             document.getElementById('loading').classList.remove('hidden');
 
             // Carrega meses disponíveis
             try {
-                mesesDisponiveis = [
-                    { value: "2026-04", label: "Abril 2026 (Demo)" },
-                    { value: "2026-03", label: "Março 2026 (Demo)" }
-                ];
+                // Gera 12 meses de dados fictícios para demonstração
+                const mesesNomes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                const dataAtual = new Date();
+                let ano = dataAtual.getFullYear();
+                let mesIdx = dataAtual.getMonth();
+
+                mesesDisponiveis = [];
+                for(let i=0; i<12; i++) {
+                    let mStr = String(mesIdx + 1).padStart(2, '0');
+                    mesesDisponiveis.push({ value: `${ano}-${mStr}`, label: `${mesesNomes[mesIdx]} ${ano} (Demo)` });
+                    mesIdx--;
+                    if(mesIdx < 0) {
+                        mesIdx = 11;
+                        ano--;
+                    }
+                }
 
                 preencherSelectMeses();
 
@@ -592,15 +638,28 @@
             document.getElementById('empty-state').classList.add('hidden');
 
             try {
+                // Gera dados variados baseado no mês
+                const strMes = mesSelecionado; // ex "2026-04"
+                const seed = parseInt(strMes.replace('-', '')) || 202604;
+                const fakeGastos = -((seed * 13) % 4000 + 1500); // Variável entre 1500 e 5500
+                const fakePendente = -((seed * 7) % 1000 + 200);
+                const fakeSaldo = ((seed * 17) % 6000 + 3000) + fakeGastos + fakePendente;
+                
+                const valAlim = Math.abs(fakeGastos * 0.4);
+                const valMora = Math.abs(fakeGastos * 0.3);
+                const valTran = Math.abs(fakeGastos * 0.15);
+                const valLaze = Math.abs(fakeGastos * 0.1);
+                const valOutr = Math.abs(fakeGastos * 0.05);
+
                 dadosAtuais = {
                     encontrado: true,
-                    mes: "04-2026",
-                    saldo: 12540.50,
-                    gastos: -4320.00,
-                    pendente: -850.00,
-                    maiorGasto: { categoria: "Alimentação (Lorem Ipsum)", valor: -1500.00 },
+                    mes: strMes.split('-').reverse().join('-'), // "04-2026"
+                    saldo: fakeSaldo,
+                    gastos: fakeGastos,
+                    pendente: fakePendente,
+                    maiorGasto: { categoria: "Alimentação", valor: -valAlim },
                     categorias: ["Alimentação", "Moradia", "Transporte", "Lazer", "Outros"],
-                    valoresCategorias: [1500, 1200, 600, 800, 220]
+                    valoresCategorias: [valAlim, valMora, valTran, valLaze, valOutr]
                 };
 
                 atualizarBadgeMes();
@@ -684,7 +743,7 @@
             linkPlanilha.href = "#";
             linkPlanilha.onclick = function(e) {
                 e.preventDefault();
-                alert('No modo de demonstração, o acesso à planilha nativa do Google Sheets está desativado.');
+                mostrarToast();
             };
         }
 
@@ -761,6 +820,20 @@
                                 padding: 20,
                                 usePointStyle: true,
                                 pointStyle: 'circle'
+                            },
+                            onClick: function(e, legendItem, legend) {
+                                const index = legendItem.index;
+                                const ci = legend.chart;
+                                if (ci.isDatasetVisible(0)) {
+                                    ci.toggleDataVisibility(index);
+                                    ci.update();
+                                    
+                                    // Sincroniza o gráfico de barras
+                                    if(barChart) {
+                                        barChart.toggleDataVisibility(index);
+                                        barChart.update();
+                                    }
+                                }
                             }
                         },
                         tooltip: {
