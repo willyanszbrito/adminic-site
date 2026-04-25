@@ -449,7 +449,7 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        .fab {
+        .floating-btn {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -464,7 +464,7 @@
             text-decoration: none;
         }
 
-        .fab:active {
+        .floating-btn:active {
             transform: scale(0.92);
         }
 
@@ -822,14 +822,14 @@
             </svg>
         </a>
 
-        <button class="fab fab-refresh" onclick="carregarDados()" aria-label="Atualizar Dados">
+        <button class="floating-btn fab-refresh" onclick="carregarDados()" aria-label="Atualizar Dados">
             <svg viewBox="0 0 24 24">
                 <path
                     d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
             </svg>
         </button>
 
-        <a href="demo-whatsapp.html" class="fab fab-whatsapp"
+        <a href="demo-whatsapp.html" class="floating-btn fab-whatsapp"
             aria-label="Abrir WhatsApp">
             <svg viewBox="0 0 24 24">
                 <path
@@ -1803,6 +1803,32 @@
             } else {
                 if(statusBar) statusBar.style.opacity = '1';
                 container.style.paddingTop = '32px';
+            }
+            
+            // OS Buttons state update
+            const isDesktopView = container.classList.contains('max-w-[1200px]');
+            const osButtons = document.querySelectorAll('.os-btn');
+            osButtons.forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                btn.classList.add('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+            });
+            const activeOsBtn = document.getElementById('btn-os-' + currentSimulatedOS);
+            if (activeOsBtn) {
+                activeOsBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+                activeOsBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            }
+            
+            // Show/hide relevant OS buttons based on view
+            if (isDesktopView) {
+                document.getElementById('btn-os-ios').classList.add('hidden');
+                document.getElementById('btn-os-android').classList.add('hidden');
+                document.getElementById('btn-os-windows').classList.remove('hidden');
+                document.getElementById('btn-os-mac').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-os-ios').classList.remove('hidden');
+                document.getElementById('btn-os-android').classList.remove('hidden');
+                document.getElementById('btn-os-windows').classList.add('hidden');
+                document.getElementById('btn-os-mac').classList.add('hidden');
             }
             
             // Create desktop taskbar if not exists

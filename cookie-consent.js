@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const banner = document.createElement("div");
         banner.id = "cookie-consent-banner";
         // Usa as classes do Tailwind para o tema claro/escuro
-        banner.className = "fixed bottom-0 left-0 w-full z-[9999] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] px-4 py-4 md:px-8 transition-colors duration-300 box-border";
+        banner.className = "fixed bottom-0 left-0 w-full z-[99999] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] px-4 py-4 md:px-8 transition-colors duration-300 box-border";
         banner.innerHTML = `
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-['Plus_Jakarta_Sans'] text-sm">
                 <div class="flex-1 text-left w-full break-words">
