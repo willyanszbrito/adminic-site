@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', () => {
     // Inject Redirect Modal HTML
     const modalHTML = `
-    <div id="redirect-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    <div id="redirect-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[999999] hidden items-center justify-center opacity-0 transition-opacity duration-300" style="z-index: 2147483647 !important;">
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 md:p-8 w-[90%] max-w-sm m-auto transform scale-95 transition-transform duration-300 text-center border border-slate-200 dark:border-slate-700 flex flex-col">
             <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 dark:text-blue-400 text-2xl shrink-0">
                 <i class="fab fa-whatsapp" id="redirect-icon"></i>
