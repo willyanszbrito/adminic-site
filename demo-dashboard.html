@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminic | Demonstração Dashboard</title>
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
-    
+
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    
+
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
+
     <link rel="manifest" href="/site.webmanifest">
 
     <meta property="og:title" content="Adminic | Demonstração Dashboard">
-    <meta property="og:description" content="Soluções inteligentes em gestão, suporte técnico e edição gráfica. Conheça nossa IA financeira.">
+    <meta property="og:description"
+        content="Soluções inteligentes em gestão, suporte técnico e edição gráfica. Conheça nossa IA financeira.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adminic.com.br">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,31 +32,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif;  
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        
+
         /* A classe glass agora só controla o blur, a cor é via Tailwind */
-        .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        
+        .glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
         /* Gradiente adaptativo */
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%); }
-        
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); }
-        
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+
         /* Menu mobile */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
         }
+
         .mobile-menu.active {
             max-height: 500px;
             transition: max-height 0.5s ease-in;
         }
-        
+
         /* Chat bubble styles adaptados via CSS variables ou Tailwind direto no HTML (fiz no HTML) */
         .chat-bubble-user {
             border-radius: 18px 18px 0 18px;
@@ -62,6 +75,7 @@
             position: relative;
             max-width: 85%;
         }
+
         .chat-bubble-ai {
             border-radius: 18px 18px 18px 0;
             margin-right: auto;
@@ -99,23 +113,69 @@
         }
 
         @keyframes glitch-anim-1 {
-            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-            80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
-            100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+            0% {
+                clip-path: inset(20% 0 80% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            20% {
+                clip-path: inset(60% 0 10% 0);
+                transform: translate(2px, -2px);
+            }
+
+            40% {
+                clip-path: inset(40% 0 50% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            60% {
+                clip-path: inset(80% 0 5% 0);
+                transform: translate(2px, -2px);
+            }
+
+            80% {
+                clip-path: inset(10% 0 70% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            100% {
+                clip-path: inset(30% 0 20% 0);
+                transform: translate(2px, -2px);
+            }
         }
 
         @keyframes glitch-anim-2 {
-            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
-            20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 2px); }
-            40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
-            60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
-            80% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
-            100% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
+            0% {
+                clip-path: inset(10% 0 60% 0);
+                transform: translate(2px, -2px);
+            }
+
+            20% {
+                clip-path: inset(30% 0 20% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                clip-path: inset(70% 0 10% 0);
+                transform: translate(2px, -2px);
+            }
+
+            60% {
+                clip-path: inset(20% 0 50% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            80% {
+                clip-path: inset(60% 0 20% 0);
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                clip-path: inset(5% 0 80% 0);
+                transform: translate(-2px, 2px);
+            }
         }
-        
+
         /* Acessibilidade */
         .skip-to-main {
             position: absolute;
@@ -129,29 +189,56 @@
             border-radius: 0 0 4px 0;
             font-weight: bold;
         }
-        .skip-to-main:focus { top: 0; }
-        .focus-visible:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
+
+        .focus-visible:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
         }
+
         @media (prefers-reduced-motion: no-preference) {
-            html { scroll-behavior: smooth; }
+            html {
+                scroll-behavior: smooth;
+            }
         }
+
         /* Bar grow animation for mockup */
         @keyframes bar-grow {
-            from { width: 0; }
+            from {
+                width: 0;
+            }
         }
-        .mockup-bar { animation: bar-grow 1.2s ease-out forwards; }
-        .mockup-bar-delay-1 { animation-delay: 0.3s; width: 0; }
-        .mockup-bar-delay-2 { animation-delay: 0.6s; width: 0; }
+
+        .mockup-bar {
+            animation: bar-grow 1.2s ease-out forwards;
+        }
+
+        .mockup-bar-delay-1 {
+            animation-delay: 0.3s;
+            width: 0;
+        }
+
+        .mockup-bar-delay-2 {
+            animation-delay: 0.6s;
+            width: 0;
+        }
     </style>
-<style>
+    <style>
         :root {
             --cor-fundo: #F4F6F8;
             --cor-card: #FFFFFF;
@@ -336,7 +423,8 @@
             cursor: pointer;
         }
 
-        .card:hover, .card:active {
+        .card:hover,
+        .card:active {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
@@ -528,6 +616,7 @@
                 opacity: 0;
                 transform: translateY(30px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -535,8 +624,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes chartReveal {
@@ -544,6 +638,7 @@
                 opacity: 0;
                 transform: translateY(40px) scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -553,23 +648,23 @@
         /* Removed: .hidden { display: none !important; } — was overriding Tailwind responsive utilities like hidden md:flex and hidden sm:inline */
 
         .anim-delay-1 {
-            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.1s;
+            animation: fadeInUp 0.6s cubic-bezier(.22, 1, .36, 1) forwards 0.1s;
         }
 
         .anim-delay-2 {
-            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.25s;
+            animation: fadeInUp 0.6s cubic-bezier(.22, 1, .36, 1) forwards 0.25s;
         }
 
         .anim-delay-3 {
-            animation: fadeInUp 0.6s cubic-bezier(.22,1,.36,1) forwards 0.4s;
+            animation: fadeInUp 0.6s cubic-bezier(.22, 1, .36, 1) forwards 0.4s;
         }
 
         .anim-delay-4 {
-            animation: chartReveal 0.8s cubic-bezier(.22,1,.36,1) forwards 0.55s;
+            animation: chartReveal 0.8s cubic-bezier(.22, 1, .36, 1) forwards 0.55s;
         }
 
         .anim-delay-5 {
-            animation: chartReveal 0.8s cubic-bezier(.22,1,.36,1) forwards 0.7s;
+            animation: chartReveal 0.8s cubic-bezier(.22, 1, .36, 1) forwards 0.7s;
         }
 
         @media (max-width: 480px) {
@@ -602,7 +697,7 @@
             bottom: 30px;
             transform: translateX(-50%);
             font-size: 0.9rem;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
             opacity: 0;
             transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
         }
@@ -614,7 +709,8 @@
         }
 
         /* Força máxima para o banner de cookies não ser bloqueado pelo Dashboard */
-        div[id*="cookie"], div[class*="cookie"] {
+        div[id*="cookie"],
+        div[class*="cookie"] {
             z-index: 2147483647 !important;
             pointer-events: auto !important;
         }
@@ -632,17 +728,33 @@
         }
 
         /* Delays para efeito cascata */
-        .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-        .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-        .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+        .menu-open .stagger-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .menu-open .stagger-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .menu-open .stagger-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
 
         /* Pulsação do botão quando fechado */
         @keyframes ripple-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
         }
-        
+
         .btn-pulse {
             animation: ripple-pulse 2s infinite;
         }
@@ -651,725 +763,793 @@
         .typing-cursor::after {
             content: '|';
             animation: blink 1s step-start infinite;
-            color: #3b82f6; /* Azul */
+            color: #3b82f6;
+            /* Azul */
         }
-        
+
         @keyframes blink {
-            50% { opacity: 0; }
+            50% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+
+<body
+    class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
     <!-- Tailwind Safelist for dynamic container widths -->
     <div class="hidden max-w-[400px] max-w-[600px] max-w-[800px] max-w-[1200px] max-w-full"></div>
     <a href="#main-content" class="skip-to-main focus-visible">
         Pular para o conteúdo principal
     </a>
-    
-    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300" 
-         aria-label="Barra de informações">
+
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300"
+        aria-label="Barra de informações">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
             <div class="flex gap-4 md:gap-6">
-                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
-                    <i class="fas fa-envelope" aria-hidden="true"></i> 
+                <a href="mailto:contato@adminic.com.br"
+                    class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <span class="hidden lg:inline">contato@adminic.com.br</span>
                 </a>
-                <a href="https://wa.me/559284790794" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
-                    <i class="fab fa-whatsapp" aria-hidden="true"></i> 
+                <a href="https://wa.me/559284790794"
+                    class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     <span class="hidden lg:inline">(92) 98489-9955</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300"
+        aria-label="Navegação principal">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
-            
-            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
+
+            <a href="index.html" class="flex items-center gap-3 group focus-visible"
+                aria-label="Adminic - Voltar à página inicial">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition"
+                    aria-hidden="true">
                     <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
+                <span
+                    class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
 
-            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+            <div
+                class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
                 <a href="index.html" class="text-blue-600 dark:text-blue-400 px-2 py-1 focus-visible">Principal</a>
-                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
-                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
-                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
-                <a href="central-ajuda.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Ajuda</a>
-                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+                <a href="quem-somos.html"
+                    class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem
+                    Somos</a>
+                <a href="index.html#servicos"
+                    class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos"
+                    class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="central-ajuda.html"
+                    class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Ajuda</a>
+                <a href="contato.html"
+                    class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
-                
-                <button onclick="toggleTheme()" class="flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+
+                <button onclick="toggleTheme()"
+                    class="flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible"
+                    aria-label="Alternar tema">
                     <i class="fas fa-sun theme-toggle-icon"></i>
                 </button>
 
-                <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
+                <a href="https://wa.me/559284790794"
+                    class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible"
+                    aria-label="Fale conosco no WhatsApp">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     <span>Área do Cliente</span>
                 </a>
 
-                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button"
+                    class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition"
+                    aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
+        <div id="mobile-menu"
+            class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl"
+            role="menu" aria-label="Menu móvel" aria-hidden="true">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-                <a href="index.html" class="text-center text-blue-600 dark:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
-                <a href="quem-somos.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
-                <a href="index.html#servicos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
-                <a href="index.html#produtos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
-                <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
-                <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
-                
+                <a href="index.html"
+                    class="text-center text-blue-600 dark:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Principal</a>
+                <a href="quem-somos.html"
+                    class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos"
+                    class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Serviços</a>
+                <a href="index.html#produtos"
+                    class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Produtos</a>
+                <a href="central-ajuda.html"
+                    class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Ajuda</a>
+                <a href="contato.html"
+                    class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible"
+                    role="menuitem">Contato</a>
 
-                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
+
+                <a href="https://wa.me/559284790794"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20"
+                    role="menuitem">
                     <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
                 </a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
+    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative"
+        style="min-height: calc(100dvh - 80px);">
         <!-- Device Toggle Toolbar -->
-        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
-            <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-mobile" aria-label="Visualização Mobile">
+        <div
+            class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setDeviceView('mobile')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-mobile" aria-label="Visualização Mobile">
                 <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
             </button>
-            <button onclick="setDeviceView('zfold')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-zfold" aria-label="Visualização Z-Fold">
+            <button onclick="setDeviceView('zfold')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-zfold" aria-label="Visualização Z-Fold">
                 <i class="fas fa-mobile-alt fa-rotate-90"></i> <span class="hidden sm:inline">Z-Fold</span>
             </button>
-            <button onclick="setDeviceView('tablet')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-tablet" aria-label="Visualização Tablet">
+            <button onclick="setDeviceView('tablet')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-tablet" aria-label="Visualização Tablet">
                 <i class="fas fa-tablet-alt"></i> <span class="hidden sm:inline">Tablet</span>
             </button>
-            <button onclick="setDeviceView('desktop')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 hidden md:flex" id="btn-desktop" aria-label="Visualização Desktop">
+            <button onclick="setDeviceView('desktop')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 hidden md:flex"
+                id="btn-desktop" aria-label="Visualização Desktop">
                 <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
             </button>
         </div>
 
-        <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
-            <button onclick="setSimulatedOS('ios')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-os-ios" aria-label="Simular iOS">
+        <div id="os-toggle-toolbar"
+            class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setSimulatedOS('ios')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-os-ios" aria-label="Simular iOS">
                 <i class="fab fa-apple"></i> <span class="hidden sm:inline">iOS</span>
             </button>
-            <button onclick="setSimulatedOS('android')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-os-android" aria-label="Simular Android">
+            <button onclick="setSimulatedOS('android')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-os-android" aria-label="Simular Android">
                 <i class="fab fa-android text-green-500"></i> <span class="hidden sm:inline">Android</span>
             </button>
-            <button onclick="setSimulatedOS('windows')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-windows" aria-label="Simular Windows">
+            <button onclick="setSimulatedOS('windows')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden"
+                id="btn-os-windows" aria-label="Simular Windows">
                 <i class="fab fa-windows text-blue-500"></i> <span class="hidden sm:inline">Windows</span>
             </button>
-            <button onclick="setSimulatedOS('mac')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-mac" aria-label="Simular Mac">
+            <button onclick="setSimulatedOS('mac')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden"
+                id="btn-os-mac" aria-label="Simular Mac">
                 <i class="fab fa-apple"></i> <span class="hidden sm:inline">Mac</span>
             </button>
         </div>
 
-        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 flex flex-col overflow-hidden relative mx-auto">
-            
+        <div id="demo-app-container"
+            class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 flex flex-col overflow-hidden relative mx-auto">
+
             <div id="dash-scroll-container" class="flex-grow overflow-y-auto relative">
 
-    <div class="header relative pt-[28px]" id="dash-app-header">
-        <div class="app-logo">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
-            </svg>
-        </div>
-        <h1>Financeiro</h1>
-        <div class="mes-atual-badge" id="mes-atual">Carregando...</div>
-    </div>
+                <div class="header relative pt-[28px]" id="dash-app-header">
+                    <div class="app-logo">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+                        </svg>
+                    </div>
+                    <h1>Financeiro</h1>
+                    <div class="mes-atual-badge" id="mes-atual">Carregando...</div>
+                </div>
 
-    <div class="month-selector-container">
-        <button class="nav-btn" onclick="navegarMes(-1)" id="btn-prev">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="white" />
-            </svg>
-        </button>
+                <div class="month-selector-container">
+                    <button class="nav-btn" onclick="navegarMes(-1)" id="btn-prev">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="white" />
+                        </svg>
+                    </button>
 
-        <select id="mes-selecionado" class="month-picker" onchange="carregarDados()">
-            <option value="">Carregando meses...</option>
-        </select>
+                    <select id="mes-selecionado" class="month-picker" onchange="carregarDados()">
+                        <option value="">Carregando meses...</option>
+                    </select>
 
-        <button class="nav-btn" onclick="navegarMes(1)" id="btn-next">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="white" />
-            </svg>
-        </button>
-    </div>
+                    <button class="nav-btn" onclick="navegarMes(1)" id="btn-next">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="white" />
+                        </svg>
+                    </button>
+                </div>
 
-    <div id="loading" class="loader"></div>
+                <div id="loading" class="loader"></div>
 
-    <div id="empty-state" class="empty-state hidden">
-        <svg viewBox="0 0 24 24">
-            <path
-                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
-        </svg>
-        <h3>Nenhum registro encontrado</h3>
-        <p>Não há dados lançados para o mês selecionado.</p>
-        <p style="margin-top: 15px; font-size: 0.8rem; color: #78909C;">
-            O sistema criará automaticamente uma nova aba ao inserir o primeiro registro.
-        </p>
-    </div>
+                <div id="empty-state" class="empty-state hidden">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
+                    </svg>
+                    <h3>Nenhum registro encontrado</h3>
+                    <p>Não há dados lançados para o mês selecionado.</p>
+                    <p style="margin-top: 15px; font-size: 0.8rem; color: #78909C;">
+                        O sistema criará automaticamente uma nova aba ao inserir o primeiro registro.
+                    </p>
+                </div>
 
-    <div id="content" class="hidden">
+                <div id="content" class="hidden">
 
-        <div id="insight-box" class="insight-box hidden">
-            <span id="insight-icon" class="insight-icon">💡</span>
-            <span id="insight-texto">Carregando análise...</span>
-        </div>
+                    <div id="insight-box" class="insight-box hidden">
+                        <span id="insight-icon" class="insight-icon">💡</span>
+                        <span id="insight-texto">Carregando análise...</span>
+                    </div>
 
-        <div class="card-grid">
-            <div class="card card-full anim-delay-1">
-                <span class="card-label">Saldo Disponível</span>
-                <span id="val-saldo" class="card-value">R$ 0,00</span>
-                <span class="card-sub" id="saldo-desc"></span>
+                    <div class="card-grid">
+                        <div class="card card-full anim-delay-1">
+                            <span class="card-label">Saldo Disponível</span>
+                            <span id="val-saldo" class="card-value">R$ 0,00</span>
+                            <span class="card-sub" id="saldo-desc"></span>
+                        </div>
+
+                        <div class="card anim-delay-2">
+                            <span class="card-label">Gasto Total</span>
+                            <span id="val-gastos" class="card-value negativo">R$ 0,00</span>
+                        </div>
+
+                        <div class="card anim-delay-2">
+                            <span class="card-label">A Pagar</span>
+                            <span id="val-pendente" class="card-value pendente">R$ 0,00</span>
+                        </div>
+
+                        <div class="card card-full anim-delay-3">
+                            <span class="card-label">Maior Categoria de Gasto</span>
+                            <span id="val-maior-gasto-cat" class="card-value"
+                                style="font-size: 1.2rem; color: var(--cor-texto-sec);">---</span>
+                            <span id="val-maior-gasto-val" class="card-sub">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-container anim-delay-4">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+
+                    <div class="chart-container anim-delay-5">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="fab-container">
+                    <a href="#" class="floating-btn fab-sheets" aria-label="Abrir Planilha" id="link-planilha">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5H8V7h5v2z" />
+                        </svg>
+                    </a>
+
+                    <button class="floating-btn fab-refresh" onclick="carregarDados()" aria-label="Atualizar Dados">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                        </svg>
+                    </button>
+
+                    <a href="demo-whatsapp.html" class="floating-btn fab-whatsapp" aria-label="Abrir WhatsApp">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.445-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div id="toast">No modo demonstração, a planilha real do Google Sheets está bloqueada por privacidade.
+                    🔒</div>
             </div>
 
-            <div class="card anim-delay-2">
-                <span class="card-label">Gasto Total</span>
-                <span id="val-gastos" class="card-value negativo">R$ 0,00</span>
-            </div>
+            <script>
+                // Sync chart updates to global theme via MutationObserver
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class' && doughnutChart && barChart && dadosAtuais) {
+                            renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
+                        }
+                    });
+                });
+                observer.observe(document.documentElement, { attributes: true });
 
-            <div class="card anim-delay-2">
-                <span class="card-label">A Pagar</span>
-                <span id="val-pendente" class="card-value pendente">R$ 0,00</span>
-            </div>
+                let mesesDisponiveis = [];
+                let mesAtual = '';
+                let dadosAtuais = null;
 
-            <div class="card card-full anim-delay-3">
-                <span class="card-label">Maior Categoria de Gasto</span>
-                <span id="val-maior-gasto-cat" class="card-value" style="font-size: 1.2rem; color: var(--cor-texto-sec);">---</span>
-                <span id="val-maior-gasto-val" class="card-sub">R$ 0,00</span>
-            </div>
-        </div>
+                function animarNumero(elemento, valorFinal, formatador) {
+                    const duracao = 1000;
+                    const passos = 30;
+                    const intervalo = duracao / passos;
+                    const incremento = valorFinal / passos;
+                    let valorAtual = 0;
+                    let contador = 0;
 
-        <div class="chart-container anim-delay-4">
-            <canvas id="doughnutChart"></canvas>
-        </div>
+                    const timer = setInterval(() => {
+                        valorAtual += incremento;
+                        contador++;
 
-        <div class="chart-container anim-delay-5">
-            <canvas id="barChart"></canvas>
-        </div>
-    </div>
-
-    <div class="fab-container">
-        <a href="#" class="floating-btn fab-sheets" aria-label="Abrir Planilha" id="link-planilha">
-            <svg viewBox="0 0 24 24">
-                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5H8V7h5v2z" />
-            </svg>
-        </a>
-
-        <button class="floating-btn fab-refresh" onclick="carregarDados()" aria-label="Atualizar Dados">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-            </svg>
-        </button>
-
-        <a href="demo-whatsapp.html" class="floating-btn fab-whatsapp"
-            aria-label="Abrir WhatsApp">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.445-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-        </a>
-    </div>
-
-    <div id="toast">No modo demonstração, a planilha real do Google Sheets está bloqueada por privacidade. 🔒</div>
-            </div>
-
-    <script>
-        // Sync chart updates to global theme via MutationObserver
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class' && doughnutChart && barChart && dadosAtuais) {
-                    renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
+                        if (contador >= passos) {
+                            clearInterval(timer);
+                            elemento.textContent = formatador(valorFinal);
+                        } else {
+                            elemento.textContent = formatador(valorAtual);
+                        }
+                    }, intervalo);
                 }
-            });
-        });
-        observer.observe(document.documentElement, { attributes: true });
 
-        let mesesDisponiveis = [];
-        let mesAtual = '';
-        let dadosAtuais = null;
-
-        function animarNumero(elemento, valorFinal, formatador) {
-            const duracao = 1000;
-            const passos = 30;
-            const intervalo = duracao / passos;
-            const incremento = valorFinal / passos;
-            let valorAtual = 0;
-            let contador = 0;
-
-            const timer = setInterval(() => {
-                valorAtual += incremento;
-                contador++;
-                
-                if (contador >= passos) {
-                    clearInterval(timer);
-                    elemento.textContent = formatador(valorFinal);
-                } else {
-                    elemento.textContent = formatador(valorAtual);
+                function mostrarToast() {
+                    const toast = document.getElementById("toast");
+                    toast.className = "show";
+                    setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 4000);
                 }
-            }, intervalo);
-        }
 
-        function mostrarToast() {
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 4000);
-        }
+                async function iniciarPagina() {
+                    document.getElementById('loading').classList.remove('hidden');
 
-        async function iniciarPagina() {
-            document.getElementById('loading').classList.remove('hidden');
+                    // Carrega meses disponíveis
+                    try {
+                        // Gera 12 meses de dados fictícios para demonstração
+                        const mesesNomes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                        const dataAtual = new Date();
+                        let ano = dataAtual.getFullYear();
+                        let mesIdx = dataAtual.getMonth();
 
-            // Carrega meses disponíveis
-            try {
-                // Gera 12 meses de dados fictícios para demonstração
-                const mesesNomes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-                const dataAtual = new Date();
-                let ano = dataAtual.getFullYear();
-                let mesIdx = dataAtual.getMonth();
+                        mesesDisponiveis = [];
+                        for (let i = 0; i < 12; i++) {
+                            let mStr = String(mesIdx + 1).padStart(2, '0');
+                            mesesDisponiveis.push({ value: `${ano}-${mStr}`, label: `${mesesNomes[mesIdx]} ${ano} (Demo)` });
+                            mesIdx--;
+                            if (mesIdx < 0) {
+                                mesIdx = 11;
+                                ano--;
+                            }
+                        }
 
-                mesesDisponiveis = [];
-                for(let i=0; i<12; i++) {
-                    let mStr = String(mesIdx + 1).padStart(2, '0');
-                    mesesDisponiveis.push({ value: `${ano}-${mStr}`, label: `${mesesNomes[mesIdx]} ${ano} (Demo)` });
-                    mesIdx--;
-                    if(mesIdx < 0) {
-                        mesIdx = 11;
-                        ano--;
+                        preencherSelectMeses();
+
+                        // Define mês atual (primeiro da lista)
+                        if (mesesDisponiveis.length > 0) {
+                            mesAtual = mesesDisponiveis[0].value;
+                            document.getElementById('mes-selecionado').value = mesAtual;
+                            atualizarBadgeMes();
+                            await carregarDados();
+                        } else {
+                            mostrarEmptyState();
+                        }
+                    } catch (error) {
+                        console.error('Erro ao carregar meses:', error);
+                        mostrarMensagemErro();
                     }
                 }
 
-                preencherSelectMeses();
+                function preencherSelectMeses() {
+                    const select = document.getElementById('mes-selecionado');
+                    select.innerHTML = '';
 
-                // Define mês atual (primeiro da lista)
-                if (mesesDisponiveis.length > 0) {
-                    mesAtual = mesesDisponiveis[0].value;
-                    document.getElementById('mes-selecionado').value = mesAtual;
-                    atualizarBadgeMes();
-                    await carregarDados();
-                } else {
-                    mostrarEmptyState();
-                }
-            } catch (error) {
-                console.error('Erro ao carregar meses:', error);
-                mostrarMensagemErro();
-            }
-        }
-
-        function preencherSelectMeses() {
-            const select = document.getElementById('mes-selecionado');
-            select.innerHTML = '';
-
-            mesesDisponiveis.forEach(mes => {
-                const option = document.createElement('option');
-                option.value = mes.value;
-                option.textContent = mes.label;
-                select.appendChild(option);
-            });
-        }
-
-        function atualizarBadgeMes() {
-            const mesSelecionado = document.getElementById('mes-selecionado').value;
-            const mesObj = mesesDisponiveis.find(m => m.value === mesSelecionado);
-            if (mesObj) {
-                document.getElementById('mes-atual').textContent = mesObj.label;
-
-                // Verifica se é o mês atual
-                const hoje = new Date();
-                const anoAtual = hoje.getFullYear();
-                const mesAtualNum = String(hoje.getMonth() + 1).padStart(2, '0');
-                const mesAtualStr = `${anoAtual}-${mesAtualNum}`;
-
-                if (mesSelecionado === mesAtualStr) {
-                    document.getElementById('mes-atual').style.background = '#4CAF50';
-                } else {
-                    document.getElementById('mes-atual').style.background = 'var(--cor-primaria)';
-                }
-            }
-        }
-
-        async function carregarDados() {
-            const mesSelecionado = document.getElementById('mes-selecionado').value;
-            if (!mesSelecionado) return;
-
-            document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
-            document.getElementById('empty-state').classList.add('hidden');
-
-            try {
-                // Gera dados variados baseado no mês
-                const strMes = mesSelecionado; // ex "2026-04"
-                const seed = parseInt(strMes.replace('-', '')) || 202604;
-                const mesIdx = mesesDisponiveis.findIndex(m => m.value === mesSelecionado);
-                
-                let fakeGastos, fakePendente, fakeSaldo;
-                let valAlim, valMora, valTran, valLaze, valOutr;
-
-                if (mesIdx === 0) {
-                    fakeGastos = -2500;
-                    fakePendente = -300;
-                    fakeSaldo = 1500;
-                } else if (mesIdx === 1) {
-                    fakeGastos = -2700;
-                    fakePendente = -400;
-                    fakeSaldo = 800;
-                } else if (mesIdx === 2) {
-                    fakeGastos = -2600;
-                    fakePendente = -800;
-                    fakeSaldo = 100;
-                } else if (mesIdx === 3 || mesIdx === 4) {
-                    fakeGastos = -4500; 
-                    fakePendente = -1200;
-                    fakeSaldo = -850; 
-                } else {
-                    fakeGastos = -((seed * 13) % 2000 + 1500); 
-                    fakePendente = -((seed * 7) % 500 + 100);
-                    fakeSaldo = ((seed * 17) % 1500 + 200); 
+                    mesesDisponiveis.forEach(mes => {
+                        const option = document.createElement('option');
+                        option.value = mes.value;
+                        option.textContent = mes.label;
+                        select.appendChild(option);
+                    });
                 }
 
-                if (mesIdx === 3 || mesIdx === 4) {
-                    valAlim = Math.abs(fakeGastos * 0.2);
-                    valMora = Math.abs(fakeGastos * 0.3);
-                    valTran = Math.abs(fakeGastos * 0.1);
-                    valLaze = Math.abs(fakeGastos * 0.35); // Gasto alto em lazer gerou saldo negativo
-                    valOutr = Math.abs(fakeGastos * 0.05);
-                } else {
-                    valAlim = Math.abs(fakeGastos * 0.4);
-                    valMora = Math.abs(fakeGastos * 0.3);
-                    valTran = Math.abs(fakeGastos * 0.15);
-                    valLaze = Math.abs(fakeGastos * 0.1);
-                    valOutr = Math.abs(fakeGastos * 0.05);
+                function atualizarBadgeMes() {
+                    const mesSelecionado = document.getElementById('mes-selecionado').value;
+                    const mesObj = mesesDisponiveis.find(m => m.value === mesSelecionado);
+                    if (mesObj) {
+                        document.getElementById('mes-atual').textContent = mesObj.label;
+
+                        // Verifica se é o mês atual
+                        const hoje = new Date();
+                        const anoAtual = hoje.getFullYear();
+                        const mesAtualNum = String(hoje.getMonth() + 1).padStart(2, '0');
+                        const mesAtualStr = `${anoAtual}-${mesAtualNum}`;
+
+                        if (mesSelecionado === mesAtualStr) {
+                            document.getElementById('mes-atual').style.background = '#4CAF50';
+                        } else {
+                            document.getElementById('mes-atual').style.background = 'var(--cor-primaria)';
+                        }
+                    }
                 }
 
-                let maiorCatNome = "Alimentação";
-                let maiorCatVal = valAlim;
-                if (valLaze > valAlim) {
-                    maiorCatNome = "Lazer";
-                    maiorCatVal = valLaze;
+                async function carregarDados() {
+                    const mesSelecionado = document.getElementById('mes-selecionado').value;
+                    if (!mesSelecionado) return;
+
+                    document.getElementById('loading').classList.remove('hidden');
+                    document.getElementById('content').classList.add('hidden');
+                    document.getElementById('empty-state').classList.add('hidden');
+
+                    try {
+                        // Gera dados variados baseado no mês
+                        const strMes = mesSelecionado; // ex "2026-04"
+                        const seed = parseInt(strMes.replace('-', '')) || 202604;
+                        const mesIdx = mesesDisponiveis.findIndex(m => m.value === mesSelecionado);
+
+                        let fakeGastos, fakePendente, fakeSaldo;
+                        let valAlim, valMora, valTran, valLaze, valOutr;
+
+                        if (mesIdx === 0) {
+                            fakeGastos = -2500;
+                            fakePendente = -300;
+                            fakeSaldo = 1500;
+                        } else if (mesIdx === 1) {
+                            fakeGastos = -2700;
+                            fakePendente = -400;
+                            fakeSaldo = 800;
+                        } else if (mesIdx === 2) {
+                            fakeGastos = -2600;
+                            fakePendente = -800;
+                            fakeSaldo = 100;
+                        } else if (mesIdx === 3 || mesIdx === 4) {
+                            fakeGastos = -4500;
+                            fakePendente = -1200;
+                            fakeSaldo = -850;
+                        } else {
+                            fakeGastos = -((seed * 13) % 2000 + 1500);
+                            fakePendente = -((seed * 7) % 500 + 100);
+                            fakeSaldo = ((seed * 17) % 1500 + 200);
+                        }
+
+                        if (mesIdx === 3 || mesIdx === 4) {
+                            valAlim = Math.abs(fakeGastos * 0.2);
+                            valMora = Math.abs(fakeGastos * 0.3);
+                            valTran = Math.abs(fakeGastos * 0.1);
+                            valLaze = Math.abs(fakeGastos * 0.35); // Gasto alto em lazer gerou saldo negativo
+                            valOutr = Math.abs(fakeGastos * 0.05);
+                        } else {
+                            valAlim = Math.abs(fakeGastos * 0.4);
+                            valMora = Math.abs(fakeGastos * 0.3);
+                            valTran = Math.abs(fakeGastos * 0.15);
+                            valLaze = Math.abs(fakeGastos * 0.1);
+                            valOutr = Math.abs(fakeGastos * 0.05);
+                        }
+
+                        let maiorCatNome = "Alimentação";
+                        let maiorCatVal = valAlim;
+                        if (valLaze > valAlim) {
+                            maiorCatNome = "Lazer";
+                            maiorCatVal = valLaze;
+                        }
+
+                        dadosAtuais = {
+                            encontrado: true,
+                            mes: strMes.split('-').reverse().join('-'), // "04-2026"
+                            saldo: fakeSaldo,
+                            gastos: fakeGastos,
+                            pendente: fakePendente,
+                            maiorGasto: { categoria: maiorCatNome, valor: -maiorCatVal },
+                            categorias: ["Alimentação", "Moradia", "Transporte", "Lazer", "Outros"],
+                            valoresCategorias: [valAlim, valMora, valTran, valLaze, valOutr]
+                        };
+
+                        atualizarBadgeMes();
+                        atualizarBotoesNavegacao();
+
+                        if (!dadosAtuais.encontrado) {
+                            mostrarEmptyState();
+                            return;
+                        }
+
+                        atualizarTela(dadosAtuais);
+                    } catch (error) {
+                        console.error('Erro ao carregar dados:', error);
+                        mostrarMensagemErro();
+                    }
                 }
 
-                dadosAtuais = {
-                    encontrado: true,
-                    mes: strMes.split('-').reverse().join('-'), // "04-2026"
-                    saldo: fakeSaldo,
-                    gastos: fakeGastos,
-                    pendente: fakePendente,
-                    maiorGasto: { categoria: maiorCatNome, valor: -maiorCatVal },
-                    categorias: ["Alimentação", "Moradia", "Transporte", "Lazer", "Outros"],
-                    valoresCategorias: [valAlim, valMora, valTran, valLaze, valOutr]
-                };
+                function navegarMes(direcao) {
+                    const select = document.getElementById('mes-selecionado');
+                    const options = Array.from(select.options);
+                    const currentIndex = options.findIndex(opt => opt.value === select.value);
 
-                atualizarBadgeMes();
-                atualizarBotoesNavegacao();
+                    let newIndex = currentIndex + direcao;
 
-                if (!dadosAtuais.encontrado) {
-                    mostrarEmptyState();
-                    return;
+                    // Limita aos extremos
+                    if (newIndex >= 0 && newIndex < options.length) {
+                        select.value = options[newIndex].value;
+                        carregarDados();
+                    }
                 }
 
-                atualizarTela(dadosAtuais);
-            } catch (error) {
-                console.error('Erro ao carregar dados:', error);
-                mostrarMensagemErro();
-            }
-        }
+                function atualizarBotoesNavegacao() {
+                    const select = document.getElementById('mes-selecionado');
+                    const options = Array.from(select.options);
+                    const currentIndex = options.findIndex(opt => opt.value === select.value);
 
-        function navegarMes(direcao) {
-            const select = document.getElementById('mes-selecionado');
-            const options = Array.from(select.options);
-            const currentIndex = options.findIndex(opt => opt.value === select.value);
+                    document.getElementById('btn-prev').disabled = currentIndex === 0;
+                    document.getElementById('btn-next').disabled = currentIndex === options.length - 1;
+                }
 
-            let newIndex = currentIndex + direcao;
+                function formatarMoeda(valor) {
+                    return new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format(valor);
+                }
 
-            // Limita aos extremos
-            if (newIndex >= 0 && newIndex < options.length) {
-                select.value = options[newIndex].value;
-                carregarDados();
-            }
-        }
+                function atualizarTela(dados) {
+                    document.getElementById('loading').classList.add('hidden');
+                    const content = document.getElementById('content');
+                    content.classList.remove('hidden');
 
-        function atualizarBotoesNavegacao() {
-            const select = document.getElementById('mes-selecionado');
-            const options = Array.from(select.options);
-            const currentIndex = options.findIndex(opt => opt.value === select.value);
+                    // Re-trigger card & chart entrance animations
+                    content.querySelectorAll('.card, .chart-container').forEach(el => {
+                        el.style.animation = 'none';
+                        el.offsetHeight; // force reflow
+                        el.style.animation = '';
+                    });
 
-            document.getElementById('btn-prev').disabled = currentIndex === 0;
-            document.getElementById('btn-next').disabled = currentIndex === options.length - 1;
-        }
+                    // Atualiza valores com animação
+                    const elSaldo = document.getElementById('val-saldo');
+                    elSaldo.className = 'card-value ' + (dados.saldo >= 0 ? 'positivo' : 'negativo');
+                    animarNumero(elSaldo, dados.saldo, formatarMoeda);
 
-        function formatarMoeda(valor) {
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(valor);
-        }
+                    // Descrição do saldo
+                    const saldoDesc = document.getElementById('saldo-desc');
+                    if (dados.saldo > 0) {
+                        saldoDesc.textContent = 'Saldo positivo';
+                        saldoDesc.style.color = 'var(--cor-positivo)';
+                    } else if (dados.saldo < 0) {
+                        saldoDesc.textContent = 'Saldo negativo';
+                        saldoDesc.style.color = 'var(--cor-negativo)';
+                    } else {
+                        saldoDesc.textContent = 'Saldo zerado';
+                        saldoDesc.style.color = 'var(--cor-texto-sec)';
+                    }
 
-        function atualizarTela(dados) {
-            document.getElementById('loading').classList.add('hidden');
-            const content = document.getElementById('content');
-            content.classList.remove('hidden');
+                    animarNumero(document.getElementById('val-gastos'), Math.abs(dados.gastos), formatarMoeda);
+                    animarNumero(document.getElementById('val-pendente'), Math.abs(dados.pendente), formatarMoeda);
 
-            // Re-trigger card & chart entrance animations
-            content.querySelectorAll('.card, .chart-container').forEach(el => {
-                el.style.animation = 'none';
-                el.offsetHeight; // force reflow
-                el.style.animation = '';
-            });
+                    document.getElementById('val-maior-gasto-cat').textContent = dados.maiorGasto.categoria;
+                    animarNumero(document.getElementById('val-maior-gasto-val'), Math.abs(dados.maiorGasto.valor), formatarMoeda);
 
-            // Atualiza valores com animação
-            const elSaldo = document.getElementById('val-saldo');
-            elSaldo.className = 'card-value ' + (dados.saldo >= 0 ? 'positivo' : 'negativo');
-            animarNumero(elSaldo, dados.saldo, formatarMoeda);
+                    gerarInsight(dados);
+                    renderizarGraficos(dados.categorias, dados.valoresCategorias);
 
-            // Descrição do saldo
-            const saldoDesc = document.getElementById('saldo-desc');
-            if (dados.saldo > 0) {
-                saldoDesc.textContent = 'Saldo positivo';
-                saldoDesc.style.color = 'var(--cor-positivo)';
-            } else if (dados.saldo < 0) {
-                saldoDesc.textContent = 'Saldo negativo';
-                saldoDesc.style.color = 'var(--cor-negativo)';
-            } else {
-                saldoDesc.textContent = 'Saldo zerado';
-                saldoDesc.style.color = 'var(--cor-texto-sec)';
-            }
+                    // Atualiza link da planilha com mês atual
+                    const linkPlanilha = document.getElementById('link-planilha');
+                    linkPlanilha.href = "#";
+                    linkPlanilha.onclick = function (e) {
+                        e.preventDefault();
+                        mostrarToast();
+                    };
+                }
 
-            animarNumero(document.getElementById('val-gastos'), Math.abs(dados.gastos), formatarMoeda);
-            animarNumero(document.getElementById('val-pendente'), Math.abs(dados.pendente), formatarMoeda);
+                function getSheetIdFromName(mesNome) {
+                    // Esta função precisaria ser implementada no Google Apps Script
+                    // Retorna 0 como fallback (primeira aba)
+                    return 0;
+                }
 
-            document.getElementById('val-maior-gasto-cat').textContent = dados.maiorGasto.categoria;
-            animarNumero(document.getElementById('val-maior-gasto-val'), Math.abs(dados.maiorGasto.valor), formatarMoeda);
+                function gerarInsight(dados) {
+                    const box = document.getElementById('insight-box');
+                    const txt = document.getElementById('insight-texto');
+                    const icon = document.getElementById('insight-icon');
 
-            gerarInsight(dados);
-            renderizarGraficos(dados.categorias, dados.valoresCategorias);
+                    box.classList.remove('hidden', 'insight-alerta', 'insight-ok');
 
-            // Atualiza link da planilha com mês atual
-            const linkPlanilha = document.getElementById('link-planilha');
-            linkPlanilha.href = "#";
-            linkPlanilha.onclick = function(e) {
-                e.preventDefault();
-                mostrarToast();
-            };
-        }
+                    const gastoTotal = Math.abs(dados.gastos);
+                    const saldo = dados.saldo;
+                    const pendente = Math.abs(dados.pendente);
 
-        function getSheetIdFromName(mesNome) {
-            // Esta função precisaria ser implementada no Google Apps Script
-            // Retorna 0 como fallback (primeira aba)
-            return 0;
-        }
+                    // Lógica de insights melhorada
+                    if (saldo < 0) {
+                        box.classList.add('insight-alerta');
+                        icon.textContent = '⚠️';
+                        txt.textContent = 'ATENÇÃO: Saldo negativo! Revise seus gastos imediatamente.';
+                    } else if (pendente > saldo * 0.5) {
+                        box.classList.add('insight-alerta');
+                        icon.textContent = '📊';
+                        txt.textContent = 'Cuidado: Mais de 50% do seu saldo está comprometido com pendências.';
+                    } else if (gastoTotal === 0) {
+                        box.classList.add('insight-ok');
+                        icon.textContent = '📈';
+                        txt.textContent = 'Excelente! Nenhum gasto registrado este mês.';
+                    } else if (saldo > gastoTotal * 2) {
+                        box.classList.add('insight-ok');
+                        icon.textContent = '✅';
+                        txt.textContent = 'Ótimo controle financeiro! Saldo está saudável.';
+                    } else {
+                        box.classList.add('insight-ok');
+                        icon.textContent = '💰';
+                        txt.textContent = 'Sua situação financeira está equilibrada este mês.';
+                    }
+                }
 
-        function gerarInsight(dados) {
-            const box = document.getElementById('insight-box');
-            const txt = document.getElementById('insight-texto');
-            const icon = document.getElementById('insight-icon');
+                let doughnutChart = null;
+                let barChart = null;
 
-            box.classList.remove('hidden', 'insight-alerta', 'insight-ok');
+                function renderizarGraficos(labels, data) {
+                    const cores = ['#1976D2', '#D32F2F', '#FBC02D', '#7B1FA2', '#E64A19', '#5D4037', '#455A64', '#009688'];
 
-            const gastoTotal = Math.abs(dados.gastos);
-            const saldo = dados.saldo;
-            const pendente = Math.abs(dados.pendente);
+                    const isDark = document.body.classList.contains('dark-mode');
+                    const fontColor = isDark ? '#E0E0E0' : '#546E7A';
 
-            // Lógica de insights melhorada
-            if (saldo < 0) {
-                box.classList.add('insight-alerta');
-                icon.textContent = '⚠️';
-                txt.textContent = 'ATENÇÃO: Saldo negativo! Revise seus gastos imediatamente.';
-            } else if (pendente > saldo * 0.5) {
-                box.classList.add('insight-alerta');
-                icon.textContent = '📊';
-                txt.textContent = 'Cuidado: Mais de 50% do seu saldo está comprometido com pendências.';
-            } else if (gastoTotal === 0) {
-                box.classList.add('insight-ok');
-                icon.textContent = '📈';
-                txt.textContent = 'Excelente! Nenhum gasto registrado este mês.';
-            } else if (saldo > gastoTotal * 2) {
-                box.classList.add('insight-ok');
-                icon.textContent = '✅';
-                txt.textContent = 'Ótimo controle financeiro! Saldo está saudável.';
-            } else {
-                box.classList.add('insight-ok');
-                icon.textContent = '💰';
-                txt.textContent = 'Sua situação financeira está equilibrada este mês.';
-            }
-        }
+                    // Gráfico de Rosca
+                    const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+                    if (doughnutChart) doughnutChart.destroy();
 
-        let doughnutChart = null;
-        let barChart = null;
+                    doughnutChart = new Chart(ctxDoughnut, {
+                        type: 'doughnut',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: data,
+                                backgroundColor: cores,
+                                borderWidth: 2,
+                                borderColor: isDark ? '#1E1E1E' : '#FFFFFF',
+                                hoverOffset: 15
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        padding: 20,
+                                        usePointStyle: true,
+                                        pointStyle: 'circle',
+                                        color: fontColor
+                                    },
+                                    onClick: function (e, legendItem, legend) {
+                                        const index = legendItem.index;
+                                        const ci = legend.chart;
+                                        if (ci.isDatasetVisible(0)) {
+                                            ci.toggleDataVisibility(index);
+                                            ci.update();
 
-        function renderizarGraficos(labels, data) {
-            const cores = ['#1976D2', '#D32F2F', '#FBC02D', '#7B1FA2', '#E64A19', '#5D4037', '#455A64', '#009688'];
-
-            const isDark = document.body.classList.contains('dark-mode');
-            const fontColor = isDark ? '#E0E0E0' : '#546E7A';
-
-            // Gráfico de Rosca
-            const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
-            if (doughnutChart) doughnutChart.destroy();
-
-            doughnutChart = new Chart(ctxDoughnut, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: cores,
-                        borderWidth: 2,
-                        borderColor: isDark ? '#1E1E1E' : '#FFFFFF',
-                        hoverOffset: 15
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 20,
-                                usePointStyle: true,
-                                pointStyle: 'circle',
-                                color: fontColor
-                            },
-                            onClick: function(e, legendItem, legend) {
-                                const index = legendItem.index;
-                                const ci = legend.chart;
-                                if (ci.isDatasetVisible(0)) {
-                                    ci.toggleDataVisibility(index);
-                                    ci.update();
-                                    
-                                    // Sincroniza o gráfico de barras
-                                    if(barChart) {
-                                        barChart.toggleDataVisibility(index);
-                                        barChart.update();
+                                            // Sincroniza o gráfico de barras
+                                            if (barChart) {
+                                                barChart.toggleDataVisibility(index);
+                                                barChart.update();
+                                            }
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            const label = context.label || '';
+                                            const value = context.parsed;
+                                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                            const percentage = Math.round((value / total) * 100);
+                                            return `${label}: ${formatarMoeda(value)} (${percentage}%)`;
+                                        }
                                     }
                                 }
+                            },
+                            cutout: '60%',
+                            animation: {
+                                animateRotate: true,
+                                animateScale: true,
+                                duration: 900,
+                                easing: 'easeOutQuart'
                             }
+                        }
+                    });
+
+                    // Gráfico de Barras Horizontal
+                    const ctxBar = document.getElementById('barChart').getContext('2d');
+                    if (barChart) barChart.destroy();
+
+                    barChart = new Chart(ctxBar, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Valor Gasto',
+                                data: data,
+                                backgroundColor: cores,
+                                borderRadius: 8,
+                                borderSkipped: false
+                            }]
                         },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const label = context.label || '';
-                                    const value = context.parsed;
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = Math.round((value / total) * 100);
-                                    return `${label}: ${formatarMoeda(value)} (${percentage}%)`;
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                title: {
+                                    display: true,
+                                    text: 'Gastos por Categoria (R$)',
+                                    font: { size: 14, weight: 'bold' },
+                                    padding: { top: 10, bottom: 20 },
+                                    color: fontColor
                                 }
-                            }
-                        }
-                    },
-                    cutout: '60%',
-                    animation: {
-                        animateRotate: true,
-                        animateScale: true,
-                        duration: 900,
-                        easing: 'easeOutQuart'
-                    }
-                }
-            });
-
-            // Gráfico de Barras Horizontal
-            const ctxBar = document.getElementById('barChart').getContext('2d');
-            if (barChart) barChart.destroy();
-
-            barChart = new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Valor Gasto',
-                        data: data,
-                        backgroundColor: cores,
-                        borderRadius: 8,
-                        borderSkipped: false
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: 'Gastos por Categoria (R$)',
-                            font: { size: 14, weight: 'bold' },
-                            padding: { top: 10, bottom: 20 },
-                            color: fontColor
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            grid: { display: false },
-                            ticks: {
-                                color: fontColor,
-                                callback: function (value) {
-                                    return 'R$ ' + value.toLocaleString('pt-BR');
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    grid: { display: false },
+                                    ticks: {
+                                        color: fontColor,
+                                        callback: function (value) {
+                                            return 'R$ ' + value.toLocaleString('pt-BR');
+                                        }
+                                    }
+                                },
+                                y: {
+                                    grid: { display: false },
+                                    ticks: {
+                                        color: fontColor
+                                    }
                                 }
-                            }
-                        },
-                        y: {
-                            grid: { display: false },
-                            ticks: {
-                                color: fontColor
+                            },
+                            animation: {
+                                duration: 900,
+                                easing: 'easeOutQuart'
                             }
                         }
-                    },
-                    animation: {
-                        duration: 900,
-                        easing: 'easeOutQuart'
-                    }
+                    });
                 }
-            });
-        }
 
-        function mostrarEmptyState() {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('content').classList.add('hidden');
-            document.getElementById('empty-state').classList.remove('hidden');
-        }
+                function mostrarEmptyState() {
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('content').classList.add('hidden');
+                    document.getElementById('empty-state').classList.remove('hidden');
+                }
 
-        function mostrarMensagemErro() {
-            document.getElementById('loading').classList.add('hidden');
-            alert('Erro ao carregar dados. Por favor, tente novamente.');
-        }
+                function mostrarMensagemErro() {
+                    document.getElementById('loading').classList.add('hidden');
+                    alert('Erro ao carregar dados. Por favor, tente novamente.');
+                }
 
-        // Inicializa a página
-        document.addEventListener('DOMContentLoaded', iniciarPagina);
+                // Inicializa a página
+                document.addEventListener('DOMContentLoaded', iniciarPagina);
 
-        // Adiciona atalhos de teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                navegarMes(-1);
-            } else if (e.key === 'ArrowRight') {
-                navegarMes(1);
-            } else if (e.key === 'r' || e.key === 'R') {
-                carregarDados();
-            }
-        });
-    </script>
-<script src="cookie-consent.js"></script>
+                // Adiciona atalhos de teclado
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        navegarMes(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navegarMes(1);
+                    } else if (e.key === 'r' || e.key === 'R') {
+                        carregarDados();
+                    }
+                });
+            </script>
+            <script src="cookie-consent.js"></script>
 
         </div>
 
         <div class="store-buttons text-center pt-8 pb-4">
-            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Em breve, aplicativo dedicado disponível em:</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Em breve,
+                aplicativo dedicado disponível em:</p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular iOS App Store">
+                <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')"
+                    class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800"
+                    aria-label="Simular iOS App Store">
                     <i class="fab fa-apple text-2xl group-hover:text-slate-300 transition-colors"></i>
                     <div class="text-left leading-tight">
                         <div class="text-[10px] text-slate-400 font-medium">Baixar na</div>
                         <div class="text-sm font-semibold tracking-wide">App Store</div>
                     </div>
                 </button>
-                <button onclick="setSimulatedOS('android'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular Android Play Store">
-                    <i class="fab fa-google-play text-2xl text-[#00ff00] group-hover:text-green-400 transition-colors"></i>
+                <button onclick="setSimulatedOS('android'); setDeviceView('mobile')"
+                    class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800"
+                    aria-label="Simular Android Play Store">
+                    <i
+                        class="fab fa-google-play text-2xl text-[#00ff00] group-hover:text-green-400 transition-colors"></i>
                     <div class="text-left leading-tight">
                         <div class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Disponível no</div>
                         <div class="text-sm font-semibold tracking-wide">Google Play</div>
@@ -1380,22 +1560,28 @@
     </main>
 
     <aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
-        <div id="support-menu" 
-             class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
-             role="dialog" aria-modal="true" aria-hidden="true">
-            <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+        <div id="support-menu"
+            class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
+            role="dialog" aria-modal="true" aria-hidden="true">
+            <header
+                class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
                 <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
                         <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]"></p>
+                        <p id="typing-text"
+                            class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]">
+                        </p>
                     </div>
                 </div>
             </header>
             <nav class="p-3 space-y-1" aria-label="Canais de suporte">
-                <a href="https://wa.me/559284790794" target="_blank" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a href="https://wa.me/559284790794" target="_blank"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fab fa-whatsapp"></i>
                     </div>
                     <div>
@@ -1403,8 +1589,10 @@
                         <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
                     </div>
                 </a>
-                <a href="mailto:comercial@adminic.com.br" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a href="mailto:comercial@adminic.com.br"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div>
@@ -1412,8 +1600,10 @@
                         <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
                     </div>
                 </a>
-                <a href="central-ajuda.html" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                    <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a href="central-ajuda.html"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-question"></i>
                     </div>
                     <div>
@@ -1423,19 +1613,24 @@
                 </a>
             </nav>
             <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Suporte</span>
             </div>
         </div>
 
-        <button id="support-trigger" onclick="toggleSupportWidget()" 
-                class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
-                aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
-            <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
-                <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
-                <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+        <button id="support-trigger" onclick="toggleSupportWidget()"
+            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
+            aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
+            <div
+                class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+                <i id="icon-open"
+                    class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+                <i id="icon-close"
+                    class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
             </div>
             <div class="text-left hidden md:block">
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic © 2026</span>
+                <span
+                    class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic
+                    © 2026</span>
                 <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
             </div>
         </button>
@@ -1444,12 +1639,12 @@
     <script>
         let typingTimeout;
         const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
-        
+
         function typeWriterEffect(element, text, speed = 30) {
             let i = 0;
             element.innerHTML = "";
             element.classList.add('typing-cursor');
-            
+
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
@@ -1469,7 +1664,7 @@
             const iconOpen = document.getElementById('icon-open');
             const iconClose = document.getElementById('icon-close');
             const typingElement = document.getElementById('typing-text');
-            
+
             const isClosed = menu.classList.contains('invisible');
 
             if (isClosed) {
@@ -1486,7 +1681,7 @@
                 iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
                 iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
                 iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
-                
+
                 clearTimeout(typingTimeout);
                 typingElement.innerHTML = "";
             }
@@ -1501,137 +1696,175 @@
         });
     </script>
 
-<footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+    <footer
+        class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
-                
+
                 <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
-                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0 transition-colors duration-300">
-                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
+                    <a href="index.html"
+                        class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4 focus-visible">ADMINIC</a>
+                    <p
+                        class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0 transition-colors duration-300">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso
+                        compromisso é com a eficiência e segurança dos seus dados.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Institucional</h4>
+                    <h4
+                        class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
+                        Institucional</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos de Uso</a></li>
-                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a></li>
-                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre Nós</a></li>
+                        <li><a href="termos.html"
+                                class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Termos
+                                de Uso</a></li>
+                        <li><a href="politica.html"
+                                class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Privacidade</a>
+                        </li>
+                        <li><a href="quem-somos.html"
+                                class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">Sobre
+                                Nós</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">Contato</h4>
+                    <h4
+                        class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
+                        Contato</h4>
                     <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
-                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a></li>
-                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92) 8489-9955</a></li>
+                        <li><a href="mailto:contato@adminic.com.br"
+                                class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">contato@adminic.com.br</a>
+                        </li>
+                        <li><a href="https://wa.me/559284790794"
+                                class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1 focus-visible">(92)
+                                8489-9955</a></li>
                         <li>Manaus, AM</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center transition-colors duration-300">
-                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
-                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito |
+                    CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços.
+                    Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
-    
+
     <style>
-    /* Animação suave de entrada dos itens do menu */
-    .stagger-item {
-        opacity: 0;
-        transform: translateX(20px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .menu-open .stagger-item {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    /* Delays para efeito cascata */
-    .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-    .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-    .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-
-    /* Pulsação do botão quando fechado */
-    @keyframes ripple-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-    }
-    
-    .btn-pulse {
-        animation: ripple-pulse 2s infinite;
-    }
-
-    /* Cursor piscando para o efeito de digitação */
-    .typing-cursor::after {
-        content: '|';
-        animation: blink 1s step-start infinite;
-        color: #3b82f6;
-    }
-    
-    @keyframes blink {
-        50% { opacity: 0; }
-    }
-</style>
-    
-<script>
-    // ==========================================
-    // 1. LÓGICA DO TEMA (Claro/Escuro)
-    // ==========================================
-    const html = document.documentElement;
-
-    function updateIcons(isDark) {
-        const themeIcons = document.querySelectorAll('.theme-toggle-icon');
-        themeIcons.forEach(icon => {
-            icon.classList.remove('fa-sun', 'fa-moon');
-            icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
-        });
-    }
-
-    if (localStorage.theme === 'dark') { // Default to light
-        html.classList.add('dark');
-        updateIcons(true);
-    } else {
-        html.classList.remove('dark');
-        updateIcons(false);
-    }
-
-    function toggleTheme() {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.theme = 'light';
-            updateIcons(false);
-        } else {
-            html.classList.add('dark');
-            localStorage.theme = 'dark';
-            updateIcons(true);
+        /* Animação suave de entrada dos itens do menu */
+        .stagger-item {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-    }
 
-    
-</script>
+        .menu-open .stagger-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Delays para efeito cascata */
+        .menu-open .stagger-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .menu-open .stagger-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .menu-open .stagger-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        /* Pulsação do botão quando fechado */
+        @keyframes ripple-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .btn-pulse {
+            animation: ripple-pulse 2s infinite;
+        }
+
+        /* Cursor piscando para o efeito de digitação */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #3b82f6;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        // ==========================================
+        // 1. LÓGICA DO TEMA (Claro/Escuro)
+        // ==========================================
+        const html = document.documentElement;
+
+        function updateIcons(isDark) {
+            const themeIcons = document.querySelectorAll('.theme-toggle-icon');
+            themeIcons.forEach(icon => {
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+            });
+        }
+
+        if (localStorage.theme === 'dark') { // Default to light
+            html.classList.add('dark');
+            updateIcons(true);
+        } else {
+            html.classList.remove('dark');
+            updateIcons(false);
+        }
+
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateIcons(false);
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateIcons(true);
+            }
+        }
+
+
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Verificar preferência de redução de movimento
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         // Inicializar AOS com base na preferência
-        AOS.init({ 
-            duration: 800, 
+        AOS.init({
+            duration: 800,
             once: true,
             offset: 100,
             disable: prefersReducedMotion
         });
-        
+
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
                 const isExpanded = mobileMenu.classList.contains('active');
@@ -1639,7 +1872,7 @@
                 document.body.classList.toggle('overflow-hidden');
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
                 mobileMenu.setAttribute('aria-hidden', isExpanded);
-                
+
                 // Alterar ícone
                 const icon = mobileMenuButton.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
@@ -1649,7 +1882,7 @@
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
-                
+
                 // Focar no primeiro link do menu quando aberto
                 if (!isExpanded) {
                     setTimeout(() => {
@@ -1658,7 +1891,7 @@
                     }, 100);
                 }
             });
-            
+
             // Fechar menu ao clicar em um link
             const mobileLinks = mobileMenu.querySelectorAll('a, button[role=\"menuitem\"]');
             mobileLinks.forEach(link => {
@@ -1672,7 +1905,7 @@
                     icon.classList.add('fa-bars');
                 });
             });
-            
+
             // Fechar menu com tecla Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
@@ -1687,13 +1920,13 @@
                 }
             });
         }
-        
+
         // Fechar menu ao clicar fora
         document.addEventListener('click', (e) => {
             if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
                 mobileMenu.classList.remove('active');
-                    document.body.classList.remove('overflow-hidden');
-                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('overflow-hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
                 mobileMenu.setAttribute('aria-hidden', 'true');
                 const icon = mobileMenuButton.querySelector('i');
                 if (icon) {
@@ -1702,14 +1935,14 @@
                 }
             }
         });
-        
+
         // Scroll suave com acessibilidade
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     if (!prefersReducedMotion) {
@@ -1720,19 +1953,19 @@
                     } else {
                         targetElement.scrollIntoView();
                     }
-                    
+
                     targetElement.setAttribute('tabindex', '-1');
                     targetElement.focus();
-                    
+
                     targetElement.addEventListener('blur', () => {
                         targetElement.removeAttribute('tabindex');
                     }, { once: true });
-                    
+
                     history.pushState(null, null, targetId);
                 }
             });
         });
-        
+
         // Focar no conteúdo principal após carregamento
         window.addEventListener('load', () => {
             if (window.location.hash) {
@@ -1745,24 +1978,24 @@
                 }
             }
         });
-        
+
         // Adicionar foco visível dinamicamente
         document.addEventListener('DOMContentLoaded', () => {
             const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
             const focusableContent = document.querySelectorAll(focusableElements);
-            
+
             focusableContent.forEach(element => {
                 element.classList.add('focus-visible');
             });
         });
-        
+
         // Navegação por teclado dentro do menu mobile
         document.addEventListener('keydown', (e) => {
             if (mobileMenu && mobileMenu.classList.contains('active')) {
                 const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
                 const firstElement = focusableElements[0];
                 const lastElement = focusableElements[focusableElements.length - 1];
-                
+
                 if (e.key === 'Tab') {
                     if (e.shiftKey && document.activeElement === firstElement) {
                         e.preventDefault();
@@ -1775,8 +2008,8 @@
             }
         });
     </script>
-<script src="cookie-consent.js"></script>
-        <script>
+    <script src="cookie-consent.js"></script>
+    <script>
         let currentSimulatedOS = null;
 
         function applyOSFrame() {
@@ -1793,7 +2026,7 @@
 
             const container = document.getElementById('demo-app-container');
             const isDesktopView = container.classList.contains('max-w-[1200px]');
-            
+
             // Criação e injeção STICKY no topo do Container
             let statusBar = document.getElementById('os-status-bar');
             if (!statusBar) {
@@ -1842,15 +2075,15 @@
                     }
                 });
             });
-            
-            if(isDesktopView) {
+
+            if (isDesktopView) {
                 notch.style.opacity = '0';
-                if(statusBar) statusBar.style.opacity = '0';
+                if (statusBar) statusBar.style.opacity = '0';
             } else {
                 notch.style.opacity = '1';
-                if(statusBar) statusBar.style.opacity = '1';
+                if (statusBar) statusBar.style.opacity = '1';
             }
-            
+
             // OS Buttons state update
 
             const osButtons = document.querySelectorAll('.os-btn');
@@ -1863,7 +2096,7 @@
                 activeOsBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
                 activeOsBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
             }
-            
+
             // Show/hide relevant OS buttons based on view
             if (isDesktopView) {
                 document.getElementById('btn-os-ios').classList.add('hidden');
@@ -1876,13 +2109,13 @@
                 document.getElementById('btn-os-windows').classList.add('hidden');
                 document.getElementById('btn-os-mac').classList.add('hidden');
             }
-            
+
             // Desktop taskbar logic
             let desktopTaskbar = document.getElementById('os-desktop-taskbar');
             if (!desktopTaskbar) {
                 desktopTaskbar = document.createElement('div');
                 desktopTaskbar.id = 'os-desktop-taskbar';
-                
+
                 setInterval(() => {
                     const d = new Date();
                     const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
@@ -1931,7 +2164,7 @@
                     `;
                     container.appendChild(desktopTaskbar);
                 }
-                
+
                 const d = new Date();
                 const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
                 if (document.getElementById('os-time-desktop-mac')) document.getElementById('os-time-desktop-mac').textContent = timeStr;
@@ -1946,12 +2179,12 @@
             localStorage.setItem('adminic_sim_device', device);
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
-            
+
             buttons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
                 btn.classList.add('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
             });
-            
+
             const activeBtn = document.getElementById('btn-' + device);
             if (activeBtn) {
                 activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
@@ -1959,43 +2192,43 @@
             }
 
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
-            
-            switch(device) {
-                case 'mobile': 
+
+            switch (device) {
+                case 'mobile':
                     container.style.padding = '';
-                    container.classList.add('max-w-[400px]'); 
+                    container.classList.add('max-w-[400px]');
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
-                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
+                    if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
-                case 'zfold': 
+                case 'zfold':
                     container.style.padding = '';
-                    container.classList.add('max-w-[600px]'); 
+                    container.classList.add('max-w-[600px]');
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
-                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
+                    if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
-                case 'tablet': 
+                case 'tablet':
                     container.style.padding = '';
-                    container.classList.add('max-w-[800px]'); 
+                    container.classList.add('max-w-[800px]');
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
-                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
+                    if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
-                case 'desktop': 
+                case 'desktop':
                     container.style.padding = '0px';
-                    container.classList.add('max-w-[1200px]'); 
+                    container.classList.add('max-w-[1200px]');
                     container.classList.remove('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     container.classList.add('rounded-lg', 'border-2');
-                    if(currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
+                    if (currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
                     break;
             }
-            
+
             setSimulatedOS(currentSimulatedOS);
-            
+
             // Re-renderizar gráficos depois da transição de redimensionamento
             setTimeout(() => {
-                if(typeof doughnutChart !== 'undefined' && typeof barChart !== 'undefined' && typeof dadosAtuais !== 'undefined') {
+                if (typeof doughnutChart !== 'undefined' && typeof barChart !== 'undefined' && typeof dadosAtuais !== 'undefined') {
                     renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
                 }
             }, 550);
@@ -2012,18 +2245,18 @@
             const ua = navigator.userAgent;
             const platform = navigator.platform || '';
             const maxTouch = navigator.maxTouchPoints || 0;
-            
+
             // OS detection
             const isIOSDevice = /iPad|iPhone|iPod/.test(ua) || (platform === 'MacIntel' && maxTouch > 1);
             const isAndroidDevice = /Android/.test(ua);
             const isMacDesktop = platform.toUpperCase().indexOf('MAC') >= 0 && maxTouch <= 1;
             // Default to Windows for all other desktops
-            
+
             // Device type detection
             const screenW = window.innerWidth;
             const isTouchDevice = maxTouch > 0;
             let detectedDevice;
-            
+
             if (isTouchDevice && screenW <= 480) {
                 detectedDevice = 'mobile';
             } else if (isTouchDevice && screenW <= 820) {
@@ -2031,14 +2264,14 @@
             } else {
                 detectedDevice = 'desktop';
             }
-            
+
             let detectedOS;
             if (detectedDevice === 'desktop') {
                 detectedOS = isMacDesktop ? 'mac' : 'windows';
             } else {
                 detectedOS = isIOSDevice ? 'ios' : 'android';
             }
-            
+
             return { device: detectedDevice, os: detectedOS };
         }
 
@@ -2046,7 +2279,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedDevice = localStorage.getItem('adminic_sim_device');
             const savedOS = localStorage.getItem('adminic_sim_os');
-            
+
             if (savedDevice && savedOS) {
                 // Use saved preferences
                 currentSimulatedOS = savedOS;
@@ -2058,17 +2291,18 @@
                 setDeviceView(detected.device);
             }
         });
-        </script>
-<script>
-    // Move o banner de cookies para a raiz do body para evitar bloqueio de z-index
-    const checkCookie = setInterval(() => {
-        const cookieBanner = document.querySelector('[id*="cookie"], [class*="cookie"]');
-        if(cookieBanner) {
-            document.body.appendChild(cookieBanner);
-            cookieBanner.setAttribute('style', 'z-index: 2147483647 !important; pointer-events: auto !important; position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important; margin: 0 !important;');
-            clearInterval(checkCookie);
-        }
-    }, 500);
-</script>
+    </script>
+    <script>
+        // Move o banner de cookies para a raiz do body para evitar bloqueio de z-index
+        const checkCookie = setInterval(() => {
+            const cookieBanner = document.querySelector('[id*="cookie"], [class*="cookie"]');
+            if (cookieBanner) {
+                document.body.appendChild(cookieBanner);
+                cookieBanner.setAttribute('style', 'z-index: 2147483647 !important; pointer-events: auto !important; position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important; margin: 0 !important;');
+                clearInterval(checkCookie);
+            }
+        }, 500);
+    </script>
 </body>
+
 </html>
