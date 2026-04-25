@@ -712,7 +712,7 @@
             </button>
         </div>
 
-        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] min-h-[80vh] bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden relative mx-auto">
+        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-y-auto overflow-x-hidden relative mx-auto">
             
 
     <div class="header">
@@ -1748,9 +1748,35 @@
     </script>
 <script src="cookie-consent.js"></script>
         <script>
+        function applyOSFrame() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const container = document.getElementById('demo-app-container');
+            
+            if (!document.getElementById('os-notch')) {
+                const notch = document.createElement('div');
+                notch.id = 'os-notch';
+                container.appendChild(notch);
+            }
+            const notch = document.getElementById('os-notch');
+            
+            // Apply iOS dynamic island or Android punch hole
+            if (isIOS) {
+                notch.className = 'absolute top-0 left-1/2 -translate-x-1/2 z-[1000] w-[120px] h-[30px] bg-black rounded-b-2xl transition-all duration-300';
+            } else {
+                notch.className = 'absolute top-2 left-1/2 -translate-x-1/2 z-[1000] w-[20px] h-[20px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(0,0,0,0.8)] transition-all duration-300';
+            }
+            
+            // Hide notch on tablet/desktop initially if max-w is large
+            if(container.classList.contains('max-w-[800px]') || container.classList.contains('max-w-[1200px]')) {
+                notch.style.opacity = '0';
+            }
+        }
+
         function setDeviceView(device) {
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
+            const notch = document.getElementById('os-notch');
             
             buttons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
@@ -1764,19 +1790,36 @@
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
             
             switch(device) {
-                case 'mobile': container.classList.add('max-w-[400px]'); break;
-                case 'zfold': container.classList.add('max-w-[600px]'); break;
-                case 'tablet': container.classList.add('max-w-[800px]'); break;
-                case 'desktop': container.classList.add('max-w-[1200px]'); break;
+                case 'mobile': 
+                    container.classList.add('max-w-[400px]'); 
+                    if(notch) notch.style.opacity = '1';
+                    break;
+                case 'zfold': 
+                    container.classList.add('max-w-[600px]'); 
+                    if(notch) notch.style.opacity = '1';
+                    break;
+                case 'tablet': 
+                    container.classList.add('max-w-[800px]'); 
+                    if(notch) notch.style.opacity = '0';
+                    break;
+                case 'desktop': 
+                    container.classList.add('max-w-[1200px]'); 
+                    if(notch) notch.style.opacity = '0';
+                    break;
             }
             
             // Re-renderizar gráficos depois da transição de redimensionamento
             setTimeout(() => {
-                if(doughnutChart && barChart && dadosAtuais) {
+                if(typeof doughnutChart !== 'undefined' && typeof barChart !== 'undefined' && typeof dadosAtuais !== 'undefined') {
                     renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
                 }
             }, 550);
         }
+
+        // Initialize OS Frame on load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyOSFrame();
+        });
         </script>
 </body>
 </html>
