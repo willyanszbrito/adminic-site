@@ -429,12 +429,16 @@
         }
 
         .fab-container {
-            position: absolute;
+            position: sticky;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 40px;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: max-content;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 20px;
             z-index: 100;
             background: rgba(255, 255, 255, 0.9);
@@ -686,6 +690,75 @@
                 <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
                 <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
+                    <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300" 
+         aria-label="Barra de informações">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:contato@adminic.com.br" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> 
+                    <span class="hidden lg:inline">contato@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> 
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300" aria-label="Navegação principal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3 group focus-visible" aria-label="Adminic - Voltar à página inicial">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition" aria-hidden="true">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
+            </a>
+
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="text-blue-600 dark:text-blue-400 px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="central-ajuda.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Ajuda</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                
+                <button onclick="toggleTheme()" class="flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible" aria-label="Alternar tema">
+                    <i class="fas fa-sun theme-toggle-icon"></i>
+                </button>
+
+                <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible" aria-label="Fale conosco no WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>Área do Cliente</span>
+                </a>
+
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl" role="menu" aria-label="Menu móvel" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="text-center text-blue-600 dark:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
+                <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
+                
                 
 
                 <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
@@ -697,7 +770,7 @@
 
     <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
         <!-- Device Toggle Toolbar -->
-        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
             <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-mobile" aria-label="Visualização Mobile">
                 <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
             </button>
@@ -709,6 +782,21 @@
             </button>
             <button onclick="setDeviceView('desktop')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 hidden md:flex" id="btn-desktop" aria-label="Visualização Desktop">
                 <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
+            </button>
+        </div>
+
+        <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setSimulatedOS('ios')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-os-ios" aria-label="Simular iOS">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">iOS</span>
+            </button>
+            <button onclick="setSimulatedOS('android')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-os-android" aria-label="Simular Android">
+                <i class="fab fa-android text-green-500"></i> <span class="hidden sm:inline">Android</span>
+            </button>
+            <button onclick="setSimulatedOS('windows')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-windows" aria-label="Simular Windows">
+                <i class="fab fa-windows text-blue-500"></i> <span class="hidden sm:inline">Windows</span>
+            </button>
+            <button onclick="setSimulatedOS('mac')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-mac" aria-label="Simular Mac">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">Mac</span>
             </button>
         </div>
 
@@ -832,16 +920,11 @@
                 }
             });
         });
-        observer.observe(document.body, { attributes: true });
+        observer.observe(document.documentElement, { attributes: true });
 
         let mesesDisponiveis = [];
         let mesAtual = '';
         let dadosAtuais = null;
-
-        let theme = localStorage.getItem('adminic_theme') || 'light';
-        if(theme === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
 
         function animarNumero(elemento, valorFinal, formatador) {
             const duracao = 1000;
@@ -1305,7 +1388,126 @@
 
         </div>
     </main>
-    
+
+    <aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
+        <div id="support-menu" 
+             class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
+             role="dialog" aria-modal="true" aria-hidden="true">
+            <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                        <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]"></p>
+                    </div>
+                </div>
+            </header>
+            <nav class="p-3 space-y-1" aria-label="Canais de suporte">
+                <a href="https://wa.me/559284790794" target="_blank" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
+                    </div>
+                </a>
+                <a href="mailto:comercial@adminic.com.br" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
+                    </div>
+                </a>
+                <a href="central-ajuda.html" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Perguntas frequentes</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+
+        <button id="support-trigger" onclick="toggleSupportWidget()" 
+                class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
+                aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
+            <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+                <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+                <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+            </div>
+            <div class="text-left hidden md:block">
+                <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
+                <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
+            </div>
+        </button>
+    </aside>
+
+    <script>
+        let typingTimeout;
+        const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
+        
+        function typeWriterEffect(element, text, speed = 30) {
+            let i = 0;
+            element.innerHTML = "";
+            element.classList.add('typing-cursor');
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(type, speed);
+                } else {
+                    setTimeout(() => { element.classList.remove('typing-cursor'); }, 1500);
+                }
+            }
+            clearTimeout(typingTimeout);
+            type();
+        }
+
+        function toggleSupportWidget() {
+            const menu = document.getElementById('support-menu');
+            const btn = document.getElementById('support-trigger');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            const typingElement = document.getElementById('typing-text');
+            
+            const isClosed = menu.classList.contains('invisible');
+
+            if (isClosed) {
+                menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+                btn.setAttribute('aria-expanded', 'true');
+                iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
+
+                setTimeout(() => { typeWriterEffect(typingElement, welcomeMessage); }, 300);
+            } else {
+                menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
+                btn.setAttribute('aria-expanded', 'false');
+                iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+                
+                clearTimeout(typingTimeout);
+                typingElement.innerHTML = "";
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('support-menu');
+            const btn = document.getElementById('support-trigger');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
+                toggleSupportWidget();
+            }
+        });
+    </script>
+
 <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
@@ -1375,176 +1577,7 @@
     /* Cursor piscando para o efeito de digitação */
     .typing-cursor::after {
         content: '|';
-        animation: blink 1s step-start infinite;
-        color: #3b82f6; /* Azul */
-    }
-    
-    @keyframes blink {
-        50% { opacity: 0; }
-    }
-</style>
-
-<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
-
-    <div id="support-menu" 
-         class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
-         role="dialog" 
-         aria-modal="true" 
-         aria-hidden="true">
-        
-        <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
-            <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
-                    <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]">
-                        </p>
-                </div>
-            </div>
-        </header>
-
-        <nav class="p-3 space-y-1" aria-label="Canais de suporte">
-            
-            <a href="https://wa.me/559284790794" target="_blank" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <div>
-                    <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
-                </div>
-            </a>
-
-            <a href="mailto:comercial@adminic.com.br" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                    <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
-                </div>
-            </a>
-
-            <a href="central-ajuda.html" class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
-                <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                    <i class="fas fa-question"></i>
-                </div>
-                <div>
-                    <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
-                    <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Perguntas frequentes</span>
-                </div>
-            </a>
-            
-        </nav>
-        
-        <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
-        </div>
-    </div>
-
-    <button id="support-trigger" onclick="toggleSupportWidget()" 
-            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
-                   bg-slate-900 dark:bg-blue-600 
-                   border border-slate-700 dark:border-blue-400
-                   btn-pulse group"
-            aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
-        
-        <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
-            <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
-            <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
-            
-            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
-        </div>
-
-        <div class="text-left hidden md:block">
-            <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
-            <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
-        </div>
-    </button>
-</aside>
-
-<script>
-    // Variáveis globais para controle da digitação
-    let typingTimeout;
-    const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
-    
-    function typeWriterEffect(element, text, speed = 30) {
-        let i = 0;
-        element.innerHTML = ""; // Limpa texto anterior
-        element.classList.add('typing-cursor'); // Adiciona cursor
-        
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                typingTimeout = setTimeout(type, speed);
-            } else {
-                // Remove o cursor piscante após terminar de digitar (opcional)
-                setTimeout(() => {
-                   element.classList.remove('typing-cursor'); 
-                }, 1500);
-            }
-        }
-        
-        clearTimeout(typingTimeout); // Garante que não haja sobreposição
-        type();
-    }
-
-    function toggleSupportWidget() {
-        const menu = document.getElementById('support-menu');
-        const btn = document.getElementById('support-trigger');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-        const typingElement = document.getElementById('typing-text');
-        
-        const isClosed = menu.classList.contains('invisible');
-
-        if (isClosed) {
-            // ============ ABRIR ============
-            
-            // 1. Mostrar Menu
-            menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
-            menu.classList.add('menu-open'); 
-            btn.setAttribute('aria-expanded', 'true');
-            btn.classList.remove('btn-pulse'); 
-
-            // 2. Animar Ícones
-            iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
-            iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
-            iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
-
-            // 3. Iniciar Digitação Suave (com pequeno delay para o menu abrir antes)
-            setTimeout(() => {
-                typeWriterEffect(typingElement, welcomeMessage);
-            }, 300);
-
-        } else {
-            // ============ FECHAR ============
-            
-            // 1. Esconder Menu
-            menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
-            menu.classList.remove('menu-open');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.classList.add('btn-pulse');
-
-            // 2. Restaurar Ícones
-            iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
-            iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
-            iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
-            
-            // 3. Limpar digitação
-            clearTimeout(typingTimeout);
-            typingElement.innerHTML = "";
-        }
-    }
-
-    // Fechar ao clicar fora do widget
-    document.addEventListener('click', (e) => {
-        const menu = document.getElementById('support-menu');
-        const btn = document.getElementById('support-trigger');
-        
-        if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
+        animation: blink 1s step-start infinrget) && !btn.contains(e.target) && !menu.classList.contains('invisible')) {
             toggleSupportWidget();
         }
     });
@@ -1793,14 +1826,75 @@
                 notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
             }
             
-            // Hide notch on tablet/desktop initially if max-w is large
-            if(container.classList.contains('max-w-[800px]') || container.classList.contains('max-w-[1200px]')) {
+            // Hide notch/status bar initially based on current class
+            if(container.classList.contains('max-w-[1200px]')) {
                 notch.style.opacity = '0';
                 if(statusBar) statusBar.style.opacity = '0';
                 container.style.paddingTop = '';
+            } else if(container.classList.contains('max-w-[800px]')) {
+                notch.style.opacity = '0';
+                if(statusBar) statusBar.style.opacity = '1';
+                container.style.paddingTop = '28px';
             } else {
                 if(statusBar) statusBar.style.opacity = '1';
                 container.style.paddingTop = '32px';
+            }
+            
+            // Create desktop taskbar if not exists
+            if (!document.getElementById('os-desktop-taskbar')) {
+                const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                const desktopTaskbar = document.createElement('div');
+                desktopTaskbar.id = 'os-desktop-taskbar';
+                desktopTaskbar.style.opacity = container.classList.contains('max-w-[1200px]') ? '1' : '0';
+                
+                if (isMac) {
+                    desktopTaskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <i class="fab fa-apple text-[14px]"></i>
+                            <span class="font-bold">Adminic</span>
+                            <span class="font-medium hidden sm:inline">Arquivo</span>
+                            <span class="font-medium hidden sm:inline">Editar</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-wifi text-[11px]"></i>
+                            <i class="fas fa-battery-full text-[13px]"></i>
+                            <span id="os-time-desktop-mac" class="font-medium">12:00</span>
+                        </div>
+                    `;
+                } else {
+                    desktopTaskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.innerHTML = `
+                        <div class="flex items-center gap-2 h-full">
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fas fa-search text-[14px]"></i></div>
+                        </div>
+                        <div class="flex items-center gap-3 h-full px-2 hover:bg-white/10 rounded cursor-pointer transition">
+                            <i class="fas fa-chevron-up text-[10px]"></i>
+                            <i class="fas fa-wifi text-[12px]"></i>
+                            <i class="fas fa-volume-up text-[12px]"></i>
+                            <div class="flex flex-col items-end leading-tight text-[10px]">
+                                <span id="os-time-desktop-win">12:00</span>
+                                <span id="os-date-desktop-win">01/01/2026</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                container.appendChild(desktopTaskbar);
+                
+                setInterval(() => {
+                    const d = new Date();
+                    const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+                    if (document.getElementById('os-time-desktop-mac')) document.getElementById('os-time-desktop-mac').textContent = timeStr;
+                    if (document.getElementById('os-time-desktop-win')) document.getElementById('os-time-desktop-win').textContent = timeStr;
+                    if (document.getElementById('os-date-desktop-win')) document.getElementById('os-date-desktop-win').textContent = d.toLocaleDateString();
+                }, 60000);
+                
+                const d = new Date();
+                const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+                if (document.getElementById('os-time-desktop-mac')) document.getElementById('os-time-desktop-mac').textContent = timeStr;
+                if (document.getElementById('os-time-desktop-win')) document.getElementById('os-time-desktop-win').textContent = timeStr;
+                if (document.getElementById('os-date-desktop-win')) document.getElementById('os-date-desktop-win').textContent = d.toLocaleDateString();
             }
         }
 
@@ -1821,30 +1915,40 @@
 
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
             
+            const desktopTaskbar = document.getElementById('os-desktop-taskbar');
+            
             switch(device) {
                 case 'mobile': 
                     container.classList.add('max-w-[400px]'); 
                     if(notch) notch.style.opacity = '1';
                     if(statusBar) statusBar.style.opacity = '1';
+                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
                     container.style.paddingTop = '32px';
+                    container.style.paddingBottom = '';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
                     if(notch) notch.style.opacity = '1';
                     if(statusBar) statusBar.style.opacity = '1';
+                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
                     container.style.paddingTop = '32px';
+                    container.style.paddingBottom = '';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
                     if(notch) notch.style.opacity = '0';
-                    if(statusBar) statusBar.style.opacity = '0';
-                    container.style.paddingTop = '';
+                    if(statusBar) statusBar.style.opacity = '1';
+                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
+                    container.style.paddingTop = '28px';
+                    container.style.paddingBottom = '';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
                     if(notch) notch.style.opacity = '0';
                     if(statusBar) statusBar.style.opacity = '0';
-                    container.style.paddingTop = '';
+                    if(desktopTaskbar) desktopTaskbar.style.opacity = '1';
+                    container.style.paddingTop = desktopTaskbar && desktopTaskbar.innerHTML.includes('fa-apple') ? '24px' : '';
+                    container.style.paddingBottom = desktopTaskbar && !desktopTaskbar.innerHTML.includes('fa-apple') ? '40px' : '';
                     break;
             }
             

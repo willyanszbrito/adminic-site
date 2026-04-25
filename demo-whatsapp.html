@@ -677,22 +677,39 @@
 <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
     
     <!-- Device Toggle Toolbar -->
-    <div class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
-        <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400" id="btn-mobile" aria-label="Visualização Mobile">
-            <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
-        </button>
-        <button onclick="setDeviceView('zfold')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-zfold" aria-label="Visualização Z-Fold">
-            <i class="fas fa-mobile-alt fa-rotate-90"></i> <span class="hidden sm:inline">Z-Fold</span>
-        </button>
-        <button onclick="setDeviceView('tablet')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-tablet" aria-label="Visualização Tablet">
-            <i class="fas fa-tablet-alt"></i> <span class="hidden sm:inline">Tablet</span>
-        </button>
-        <button onclick="setDeviceView('desktop')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden md:flex" id="btn-desktop" aria-label="Visualização Desktop">
-            <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
-        </button>
+    <div class="flex flex-col gap-2 mb-4 z-10">
+        <div class="flex justify-center items-center gap-1 sm:gap-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors">
+            <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400" id="btn-mobile" aria-label="Visualização Mobile">
+                <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
+            </button>
+            <button onclick="setDeviceView('zfold')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-zfold" aria-label="Visualização Z-Fold">
+                <i class="fas fa-mobile-alt fa-rotate-90"></i> <span class="hidden sm:inline">Z-Fold</span>
+            </button>
+            <button onclick="setDeviceView('tablet')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-tablet" aria-label="Visualização Tablet">
+                <i class="fas fa-tablet-alt"></i> <span class="hidden sm:inline">Tablet</span>
+            </button>
+            <button onclick="setDeviceView('desktop')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden md:flex" id="btn-desktop" aria-label="Visualização Desktop">
+                <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
+            </button>
+        </div>
+        
+        <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors">
+            <button onclick="setSimulatedOS('ios')" id="btn-os-ios" class="os-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 flex items-center gap-2 transition-all">
+                <i class="fab fa-apple text-lg"></i> <span class="hidden sm:inline">iOS (App Store)</span><span class="sm:hidden">iOS</span>
+            </button>
+            <button onclick="setSimulatedOS('android')" id="btn-os-android" class="os-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 flex items-center gap-2 transition-all">
+                <i class="fab fa-android text-lg"></i> <span class="hidden sm:inline">Android (Play Store)</span><span class="sm:hidden">Android</span>
+            </button>
+            <button onclick="setSimulatedOS('windows')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-windows" aria-label="Simular Windows">
+                <i class="fab fa-windows text-blue-500"></i> <span class="hidden sm:inline">Windows</span>
+            </button>
+            <button onclick="setSimulatedOS('mac')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-mac" aria-label="Simular Mac">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">Mac</span>
+            </button>
+        </div>
     </div>
 
-        <div id="demo-app-container" class="wa-app-wrapper w-full max-w-[400px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-120px)] max-h-[850px] min-h-[300px] bg-[var(--wa-bg)] rounded-[2rem] md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-hidden relative flex flex-col mx-auto">
+        <div id="demo-app-container" class="wa-app-wrapper w-full max-w-[400px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[75dvh] md:h-[calc(100dvh-120px)] max-h-[850px] min-h-[400px] bg-[var(--wa-bg)] rounded-[2rem] md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-hidden relative flex flex-col mx-auto">
             
     <div class="bg-pattern"></div>
 
@@ -1600,11 +1617,75 @@
     </script>
 <script src="cookie-consent.js"></script>
         <script>
+        let currentSimulatedOS = null;
+
         function applyOSFrame() {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isAndroid = /Android/.test(navigator.userAgent);
             const container = document.getElementById('demo-app-container');
+            const isDesktopView = container.classList.contains('max-w-[1200px]');
             
+            // Determine simulated OS
+            let isIOS = false;
+            let isAndroid = false;
+            let isWindows = false;
+            let isMac = false;
+            
+            if (currentSimulatedOS) {
+                isIOS = currentSimulatedOS === 'ios';
+                isAndroid = currentSimulatedOS === 'android';
+                isWindows = currentSimulatedOS === 'windows';
+                isMac = currentSimulatedOS === 'mac';
+            } else {
+                // Auto-detect if no explicit selection
+                isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                isAndroid = /Android/.test(navigator.userAgent) || (!isIOS && !isDesktopView);
+                isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                isWindows = !isMac && isDesktopView;
+                
+                // Set initial state
+                if (isDesktopView) currentSimulatedOS = isMac ? 'mac' : 'windows';
+                else currentSimulatedOS = isIOS ? 'ios' : 'android';
+            }
+            
+            // Update OS buttons
+            const osButtons = document.querySelectorAll('.os-btn');
+            osButtons.forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                btn.classList.add('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+            });
+            const activeOsBtn = document.getElementById('btn-os-' + currentSimulatedOS);
+            if (activeOsBtn) {
+                activeOsBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+                activeOsBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            }
+            
+            // Show/hide relevant OS buttons based on view
+            if (isDesktopView) {
+                document.getElementById('btn-os-ios').classList.add('hidden');
+                document.getElementById('btn-os-android').classList.add('hidden');
+                document.getElementById('btn-os-windows').classList.remove('hidden');
+                document.getElementById('btn-os-mac').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-os-ios').classList.remove('hidden');
+                document.getElementById('btn-os-android').classList.remove('hidden');
+                document.getElementById('btn-os-windows').classList.add('hidden');
+                document.getElementById('btn-os-mac').classList.add('hidden');
+            }
+            
+            if (!document.getElementById('os-status-bar')) {
+                const statusBar = document.createElement('div');
+                statusBar.id = 'os-status-bar';
+                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 z-[900] text-slate-800 dark:text-slate-200';
+                statusBar.innerHTML = `
+                    <div id="os-time">12:00</div>
+                    <div class="flex gap-1.5 items-center">
+                        <i class="fas fa-signal text-[10px]"></i>
+                        <i class="fas fa-wifi text-[10px]"></i>
+                        <i class="fas fa-battery-full text-[12px]"></i>
+                    </div>
+                `;
+                container.appendChild(statusBar);
+            }
+
             if (!document.getElementById('os-notch')) {
                 const notch = document.createElement('div');
                 notch.id = 'os-notch';
@@ -1617,33 +1698,97 @@
             if (statusBar) {
                 const now = new Date();
                 document.getElementById('os-time').textContent = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-                setInterval(() => {
-                    const d = new Date();
-                    document.getElementById('os-time').textContent = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
-                }, 60000);
             }
             
             // Apply iOS dynamic island or Android punch hole
             if (isIOS) {
                 notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
-            } else {
+            } else if (isAndroid) {
                 notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
             }
             
-            // Hide notch on tablet/desktop initially if max-w is large
-            if(container.classList.contains('max-w-[800px]') || container.classList.contains('max-w-[1200px]')) {
+            // Desktop Taskbar logic
+            let desktopTaskbar = document.getElementById('os-desktop-taskbar');
+            if (isDesktopView) {
+                if (!desktopTaskbar) {
+                    desktopTaskbar = document.createElement('div');
+                    desktopTaskbar.id = 'os-desktop-taskbar';
+                    container.appendChild(desktopTaskbar);
+                }
+                desktopTaskbar.style.opacity = '1';
+                
+                if (isMac) {
+                    desktopTaskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <i class="fab fa-apple text-[14px]"></i>
+                            <span class="font-bold">Adminic</span>
+                            <span class="font-medium hidden sm:inline">Arquivo</span>
+                            <span class="font-medium hidden sm:inline">Editar</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-wifi text-[11px]"></i>
+                            <i class="fas fa-battery-full text-[13px]"></i>
+                            <span id="os-time-desktop-mac" class="font-medium">12:00</span>
+                        </div>
+                    `;
+                } else {
+                    desktopTaskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.innerHTML = `
+                        <div class="flex items-center gap-2 h-full">
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fas fa-search text-[14px]"></i></div>
+                        </div>
+                        <div class="flex items-center gap-3 h-full px-2 hover:bg-white/10 rounded cursor-pointer transition">
+                            <i class="fas fa-chevron-up text-[10px]"></i>
+                            <i class="fas fa-wifi text-[12px]"></i>
+                            <i class="fas fa-volume-up text-[12px]"></i>
+                            <div class="flex flex-col items-end leading-tight text-[10px]">
+                                <span id="os-time-desktop-win">12:00</span>
+                                <span id="os-date-desktop-win">01/01/2026</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                const d = new Date();
+                const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+                if (document.getElementById('os-time-desktop-mac')) document.getElementById('os-time-desktop-mac').textContent = timeStr;
+                if (document.getElementById('os-time-desktop-win')) document.getElementById('os-time-desktop-win').textContent = timeStr;
+                if (document.getElementById('os-date-desktop-win')) document.getElementById('os-date-desktop-win').textContent = d.toLocaleDateString();
+                
+            } else {
+                if (desktopTaskbar) desktopTaskbar.style.opacity = '0';
+            }
+            
+            // Visibility logic
+            if (isDesktopView) {
                 notch.style.opacity = '0';
                 if(statusBar) statusBar.style.opacity = '0';
+                container.style.paddingTop = isMac ? '24px' : '';
+                container.style.paddingBottom = isWindows ? '40px' : '';
+            } else if(container.classList.contains('max-w-[800px]')) {
+                notch.style.opacity = '0';
+                if(statusBar) statusBar.style.opacity = '1';
+                container.style.paddingTop = '28px';
+                container.style.paddingBottom = '';
             } else {
                 if(statusBar) statusBar.style.opacity = '1';
+                container.style.paddingTop = '32px';
+                container.style.paddingBottom = '';
             }
+        }
+        
+        function setSimulatedOS(os) {
+            currentSimulatedOS = os;
+            localStorage.setItem('adminic_sim_os', os);
+            applyOSFrame();
         }
 
         function setDeviceView(device) {
+            localStorage.setItem('adminic_sim_device', device);
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
-            const notch = document.getElementById('os-notch');
-            const statusBar = document.getElementById('os-status-bar');
             
             buttons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
@@ -1651,38 +1796,43 @@
             });
             
             const activeBtn = document.getElementById('btn-' + device);
-            activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
-            activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            if (activeBtn) {
+                activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+                activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            }
 
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
             
             switch(device) {
                 case 'mobile': 
                     container.classList.add('max-w-[400px]'); 
-                    if(notch) notch.style.opacity = '1';
-                    if(statusBar) statusBar.style.opacity = '1';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
-                    if(notch) notch.style.opacity = '1';
-                    if(statusBar) statusBar.style.opacity = '1';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
-                    if(notch) notch.style.opacity = '0';
-                    if(statusBar) statusBar.style.opacity = '0';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
-                    if(notch) notch.style.opacity = '0';
-                    if(statusBar) statusBar.style.opacity = '0';
+                    if(currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
                     break;
             }
+            
+            setSimulatedOS(currentSimulatedOS);
         }
 
         // Initialize OS Frame on load
         document.addEventListener('DOMContentLoaded', () => {
-            applyOSFrame();
+            const savedDevice = localStorage.getItem('adminic_sim_device') || 'mobile';
+            const savedOS = localStorage.getItem('adminic_sim_os') || null;
+            if (savedOS) {
+                currentSimulatedOS = savedOS;
+            }
+            setDeviceView(savedDevice);
         });
         </script>
 </body>
