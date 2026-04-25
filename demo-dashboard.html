@@ -689,9 +689,9 @@
                 <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
                 <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
                 
-                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2" role="menuitem">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Área do Cliente</span>
+
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
+                    <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
                 </a>
             </div>
         </div>
@@ -1316,6 +1316,26 @@
 <script src="cookie-consent.js"></script>
 
         </div>
+
+        <div class="store-buttons text-center pt-8 pb-4 z-10 relative">
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Em breve, aplicativo dedicado disponível em:</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular iOS App Store">
+                    <i class="fab fa-apple text-2xl group-hover:text-slate-300 transition-colors"></i>
+                    <div class="text-left leading-tight">
+                        <div class="text-[10px] text-slate-400 font-medium">Baixar na</div>
+                        <div class="text-sm font-semibold tracking-wide">App Store</div>
+                    </div>
+                </button>
+                <button onclick="setSimulatedOS('android'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular Android Play Store">
+                    <i class="fab fa-google-play text-2xl text-[#00ff00] group-hover:text-green-400 transition-colors"></i>
+                    <div class="text-left leading-tight">
+                        <div class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Disponível no</div>
+                        <div class="text-sm font-semibold tracking-wide">Google Play</div>
+                    </div>
+                </button>
+            </div>
+        </div>
     </main>
 
     <aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
@@ -1757,14 +1777,19 @@
             }
             
             // Apply iOS dynamic island or Android punch hole
-            // Force re-trigger animation by resetting className first
-            notch.className = '';
-            notch.offsetHeight; // Force reflow to restart CSS transitions
-            if (isIOS) {
-                notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
-            } else {
-                notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
-            }
+            // Use requestAnimationFrame for reliable re-trigger on rapid clicks
+            notch.style.transition = 'none';
+            notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-0 h-0 bg-black rounded-full opacity-0';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    notch.style.transition = '';
+                    if (isIOS) {
+                        notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
+                    } else {
+                        notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
+                    }
+                });
+            });
             
             // Hide notch/status bar initially based on current class
             if(container.classList.contains('max-w-[1200px]')) {
@@ -1842,8 +1867,6 @@
             localStorage.setItem('adminic_sim_device', device);
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
-            const notch = document.getElementById('os-notch');
-            const statusBar = document.getElementById('os-status-bar');
             
             buttons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
@@ -1858,49 +1881,21 @@
 
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
             
-            const desktopTaskbar = document.getElementById('os-desktop-taskbar');
-            const dashHeader = document.getElementById('dash-app-header');
-            
             switch(device) {
                 case 'mobile': 
                     container.classList.add('max-w-[400px]'); 
-                    if(notch) notch.style.opacity = '1';
-                    if(statusBar) statusBar.style.opacity = '1';
-                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '0px';
-                    container.style.paddingBottom = '0px';
-                    if(dashHeader) dashHeader.style.paddingTop = '28px';
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
-                    if(notch) notch.style.opacity = '1';
-                    if(statusBar) statusBar.style.opacity = '1';
-                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '0px';
-                    container.style.paddingBottom = '0px';
-                    if(dashHeader) dashHeader.style.paddingTop = '28px';
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
-                    if(notch) notch.style.opacity = '0';
-                    if(statusBar) statusBar.style.opacity = '1';
-                    if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '0px';
-                    container.style.paddingBottom = '0px';
-                    if(dashHeader) dashHeader.style.paddingTop = '28px';
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
-                    if(notch) notch.style.opacity = '0';
-                    if(statusBar) statusBar.style.opacity = '0';
-                    if(desktopTaskbar) desktopTaskbar.style.opacity = '1';
-                    const isMacActive = desktopTaskbar && desktopTaskbar.innerHTML.includes('fa-apple');
-                    container.style.paddingTop = isMacActive ? '24px' : '0px';
-                    container.style.paddingBottom = !isMacActive ? '40px' : '0px';
-                    if(dashHeader) dashHeader.style.paddingTop = '0px';
                     if(currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
                     break;
             }
@@ -1921,14 +1916,56 @@
             applyOSFrame();
         }
 
+        // Detect real device and OS on first visit
+        function detectRealDevice() {
+            const ua = navigator.userAgent;
+            const platform = navigator.platform || '';
+            const maxTouch = navigator.maxTouchPoints || 0;
+            
+            // OS detection
+            const isIOSDevice = /iPad|iPhone|iPod/.test(ua) || (platform === 'MacIntel' && maxTouch > 1);
+            const isAndroidDevice = /Android/.test(ua);
+            const isMacDesktop = platform.toUpperCase().indexOf('MAC') >= 0 && maxTouch <= 1;
+            // Default to Windows for all other desktops
+            
+            // Device type detection
+            const screenW = window.innerWidth;
+            const isTouchDevice = maxTouch > 0;
+            let detectedDevice;
+            
+            if (isTouchDevice && screenW <= 480) {
+                detectedDevice = 'mobile';
+            } else if (isTouchDevice && screenW <= 820) {
+                detectedDevice = 'tablet';
+            } else {
+                detectedDevice = 'desktop';
+            }
+            
+            let detectedOS;
+            if (detectedDevice === 'desktop') {
+                detectedOS = isMacDesktop ? 'mac' : 'windows';
+            } else {
+                detectedOS = isIOSDevice ? 'ios' : 'android';
+            }
+            
+            return { device: detectedDevice, os: detectedOS };
+        }
+
         // Initialize OS Frame on load
         document.addEventListener('DOMContentLoaded', () => {
-            const savedDevice = localStorage.getItem('adminic_sim_device') || 'desktop';
-            const savedOS = localStorage.getItem('adminic_sim_os') || null;
-            if (savedOS) {
+            const savedDevice = localStorage.getItem('adminic_sim_device');
+            const savedOS = localStorage.getItem('adminic_sim_os');
+            
+            if (savedDevice && savedOS) {
+                // Use saved preferences
                 currentSimulatedOS = savedOS;
+                setDeviceView(savedDevice);
+            } else {
+                // First visit: auto-detect real device and OS
+                const detected = detectRealDevice();
+                currentSimulatedOS = detected.os;
+                setDeviceView(detected.device);
             }
-            setDeviceView(savedDevice);
         });
         </script>
 </body>
