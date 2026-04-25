@@ -167,7 +167,7 @@
             --cor-border: #CFD8DC;
         }
 
-        body.dark-mode {
+        html.dark {
             --cor-fundo: #121212;
             --cor-card: #1E1E1E;
             --cor-texto: #E0E0E0;
@@ -1753,23 +1753,54 @@
             const isAndroid = /Android/.test(navigator.userAgent);
             const container = document.getElementById('demo-app-container');
             
+            if (!document.getElementById('os-status-bar')) {
+                const statusBar = document.createElement('div');
+                statusBar.id = 'os-status-bar';
+                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 z-[900] text-slate-800 dark:text-slate-200';
+                statusBar.innerHTML = `
+                    <div id="os-time">12:00</div>
+                    <div class="flex gap-1.5 items-center">
+                        <i class="fas fa-signal text-[10px]"></i>
+                        <i class="fas fa-wifi text-[10px]"></i>
+                        <i class="fas fa-battery-full text-[12px]"></i>
+                    </div>
+                `;
+                container.appendChild(statusBar);
+            }
+
             if (!document.getElementById('os-notch')) {
                 const notch = document.createElement('div');
                 notch.id = 'os-notch';
                 container.appendChild(notch);
             }
             const notch = document.getElementById('os-notch');
+            const statusBar = document.getElementById('os-status-bar');
+            
+            // Set Time
+            if (statusBar) {
+                const now = new Date();
+                document.getElementById('os-time').textContent = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+                setInterval(() => {
+                    const d = new Date();
+                    document.getElementById('os-time').textContent = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+                }, 60000);
+            }
             
             // Apply iOS dynamic island or Android punch hole
             if (isIOS) {
-                notch.className = 'absolute top-0 left-1/2 -translate-x-1/2 z-[1000] w-[120px] h-[30px] bg-black rounded-b-2xl transition-all duration-300';
+                notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
             } else {
-                notch.className = 'absolute top-2 left-1/2 -translate-x-1/2 z-[1000] w-[20px] h-[20px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(0,0,0,0.8)] transition-all duration-300';
+                notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
             }
             
             // Hide notch on tablet/desktop initially if max-w is large
             if(container.classList.contains('max-w-[800px]') || container.classList.contains('max-w-[1200px]')) {
                 notch.style.opacity = '0';
+                if(statusBar) statusBar.style.opacity = '0';
+                container.style.paddingTop = '';
+            } else {
+                if(statusBar) statusBar.style.opacity = '1';
+                container.style.paddingTop = '32px';
             }
         }
 
@@ -1777,6 +1808,7 @@
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
             const notch = document.getElementById('os-notch');
+            const statusBar = document.getElementById('os-status-bar');
             
             buttons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
@@ -1793,18 +1825,26 @@
                 case 'mobile': 
                     container.classList.add('max-w-[400px]'); 
                     if(notch) notch.style.opacity = '1';
+                    if(statusBar) statusBar.style.opacity = '1';
+                    container.style.paddingTop = '32px';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
                     if(notch) notch.style.opacity = '1';
+                    if(statusBar) statusBar.style.opacity = '1';
+                    container.style.paddingTop = '32px';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
                     if(notch) notch.style.opacity = '0';
+                    if(statusBar) statusBar.style.opacity = '0';
+                    container.style.paddingTop = '';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
                     if(notch) notch.style.opacity = '0';
+                    if(statusBar) statusBar.style.opacity = '0';
+                    container.style.paddingTop = '';
                     break;
             }
             
