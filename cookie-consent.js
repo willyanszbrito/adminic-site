@@ -100,6 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = e.target.closest('a');
         if (!link) return;
         
+        // Do not intercept the modal's own confirm button
+        if (link.id === 'confirm-redirect') return;
+        
         const href = link.getAttribute('href');
         if (!href) return;
         
