@@ -1579,7 +1579,7 @@
                 </div>
             </header>
             <nav class="p-3 space-y-1" aria-label="Canais de suporte">
-                <a href="https://wa.me/559284790794" target="_blank"
+                <a href="demo-whatsapp.html"
                     class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
                         class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
@@ -1618,20 +1618,22 @@
             </div>
         </div>
 
-        <button id="support-trigger" onclick="toggleSupportWidget()"
-            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
+        <button id="support-trigger" onclick="toggleSupportWidget()" 
+            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
+                   bg-slate-900 dark:bg-blue-600 
+                   border border-slate-700 dark:border-blue-400
+                   btn-pulse group"
             aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
-            <div
-                class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
-                <i id="icon-open"
-                    class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
-                <i id="icon-close"
-                    class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+        
+            <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+                <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+                <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+                
+                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
             </div>
-            <div class="text-left flex flex-col">
-                <span
-                    class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic
-                    © 2026</span>
+
+            <div class="text-left hidden md:block">
+                <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
                 <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
             </div>
         </button>

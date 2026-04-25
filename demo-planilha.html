@@ -413,18 +413,18 @@
 
                     <!-- Dashboard View -->
                     <div id="view-dashboard" class="hidden p-6 space-y-6 max-w-5xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
-                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Saldo Atual</span>
-                                <span id="dash-saldo" class="text-2xl font-black text-green-600 tracking-tighter">R$ 5.450,00</span>
+                        <div class="grid grid-cols-3 md:grid-cols-3 gap-2 sm:gap-4">
+                            <div class="bg-white dark:bg-slate-800 p-2 sm:p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center justify-center text-center">
+                                <span class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Saldo Atual</span>
+                                <span id="dash-saldo" class="text-base sm:text-lg lg:text-2xl font-black text-green-600 tracking-tighter whitespace-nowrap">R$ 5.450,00</span>
                             </div>
-                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
-                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Gastos do Mês</span>
-                                <span id="dash-gastos" class="text-2xl font-black text-red-500 tracking-tighter">R$ 2.050,00</span>
+                            <div class="bg-white dark:bg-slate-800 p-2 sm:p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center justify-center text-center">
+                                <span class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Gastos do Mês</span>
+                                <span id="dash-gastos" class="text-base sm:text-lg lg:text-2xl font-black text-red-500 tracking-tighter whitespace-nowrap">R$ 2.050,00</span>
                             </div>
-                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
-                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">A Pagar</span>
-                                <span id="dash-pendente" class="text-2xl font-black text-amber-500 tracking-tighter">R$ 1.850,00</span>
+                            <div class="bg-white dark:bg-slate-800 p-2 sm:p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center justify-center text-center">
+                                <span class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">A Pagar</span>
+                                <span id="dash-pendente" class="text-base sm:text-lg lg:text-2xl font-black text-amber-500 tracking-tighter whitespace-nowrap">R$ 1.850,00</span>
                             </div>
                         </div>
 
@@ -481,7 +481,7 @@
                 </div>
             </header>
             <nav class="p-3 space-y-1" aria-label="Canais de suporte">
-                <a href="https://wa.me/559284790794" target="_blank"
+                <a href="demo-whatsapp.html"
                     class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
                         class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
@@ -500,14 +500,14 @@
                     </div>
                     <div>
                         <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
-                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">comercial@adminic.com.br</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
                     </div>
                 </a>
                 <a href="central-ajuda.html"
                     class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
-                        class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                        <i class="fas fa-book"></i>
+                        class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-question"></i>
                     </div>
                     <div>
                         <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
@@ -520,20 +520,22 @@
             </div>
         </div>
 
-        <button id="support-trigger" onclick="toggleSupportWidget()"
-            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
+        <button id="support-trigger" onclick="toggleSupportWidget()" 
+            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0
+                   bg-slate-900 dark:bg-blue-600 
+                   border border-slate-700 dark:border-blue-400
+                   btn-pulse group"
             aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
-            <div
-                class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
-                <i id="icon-open"
-                    class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
-                <i id="icon-close"
-                    class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+        
+            <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+                <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+                <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+                
+                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
             </div>
-            <div class="text-left flex flex-col">
-                <span
-                    class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic
-                    © 2026</span>
+
+            <div class="text-left hidden md:block">
+                <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
                 <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
             </div>
         </button>
@@ -624,24 +626,35 @@
 
                 if (isMac) {
                     container.style.paddingTop = '24px';
-                    taskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] z-[100] text-slate-900 dark:text-white';
+                    taskbar.className = 'absolute top-0 left-0 w-full min-h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[9999] text-slate-900 dark:text-white pointer-events-auto';
                     taskbar.innerHTML = `
                         <div class="flex items-center gap-4">
                             <i class="fab fa-apple text-[14px]"></i>
                             <span class="font-bold">Adminic</span>
+                            <span class="font-medium hidden sm:inline">Arquivo</span>
+                            <span class="font-medium hidden sm:inline">Editar</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <i class="fas fa-wifi text-[11px]"></i><i class="fas fa-battery-full text-[13px]"></i><span>${timeStr}</span>
+                            <i class="fas fa-wifi text-[11px]"></i>
+                            <i class="fas fa-battery-full text-[13px]"></i>
+                            <span id="os-time-desktop-mac" class="font-medium">${timeStr}</span>
                         </div>`;
                 } else if (isWindows) {
                     container.style.paddingBottom = '40px';
-                    taskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] z-[100] text-slate-900 dark:text-white';
+                    taskbar.className = 'absolute bottom-0 left-0 w-full min-h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[9999] text-slate-900 dark:text-white';
                     taskbar.innerHTML = `
                         <div class="flex items-center gap-2 h-full">
                             <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fas fa-search text-[14px]"></i></div>
                         </div>
                         <div class="flex items-center gap-3 h-full px-2 hover:bg-white/10 rounded cursor-pointer transition">
-                            <div class="flex flex-col items-end leading-tight text-[10px]"><span>${timeStr}</span><span>${d.toLocaleDateString()}</span></div>
+                            <i class="fas fa-chevron-up text-[10px]"></i>
+                            <i class="fas fa-wifi text-[12px]"></i>
+                            <i class="fas fa-volume-up text-[12px]"></i>
+                            <div class="flex flex-col items-end leading-tight text-[10px]">
+                                <span id="os-time-desktop-win">${timeStr}</span>
+                                <span id="os-date-desktop-win">${d.toLocaleDateString()}</span>
+                            </div>
                         </div>`;
                 }
                 container.appendChild(taskbar);
@@ -653,6 +666,11 @@
             if (notch) notch.remove();
 
             if (!isDesktopView) {
+                if (currentSimulatedOS === 'ios') {
+                    container.style.paddingTop = '48px'; // Prevent overlap with larger iOS notch
+                } else {
+                    container.style.paddingTop = '32px'; // Prevent overlap on Android
+                }
                 statusBar = document.createElement('div');
                 statusBar.id = 'os-status-bar';
                 statusBar.className = 'absolute top-0 left-0 w-full h-[28px] z-[100] flex justify-between items-center px-6 text-[11px] font-semibold text-slate-800 dark:text-white pointer-events-none';
@@ -736,6 +754,11 @@
         function populateGrid() {
             const grid = document.getElementById('grid-content');
             grid.innerHTML = '';
+            
+            let saldo = 0;
+            let gastos = 0;
+            let pendente = 0;
+
             sampleData.forEach((row, i) => {
                 grid.innerHTML += `
                     <div class="sheets-cell sheets-row-num">${i + 1}</div>
@@ -745,10 +768,25 @@
                     <div class="sheets-cell text-slate-500">${row.cat}</div>
                     <div class="sheets-cell italic text-[11px]">${row.ent}</div>
                     <div class="sheets-cell font-bold justify-center ${row.stat === 'Pago' ? 'text-green-600' : 'text-amber-500'}">${row.stat}</div>`;
+                
+                if (row.stat === 'Pago') {
+                    if (row.val < 0) gastos += Math.abs(row.val);
+                    saldo += row.val;
+                } else if (row.stat === 'Pendente') {
+                    if (row.val < 0) pendente += Math.abs(row.val);
+                }
             });
             for (let i = sampleData.length; i < 30; i++) {
                 grid.innerHTML += `<div class="sheets-cell sheets-row-num">${i+1}</div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div>`;
             }
+
+            const elSaldo = document.getElementById('dash-saldo');
+            const elGastos = document.getElementById('dash-gastos');
+            const elPendente = document.getElementById('dash-pendente');
+            
+            if (elSaldo) elSaldo.textContent = formatarMoeda(saldo);
+            if (elGastos) elGastos.textContent = formatarMoeda(gastos);
+            if (elPendente) elPendente.textContent = formatarMoeda(pendente);
         }
 
         function formatarMoeda(v) {
@@ -927,6 +965,16 @@
                 currentSimulatedOS = detected.os;
                 setDeviceView(detected.device);
             }
+
+            // Atualiza o nome da aba da planilha dinamicamente
+            const currentDate = new Date();
+            const currentMonthName = currentDate.toLocaleString('pt-BR', { month: 'long' });
+            const capitalizedMonth = currentMonthName.charAt(0).toUpperCase() + currentMonthName.slice(1);
+            const tabSpreadsheet = document.getElementById('tab-spreadsheet');
+            if (tabSpreadsheet) {
+                tabSpreadsheet.textContent = `${capitalizedMonth}-${currentDate.getFullYear()}`;
+            }
+
             populateGrid();
         });
     </script>
