@@ -439,46 +439,86 @@
                 </div>
             </div>
             
-            <!-- Support Widget -->
-            <div id="support-trigger-container" class="absolute bottom-6 right-6 z-[200] transition-all duration-300 pointer-events-none">
-                 <div class="flex flex-col items-end gap-3 pointer-events-auto">
-                    <div id="support-menu" class="invisible opacity-0 translate-y-4 transition-all duration-300 w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/5 overflow-hidden">
-                        <div class="p-4 bg-blue-600 text-white">
-                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">Assistente Adminic</p>
-                            <h4 class="font-bold">Como podemos ajudar?</h4>
-                        </div>
-                        <div class="p-2 space-y-1">
-                            <a href="https://wa.me/559284790794" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 flex items-center justify-center transition group-hover:scale-110">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">WhatsApp</span>
-                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Suporte em tempo real</span>
-                                </div>
-                            </a>
-                            <a href="central-ajuda.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 flex items-center justify-center transition group-hover:scale-110">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">Ajuda</span>
-                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Documentação completa</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="p-3 bg-slate-50 dark:bg-white/5 border-t border-slate-100 dark:border-white/5 text-center">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
-                        </div>
-                    </div>
-                    <button id="support-trigger" onclick="toggleSupportWidget()" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl shadow-blue-600/30 flex items-center justify-center transition-all duration-300 relative group overflow-hidden">
-                        <i id="icon-open" class="fas fa-headset text-xl absolute transition-all duration-300"></i>
-                        <i id="icon-close" class="fas fa-times text-xl absolute opacity-0 rotate-90 scale-50 transition-all duration-300"></i>
-                    </button>
-                 </div>
-            </div>
+
         </div>
     </main>
+
+    <aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
+        <div id="support-menu"
+            class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden"
+            role="dialog" aria-modal="true" aria-hidden="true">
+            <header
+                class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+                <div class="flex items-start gap-3">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                        <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p id="typing-text"
+                            class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]">
+                        </p>
+                    </div>
+                </div>
+            </header>
+            <nav class="p-3 space-y-1" aria-label="Canais de suporte">
+                <a href="https://wa.me/559284790794" target="_blank"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
+                    </div>
+                </a>
+                <a href="mailto:comercial@adminic.com.br"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">comercial@adminic.com.br</span>
+                    </div>
+                </a>
+                <a href="central-ajuda.html"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">Central de Ajuda</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Perguntas frequentes</span>
+                    </div>
+                </a>
+            </nav>
+            <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+            </div>
+        </div>
+
+        <button id="support-trigger" onclick="toggleSupportWidget()"
+            class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group"
+            aria-label="Abrir suporte" aria-expanded="false" aria-controls="support-menu">
+            <div
+                class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden transition-colors duration-300">
+                <i id="icon-open"
+                    class="fas fa-headset text-white dark:text-blue-600 text-sm transition-all duration-300 transform scale-100 opacity-100 absolute"></i>
+                <i id="icon-close"
+                    class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+            </div>
+            <div class="text-left flex flex-col">
+                <span
+                    class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic
+                    © 2026</span>
+                <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
+            </div>
+        </button>
+    </aside>
 
     <!-- Footer -->
     <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
@@ -769,21 +809,50 @@
             applyOSFrame();
         }
 
+        let typingTimeout;
+        const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
+
+        function typeWriterEffect(element, text, speed = 30) {
+            let i = 0;
+            element.innerHTML = "";
+            element.classList.add('typing-cursor');
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        element.classList.remove('typing-cursor');
+                    }, 1500);
+                }
+            }
+
+            clearTimeout(typingTimeout);
+            type();
+        }
+
         function toggleSupportWidget() {
             const menu = document.getElementById('support-menu');
+            const trigger = document.getElementById('support-trigger');
             const iconOpen = document.getElementById('icon-open');
             const iconClose = document.getElementById('icon-close');
-            const isClosed = menu.classList.contains('invisible');
-            if (isClosed) {
-                menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
-                iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
-                iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
-            } else {
+            const typingText = document.getElementById('typing-text');
+            const isVisible = !menu.classList.contains('invisible');
+
+            if (isVisible) {
                 menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
-                iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
+                iconOpen.classList.remove('opacity-0', 'scale-50', '-rotate-90', 'scale-0', 'rotate-180');
                 iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+                trigger.ariaExpanded = "false";
+                clearTimeout(typingTimeout);
+            } else {
+                menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+                iconOpen.classList.add('opacity-0', 'scale-50', '-rotate-90');
+                iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+                trigger.ariaExpanded = "true";
+                typeWriterEffect(typingText, welcomeMessage);
             }
         }
 
