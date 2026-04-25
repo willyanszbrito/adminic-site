@@ -25,6 +25,7 @@
             darkMode: 'class',
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -429,7 +430,7 @@
         }
 
         .fab-container {
-            position: fixed;
+            position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -600,7 +601,7 @@
             text-align: center;
             border-radius: 8px;
             padding: 16px;
-            position: fixed;
+            position: absolute;
             z-index: 1000;
             left: 50%;
             bottom: 30px;
