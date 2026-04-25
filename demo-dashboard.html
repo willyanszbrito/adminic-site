@@ -695,8 +695,24 @@
         </div>
     </nav>
 
-    <main class="flex-grow flex items-center justify-center py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
-        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] min-h-[80vh] bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden relative mx-auto">
+    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
+        <!-- Device Toggle Toolbar -->
+        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-mobile" aria-label="Visualização Mobile">
+                <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
+            </button>
+            <button onclick="setDeviceView('zfold')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-zfold" aria-label="Visualização Z-Fold">
+                <i class="fas fa-mobile-alt fa-rotate-90"></i> <span class="hidden sm:inline">Z-Fold</span>
+            </button>
+            <button onclick="setDeviceView('tablet')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-tablet" aria-label="Visualização Tablet">
+                <i class="fas fa-tablet-alt"></i> <span class="hidden sm:inline">Tablet</span>
+            </button>
+            <button onclick="setDeviceView('desktop')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 hidden md:flex" id="btn-desktop" aria-label="Visualização Desktop">
+                <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
+            </button>
+        </div>
+
+        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] min-h-[80vh] bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden relative mx-auto">
             
 
     <div class="header">
@@ -1731,5 +1747,36 @@
         });
     </script>
 <script src="cookie-consent.js"></script>
+        <script>
+        function setDeviceView(device) {
+            const container = document.getElementById('demo-app-container');
+            const buttons = document.querySelectorAll('.device-btn');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                btn.classList.add('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+            });
+            
+            const activeBtn = document.getElementById('btn-' + device);
+            activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+            activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+
+            container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
+            
+            switch(device) {
+                case 'mobile': container.classList.add('max-w-[400px]'); break;
+                case 'zfold': container.classList.add('max-w-[600px]'); break;
+                case 'tablet': container.classList.add('max-w-[800px]'); break;
+                case 'desktop': container.classList.add('max-w-[1200px]'); break;
+            }
+            
+            // Re-renderizar gráficos depois da transição de redimensionamento
+            setTimeout(() => {
+                if(doughnutChart && barChart && dadosAtuais) {
+                    renderizarGraficos(dadosAtuais.categorias, dadosAtuais.valoresCategorias);
+                }
+            }, 550);
+        }
+        </script>
 </body>
 </html>
