@@ -691,9 +691,9 @@
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative" style="min-height: calc(100dvh - 80px);">
+    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative pointer-events-none" style="min-height: calc(100dvh - 80px);">
         <!-- Device Toggle Toolbar -->
-        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10 pointer-events-auto">
             <button onclick="setDeviceView('mobile')" class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-mobile" aria-label="Visualização Mobile">
                 <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
             </button>
@@ -723,7 +723,7 @@
             </button>
         </div>
 
-        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-y-auto overflow-x-hidden relative mx-auto">
+        <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-y-auto overflow-x-hidden relative mx-auto pointer-events-auto">
             
 
     <div class="header relative pt-[28px]" id="dash-app-header">
@@ -1311,7 +1311,7 @@
 
         </div>
 
-        <div class="store-buttons text-center pt-8 pb-4">
+        <div class="store-buttons text-center pt-8 pb-4 pointer-events-auto">
             <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Em breve, aplicativo dedicado disponível em:</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular iOS App Store">
@@ -1833,7 +1833,7 @@
                 desktopTaskbar.style.opacity = container.classList.contains('max-w-[1200px]') ? '1' : '0';
                 
                 if (isMac) {
-                    desktopTaskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.className = 'sticky top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
                         <div class="flex items-center gap-4">
                             <i class="fab fa-apple text-[14px]"></i>
@@ -1848,7 +1848,7 @@
                         </div>
                     `;
                 } else {
-                    desktopTaskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.className = 'sticky bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
                         <div class="flex items-center gap-2 h-full">
                             <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
@@ -1865,7 +1865,12 @@
                         </div>
                     `;
                 }
-                container.appendChild(desktopTaskbar);
+                
+                if (isMac) {
+                    container.prepend(desktopTaskbar);
+                } else {
+                    container.appendChild(desktopTaskbar);
+                }
                 
                 setInterval(() => {
                     const d = new Date();
