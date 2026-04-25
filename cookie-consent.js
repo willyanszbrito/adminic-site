@@ -29,3 +29,87 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// --- REDIRECT WARNING INTERCEPTOR ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Inject Redirect Modal HTML
+    const modalHTML = `
+    <div id="redirect-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 md:p-8 max-w-sm w-[90%] transform scale-95 transition-transform duration-300 text-center border border-slate-200 dark:border-slate-700">
+            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 dark:text-blue-400 text-2xl">
+                <i class="fab fa-whatsapp" id="redirect-icon"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Saindo do Adminic</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Você está sendo redirecionado para um ambiente externo (<span id="redirect-dest">WhatsApp</span>). Deseja continuar?</p>
+            <div class="flex gap-3 justify-center">
+                <button id="cancel-redirect" class="px-5 py-2.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">Cancelar</button>
+                <a id="confirm-redirect" href="#" target="_blank" class="px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20">Continuar</a>
+            </div>
+        </div>
+    </div>`;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const redirectModal = document.getElementById('redirect-modal');
+    const cancelBtn = document.getElementById('cancel-redirect');
+    const confirmBtn = document.getElementById('confirm-redirect');
+    const modalBox = redirectModal.querySelector('div');
+    const redirectDest = document.getElementById('redirect-dest');
+    const redirectIcon = document.getElementById('redirect-icon');
+    
+    let pendingUrl = '';
+
+    function showModal(url) {
+        pendingUrl = url;
+        confirmBtn.href = url;
+        
+        if (url.includes('wa.me') || url.includes('whatsapp.com')) {
+            redirectDest.textContent = 'WhatsApp';
+            redirectIcon.className = 'fab fa-whatsapp';
+        } else {
+            redirectDest.textContent = new URL(url).hostname;
+            redirectIcon.className = 'fas fa-external-link-alt';
+        }
+        
+        redirectModal.classList.remove('hidden');
+        redirectModal.classList.add('flex');
+        
+        // Trigger animation
+        setTimeout(() => {
+            redirectModal.classList.remove('opacity-0');
+            modalBox.classList.remove('scale-95');
+        }, 10);
+    }
+
+    function hideModal() {
+        redirectModal.classList.add('opacity-0');
+        modalBox.classList.add('scale-95');
+        
+        setTimeout(() => {
+            redirectModal.classList.add('hidden');
+            redirectModal.classList.remove('flex');
+            pendingUrl = '';
+        }, 300);
+    }
+
+    cancelBtn.addEventListener('click', hideModal);
+    confirmBtn.addEventListener('click', hideModal);
+
+    // Intercept clicks on links
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Check if external (starts with http but not same hostname, or explicit wa.me)
+        try {
+            const isExternal = (href.startsWith('http') && !href.includes(window.location.hostname)) || href.includes('wa.me');
+            if (isExternal) {
+                e.preventDefault();
+                showModal(link.href);
+            }
+        } catch (err) {}
+    });
+});
