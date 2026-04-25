@@ -1696,10 +1696,11 @@
                 document.getElementById('btn-os-mac').classList.add('hidden');
             }
             
-            if (!document.getElementById('os-status-bar')) {
-                const statusBar = document.createElement('div');
+            // Criação e injeção STICKY no topo do Container
+            let statusBar = document.getElementById('os-status-bar');
+            if (!statusBar) {
+                statusBar = document.createElement('div');
                 statusBar.id = 'os-status-bar';
-                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 z-[900] bg-[var(--wa-header)] text-white';
                 statusBar.innerHTML = `
                     <div id="os-time">12:00</div>
                     <div class="flex gap-1.5 items-center">
@@ -1708,34 +1709,35 @@
                         <i class="fas fa-battery-full text-[12px]"></i>
                     </div>
                 `;
-                container.appendChild(statusBar);
+                container.prepend(statusBar);
             }
 
-            if (!document.getElementById('os-notch')) {
-                const notch = document.createElement('div');
+            let notch = document.getElementById('os-notch');
+            if (!notch) {
+                notch = document.createElement('div');
                 notch.id = 'os-notch';
-                container.appendChild(notch);
+                container.prepend(notch);
             }
-            const notch = document.getElementById('os-notch');
-            const statusBar = document.getElementById('os-status-bar');
-            
+
             // Set Time
             if (statusBar) {
                 const now = new Date();
                 document.getElementById('os-time').textContent = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
             }
-            
-            // Apply iOS dynamic island or Android punch hole
-            // Use requestAnimationFrame for reliable re-trigger on rapid clicks
+
+            // Estilização: h-0 e sticky top-0 para não rolarem com o scroll e não empurrarem o layout
+            // NOTA: Se estiver no demo-whatsapp, mantenha text-white no statusBar. Se for dashboard, use text-slate-800 dark:text-white
+            statusBar.className = 'sticky top-0 left-0 w-full h-0 z-[900] flex justify-between items-start px-6 pt-1.5 text-[11px] font-semibold tracking-wide pointer-events-none transition-opacity duration-300 ' + (document.getElementById('wa-app-header') ? 'text-white' : 'text-slate-800 dark:text-white');
+
             notch.style.transition = 'none';
-            notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-0 h-0 bg-black rounded-full opacity-0';
+            notch.className = 'sticky top-0 left-0 w-full h-0 z-[1000] pointer-events-none flex justify-center';
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     notch.style.transition = '';
                     if (isIOS) {
-                        notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
-                    } else if (isAndroid) {
-                        notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
+                        notch.innerHTML = '<div class="w-[120px] h-[35px] mt-[8px] bg-black rounded-full transition-all duration-300 shadow-md pointer-events-auto"></div>';
+                    } else {
+                        notch.innerHTML = '<div class="w-[20px] h-[20px] mt-[10px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.2)] transition-all duration-300 pointer-events-auto"></div>';
                     }
                 });
             });
@@ -1751,7 +1753,7 @@
                 desktopTaskbar.style.opacity = '1';
                 
                 if (isMac) {
-                    desktopTaskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.className = 'sticky top-0 left-0 w-full min-h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[9999] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
                         <div class="flex items-center gap-4">
                             <i class="fab fa-apple text-[14px]"></i>
@@ -1765,6 +1767,7 @@
                             <span id="os-time-desktop-mac" class="font-medium">12:00</span>
                         </div>
                     `;
+                    container.prepend(desktopTaskbar);
                 } else {
                     desktopTaskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
@@ -1794,26 +1797,12 @@
                 if (desktopTaskbar) desktopTaskbar.style.opacity = '0';
             }
             
-            // Visibility logic
-            const waHeader = document.getElementById('wa-app-header');
-            
-            if (isDesktopView) {
+            if(isDesktopView) {
                 notch.style.opacity = '0';
                 if(statusBar) statusBar.style.opacity = '0';
-                container.style.paddingTop = isMac ? '24px' : '0px';
-                container.style.paddingBottom = isWindows ? '40px' : '0px';
-                if(waHeader) waHeader.style.paddingTop = '0px';
-            } else if(container.classList.contains('max-w-[800px]')) {
+            } else {
                 notch.style.opacity = '1';
                 if(statusBar) statusBar.style.opacity = '1';
-                container.style.paddingTop = '0px';
-                container.style.paddingBottom = '0px';
-                if(waHeader) waHeader.style.paddingTop = '28px';
-            } else {
-                if(statusBar) statusBar.style.opacity = '1';
-                container.style.paddingTop = '0px';
-                container.style.paddingBottom = '0px';
-                if(waHeader) waHeader.style.paddingTop = '28px';
             }
         }
         
