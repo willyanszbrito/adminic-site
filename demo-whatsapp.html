@@ -1178,7 +1178,7 @@
         </div>
         
         <div class="store-buttons text-center pt-8 pb-4 z-10 relative">
-            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Disponível para</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Em breve, aplicativo dedicado disponível em:</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular iOS App Store">
                     <i class="fab fa-apple text-2xl group-hover:text-slate-300 transition-colors"></i>
@@ -1726,6 +1726,9 @@
             }
             
             // Apply iOS dynamic island or Android punch hole
+            // Force re-trigger animation by resetting className first
+            notch.className = '';
+            notch.offsetHeight; // Force reflow to restart CSS transitions
             if (isIOS) {
                 notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
             } else if (isAndroid) {
