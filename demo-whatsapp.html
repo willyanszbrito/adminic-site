@@ -844,6 +844,8 @@
             <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
     </div>
+    </div>
+</main>
 
     <script>
         // Configurações do Simulador
@@ -1787,6 +1789,10 @@
                     `;
                 }
                 
+                // Ajustar padding do container para não tampar conteúdo
+                container.style.paddingTop = isMac ? '24px' : '0';
+                container.style.paddingBottom = !isMac ? '40px' : '0';
+                
                 const d = new Date();
                 const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
                 if (document.getElementById('os-time-desktop-mac')) document.getElementById('os-time-desktop-mac').textContent = timeStr;
@@ -1795,6 +1801,8 @@
                 
             } else {
                 if (desktopTaskbar) desktopTaskbar.style.opacity = '0';
+                container.style.paddingTop = '0';
+                container.style.paddingBottom = '0';
             }
             
             if(isDesktopView) {
