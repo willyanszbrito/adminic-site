@@ -692,7 +692,6 @@
         </div>
         <div class="header-actions">
             <div class="credits-badge" id="credits-badge">Créditos: 10</div>
-            <button class="theme-btn" onclick="toggleWATheme()" aria-label="Alternar tema" id="wa-theme-btn">☀️</button>
         </div>
     </div>
 
@@ -803,21 +802,6 @@
         // Configurações do Simulador
         const CREDITS_LIMIT = 10;
         const LOCKOUT_MS = 30 * 60 * 1000; // 30 minutos
-
-        // Aplica o tema salvo no localStorage
-        let theme = localStorage.getItem('adminic_wa_theme') || 'light';
-        if(theme === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('wa-theme-btn').textContent = '🌙';
-        }
-
-        // Theme Toggle
-        function toggleWATheme() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('adminic_wa_theme', isDark ? 'dark' : 'light');
-            document.getElementById('wa-theme-btn').textContent = isDark ? '🌙' : '☀️';
-        }
 
         // Bottom Sheet
         function openBottomSheet() { document.getElementById('bs-overlay').classList.add('active'); }
@@ -1147,27 +1131,6 @@
         </div>
     </main>
     
-        <script>
-        // Override theme toggle to sync WA theme
-        const originalToggle = toggleTheme;
-        toggleTheme = function() {
-            if(typeof toggleWATheme === 'function') {
-                toggleWATheme();
-            }
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-            const themeIcons = document.querySelectorAll('.theme-toggle-icon');
-            themeIcons.forEach(icon => {
-                icon.classList.remove('fa-sun', 'fa-moon');
-                icon.classList.add(html.classList.contains('dark') ? 'fa-moon' : 'fa-sun');
-            });
-        };
         </script>
         
 <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
