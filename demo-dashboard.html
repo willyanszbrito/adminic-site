@@ -1613,7 +1613,7 @@
                 </a>
             </nav>
             <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Suporte</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
             </div>
         </div>
 
@@ -1627,7 +1627,7 @@
                 <i id="icon-close"
                     class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
             </div>
-            <div class="text-left hidden md:block">
+            <div class="text-left flex flex-col">
                 <span
                     class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic
                     © 2026</span>
@@ -1638,6 +1638,13 @@
 
     <script>
         let typingTimeout;
+        
+        // Garantir branding via DOM conforme solicitado
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerBranding = document.querySelector('#support-menu .bg-slate-50 span');
+            if (footerBranding) footerBranding.innerHTML = 'Adminic © 2026';
+        });
+
         const welcomeMessage = "Olá! 👋 Como podemos ajudar você a otimizar seu tempo hoje?";
 
         function typeWriterEffect(element, text, speed = 30) {
