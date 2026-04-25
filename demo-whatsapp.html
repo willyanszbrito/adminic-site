@@ -838,12 +838,54 @@
         </div>
     </div>
 
-    <div class="input-area" id="input-area">
-        <input type="text" id="chat-input" class="chat-input" placeholder="Mensagem..." autocomplete="off">
-        <button class="send-btn" onclick="enviarMensagem()" id="send-btn" aria-label="Enviar">
-            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-        </button>
-    </div>
+        <style>
+            .fab-container {
+                position: absolute;
+                bottom: 80px;
+                right: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                z-index: 100;
+            }
+            .floating-btn {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+                transition: transform 0.2s;
+                border: none;
+                text-decoration: none;
+            }
+            .floating-btn:active { transform: scale(0.9); }
+            .fab-sheets { background: linear-gradient(135deg, #0F9D58, #0B8043); }
+            .fab-dashboard { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+            .floating-btn svg { width: 24px; height: 24px; fill: white; }
+        </style>
+
+        <div class="fab-container">
+            <a href="demo-planilha.html" class="floating-btn fab-sheets" aria-label="Abrir Planilha" id="link-planilha">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5H8V7h5v2z" />
+                </svg>
+            </a>
+            <a href="demo-dashboard.html" class="floating-btn fab-dashboard" aria-label="Abrir Dashboard">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="input-area" id="input-area">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Mensagem..." autocomplete="off">
+            <button class="send-btn" onclick="enviarMensagem()" id="send-btn" aria-label="Enviar">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </div>
     </div>
 </main>
 

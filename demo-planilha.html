@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminic | Demonstração Planilha</title>
+    <meta name="description" content="Simulador de Planilha Adminic para Controle Financeiro.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sheets-grid {
+            display: grid;
+            grid-template-columns: 40px repeat(6, 1fr);
+            border-left: 1px solid #e0e0e0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .sheets-cell {
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 4px 8px;
+            font-size: 13px;
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            background: white;
+        }
+
+        .dark .sheets-cell {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        .sheets-header {
+            background: #f8f9fa;
+            font-weight: 600;
+            justify-content: center;
+            color: #5f6368;
+        }
+
+        .dark .sheets-header {
+            background: #0f172a;
+            color: #94a3b8;
+        }
+
+        .sheets-row-num {
+            background: #f8f9fa;
+            color: #5f6368;
+            font-size: 11px;
+            justify-content: center;
+        }
+
+        .dark .sheets-row-num {
+            background: #0f172a;
+            color: #64748b;
+        }
+
+        .sheets-cell-active {
+            box-shadow: inset 0 0 0 2px #0F9D58;
+            z-index: 10;
+        }
+
+        .sheets-toolbar-btn {
+            padding: 6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            color: #5f6368;
+        }
+
+        .sheets-toolbar-btn:hover {
+            background: #f1f3f4;
+        }
+
+        .dark .sheets-toolbar-btn {
+            color: #94a3b8;
+        }
+
+        .dark .sheets-toolbar-btn:hover {
+            background: #334155;
+        }
+
+        .sheets-tab {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border-right: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sheets-tab-active {
+            background: white;
+            color: #0F9D58;
+            border-bottom: 3px solid #0F9D58;
+        }
+
+        .dark .sheets-tab-active {
+            background: #1e293b;
+            border-bottom-color: #10b981;
+        }
+
+        .sheets-tab:not(.sheets-tab-active):hover {
+            background: #f1f3f4;
+        }
+
+        .dark .sheets-tab:not(.sheets-tab-active):hover {
+            background: #334155;
+        }
+
+        /* Simulator Styles */
+        #demo-app-container {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark #demo-app-container {
+            background: #0f172a;
+        }
+
+        .os-btn {
+            transition: all 0.2s ease;
+        }
+
+        .device-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #3b82f6;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter hover:text-blue-600 dark:hover:text-blue-400 transition">ADMINIC</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html#servicos" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Serviços</a>
+                    <a href="index.html#solucoes" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Soluções</a>
+                    <a href="demo-dashboard.html" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Demos</a>
+                    <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm border border-slate-200 dark:border-white/10">
+                        <i class="fas fa-sun theme-toggle-icon"></i>
+                    </button>
+                    <a href="https://wa.me/559284790794" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-blue-600/20 active:scale-95">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center py-8 px-4 sm:px-6">
+        
+        <!-- Simulator Controls -->
+        <div class="w-full max-w-4xl mb-8 space-y-6">
+            <div class="flex flex-wrap justify-center gap-3 p-1.5 bg-slate-200/50 dark:bg-white/5 backdrop-blur-sm rounded-2xl border border-slate-300 dark:border-white/10 w-fit mx-auto">
+                <button onclick="setDeviceView('mobile')" id="btn-mobile" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-mobile-alt"></i> Mobile
+                </button>
+                <button onclick="setDeviceView('tablet')" id="btn-tablet" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-tablet-alt"></i> Tablet
+                </button>
+                <button onclick="setDeviceView('desktop')" id="btn-desktop" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-desktop"></i> Desktop
+                </button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="setSimulatedOS('ios')" id="btn-os-ios" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5">
+                    <i class="fab fa-apple"></i> iOS
+                </button>
+                <button onclick="setSimulatedOS('android')" id="btn-os-android" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5">
+                    <i class="fab fa-android"></i> Android
+                </button>
+                <button onclick="setSimulatedOS('windows')" id="btn-os-windows" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5 hidden">
+                    <i class="fab fa-windows"></i> Windows
+                </button>
+                <button onclick="setSimulatedOS('mac')" id="btn-os-mac" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5 hidden">
+                    <i class="fab fa-apple"></i> macOS
+                </button>
+            </div>
+        </div>
+
+        <!-- Simulator Container -->
+        <div id="demo-app-container" class="w-full max-w-[1200px] min-h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-2 border-slate-200 dark:border-white/5 overflow-hidden flex flex-col mx-auto relative transition-all duration-500">
+            
+            <!-- Google Sheets UI Mockup -->
+            <div class="flex flex-col h-full w-full">
+                
+                <!-- Sheets Header Bar -->
+                <div class="flex items-center justify-between px-4 py-2 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3">
+                        <div class="p-1.5 bg-[#0F9D58] rounded">
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h2 class="text-sm font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                Adminic | Controle Financeiro 2026
+                                <i class="far fa-star text-[10px] text-slate-400"></i>
+                            </h2>
+                            <div class="flex items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400">
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Arquivo</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Editar</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Ver</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Inserir</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition font-semibold text-[#0F9D58]">Adminic AI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="hidden sm:flex items-center -space-x-2 mr-4">
+                            <div class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] text-white font-bold">W</div>
+                            <div class="w-7 h-7 rounded-full bg-green-500 border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] text-white font-bold">A</div>
+                        </div>
+                        <button class="bg-[#0F9D58] hover:bg-[#0b8043] text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 transition shadow-md">
+                            <i class="fas fa-lock text-[10px]"></i> Compartilhar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sheets Toolbar -->
+                <div class="flex items-center gap-1 px-2 py-1.5 bg-[#f8f9fa] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide">
+                    <button class="sheets-toolbar-btn"><i class="fas fa-undo"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-redo"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-print"></i></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn flex items-center gap-1">100% <i class="fas fa-caret-down text-[8px]"></i></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn flex items-center gap-1">R$ <i class="fas fa-caret-down text-[8px]"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-percentage"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-decimal-arrow-left"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-decimal-arrow-right"></i></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn font-bold">B</button>
+                    <button class="sheets-toolbar-btn italic">I</button>
+                    <button class="sheets-toolbar-btn line-through">S</button>
+                    <button class="sheets-toolbar-btn flex items-center gap-1 text-red-600">A <div class="w-2 h-1 bg-red-600 mt-0.5"></div></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-fill-drip"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-border-all"></i></button>
+                    <button class="sheets-toolbar-btn"><i class="fas fa-align-center"></i></button>
+                </div>
+
+                <!-- Formula Bar -->
+                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-xs">
+                    <span class="text-slate-400 font-mono w-8">fx</span>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-2"></div>
+                    <input type="text" id="formula-input" readonly value="=SOMA(C2:C100)" class="flex-grow bg-transparent outline-none text-slate-700 dark:text-slate-300 font-mono px-2">
+                </div>
+
+                <!-- Content Area (Grid or Dashboard) -->
+                <div class="flex-grow overflow-auto relative bg-[#f1f3f4] dark:bg-slate-950 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
+                    
+                    <!-- Spreadsheet View -->
+                    <div id="view-spreadsheet" class="min-w-[800px]">
+                        <div class="sheets-grid">
+                            <!-- Headers Row -->
+                            <div class="sheets-cell sheets-header"></div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">A (Data)</div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">B (Descrição)</div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">C (Valor)</div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">D (Categoria)</div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">E (Entidade)</div>
+                            <div class="sheets-cell sheets-header uppercase tracking-tighter">F (Status)</div>
+
+                            <!-- Data Rows -->
+                            <template id="row-template">
+                                <div class="sheets-cell sheets-row-num">1</div>
+                                <div class="sheets-cell font-mono text-[11px] justify-center">01/04/2026</div>
+                                <div class="sheets-cell font-medium">Internet Fibra</div>
+                                <div class="sheets-cell font-bold text-right justify-end">R$ 120,00</div>
+                                <div class="sheets-cell text-slate-500">Contas Fixas</div>
+                                <div class="sheets-cell italic">Operadora X</div>
+                                <div class="sheets-cell font-bold text-green-600 justify-center">Pago</div>
+                            </template>
+
+                            <div id="grid-content" class="contents">
+                                <!-- Filled by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard View (Hidden by default) -->
+                    <div id="view-dashboard" class="hidden p-6 space-y-6 max-w-5xl mx-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Saldo Atual</span>
+                                <span id="dash-saldo" class="text-2xl font-black text-green-600 tracking-tighter">R$ 5.450,00</span>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Gastos do Mês</span>
+                                <span id="dash-gastos" class="text-2xl font-black text-red-500 tracking-tighter">R$ 2.050,00</span>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">A Pagar</span>
+                                <span id="dash-pendente" class="text-2xl font-black text-amber-500 tracking-tighter">R$ 1.850,00</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-white/5">
+                                <h3 class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-widest mb-6">Gastos por Categoria</h3>
+                                <div class="h-64 flex items-center justify-center">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-white/5">
+                                <h3 class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-widest mb-6">Fluxo Mensal</h3>
+                                <div class="h-64 flex items-center justify-center">
+                                    <canvas id="flowChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sheets Bottom Tabs -->
+                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-1 mr-4">
+                        <button class="w-6 h-6 rounded hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-500"><i class="fas fa-plus text-[10px]"></i></button>
+                        <button class="w-6 h-6 rounded hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-500"><i class="fas fa-bars text-[10px]"></i></button>
+                    </div>
+                    <div class="flex items-center">
+                        <div onclick="switchTab('spreadsheet')" id="tab-spreadsheet" class="sheets-tab sheets-tab-active">Controle Financeiro</div>
+                        <div onclick="switchTab('dashboard')" id="tab-dashboard" class="sheets-tab">Dashboard</div>
+                        <div onclick="switchTab('config')" id="tab-config" class="sheets-tab">Configurações</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Support Button inside simulator -->
+            <div id="support-trigger-container" class="absolute bottom-12 right-6 z-[50] transition-all duration-300 pointer-events-none">
+                 <div class="flex flex-col items-end gap-3 pointer-events-auto">
+                    <div id="support-menu" class="invisible opacity-0 translate-y-4 transition-all duration-300 w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/5 overflow-hidden">
+                        <div class="p-4 bg-blue-600 text-white">
+                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">Assistente Adminic</p>
+                            <h4 class="font-bold">Como podemos ajudar?</h4>
+                        </div>
+                        <div class="p-2 space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 flex items-center justify-center transition group-hover:scale-110">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">WhatsApp</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Suporte em tempo real</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 flex items-center justify-center transition group-hover:scale-110">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">Manual</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Documentação completa</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-white/5 border-t border-slate-100 dark:border-white/5 text-center">
+                            <span id="branding-footer" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+                        </div>
+                    </div>
+                    <button id="support-trigger" onclick="toggleSupportWidget()" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl shadow-blue-600/30 flex items-center justify-center transition-all duration-300 relative group overflow-hidden btn-pulse">
+                        <i id="icon-open" class="fas fa-headset text-xl absolute transition-all duration-300"></i>
+                        <i id="icon-close" class="fas fa-times text-xl absolute opacity-0 rotate-90 scale-50 transition-all duration-300"></i>
+                    </button>
+                 </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="termos.html" class="hover:text-blue-600 transition block py-1">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 transition block py-1">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 transition block py-1">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 transition block py-1">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 transition block py-1">(92) 8489-9955</a></li>
+                        <li>Manaus, AM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center">
+                <p class="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-400 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data ---
+        const sampleData = [
+            { data: '01/04/2026', desc: 'Saldo Inicial', val: 5000.00, cat: 'Saldo', ent: 'Banco Itaú', stat: 'Pago' },
+            { data: '02/04/2026', desc: 'Internet Fibra', val: -120.00, cat: 'Contas Fixas', ent: 'Vivo Empresa', stat: 'Pago' },
+            { data: '05/04/2026', desc: 'Aluguel Escritório', val: -1500.00, cat: 'Imóveis', ent: 'Imobiliária JX', stat: 'Pendente' },
+            { data: '10/04/2026', desc: 'Serviço Consultoria', val: 2500.00, cat: 'Serviços', ent: 'Cliente Alpha', stat: 'Pago' },
+            { data: '12/04/2026', desc: 'Material Limpeza', val: -45.50, cat: 'Escritório', ent: 'Supermercado', stat: 'Pago' },
+            { data: '15/04/2026', desc: 'Energia Elétrica', val: -350.00, cat: 'Contas Fixas', ent: 'Energisa', stat: 'Pendente' },
+            { data: '18/04/2026', desc: 'Hospedagem AWS', val: -210.00, cat: 'Tecnologia', ent: 'Amazon Web Services', stat: 'Pago' },
+            { data: '20/04/2026', desc: 'Licença Software', val: -80.00, cat: 'Assinaturas', ent: 'Adobe SaaS', stat: 'Pago' },
+            { data: '22/04/2026', desc: 'Marketing Ads', val: -500.00, cat: 'Marketing', ent: 'Meta / Google', stat: 'Pendente' }
+        ];
+
+        // --- Simulator Logic ---
+        let currentSimulatedOS = localStorage.getItem('adminic_sim_os') || 'windows';
+        let currentDevice = localStorage.getItem('adminic_sim_device') || 'desktop';
+
+        function applyOSFrame() {
+            const container = document.getElementById('demo-app-container');
+            const isDesktopView = currentDevice === 'desktop';
+            const isMac = currentSimulatedOS === 'mac';
+            const isWindows = currentSimulatedOS === 'windows';
+
+            // Reset paddings
+            container.style.paddingTop = '0';
+            container.style.paddingBottom = '0';
+
+            // Desktop taskbars
+            let taskbar = document.getElementById('os-desktop-taskbar');
+            if (taskbar) taskbar.remove();
+
+            if (isDesktopView) {
+                taskbar = document.createElement('div');
+                taskbar.id = 'os-desktop-taskbar';
+                const d = new Date();
+                const timeStr = d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+
+                if (isMac) {
+                    container.style.paddingTop = '24px';
+                    taskbar.className = 'absolute top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] z-[100] text-slate-900 dark:text-white';
+                    taskbar.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <i class="fab fa-apple text-[14px]"></i>
+                            <span class="font-bold">Adminic</span>
+                            <span class="font-medium hidden sm:inline">Arquivo</span>
+                            <span class="font-medium hidden sm:inline">Editar</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-wifi text-[11px]"></i>
+                            <i class="fas fa-battery-full text-[13px]"></i>
+                            <span class="font-medium">${timeStr}</span>
+                        </div>
+                    `;
+                } else if (isWindows) {
+                    container.style.paddingBottom = '40px';
+                    taskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] z-[100] text-slate-900 dark:text-white';
+                    taskbar.innerHTML = `
+                        <div class="flex items-center gap-2 h-full">
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
+                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fas fa-search text-[14px]"></i></div>
+                        </div>
+                        <div class="flex items-center gap-3 h-full px-2 hover:bg-white/10 rounded cursor-pointer transition">
+                            <i class="fas fa-chevron-up text-[10px]"></i>
+                            <div class="flex flex-col items-end leading-tight text-[10px]">
+                                <span>${timeStr}</span>
+                                <span>${d.toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                container.appendChild(taskbar);
+            }
+
+            // Mobile Bars
+            let statusBar = document.getElementById('os-status-bar');
+            if (statusBar) statusBar.remove();
+            let notch = document.getElementById('os-notch');
+            if (notch) notch.remove();
+
+            if (!isDesktopView) {
+                statusBar = document.createElement('div');
+                statusBar.id = 'os-status-bar';
+                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] z-[100] flex justify-between items-center px-6 text-[11px] font-semibold text-slate-800 dark:text-white pointer-events-none';
+                statusBar.innerHTML = `<div>${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}</div><div class="flex gap-1.5"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div>`;
+                container.prepend(statusBar);
+
+                notch = document.createElement('div');
+                notch.id = 'os-notch';
+                notch.className = 'absolute top-0 left-0 w-full flex justify-center z-[110] pointer-events-none';
+                if (currentSimulatedOS === 'ios') {
+                    notch.innerHTML = '<div class="w-[120px] h-[35px] mt-[8px] bg-black rounded-full shadow-md"></div>';
+                } else {
+                    notch.innerHTML = '<div class="w-[18px] h-[18px] mt-[10px] bg-black rounded-full shadow-md border border-white/10"></div>';
+                }
+                container.prepend(notch);
+            }
+
+            // Update button states
+            updateButtonStates();
+        }
+
+        function updateButtonStates() {
+            // Device buttons
+            document.querySelectorAll('.device-btn').forEach(btn => {
+                const id = btn.id.replace('btn-', '');
+                if (id === currentDevice) {
+                    btn.className = 'device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 font-semibold';
+                } else {
+                    btn.className = 'device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium';
+                }
+            });
+
+            // OS buttons
+            document.querySelectorAll('.os-btn').forEach(btn => {
+                const id = btn.id.replace('btn-os-', '');
+                btn.classList.add('hidden');
+                
+                const isDesktopView = currentDevice === 'desktop';
+                if (isDesktopView && (id === 'windows' || id === 'mac')) btn.classList.remove('hidden');
+                if (!isDesktopView && (id === 'ios' || id === 'android')) btn.classList.remove('hidden');
+
+                if (id === currentSimulatedOS) {
+                    btn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                    btn.classList.remove('bg-slate-200/50', 'dark:bg-white/5');
+                } else {
+                    btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                    btn.classList.add('bg-slate-200/50', 'dark:bg-white/5');
+                }
+            });
+        }
+
+        function setDeviceView(device) {
+            currentDevice = device;
+            localStorage.setItem('adminic_sim_device', device);
+            const container = document.getElementById('demo-app-container');
+            
+            container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]');
+            
+            if (device === 'mobile') {
+                container.classList.add('max-w-[400px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800');
+                if (currentSimulatedOS !== 'ios' && currentSimulatedOS !== 'android') currentSimulatedOS = 'ios';
+            } else if (device === 'tablet') {
+                container.classList.add('max-w-[800px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800');
+                if (currentSimulatedOS !== 'ios' && currentSimulatedOS !== 'android') currentSimulatedOS = 'ios';
+            } else {
+                container.classList.add('max-w-[1200px]', 'rounded-lg', 'border-2', 'border-slate-200');
+                if (currentSimulatedOS !== 'windows' && currentSimulatedOS !== 'mac') currentSimulatedOS = 'windows';
+            }
+            
+            applyOSFrame();
+            // Re-render charts for scale
+            if (catChart) catChart.destroy();
+            if (fChart) fChart.destroy();
+            setTimeout(initCharts, 600);
+        }
+
+        function setSimulatedOS(os) {
+            currentSimulatedOS = os;
+            localStorage.setItem('adminic_sim_os', os);
+            applyOSFrame();
+        }
+
+        // --- App Logic ---
+        function populateGrid() {
+            const grid = document.getElementById('grid-content');
+            grid.innerHTML = '';
+            
+            sampleData.forEach((row, i) => {
+                const rowNum = i + 1;
+                grid.innerHTML += `
+                    <div class="sheets-cell sheets-row-num">${rowNum}</div>
+                    <div class="sheets-cell font-mono text-[11px] justify-center">${row.data}</div>
+                    <div class="sheets-cell font-medium">${row.desc}</div>
+                    <div class="sheets-cell font-bold text-right justify-end ${row.val < 0 ? 'text-red-500' : 'text-green-600'}">${formatarMoeda(row.val)}</div>
+                    <div class="sheets-cell text-slate-500">${row.cat}</div>
+                    <div class="sheets-cell italic text-[11px]">${row.ent}</div>
+                    <div class="sheets-cell font-bold justify-center ${row.stat === 'Pago' ? 'text-green-600' : 'text-amber-500'}">${row.stat}</div>
+                `;
+            });
+
+            // Fill empty rows
+            for (let i = sampleData.length; i < 20; i++) {
+                grid.innerHTML += `
+                    <div class="sheets-cell sheets-row-num">${i+1}</div>
+                    <div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div>
+                `;
+            }
+        }
+
+        function formatarMoeda(v) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
+        }
+
+        function switchTab(tab) {
+            document.getElementById('view-spreadsheet').classList.add('hidden');
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('tab-spreadsheet').classList.remove('sheets-tab-active');
+            document.getElementById('tab-dashboard').classList.remove('sheets-tab-active');
+
+            if (tab === 'spreadsheet') {
+                document.getElementById('view-spreadsheet').classList.remove('hidden');
+                document.getElementById('tab-spreadsheet').classList.add('sheets-tab-active');
+            } else if (tab === 'dashboard') {
+                document.getElementById('view-dashboard').classList.remove('hidden');
+                document.getElementById('tab-dashboard').classList.add('sheets-tab-active');
+                setTimeout(initCharts, 100);
+            }
+        }
+
+        let catChart, fChart;
+        function initCharts() {
+            const ctxCat = document.getElementById('categoryChart').getContext('2d');
+            const ctxFlow = document.getElementById('flowChart').getContext('2d');
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#94a3b8' : '#64748b';
+
+            catChart = new Chart(ctxCat, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Contas Fixas', 'Imóveis', 'Tecnologia', 'Marketing', 'Escritório'],
+                    datasets: [{
+                        data: [470, 1500, 210, 500, 45],
+                        backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { color: textColor, font: { size: 10, weight: 'bold' } } }
+                    }
+                }
+            });
+
+            fChart = new Chart(ctxFlow, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr'],
+                    datasets: [
+                        { label: 'Entradas', data: [6500, 7200, 6800, 7500], backgroundColor: '#10b981', borderRadius: 6 },
+                        { label: 'Saídas', data: [4200, 4800, 5100, 2050], backgroundColor: '#ef4444', borderRadius: 6 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { color: textColor } },
+                        x: { grid: { display: false }, ticks: { color: textColor } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: textColor, font: { size: 10, weight: 'bold' } } }
+                    }
+                }
+            });
+        }
+
+        // --- Theme Logic ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            
+            const icon = document.querySelector('.theme-toggle-icon');
+            icon.className = isDark ? 'fas fa-moon theme-toggle-icon' : 'fas fa-sun theme-toggle-icon';
+            
+            // Redraw charts
+            if (catChart) catChart.destroy();
+            if (fChart) fChart.destroy();
+            initCharts();
+            applyOSFrame();
+        }
+
+        // Support Widget
+        function toggleSupportWidget() {
+            const menu = document.getElementById('support-menu');
+            const btn = document.getElementById('support-trigger');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            const isClosed = menu.classList.contains('invisible');
+
+            if (isClosed) {
+                menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+                iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
+            } else {
+                menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
+                iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+            }
+        }
+
+        // --- Init ---
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.theme === 'dark') document.documentElement.classList.add('dark');
+            setDeviceView(currentDevice);
+            populateGrid();
+        });
+    </script>
+</body>
+
+</html>

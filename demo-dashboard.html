@@ -1029,7 +1029,7 @@
                 </div>
 
                 <div class="fab-container">
-                    <a href="#" class="floating-btn fab-sheets" aria-label="Abrir Planilha" id="link-planilha">
+                    <a href="demo-planilha.html" class="floating-btn fab-sheets" aria-label="Abrir Planilha" id="link-planilha">
                         <svg viewBox="0 0 24 24">
                             <path
                                 d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5H8V7h5v2z" />
@@ -1325,11 +1325,6 @@
 
                     // Atualiza link da planilha com mês atual
                     const linkPlanilha = document.getElementById('link-planilha');
-                    linkPlanilha.href = "#";
-                    linkPlanilha.onclick = function (e) {
-                        e.preventDefault();
-                        mostrarToast();
-                    };
                 }
 
                 function getSheetIdFromName(mesNome) {
