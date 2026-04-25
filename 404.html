@@ -17,12 +17,12 @@
     <meta property="og:description" content="A página que você está procurando não foi encontrada. Volte para nossa página inicial.">
     <meta property="og:type" content="website">
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
         }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -144,6 +144,10 @@
                 <a href="index.html#produtos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
                 <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
                 <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
+                
+                <button onclick="toggleTheme()" class="flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 min-h-[48px] border-b border-slate-100 dark:border-white/5 w-full" role="menuitem" aria-label="Alternar tema">
+                    <i class="fas fa-sun w-5 text-center theme-toggle-icon mr-2"></i> Tema
+                </button>
                 
                 
 
@@ -493,12 +497,15 @@
     function updateIcons(isDark) {
         const themeIcons = document.querySelectorAll('.theme-toggle-icon');
         themeIcons.forEach(icon => {
-            icon.classList.remove('fa-sun', 'fa-moon');
-            icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+            if (icon.tagName.toLowerCase() === 'i') {
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+            }
         });
     }
 
-    if (localStorage.theme === 'dark') { // Default to light
+    // Inicialização do tema
+    if (localStorage.theme === 'dark') {
         html.classList.add('dark');
         updateIcons(true);
     } else {
@@ -507,15 +514,9 @@
     }
 
     function toggleTheme() {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.theme = 'light';
-            updateIcons(false);
-        } else {
-            html.classList.add('dark');
-            localStorage.theme = 'dark';
-            updateIcons(true);
-        }
+        const isDark = html.classList.toggle('dark');
+        localStorage.theme = isDark ? 'dark' : 'light';
+        updateIcons(isDark);
     }
 
     
