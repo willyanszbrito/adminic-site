@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adminic | Serviços de Tecnologia</title>
+    <title>Adminic | Demonstração Dashboard</title>
     
     <link rel="icon" href="/favicon.ico" sizes="any">
     
@@ -14,7 +14,7 @@
     
     <link rel="manifest" href="/site.webmanifest">
 
-    <meta property="og:title" content="ADMINIC - Tecnologia e Apoio Administrativo">
+    <meta property="og:title" content="Adminic | Demonstração Dashboard">
     <meta property="og:description" content="Soluções inteligentes em gestão, suporte técnico e edição gráfica. Conheça nossa IA financeira.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adminic.com.br">
@@ -617,6 +617,45 @@
         div[id*="cookie"], div[class*="cookie"] {
             z-index: 2147483647 !important;
             pointer-events: auto !important;
+        }
+
+        /* Animação suave de entrada dos itens do menu */
+        .stagger-item {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-open .stagger-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Delays para efeito cascata */
+        .menu-open .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+        .menu-open .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+        .menu-open .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+
+        /* Pulsação do botão quando fechado */
+        @keyframes ripple-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        .btn-pulse {
+            animation: ripple-pulse 2s infinite;
+        }
+
+        /* Cursor piscando para o efeito de digitação */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #3b82f6; /* Azul */
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -1383,6 +1422,9 @@
                     </div>
                 </a>
             </nav>
+            <div class="bg-slate-50 dark:bg-slate-950/50 p-2 text-center border-t border-slate-100 dark:border-white/5">
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+            </div>
         </div>
 
         <button id="support-trigger" onclick="toggleSupportWidget()" 
@@ -1393,7 +1435,7 @@
                 <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
             </div>
             <div class="text-left hidden md:block">
-                <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors">Suporte</p>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5 group-hover:text-white transition-colors block">Adminic © 2026</span>
                 <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
             </div>
         </button>
