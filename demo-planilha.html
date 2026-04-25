@@ -320,51 +320,70 @@
                             </svg>
                         </div>
                         <div class="flex flex-col">
-                            <h2 class="text-sm font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                                Adminic | Controle Financeiro 2026
-                                <i class="far fa-star text-[10px] text-slate-400"></i>
+                            <h2 class="text-[17px] font-normal text-slate-800 dark:text-slate-100 flex items-center gap-2 whitespace-nowrap">
+                                Adminic | Controle Financeiro <span id="current-year"></span>
+                                <i class="far fa-star text-sm text-slate-400 hover:text-slate-600 cursor-pointer ml-1"></i>
+                                <i class="fas fa-cloud text-sm text-slate-400 hover:text-slate-600 cursor-pointer"></i>
                             </h2>
-                            <div class="flex items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400">
-                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Arquivo</span>
-                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Editar</span>
-                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Ver</span>
-                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition">Inserir</span>
-                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1 rounded cursor-pointer transition font-semibold text-[#0F9D58]">Adminic AI</span>
+                            <div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 mt-0.5">
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Arquivo</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Editar</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Ver</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Inserir</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Formatar</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Dados</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Ferramentas</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Gemini</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Extensões</span>
+                                <span class="hover:bg-slate-100 dark:hover:bg-slate-700 px-1.5 rounded cursor-pointer transition">Ajuda</span>
                             </div>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="hidden sm:flex items-center -space-x-2 mr-4">
-                            <div class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] text-white font-bold">W</div>
-                            <div class="w-7 h-7 rounded-full bg-green-500 border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] text-white font-bold">A</div>
+                        <div class="hidden sm:flex items-center gap-3 text-slate-500 mr-2">
+                            <i class="fas fa-history hover:bg-slate-100 p-2 rounded-full cursor-pointer"></i>
+                            <i class="far fa-comment-alt hover:bg-slate-100 p-2 rounded-full cursor-pointer"></i>
+                            <i class="fas fa-video hover:bg-slate-100 p-2 rounded-full cursor-pointer flex items-center gap-1"><i class="fas fa-caret-down text-[10px]"></i></i>
                         </div>
-                        <button class="bg-[#0F9D58] hover:bg-[#0b8043] text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 transition shadow-md">
-                            <i class="fas fa-lock text-[10px]"></i> Compartilhar
+                        <button class="bg-[#c2e7ff] hover:bg-[#b3dfff] text-[#001d35] px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition">
+                            <i class="fas fa-lock text-xs"></i> Compartilhar <i class="fas fa-caret-down text-[10px] ml-1"></i>
                         </button>
+                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-300 flex items-center justify-center text-xs text-white font-bold ml-2">W</div>
                     </div>
                 </div>
 
                 <!-- Sheets Toolbar -->
-                <div class="flex items-center gap-1 px-2 py-1.5 bg-[#f8f9fa] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide shrink-0">
-                    <button class="sheets-toolbar-btn"><i class="fas fa-undo"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-redo"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-print"></i></button>
+                <div class="flex items-center gap-1 px-3 py-1.5 bg-[#edf2fa] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide shrink-0 text-slate-700 dark:text-slate-300 text-[13px]">
+                    <div class="flex items-center bg-white rounded-full px-3 py-1 text-sm mr-2 border border-slate-300">
+                        <i class="fas fa-search text-slate-500 mr-2"></i> Menus
+                    </div>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-undo"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-redo"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-print"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-paint-roller"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                    <button class="sheets-toolbar-btn flex items-center gap-1">100% <i class="fas fa-caret-down text-[8px]"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded flex items-center gap-1">100% <i class="fas fa-caret-down text-[10px]"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                    <button class="sheets-toolbar-btn flex items-center gap-1">R$ <i class="fas fa-caret-down text-[8px]"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-percentage"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-decimal-arrow-left"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-decimal-arrow-right"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded font-medium">R$</button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-percentage"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-decimal-arrow-left"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-decimal-arrow-right"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded font-medium">123</button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                    <button class="sheets-toolbar-btn font-bold">B</button>
-                    <button class="sheets-toolbar-btn italic">I</button>
-                    <button class="sheets-toolbar-btn line-through">S</button>
-                    <button class="sheets-toolbar-btn flex items-center gap-1 text-red-600">A <div class="w-2 h-1 bg-red-600 mt-0.5"></div></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded flex items-center gap-1">Padrã... <i class="fas fa-caret-down text-[10px]"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-fill-drip"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-border-all"></i></button>
-                    <button class="sheets-toolbar-btn"><i class="fas fa-align-center"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-minus text-[10px]"></i></button>
+                    <span class="px-2">11</span>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-plus text-[10px]"></i></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded font-bold">B</button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded italic font-serif">I</button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded line-through">S</button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded flex items-center gap-1 text-slate-800">A <div class="w-2 h-1 bg-slate-800 mt-1.5 -ml-1"></div></button>
+                    <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-fill-drip"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded"><i class="fas fa-border-all"></i></button>
+                    <button class="sheets-toolbar-btn hover:bg-slate-200 p-1.5 rounded flex items-center gap-1"><i class="fas fa-align-left"></i> <i class="fas fa-caret-down text-[10px]"></i></button>
                 </div>
 
                 <!-- Formula Bar -->
@@ -556,28 +575,29 @@
 
 
 
-    <!-- FABs -->
-    <div class="fab-container fixed bottom-6 left-6 flex flex-col gap-3 z-[100]">
-        <a href="demo-dashboard.html" class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-500 transition-all active:scale-95" title="Dashboard">
-            <i class="fas fa-chart-line"></i>
-        </a>
-    </div>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
 
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonthStr = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+        // Update title year
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.textContent = currentYear;
+
         // --- Data ---
         const sampleData = [
-            { data: '01/04/2026', desc: 'Saldo Inicial', val: 5000.00, cat: 'Saldo', ent: 'Banco Itaú', stat: 'Pago' },
-            { data: '02/04/2026', desc: 'Internet Fibra', val: -120.00, cat: 'Contas Fixas', ent: 'Vivo Empresa', stat: 'Pago' },
-            { data: '05/04/2026', desc: 'Aluguel Escritório', val: -1500.00, cat: 'Imóveis', ent: 'Imobiliária JX', stat: 'Pendente' },
-            { data: '10/04/2026', desc: 'Serviço Consultoria', val: 2500.00, cat: 'Serviços', ent: 'Cliente Alpha', stat: 'Pago' },
-            { data: '12/04/2026', desc: 'Material Limpeza', val: -45.50, cat: 'Escritório', ent: 'Supermercado', stat: 'Pago' },
-            { data: '15/04/2026', desc: 'Energia Elétrica', val: -350.00, cat: 'Contas Fixas', ent: 'Energisa', stat: 'Pendente' },
-            { data: '18/04/2026', desc: 'Hospedagem AWS', val: -210.00, cat: 'Tecnologia', ent: 'Amazon Web Services', stat: 'Pago' },
-            { data: '20/04/2026', desc: 'Licença Software', val: -80.00, cat: 'Assinaturas', ent: 'Adobe SaaS', stat: 'Pago' },
-            { data: '22/04/2026', desc: 'Marketing Ads', val: -500.00, cat: 'Marketing', ent: 'Meta / Google', stat: 'Pendente' }
+            { data: `01/${currentMonthStr}/${currentYear}`, desc: 'Saldo Inicial', val: 5000.00, cat: 'Saldo', ent: 'Banco Itaú', stat: 'Pago' },
+            { data: `02/${currentMonthStr}/${currentYear}`, desc: 'Internet Fibra', val: -120.00, cat: 'Contas Fixas', ent: 'Vivo Empresa', stat: 'Pago' },
+            { data: `05/${currentMonthStr}/${currentYear}`, desc: 'Aluguel Escritório', val: -1500.00, cat: 'Imóveis', ent: 'Imobiliária JX', stat: 'Pendente' },
+            { data: `10/${currentMonthStr}/${currentYear}`, desc: 'Serviço Consultoria', val: 2500.00, cat: 'Serviços', ent: 'Cliente Alpha', stat: 'Pago' },
+            { data: `12/${currentMonthStr}/${currentYear}`, desc: 'Material Limpeza', val: -45.50, cat: 'Escritório', ent: 'Supermercado', stat: 'Pago' },
+            { data: `15/${currentMonthStr}/${currentYear}`, desc: 'Energia Elétrica', val: -350.00, cat: 'Contas Fixas', ent: 'Energisa', stat: 'Pendente' },
+            { data: `18/${currentMonthStr}/${currentYear}`, desc: 'Hospedagem AWS', val: -210.00, cat: 'Tecnologia', ent: 'Amazon Web Services', stat: 'Pago' },
+            { data: `20/${currentMonthStr}/${currentYear}`, desc: 'Licença Software', val: -80.00, cat: 'Assinaturas', ent: 'Adobe SaaS', stat: 'Pago' },
+            { data: `22/${currentMonthStr}/${currentYear}`, desc: 'Marketing Ads', val: -500.00, cat: 'Marketing', ent: 'Meta / Google', stat: 'Pendente' }
         ];
 
         // --- Simulator Logic ---
