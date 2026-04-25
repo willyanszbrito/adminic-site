@@ -175,28 +175,22 @@
             --wa-input-bg: #202c33;
         }
 
-        body {
-            margin: 0;
+        .wa-app-wrapper {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--wa-bg);
             color: var(--wa-text);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
         }
 
         /* Fundo padrão do WhatsApp */
         .bg-pattern {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             opacity: 0.06;
             background-image: url('https://w7.pngwing.com/pngs/353/193/png-transparent-whatsapp-computer-icons-pattern-whatsapp-pattern-texture-angle-text-thumbnail.png');
             background-repeat: repeat;
-            z-index: -1;
+            z-index: 0;
         }
 
         body.dark-mode .bg-pattern {
@@ -239,13 +233,13 @@
 
         /* Bottom Sheet */
         .bottom-sheet-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            position: absolute; inset: 0; background: rgba(0,0,0,0.5);
             z-index: 50; opacity: 0; pointer-events: none;
             transition: opacity 0.3s;
         }
         .bottom-sheet-overlay.active { opacity: 1; pointer-events: auto; }
         .bottom-sheet {
-            position: fixed; bottom: -100%; left: 0; width: 100%;
+            position: absolute; bottom: -100%; left: 0; width: 100%;
             background: var(--wa-msg-in); border-radius: 20px 20px 0 0;
             z-index: 51; padding: 10px 0 20px; transition: bottom 0.4s cubic-bezier(.4,0,.2,1);
             max-height: 60vh; overflow-y: auto;
@@ -274,7 +268,7 @@
 
         /* Flow Form Modal */
         .flow-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            position: absolute; inset: 0; background: rgba(0,0,0,0.6);
             z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.3s;
             display: flex; align-items: flex-end; justify-content: center;
         }
