@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
         
+        // FORÇAR RENDERIZAÇÃO E CLIQUES ACIMA DO DASHBOARD
+        banner.style.setProperty('z-index', '2147483647', 'important');
+        banner.style.setProperty('pointer-events', 'auto', 'important');
+        banner.style.setProperty('position', 'fixed', 'important');
+
         document.body.appendChild(banner);
 
         document.getElementById("accept-cookies").addEventListener("click", function () {

@@ -1916,18 +1916,26 @@
             switch(device) {
                 case 'mobile': 
                     container.classList.add('max-w-[400px]'); 
+                    container.classList.remove('rounded-lg', 'border-2');
+                    container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
+                    container.classList.remove('rounded-lg', 'border-2');
+                    container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
+                    container.classList.remove('rounded-lg', 'border-2');
+                    container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
+                    container.classList.remove('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
+                    container.classList.add('rounded-lg', 'border-2');
                     if(currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
                     break;
             }
@@ -2000,14 +2008,5 @@
             }
         });
         </script>
-<script>
-    // Força bruta para garantir que o banner de cookies sobreponha o dashboard
-    setTimeout(() => {
-        const cookieBanner = document.querySelector('[id*="cookie"], [class*="cookie"]');
-        if(cookieBanner) {
-            cookieBanner.setAttribute('style', 'z-index: 2147483647 !important; pointer-events: auto !important; position: fixed !important; bottom: 0 !important; width: 100% !important;');
-        }
-    }, 1500);
-</script>
 </body>
 </html>
