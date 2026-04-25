@@ -732,7 +732,7 @@
         <div id="demo-app-container" class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 overflow-y-auto overflow-x-hidden relative mx-auto">
             
 
-    <div class="header">
+    <div class="header relative pt-[28px]" id="dash-app-header">
         <div class="app-logo">
             <svg viewBox="0 0 24 24">
                 <path
@@ -1730,7 +1730,12 @@
                         <i class="fas fa-battery-full text-[12px]"></i>
                     </div>
                 `;
-                container.appendChild(statusBar);
+                const header = document.getElementById('dash-app-header');
+                if (header) {
+                    header.appendChild(statusBar);
+                } else {
+                    container.appendChild(statusBar);
+                }
             }
 
             if (!document.getElementById('os-notch')) {
@@ -1831,6 +1836,7 @@
         }
 
         function setDeviceView(device) {
+            localStorage.setItem('adminic_sim_device', device);
             const container = document.getElementById('demo-app-container');
             const buttons = document.querySelectorAll('.device-btn');
             const notch = document.getElementById('os-notch');
@@ -1842,12 +1848,15 @@
             });
             
             const activeBtn = document.getElementById('btn-' + device);
-            activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
-            activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            if (activeBtn) {
+                activeBtn.classList.remove('hover:bg-slate-300/50', 'dark:hover:bg-slate-700/50', 'text-slate-600', 'dark:text-slate-300', 'font-medium');
+                activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+            }
 
             container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'max-w-full');
             
             const desktopTaskbar = document.getElementById('os-desktop-taskbar');
+            const dashHeader = document.getElementById('dash-app-header');
             
             switch(device) {
                 case 'mobile': 
@@ -1855,34 +1864,45 @@
                     if(notch) notch.style.opacity = '1';
                     if(statusBar) statusBar.style.opacity = '1';
                     if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '32px';
-                    container.style.paddingBottom = '';
+                    container.style.paddingTop = '0px';
+                    container.style.paddingBottom = '0px';
+                    if(dashHeader) dashHeader.style.paddingTop = '28px';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'zfold': 
                     container.classList.add('max-w-[600px]'); 
                     if(notch) notch.style.opacity = '1';
                     if(statusBar) statusBar.style.opacity = '1';
                     if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '32px';
-                    container.style.paddingBottom = '';
+                    container.style.paddingTop = '0px';
+                    container.style.paddingBottom = '0px';
+                    if(dashHeader) dashHeader.style.paddingTop = '28px';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
                 case 'tablet': 
                     container.classList.add('max-w-[800px]'); 
                     if(notch) notch.style.opacity = '0';
                     if(statusBar) statusBar.style.opacity = '1';
                     if(desktopTaskbar) desktopTaskbar.style.opacity = '0';
-                    container.style.paddingTop = '28px';
-                    container.style.paddingBottom = '';
+                    container.style.paddingTop = '0px';
+                    container.style.paddingBottom = '0px';
+                    if(dashHeader) dashHeader.style.paddingTop = '28px';
+                    if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'desktop': 
                     container.classList.add('max-w-[1200px]'); 
                     if(notch) notch.style.opacity = '0';
                     if(statusBar) statusBar.style.opacity = '0';
                     if(desktopTaskbar) desktopTaskbar.style.opacity = '1';
-                    container.style.paddingTop = desktopTaskbar && desktopTaskbar.innerHTML.includes('fa-apple') ? '24px' : '';
-                    container.style.paddingBottom = desktopTaskbar && !desktopTaskbar.innerHTML.includes('fa-apple') ? '40px' : '';
+                    const isMacActive = desktopTaskbar && desktopTaskbar.innerHTML.includes('fa-apple');
+                    container.style.paddingTop = isMacActive ? '24px' : '0px';
+                    container.style.paddingBottom = !isMacActive ? '40px' : '0px';
+                    if(dashHeader) dashHeader.style.paddingTop = '0px';
+                    if(currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
                     break;
             }
+            
+            setSimulatedOS(currentSimulatedOS);
             
             // Re-renderizar gráficos depois da transição de redimensionamento
             setTimeout(() => {
@@ -1892,9 +1912,20 @@
             }, 550);
         }
 
+        function setSimulatedOS(os) {
+            currentSimulatedOS = os;
+            localStorage.setItem('adminic_sim_os', os);
+            applyOSFrame();
+        }
+
         // Initialize OS Frame on load
         document.addEventListener('DOMContentLoaded', () => {
-            applyOSFrame();
+            const savedDevice = localStorage.getItem('adminic_sim_device') || 'desktop';
+            const savedOS = localStorage.getItem('adminic_sim_os') || null;
+            if (savedOS) {
+                currentSimulatedOS = savedOS;
+            }
+            setDeviceView(savedDevice);
         });
         </script>
 </body>

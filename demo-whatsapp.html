@@ -713,8 +713,8 @@
             
     <div class="bg-pattern"></div>
 
-    <div class="header relative">
-        <div id="os-status-bar" class="w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 bg-[var(--wa-header)] text-white z-20">
+    <div class="header relative pt-[28px]" id="wa-app-header">
+        <div id="os-status-bar" class="absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 bg-[var(--wa-header)] text-white z-[900]">
             <div id="os-time">12:00</div>
             <div class="flex gap-1.5 items-center">
                 <i class="fas fa-signal text-[10px]"></i>
@@ -1170,6 +1170,26 @@
 
     </script>
 
+        </div>
+        
+        <div class="store-buttons text-center pt-8 pb-4 z-10 relative">
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-widest">Disponível para</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="setSimulatedOS('ios'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular iOS App Store">
+                    <i class="fab fa-apple text-2xl group-hover:text-slate-300 transition-colors"></i>
+                    <div class="text-left leading-tight">
+                        <div class="text-[10px] text-slate-400 font-medium">Baixar na</div>
+                        <div class="text-sm font-semibold tracking-wide">App Store</div>
+                    </div>
+                </button>
+                <button onclick="setSimulatedOS('android'); setDeviceView('mobile')" class="bg-black text-white px-6 py-2.5 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-lg hover:shadow-xl group border border-slate-800" aria-label="Simular Android Play Store">
+                    <i class="fab fa-google-play text-2xl text-[#00ff00] group-hover:text-green-400 transition-colors"></i>
+                    <div class="text-left leading-tight">
+                        <div class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Disponível no</div>
+                        <div class="text-sm font-semibold tracking-wide">Google Play</div>
+                    </div>
+                </button>
+            </div>
         </div>
     </main>
     
@@ -1762,20 +1782,25 @@
             }
             
             // Visibility logic
+            const waHeader = document.getElementById('wa-app-header');
+            
             if (isDesktopView) {
                 notch.style.opacity = '0';
                 if(statusBar) statusBar.style.opacity = '0';
-                container.style.paddingTop = isMac ? '24px' : '';
-                container.style.paddingBottom = isWindows ? '40px' : '';
+                container.style.paddingTop = isMac ? '24px' : '0px';
+                container.style.paddingBottom = isWindows ? '40px' : '0px';
+                if(waHeader) waHeader.style.paddingTop = '0px';
             } else if(container.classList.contains('max-w-[800px]')) {
                 notch.style.opacity = '0';
                 if(statusBar) statusBar.style.opacity = '1';
-                container.style.paddingTop = '28px';
-                container.style.paddingBottom = '';
+                container.style.paddingTop = '0px';
+                container.style.paddingBottom = '0px';
+                if(waHeader) waHeader.style.paddingTop = '28px';
             } else {
                 if(statusBar) statusBar.style.opacity = '1';
-                container.style.paddingTop = '32px';
-                container.style.paddingBottom = '';
+                container.style.paddingTop = '0px';
+                container.style.paddingBottom = '0px';
+                if(waHeader) waHeader.style.paddingTop = '28px';
             }
         }
         
