@@ -1733,10 +1733,22 @@
     </script>
 <script src="cookie-consent.js"></script>
         <script>
+        let currentSimulatedOS = null;
+
         function applyOSFrame() {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isAndroid = /Android/.test(navigator.userAgent);
+            let isIOS = false;
+            let isAndroid = false;
+
+            if (currentSimulatedOS) {
+                isIOS = currentSimulatedOS === 'ios';
+                isAndroid = currentSimulatedOS === 'android';
+            } else {
+                isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                isAndroid = /Android/.test(navigator.userAgent);
+            }
+
             const container = document.getElementById('demo-app-container');
+            const isDesktopView = container.classList.contains('max-w-[1200px]');
             
             // Criação e injeção STICKY no topo do Container
             let statusBar = document.getElementById('os-status-bar');
@@ -1796,7 +1808,7 @@
             }
             
             // OS Buttons state update
-            const isDesktopView = container.classList.contains('max-w-[1200px]');
+
             const osButtons = document.querySelectorAll('.os-btn');
             osButtons.forEach(btn => {
                 btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
