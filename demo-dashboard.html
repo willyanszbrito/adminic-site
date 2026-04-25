@@ -708,7 +708,7 @@
             </button>
         </div>
 
-        <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+        <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10 pointer-events-auto">
             <button onclick="setSimulatedOS('ios')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" id="btn-os-ios" aria-label="Simular iOS">
                 <i class="fab fa-apple"></i> <span class="hidden sm:inline">iOS</span>
             </button>
@@ -1833,7 +1833,7 @@
                 desktopTaskbar.style.opacity = container.classList.contains('max-w-[1200px]') ? '1' : '0';
                 
                 if (isMac) {
-                    desktopTaskbar.className = 'sticky top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.className = 'sticky top-0 left-0 w-full h-[24px] bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-slate-200 dark:border-white/10 flex justify-between items-center px-4 text-[12px] transition-opacity duration-300 z-[9999] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
                         <div class="flex items-center gap-4">
                             <i class="fab fa-apple text-[14px]"></i>
@@ -1848,7 +1848,7 @@
                         </div>
                     `;
                 } else {
-                    desktopTaskbar.className = 'sticky bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[900] text-slate-900 dark:text-white';
+                    desktopTaskbar.className = 'sticky bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] transition-opacity duration-300 z-[9999] text-slate-900 dark:text-white';
                     desktopTaskbar.innerHTML = `
                         <div class="flex items-center gap-2 h-full">
                             <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
