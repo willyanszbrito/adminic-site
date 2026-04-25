@@ -694,11 +694,11 @@
         </div>
         
         <div id="os-toggle-toolbar" class="flex justify-center items-center gap-1 sm:gap-2 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors">
-            <button onclick="setSimulatedOS('ios')" id="btn-os-ios" class="os-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 flex items-center gap-2 transition-all">
-                <i class="fab fa-apple text-lg"></i> <span class="hidden sm:inline">iOS (App Store)</span><span class="sm:hidden">iOS</span>
+            <button onclick="setSimulatedOS('ios')" id="btn-os-ios" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" aria-label="Simular iOS">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">iOS</span>
             </button>
-            <button onclick="setSimulatedOS('android')" id="btn-os-android" class="os-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 flex items-center gap-2 transition-all">
-                <i class="fab fa-android text-lg"></i> <span class="hidden sm:inline">Android (Play Store)</span><span class="sm:hidden">Android</span>
+            <button onclick="setSimulatedOS('android')" id="btn-os-android" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300" aria-label="Simular Android">
+                <i class="fab fa-android text-green-500"></i> <span class="hidden sm:inline">Android</span>
             </button>
             <button onclick="setSimulatedOS('windows')" class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden" id="btn-os-windows" aria-label="Simular Windows">
                 <i class="fab fa-windows text-blue-500"></i> <span class="hidden sm:inline">Windows</span>
@@ -714,7 +714,7 @@
     <div class="bg-pattern"></div>
 
     <div class="header relative">
-        <div id="os-status-bar" class="w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300">
+        <div id="os-status-bar" class="w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 bg-[var(--wa-header)] text-white z-20">
             <div id="os-time">12:00</div>
             <div class="flex gap-1.5 items-center">
                 <i class="fas fa-signal text-[10px]"></i>
@@ -1674,7 +1674,7 @@
             if (!document.getElementById('os-status-bar')) {
                 const statusBar = document.createElement('div');
                 statusBar.id = 'os-status-bar';
-                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 z-[900] text-slate-800 dark:text-slate-200';
+                statusBar.className = 'absolute top-0 left-0 w-full h-[28px] flex justify-between items-center px-6 text-[11px] font-semibold tracking-wide opacity-0 transition-opacity duration-300 z-[900] bg-[var(--wa-header)] text-white';
                 statusBar.innerHTML = `
                     <div id="os-time">12:00</div>
                     <div class="flex gap-1.5 items-center">
