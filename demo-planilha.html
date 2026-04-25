@@ -1,20 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminic | Demonstração Planilha</title>
-    <meta name="description" content="Simulador de Planilha Adminic para Controle Financeiro.">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta property="og:title" content="Adminic | Demonstração Planilha">
+    <meta property="og:description" content="Simulador de Planilha Adminic para Controle Financeiro.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adminic.com.br">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        .glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .mobile-menu.active {
+            max-height: 600px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Sheets Specific Styles */
         .sheets-grid {
             display: grid;
             grid-template-columns: 40px repeat(6, 1fr);
@@ -61,11 +108,6 @@
         .dark .sheets-row-num {
             background: #0f172a;
             color: #64748b;
-        }
-
-        .sheets-cell-active {
-            box-shadow: inset 0 0 0 2px #0F9D58;
-            z-index: 10;
         }
 
         .sheets-toolbar-btn {
@@ -115,26 +157,6 @@
             background: #334155;
         }
 
-        /* Simulator Styles */
-        #demo-app-container {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dark #demo-app-container {
-            background: #0f172a;
-        }
-
-        .os-btn {
-            transition: all 0.2s ease;
-        }
-
-        .device-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         .typing-cursor::after {
             content: '|';
             animation: blink 1s step-start infinite;
@@ -142,72 +164,155 @@
         }
 
         @keyframes blink { 50% { opacity: 0; } }
+
+        .dash-app-wrapper {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
     </style>
 </head>
 
-<body class="bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+    
+    <div class="hidden max-w-[400px] max-w-[600px] max-w-[800px] max-w-[1200px] max-w-full"></div>
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter hover:text-blue-600 dark:hover:text-blue-400 transition">ADMINIC</a>
+    <div class="bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-500 hidden md:block transition-colors duration-300"
+        aria-label="Barra de informações">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:contato@adminic.com.br"
+                    class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span class="hidden lg:inline">contato@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794"
+                    class="hover:text-blue-500 transition flex items-center gap-2 focus-visible">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300"
+        aria-label="Navegação principal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+
+            <a href="index.html" class="flex items-center gap-3 group focus-visible"
+                aria-label="Adminic - Voltar à página inicial">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition"
+                    aria-hidden="true">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="index.html#servicos" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Serviços</a>
-                    <a href="index.html#solucoes" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Soluções</a>
-                    <a href="demo-dashboard.html" class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 uppercase tracking-widest transition">Demos</a>
-                    <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm border border-slate-200 dark:border-white/10">
-                        <i class="fas fa-sun theme-toggle-icon"></i>
-                    </button>
-                    <a href="https://wa.me/559284790794" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-blue-600/20 active:scale-95">Contato</a>
-                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
+            </a>
+
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Produtos</a>
+                <a href="central-ajuda.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Ajuda</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1 focus-visible">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                <button onclick="toggleTheme()"
+                    class="flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400 focus-visible"
+                    aria-label="Alternar tema">
+                    <i class="fas fa-sun theme-toggle-icon"></i>
+                </button>
+
+                <a href="https://wa.me/559284790794"
+                    class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2 focus-visible"
+                    aria-label="Fale conosco no WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>Área do Cliente</span>
+                </a>
+
+                <button id="mobile-menu-button"
+                    class="md:hidden text-slate-600 dark:text-slate-400 p-2 focus-visible hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition"
+                    aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl"
+            role="menu" aria-label="Menu móvel" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Principal</a>
+                <a href="quem-somos.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Quem Somos</a>
+                <a href="index.html#servicos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Serviços</a>
+                <a href="index.html#produtos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Produtos</a>
+                <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Ajuda</a>
+                <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5 focus-visible" role="menuitem">Contato</a>
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 focus-visible shadow-lg shadow-blue-600/20" role="menuitem">
+                    <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center py-8 px-4 sm:px-6">
+    <main class="flex-grow flex flex-col items-center justify-start py-4 px-2 md:py-8 relative"
+        style="min-height: calc(100dvh - 80px);">
         
-        <!-- Simulator Controls -->
-        <div class="w-full max-w-4xl mb-8 space-y-6">
-            <div class="flex flex-wrap justify-center gap-3 p-1.5 bg-slate-200/50 dark:bg-white/5 backdrop-blur-sm rounded-2xl border border-slate-300 dark:border-white/10 w-fit mx-auto">
-                <button onclick="setDeviceView('mobile')" id="btn-mobile" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-mobile-alt"></i> Mobile
-                </button>
-                <button onclick="setDeviceView('tablet')" id="btn-tablet" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-tablet-alt"></i> Tablet
-                </button>
-                <button onclick="setDeviceView('desktop')" id="btn-desktop" class="device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-desktop"></i> Desktop
-                </button>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="setSimulatedOS('ios')" id="btn-os-ios" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5">
-                    <i class="fab fa-apple"></i> iOS
-                </button>
-                <button onclick="setSimulatedOS('android')" id="btn-os-android" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5">
-                    <i class="fab fa-android"></i> Android
-                </button>
-                <button onclick="setSimulatedOS('windows')" id="btn-os-windows" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5 hidden">
-                    <i class="fab fa-windows"></i> Windows
-                </button>
-                <button onclick="setSimulatedOS('mac')" id="btn-os-mac" class="os-btn px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 bg-slate-200/50 dark:bg-white/5 hidden">
-                    <i class="fab fa-apple"></i> macOS
-                </button>
-            </div>
+        <!-- Device Toggle Toolbar -->
+        <div class="flex justify-center items-center gap-1 sm:gap-2 mb-2 p-1.5 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setDeviceView('mobile')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-mobile" aria-label="Visualização Mobile">
+                <i class="fas fa-mobile-alt"></i> <span class="hidden sm:inline">Mobile</span>
+            </button>
+            <button onclick="setDeviceView('zfold')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-zfold" aria-label="Visualização Z-Fold">
+                <i class="fas fa-mobile-alt fa-rotate-90"></i> <span class="hidden sm:inline">Z-Fold</span>
+            </button>
+            <button onclick="setDeviceView('tablet')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-tablet" aria-label="Visualização Tablet">
+                <i class="fas fa-tablet-alt"></i> <span class="hidden sm:inline">Tablet</span>
+            </button>
+            <button onclick="setDeviceView('desktop')"
+                class="device-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 hidden md:flex"
+                id="btn-desktop" aria-label="Visualização Desktop">
+                <i class="fas fa-desktop"></i> <span class="hidden sm:inline">Desktop</span>
+            </button>
         </div>
 
-        <!-- Simulator Container -->
-        <div id="demo-app-container" class="w-full max-w-[1200px] min-h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-2 border-slate-200 dark:border-white/5 overflow-hidden flex flex-col mx-auto relative transition-all duration-500">
+        <div id="os-toggle-toolbar"
+            class="flex justify-center items-center gap-1 sm:gap-2 mb-4 p-1 bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur rounded-full w-fit mx-auto shadow-sm border border-slate-300 dark:border-slate-700 transition-colors z-10">
+            <button onclick="setSimulatedOS('ios')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-os-ios" aria-label="Simular iOS">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">iOS</span>
+            </button>
+            <button onclick="setSimulatedOS('android')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                id="btn-os-android" aria-label="Simular Android">
+                <i class="fab fa-android text-green-500"></i> <span class="hidden sm:inline">Android</span>
+            </button>
+            <button onclick="setSimulatedOS('windows')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden"
+                id="btn-os-windows" aria-label="Simular Windows">
+                <i class="fab fa-windows text-blue-500"></i> <span class="hidden sm:inline">Windows</span>
+            </button>
+            <button onclick="setSimulatedOS('mac')"
+                class="os-btn px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 hidden"
+                id="btn-os-mac" aria-label="Simular Mac">
+                <i class="fab fa-apple"></i> <span class="hidden sm:inline">Mac</span>
+            </button>
+        </div>
+
+        <div id="demo-app-container"
+            class="dash-app-wrapper w-full max-w-[1200px] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] h-[calc(100dvh-140px)] max-h-[900px] min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] shadow-2xl border-[6px] md:border-[10px] border-slate-800 dark:border-slate-900 flex flex-col overflow-hidden relative mx-auto">
             
             <!-- Google Sheets UI Mockup -->
-            <div class="flex flex-col h-full w-full">
+            <div class="flex flex-col h-full w-full overflow-hidden">
                 
                 <!-- Sheets Header Bar -->
-                <div class="flex items-center justify-between px-4 py-2 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                <div class="flex items-center justify-between px-4 py-2 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="p-1.5 bg-[#0F9D58] rounded">
                             <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -240,7 +345,7 @@
                 </div>
 
                 <!-- Sheets Toolbar -->
-                <div class="flex items-center gap-1 px-2 py-1.5 bg-[#f8f9fa] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide">
+                <div class="flex items-center gap-1 px-2 py-1.5 bg-[#f8f9fa] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide shrink-0">
                     <button class="sheets-toolbar-btn"><i class="fas fa-undo"></i></button>
                     <button class="sheets-toolbar-btn"><i class="fas fa-redo"></i></button>
                     <button class="sheets-toolbar-btn"><i class="fas fa-print"></i></button>
@@ -263,19 +368,18 @@
                 </div>
 
                 <!-- Formula Bar -->
-                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-xs">
+                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-xs shrink-0">
                     <span class="text-slate-400 font-mono w-8">fx</span>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 mx-2"></div>
                     <input type="text" id="formula-input" readonly value="=SOMA(C2:C100)" class="flex-grow bg-transparent outline-none text-slate-700 dark:text-slate-300 font-mono px-2">
                 </div>
 
-                <!-- Content Area (Grid or Dashboard) -->
+                <!-- Content Area -->
                 <div class="flex-grow overflow-auto relative bg-[#f1f3f4] dark:bg-slate-950 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
                     
                     <!-- Spreadsheet View -->
                     <div id="view-spreadsheet" class="min-w-[800px]">
                         <div class="sheets-grid">
-                            <!-- Headers Row -->
                             <div class="sheets-cell sheets-header"></div>
                             <div class="sheets-cell sheets-header uppercase tracking-tighter">A (Data)</div>
                             <div class="sheets-cell sheets-header uppercase tracking-tighter">B (Descrição)</div>
@@ -284,24 +388,11 @@
                             <div class="sheets-cell sheets-header uppercase tracking-tighter">E (Entidade)</div>
                             <div class="sheets-cell sheets-header uppercase tracking-tighter">F (Status)</div>
 
-                            <!-- Data Rows -->
-                            <template id="row-template">
-                                <div class="sheets-cell sheets-row-num">1</div>
-                                <div class="sheets-cell font-mono text-[11px] justify-center">01/04/2026</div>
-                                <div class="sheets-cell font-medium">Internet Fibra</div>
-                                <div class="sheets-cell font-bold text-right justify-end">R$ 120,00</div>
-                                <div class="sheets-cell text-slate-500">Contas Fixas</div>
-                                <div class="sheets-cell italic">Operadora X</div>
-                                <div class="sheets-cell font-bold text-green-600 justify-center">Pago</div>
-                            </template>
-
-                            <div id="grid-content" class="contents">
-                                <!-- Filled by JS -->
-                            </div>
+                            <div id="grid-content" class="contents"></div>
                         </div>
                     </div>
 
-                    <!-- Dashboard View (Hidden by default) -->
+                    <!-- Dashboard View -->
                     <div id="view-dashboard" class="hidden p-6 space-y-6 max-w-5xl mx-auto">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 flex flex-col items-center">
@@ -336,7 +427,7 @@
                 </div>
 
                 <!-- Sheets Bottom Tabs -->
-                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
+                <div class="flex items-center px-4 py-1 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 shrink-0">
                     <div class="flex items-center gap-1 mr-4">
                         <button class="w-6 h-6 rounded hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-500"><i class="fas fa-plus text-[10px]"></i></button>
                         <button class="w-6 h-6 rounded hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-500"><i class="fas fa-bars text-[10px]"></i></button>
@@ -344,13 +435,12 @@
                     <div class="flex items-center">
                         <div onclick="switchTab('spreadsheet')" id="tab-spreadsheet" class="sheets-tab sheets-tab-active">Controle Financeiro</div>
                         <div onclick="switchTab('dashboard')" id="tab-dashboard" class="sheets-tab">Dashboard</div>
-                        <div onclick="switchTab('config')" id="tab-config" class="sheets-tab">Configurações</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Floating Support Button inside simulator -->
-            <div id="support-trigger-container" class="absolute bottom-12 right-6 z-[50] transition-all duration-300 pointer-events-none">
+            <!-- Support Widget -->
+            <div id="support-trigger-container" class="absolute bottom-6 right-6 z-[200] transition-all duration-300 pointer-events-none">
                  <div class="flex flex-col items-end gap-3 pointer-events-auto">
                     <div id="support-menu" class="invisible opacity-0 translate-y-4 transition-all duration-300 w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/5 overflow-hidden">
                         <div class="p-4 bg-blue-600 text-white">
@@ -358,7 +448,7 @@
                             <h4 class="font-bold">Como podemos ajudar?</h4>
                         </div>
                         <div class="p-2 space-y-1">
-                            <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
+                            <a href="https://wa.me/559284790794" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
                                 <div class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 flex items-center justify-center transition group-hover:scale-110">
                                     <i class="fab fa-whatsapp"></i>
                                 </div>
@@ -367,28 +457,27 @@
                                     <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Suporte em tempo real</span>
                                 </div>
                             </a>
-                            <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
+                            <a href="central-ajuda.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition group">
                                 <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 flex items-center justify-center transition group-hover:scale-110">
                                     <i class="fas fa-book"></i>
                                 </div>
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">Manual</span>
+                                    <span class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-tighter">Ajuda</span>
                                     <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Documentação completa</span>
                                 </div>
                             </a>
                         </div>
                         <div class="p-3 bg-slate-50 dark:bg-white/5 border-t border-slate-100 dark:border-white/5 text-center">
-                            <span id="branding-footer" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Adminic © 2026</span>
                         </div>
                     </div>
-                    <button id="support-trigger" onclick="toggleSupportWidget()" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl shadow-blue-600/30 flex items-center justify-center transition-all duration-300 relative group overflow-hidden btn-pulse">
+                    <button id="support-trigger" onclick="toggleSupportWidget()" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl shadow-blue-600/30 flex items-center justify-center transition-all duration-300 relative group overflow-hidden">
                         <i id="icon-open" class="fas fa-headset text-xl absolute transition-all duration-300"></i>
                         <i id="icon-close" class="fas fa-times text-xl absolute opacity-0 rotate-90 scale-50 transition-all duration-300"></i>
                     </button>
                  </div>
             </div>
         </div>
-
     </main>
 
     <!-- Footer -->
@@ -425,7 +514,20 @@
         </div>
     </footer>
 
+    <!-- FABs -->
+    <div class="fab-container fixed bottom-6 left-6 flex flex-col gap-3 z-[100]">
+        <a href="demo-dashboard.html" class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-500 transition-all active:scale-95" title="Dashboard">
+            <i class="fas fa-chart-line"></i>
+        </a>
+        <a href="demo-whatsapp.html" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-500 transition-all active:scale-95" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
         // --- Data ---
         const sampleData = [
             { data: '01/04/2026', desc: 'Saldo Inicial', val: 5000.00, cat: 'Saldo', ent: 'Banco Itaú', stat: 'Pago' },
@@ -440,8 +542,8 @@
         ];
 
         // --- Simulator Logic ---
-        let currentSimulatedOS = localStorage.getItem('adminic_sim_os') || 'windows';
-        let currentDevice = localStorage.getItem('adminic_sim_device') || 'desktop';
+        let currentSimulatedOS = 'ios';
+        let currentDevice = 'mobile';
 
         function applyOSFrame() {
             const container = document.getElementById('demo-app-container');
@@ -449,11 +551,9 @@
             const isMac = currentSimulatedOS === 'mac';
             const isWindows = currentSimulatedOS === 'windows';
 
-            // Reset paddings
             container.style.paddingTop = '0';
             container.style.paddingBottom = '0';
 
-            // Desktop taskbars
             let taskbar = document.getElementById('os-desktop-taskbar');
             if (taskbar) taskbar.remove();
 
@@ -470,36 +570,24 @@
                         <div class="flex items-center gap-4">
                             <i class="fab fa-apple text-[14px]"></i>
                             <span class="font-bold">Adminic</span>
-                            <span class="font-medium hidden sm:inline">Arquivo</span>
-                            <span class="font-medium hidden sm:inline">Editar</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <i class="fas fa-wifi text-[11px]"></i>
-                            <i class="fas fa-battery-full text-[13px]"></i>
-                            <span class="font-medium">${timeStr}</span>
-                        </div>
-                    `;
+                            <i class="fas fa-wifi text-[11px]"></i><i class="fas fa-battery-full text-[13px]"></i><span>${timeStr}</span>
+                        </div>`;
                 } else if (isWindows) {
                     container.style.paddingBottom = '40px';
                     taskbar.className = 'absolute bottom-0 left-0 w-full h-[40px] bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-300 dark:border-slate-700 flex justify-between items-center px-2 text-[12px] z-[100] text-slate-900 dark:text-white';
                     taskbar.innerHTML = `
                         <div class="flex items-center gap-2 h-full">
                             <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fab fa-windows text-[16px] text-blue-600 dark:text-blue-400"></i></div>
-                            <div class="w-8 h-8 rounded hover:bg-white/20 flex items-center justify-center cursor-pointer transition"><i class="fas fa-search text-[14px]"></i></div>
                         </div>
                         <div class="flex items-center gap-3 h-full px-2 hover:bg-white/10 rounded cursor-pointer transition">
-                            <i class="fas fa-chevron-up text-[10px]"></i>
-                            <div class="flex flex-col items-end leading-tight text-[10px]">
-                                <span>${timeStr}</span>
-                                <span>${d.toLocaleDateString()}</span>
-                            </div>
-                        </div>
-                    `;
+                            <div class="flex flex-col items-end leading-tight text-[10px]"><span>${timeStr}</span><span>${d.toLocaleDateString()}</span></div>
+                        </div>`;
                 }
                 container.appendChild(taskbar);
             }
 
-            // Mobile Bars
             let statusBar = document.getElementById('os-status-bar');
             if (statusBar) statusBar.remove();
             let notch = document.getElementById('os-notch');
@@ -523,26 +611,24 @@
                 container.prepend(notch);
             }
 
-            // Update button states
             updateButtonStates();
         }
 
         function updateButtonStates() {
-            // Device buttons
             document.querySelectorAll('.device-btn').forEach(btn => {
                 const id = btn.id.replace('btn-', '');
                 if (id === currentDevice) {
-                    btn.className = 'device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 font-semibold';
+                    btn.classList.add('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                    btn.classList.remove('text-slate-600', 'dark:text-slate-300');
                 } else {
-                    btn.className = 'device-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium';
+                    btn.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow', 'text-blue-600', 'dark:text-blue-400', 'font-semibold');
+                    btn.classList.add('text-slate-600', 'dark:text-slate-300');
                 }
             });
 
-            // OS buttons
             document.querySelectorAll('.os-btn').forEach(btn => {
                 const id = btn.id.replace('btn-os-', '');
                 btn.classList.add('hidden');
-                
                 const isDesktopView = currentDevice === 'desktop';
                 if (isDesktopView && (id === 'windows' || id === 'mac')) btn.classList.remove('hidden');
                 if (!isDesktopView && (id === 'ios' || id === 'android')) btn.classList.remove('hidden');
@@ -562,23 +648,23 @@
             localStorage.setItem('adminic_sim_device', device);
             const container = document.getElementById('demo-app-container');
             
-            container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]');
+            container.classList.remove('max-w-[400px]', 'max-w-[600px]', 'max-w-[800px]', 'max-w-[1200px]', 'rounded-lg', 'rounded-[2.5rem]', 'border-2', 'border-[6px]', 'border-[10px]');
             
             if (device === 'mobile') {
-                container.classList.add('max-w-[400px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800');
-                if (currentSimulatedOS !== 'ios' && currentSimulatedOS !== 'android') currentSimulatedOS = 'ios';
+                container.classList.add('max-w-[400px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800', 'dark:border-slate-900');
+                if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
+            } else if (device === 'zfold') {
+                container.classList.add('max-w-[600px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800', 'dark:border-slate-900');
+                if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
             } else if (device === 'tablet') {
-                container.classList.add('max-w-[800px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800');
-                if (currentSimulatedOS !== 'ios' && currentSimulatedOS !== 'android') currentSimulatedOS = 'ios';
+                container.classList.add('max-w-[800px]', 'rounded-[2.5rem]', 'border-[10px]', 'border-slate-800', 'dark:border-slate-900');
+                if (currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
             } else {
                 container.classList.add('max-w-[1200px]', 'rounded-lg', 'border-2', 'border-slate-200');
-                if (currentSimulatedOS !== 'windows' && currentSimulatedOS !== 'mac') currentSimulatedOS = 'windows';
+                if (currentSimulatedOS === 'ios' || currentSimulatedOS === 'android') currentSimulatedOS = 'windows';
             }
             
-            applyOSFrame();
-            // Re-render charts for scale
-            if (catChart) catChart.destroy();
-            if (fChart) fChart.destroy();
+            setSimulatedOS(currentSimulatedOS);
             setTimeout(initCharts, 600);
         }
 
@@ -588,30 +674,21 @@
             applyOSFrame();
         }
 
-        // --- App Logic ---
         function populateGrid() {
             const grid = document.getElementById('grid-content');
             grid.innerHTML = '';
-            
             sampleData.forEach((row, i) => {
-                const rowNum = i + 1;
                 grid.innerHTML += `
-                    <div class="sheets-cell sheets-row-num">${rowNum}</div>
+                    <div class="sheets-cell sheets-row-num">${i + 1}</div>
                     <div class="sheets-cell font-mono text-[11px] justify-center">${row.data}</div>
                     <div class="sheets-cell font-medium">${row.desc}</div>
                     <div class="sheets-cell font-bold text-right justify-end ${row.val < 0 ? 'text-red-500' : 'text-green-600'}">${formatarMoeda(row.val)}</div>
                     <div class="sheets-cell text-slate-500">${row.cat}</div>
                     <div class="sheets-cell italic text-[11px]">${row.ent}</div>
-                    <div class="sheets-cell font-bold justify-center ${row.stat === 'Pago' ? 'text-green-600' : 'text-amber-500'}">${row.stat}</div>
-                `;
+                    <div class="sheets-cell font-bold justify-center ${row.stat === 'Pago' ? 'text-green-600' : 'text-amber-500'}">${row.stat}</div>`;
             });
-
-            // Fill empty rows
-            for (let i = sampleData.length; i < 20; i++) {
-                grid.innerHTML += `
-                    <div class="sheets-cell sheets-row-num">${i+1}</div>
-                    <div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div>
-                `;
+            for (let i = sampleData.length; i < 30; i++) {
+                grid.innerHTML += `<div class="sheets-cell sheets-row-num">${i+1}</div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div><div class="sheets-cell"></div>`;
             }
         }
 
@@ -624,7 +701,6 @@
             document.getElementById('view-dashboard').classList.add('hidden');
             document.getElementById('tab-spreadsheet').classList.remove('sheets-tab-active');
             document.getElementById('tab-dashboard').classList.remove('sheets-tab-active');
-
             if (tab === 'spreadsheet') {
                 document.getElementById('view-spreadsheet').classList.remove('hidden');
                 document.getElementById('tab-spreadsheet').classList.add('sheets-tab-active');
@@ -642,6 +718,9 @@
             const isDark = document.documentElement.classList.contains('dark');
             const textColor = isDark ? '#94a3b8' : '#64748b';
 
+            if (catChart) catChart.destroy();
+            if (fChart) fChart.destroy();
+
             catChart = new Chart(ctxCat, {
                 type: 'doughnut',
                 data: {
@@ -655,9 +734,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right', labels: { color: textColor, font: { size: 10, weight: 'bold' } } }
-                    }
+                    plugins: { legend: { position: 'right', labels: { color: textColor, font: { size: 10, weight: 'bold' } } } }
                 }
             });
 
@@ -677,38 +754,27 @@
                         y: { beginAtZero: true, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { color: textColor } },
                         x: { grid: { display: false }, ticks: { color: textColor } }
                     },
-                    plugins: {
-                        legend: { labels: { color: textColor, font: { size: 10, weight: 'bold' } } }
-                    }
+                    plugins: { legend: { labels: { color: textColor, font: { size: 10, weight: 'bold' } } } }
                 }
             });
         }
 
-        // --- Theme Logic ---
         function toggleTheme() {
             const html = document.documentElement;
             html.classList.toggle('dark');
             const isDark = html.classList.contains('dark');
             localStorage.theme = isDark ? 'dark' : 'light';
-            
             const icon = document.querySelector('.theme-toggle-icon');
             icon.className = isDark ? 'fas fa-moon theme-toggle-icon' : 'fas fa-sun theme-toggle-icon';
-            
-            // Redraw charts
-            if (catChart) catChart.destroy();
-            if (fChart) fChart.destroy();
             initCharts();
             applyOSFrame();
         }
 
-        // Support Widget
         function toggleSupportWidget() {
             const menu = document.getElementById('support-menu');
-            const btn = document.getElementById('support-trigger');
             const iconOpen = document.getElementById('icon-open');
             const iconClose = document.getElementById('icon-close');
             const isClosed = menu.classList.contains('invisible');
-
             if (isClosed) {
                 menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
                 iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
@@ -722,13 +788,59 @@
             }
         }
 
-        // --- Init ---
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-hidden', !isActive);
+        });
+
+        function detectRealDevice() {
+            const ua = navigator.userAgent;
+            const platform = navigator.platform || '';
+            const maxTouch = navigator.maxTouchPoints || 0;
+            const isIOSDevice = /iPad|iPhone|iPod/.test(ua) || (platform === 'MacIntel' && maxTouch > 1);
+            const isMacDesktop = platform.toUpperCase().indexOf('MAC') >= 0 && maxTouch <= 1;
+            const screenW = window.innerWidth;
+            const isTouchDevice = maxTouch > 0;
+            let detectedDevice;
+            if (isTouchDevice && screenW <= 480) detectedDevice = 'mobile';
+            else if (isTouchDevice && screenW <= 820) detectedDevice = 'tablet';
+            else detectedDevice = 'desktop';
+            let detectedOS;
+            if (detectedDevice === 'desktop') detectedOS = isMacDesktop ? 'mac' : 'windows';
+            else detectedOS = isIOSDevice ? 'ios' : 'android';
+            return { device: detectedDevice, os: detectedOS };
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.theme === 'dark') document.documentElement.classList.add('dark');
-            setDeviceView(currentDevice);
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = document.querySelector('.theme-toggle-icon');
+            icon.className = isDark ? 'fas fa-moon theme-toggle-icon' : 'fas fa-sun theme-toggle-icon';
+
+            const savedDevice = localStorage.getItem('adminic_sim_device');
+            const savedOS = localStorage.getItem('adminic_sim_os');
+
+            if (savedDevice && savedOS) {
+                currentSimulatedOS = savedOS;
+                setDeviceView(savedDevice);
+            } else {
+                const detected = detectRealDevice();
+                currentSimulatedOS = detected.os;
+                setDeviceView(detected.device);
+            }
             populateGrid();
         });
     </script>
 </body>
-
 </html>
