@@ -1784,9 +1784,9 @@
                 requestAnimationFrame(() => {
                     notch.style.transition = '';
                     if (isIOS) {
-                        notch.className = 'absolute top-[2px] left-1/2 -translate-x-1/2 z-[1000] w-[100px] h-[26px] bg-black rounded-full transition-all duration-300';
+                        notch.className = 'absolute top-[8px] left-1/2 -translate-x-1/2 z-[1000] w-[120px] h-[35px] bg-black rounded-full transition-all duration-300 shadow-md';
                     } else {
-                        notch.className = 'absolute top-1.5 left-1/2 -translate-x-1/2 z-[1000] w-[18px] h-[18px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-300';
+                        notch.className = 'absolute top-[10px] left-1/2 -translate-x-1/2 z-[1000] w-[20px] h-[20px] bg-black rounded-full shadow-[inset_0_0_4px_rgba(255,255,255,0.2)] transition-all duration-300';
                     }
                 });
             });
@@ -1915,24 +1915,28 @@
             
             switch(device) {
                 case 'mobile': 
+                    container.style.padding = '';
                     container.classList.add('max-w-[400px]'); 
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'zfold': 
+                    container.style.padding = '';
                     container.classList.add('max-w-[600px]'); 
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'android';
                     break;
                 case 'tablet': 
+                    container.style.padding = '';
                     container.classList.add('max-w-[800px]'); 
                     container.classList.remove('rounded-lg', 'border-2');
                     container.classList.add('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     if(currentSimulatedOS === 'mac' || currentSimulatedOS === 'windows') currentSimulatedOS = 'ios';
                     break;
                 case 'desktop': 
+                    container.style.padding = '0px';
                     container.classList.add('max-w-[1200px]'); 
                     container.classList.remove('rounded-2xl', 'md:rounded-[2.5rem]', 'border-[6px]', 'md:border-[10px]');
                     container.classList.add('rounded-lg', 'border-2');
@@ -2008,5 +2012,16 @@
             }
         });
         </script>
+<script>
+    // Move o banner de cookies para a raiz do body para evitar bloqueio de z-index
+    const checkCookie = setInterval(() => {
+        const cookieBanner = document.querySelector('[id*="cookie"], [class*="cookie"]');
+        if(cookieBanner) {
+            document.body.appendChild(cookieBanner);
+            cookieBanner.setAttribute('style', 'z-index: 2147483647 !important; pointer-events: auto !important; position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important; margin: 0 !important;');
+            clearInterval(checkCookie);
+        }
+    }, 500);
+</script>
 </body>
 </html>
