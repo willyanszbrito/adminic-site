@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instruções para exclusão de dados pessoais - Adminic">
+    <title>Adminic | Exclusão de Dados</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.95); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+
+    <nav class="w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
+                    <i class="fas fa-cube text-white text-sm"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase">ADMINIC</span>
+            </a>
+            <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400">
+                <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow py-12 px-4 md:px-6">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-12 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 text-[10px] font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase bg-blue-100 dark:bg-blue-500/10 rounded-full">
+                    Privacidade & LGPD
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight uppercase">
+                    Instruções para <span class="text-blue-600">Exclusão de Dados</span>
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 font-medium text-lg leading-relaxed">
+                    Saiba como solicitar a remoção definitiva das suas informações de nossos sistemas.
+                </p>
+            </header>
+
+            <div class="bg-white dark:bg-[#0f172a]/80 p-6 md:p-10 rounded-3xl border border-slate-200 dark:border-white/5 shadow-sm space-y-8">
+                
+                <section>
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-info-circle text-blue-600"></i>
+                        Como solicitar a exclusão?
+                    </h2>
+                    <p class="mb-4 leading-relaxed">De acordo com a Lei Geral de Proteção de Dados (LGPD) e as políticas da Meta, você pode solicitar a exclusão de seus dados pessoais a qualquer momento. Para isso, escolha um dos canais oficiais abaixo:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <a href="mailto:juridico@adminic.com.br?subject=Exclusão de Dados" class="flex flex-col p-4 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-blue-500/30 transition bg-slate-50 dark:bg-slate-900/50">
+                            <span class="text-[10px] uppercase font-bold text-slate-400 mb-1">Via E-mail</span>
+                            <span class="text-slate-900 dark:text-white font-bold">juridico@adminic.com.br</span>
+                        </a>
+                        <a href="https://wa.me/559284790794?text=Olá, desejo solicitar a exclusão dos meus dados cadastrados." target="_blank" class="flex flex-col p-4 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-green-500/30 transition bg-slate-50 dark:bg-slate-900/50">
+                            <span class="text-[10px] uppercase font-bold text-slate-400 mb-1">Via WhatsApp</span>
+                            <span class="text-slate-900 dark:text-white font-bold">(92) 8489-9955</span>
+                        </a>
+                    </div>
+                </section>
+
+                <hr class="border-slate-100 dark:border-white/5">
+
+                <section>
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quais dados são excluídos?</h2>
+                    <p class="leading-relaxed mb-4">Ao processarmos sua solicitação, as seguintes informações são permanentemente removidas de nossos servidores ativos:</p>
+                    <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+                        <li>Histórico de conversas com a Inteligência Artificial;</li>
+                        <li>Dados financeiros e transações registradas;</li>
+                        <li>Anotações de CRM e informações de leads;</li>
+                        <li>Vinculação do seu número de WhatsApp com a plataforma.</li>
+                    </ul>
+                </section>
+
+                <section class="p-6 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-500/20">
+                    <h3 class="font-bold text-blue-900 dark:text-blue-300 mb-2">Prazo de Processamento</h3>
+                    <p class="text-blue-800 dark:text-blue-400 text-sm">
+                        Após a confirmação da sua identidade, o prazo para a exclusão definitiva é de até <strong>15 dias úteis</strong>. Você receberá uma confirmação assim que o processo for concluído.
+                    </p>
+                </section>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="politica.html" class="text-blue-600 hover:underline font-bold text-xs uppercase tracking-widest">
+                    <i class="fas fa-arrow-left mr-2"></i> Voltar para Política de Privacidade
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 text-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#020617]">
+        <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark') html.classList.add('dark');
+        function toggleTheme() {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        }
+    </script>
+</body>
+</html>
