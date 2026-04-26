@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instruções para exclusão de dados pessoais - Adminic">
+    <meta name="description" content="Instruções para exclusão de dados pessoais e conformidade com a LGPD - ADMINIC">
     <title>Adminic | Exclusão de Dados</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <link rel="manifest" href="/site.webmanifest">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,105 +21,414 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.95); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
+        
+        :focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        .glass { 
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(12px); 
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.95);
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            z-index: 1001;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-200 selection:bg-blue-500/30 text-sm min-h-screen flex flex-col transition-colors duration-300">
+    
+    <a href="#main-content" class="skip-to-main focus:top-0" aria-label="Pular para o conteúdo principal">
+        Pular para conteúdo
+    </a>
+    
+    <!-- Header Info Bar -->
+    <div class="bg-slate-200 dark:bg-[#0f172a] border-b border-slate-300 dark:border-white/5 py-2 px-4 md:px-6 text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-500 hidden md:block transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Adminic © 2026 | Soluções Administrativas e Tecnologia</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="mailto:privacidade@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fas fa-envelope"></i> 
+                    <span class="hidden lg:inline">privacidade@adminic.com.br</span>
+                </a>
+                <a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> 
+                    <span class="hidden lg:inline">(92) 98489-9955</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <nav class="w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex justify-between items-center">
+    <!-- Navigation -->
+    <nav class="sticky top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 glass bg-white/80 dark:bg-[#0f172a]/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            
             <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-8 h-8 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
-                    <i class="fas fa-cube text-white text-sm"></i>
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:bg-blue-500 transition">
+                    <i class="fas fa-cube text-white text-sm md:text-base"></i>
                 </div>
-                <span class="text-xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase">ADMINIC</span>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white uppercase group-hover:text-blue-600 dark:group-hover:text-blue-100 transition">ADMINIC</span>
             </a>
-            <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400">
-                <i class="fas fa-sun theme-toggle-icon"></i>
-            </button>
+
+            <div class="hidden md:flex gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Principal</a>
+                <a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Quem Somos</a>
+                <a href="index.html#servicos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Serviços</a>
+                <a href="index.html#produtos" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Produtos</a>
+                <a href="central-ajuda.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Ajuda</a>
+                <a href="contato.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition px-2 py-1">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                <button onclick="toggleTheme()" class="flex p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-yellow-400">
+                    <i class="fas fa-sun theme-toggle-icon"></i>
+                </button>
+
+                <a href="https://wa.me/559284790794" class="hidden md:flex bg-blue-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20 uppercase tracking-widest items-center gap-2">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Área do Cliente</span>
+                </a>
+
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-400 p-2 hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-white/5 shadow-xl">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Principal</a>
+                <a href="quem-somos.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Quem Somos</a>
+                <a href="index.html#servicos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Serviços</a>
+                <a href="index.html#produtos" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Produtos</a>
+                <a href="central-ajuda.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Ajuda</a>
+                <a href="contato.html" class="text-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-sm font-bold uppercase tracking-widest py-3 border-b border-slate-100 dark:border-white/5">Contato</a>
+                
+                <a href="https://wa.me/559284790794" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-xs text-center mt-2 shadow-lg shadow-blue-600/20">
+                    <i class="fab fa-whatsapp mr-2"></i>Área do Cliente
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="flex-grow py-12 px-4 md:px-6">
-        <div class="max-w-3xl mx-auto">
-            <header class="mb-12 text-center">
-                <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 text-[10px] font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase bg-blue-100 dark:bg-blue-500/10 rounded-full">
-                    Privacidade & LGPD
-                </div>
-                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight uppercase">
-                    Instruções para <span class="text-blue-600">Exclusão de Dados</span>
+    <!-- Main Content -->
+    <main id="main-content" tabindex="-1" class="flex-grow py-12 px-4 md:px-6 section-padding transition-colors duration-300">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="600">
+            <header class="mb-12">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight uppercase leading-tight transition-colors">
+                    Solicitação de <br>
+                    <span class="text-blue-600 dark:text-blue-500">Exclusão de Dados</span>
                 </h1>
-                <p class="text-slate-600 dark:text-slate-400 font-medium text-lg leading-relaxed">
-                    Saiba como solicitar a remoção definitiva das suas informações de nossos sistemas.
-                </p>
+                
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/20 bg-blue-50 dark:bg-blue-500/5 text-blue-600 dark:text-blue-400 text-[11px] font-bold uppercase tracking-widest transition-colors">
+                        Processo LGPD
+                    </div>
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 text-[11px] font-bold uppercase tracking-widest transition-colors">
+                        Adminic IA & CRM
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-500/10 p-6 rounded-xl border border-blue-100 dark:border-blue-500/20 mb-8 transition-colors">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+                        Em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong> e as diretrizes de transparência da <strong>Meta</strong>, o Adminic oferece mecanismos simples para que você solicite a remoção definitiva de suas informações de nossa base de dados.
+                    </p>
+                </div>
             </header>
 
-            <div class="bg-white dark:bg-[#0f172a]/80 p-6 md:p-10 rounded-3xl border border-slate-200 dark:border-white/5 shadow-sm space-y-8">
+            <div class="space-y-12 text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400">
                 
-                <section>
-                    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                        <i class="fas fa-info-circle text-blue-600"></i>
-                        Como solicitar a exclusão?
+                <!-- Method 1: WhatsApp -->
+                <section data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-green-600 flex items-center justify-center text-xs text-white"><i class="fab fa-whatsapp"></i></span>
+                        Via WhatsApp (Recomendado)
                     </h2>
-                    <p class="mb-4 leading-relaxed">De acordo com a Lei Geral de Proteção de Dados (LGPD) e as políticas da Meta, você pode solicitar a exclusão de seus dados pessoais a qualquer momento. Para isso, escolha um dos canais oficiais abaixo:</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                        <a href="mailto:juridico@adminic.com.br?subject=Exclusão de Dados" class="flex flex-col p-4 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-blue-500/30 transition bg-slate-50 dark:bg-slate-900/50">
-                            <span class="text-[10px] uppercase font-bold text-slate-400 mb-1">Via E-mail</span>
-                            <span class="text-slate-900 dark:text-white font-bold">juridico@adminic.com.br</span>
-                        </a>
-                        <a href="https://wa.me/559284790794?text=Olá, desejo solicitar a exclusão dos meus dados cadastrados." target="_blank" class="flex flex-col p-4 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-green-500/30 transition bg-slate-50 dark:bg-slate-900/50">
-                            <span class="text-[10px] uppercase font-bold text-slate-400 mb-1">Via WhatsApp</span>
-                            <span class="text-slate-900 dark:text-white font-bold">(92) 8489-9955</span>
-                        </a>
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4">
+                        <p class="mb-4">Este é o método mais rápido, pois valida automaticamente sua identidade através do seu número de telefone.</p>
+                        <ol class="space-y-4">
+                            <li class="flex gap-4">
+                                <span class="font-bold text-blue-600 dark:text-blue-400">1.</span>
+                                <span>Acesse nossa conversa oficial no WhatsApp.</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-bold text-blue-600 dark:text-blue-400">2.</span>
+                                <span>Envie a mensagem exata: <code class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded text-slate-900 dark:text-white font-mono">Excluir meus dados</code></span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-bold text-blue-600 dark:text-blue-400">3.</span>
+                                <span>Aguarde a confirmação do nosso sistema ou de um atendente humano.</span>
+                            </li>
+                        </ol>
+                        <div class="mt-8">
+                            <a href="https://wa.me/559284790794?text=Excluir+meus+dados" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-lg shadow-green-600/20">
+                                <i class="fab fa-whatsapp"></i> Iniciar exclusão agora
+                            </a>
+                        </div>
                     </div>
                 </section>
 
-                <hr class="border-slate-100 dark:border-white/5">
+                <hr class="border-slate-200 dark:border-white/5">
 
-                <section>
-                    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quais dados são excluídos?</h2>
-                    <p class="leading-relaxed mb-4">Ao processarmos sua solicitação, as seguintes informações são permanentemente removidas de nossos servidores ativos:</p>
-                    <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-                        <li>Histórico de conversas com a Inteligência Artificial;</li>
-                        <li>Dados financeiros e transações registradas;</li>
-                        <li>Anotações de CRM e informações de leads;</li>
-                        <li>Vinculação do seu número de WhatsApp com a plataforma.</li>
+                <!-- Method 2: Email -->
+                <section data-aos="fade-up" data-aos-delay="150">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 transition-colors">
+                        <span class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-xs text-white"><i class="fas fa-envelope"></i></span>
+                        Via E-mail (Oficial)
+                    </h2>
+                    <div class="pl-11 border-l border-slate-200 dark:border-white/10 ml-4">
+                        <p class="mb-4">Você pode enviar uma solicitação formal para nosso canal de privacidade:</p>
+                        <div class="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm">
+                            <p class="text-xs uppercase font-bold text-slate-400 tracking-widest mb-1">Destinatário</p>
+                            <p class="text-blue-600 dark:text-blue-400 font-bold mb-4">privacidade@adminic.com.br</p>
+                            
+                            <p class="text-xs uppercase font-bold text-slate-400 tracking-widest mb-1">Assunto</p>
+                            <p class="text-slate-900 dark:text-white font-medium mb-4">LGPD - Solicitação de Exclusão de Dados</p>
+                            
+                            <p class="text-xs text-slate-500 italic border-t border-slate-100 dark:border-white/5 pt-4">
+                                * É necessário informar o número de telefone (com DDD) vinculado à conta para localização dos dados.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Retention details -->
+                <section data-aos="fade-up" data-aos-delay="200" class="bg-slate-100 dark:bg-white/5 p-8 rounded-2xl border border-slate-200 dark:border-white/5">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 transition-colors">⚖️ O que acontece após a solicitação?</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-trash-alt mt-1 text-red-500"></i>
+                            <span><strong>Remoção Imediata:</strong> Todos os registros de transações financeiras, áudios enviados e notas de CRM são apagados permanentemente das nossas planilhas e servidores de processamento.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-clock mt-1 text-blue-500"></i>
+                            <span><strong>Prazo:</strong> O processo completo de auditoria e remoção leva até <strong>15 dias úteis</strong>. Você receberá uma confirmação final assim que o processo for concluído.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-info-circle mt-1 text-slate-500"></i>
+                            <span><strong>Dados Retidos:</strong> Por obrigação legal (Marco Civil da Internet), podemos manter logs de acesso básicos (IP e data/hora) pelo período mínimo exigido por lei, mas estes dados não serão utilizados para fins comerciais ou de relacionamento.</span>
+                        </li>
                     </ul>
                 </section>
 
-                <section class="p-6 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-500/20">
-                    <h3 class="font-bold text-blue-900 dark:text-blue-300 mb-2">Prazo de Processamento</h3>
-                    <p class="text-blue-800 dark:text-blue-400 text-sm">
-                        Após a confirmação da sua identidade, o prazo para a exclusão definitiva é de até <strong>15 dias úteis</strong>. Você receberá uma confirmação assim que o processo for concluído.
-                    </p>
-                </section>
-            </div>
-
-            <div class="mt-8 text-center">
-                <a href="politica.html" class="text-blue-600 hover:underline font-bold text-xs uppercase tracking-widest">
-                    <i class="fas fa-arrow-left mr-2"></i> Voltar para Política de Privacidade
-                </a>
             </div>
         </div>
     </main>
 
-    <footer class="py-8 text-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#020617]">
-        <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-white/5 pt-12 pb-8 px-4 md:px-6 bg-slate-50 dark:bg-[#020617] mt-auto transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter inline-block hover:text-blue-600 dark:hover:text-blue-400 transition mb-4">ADMINIC</a>
+                    <p class="text-slate-600 dark:text-slate-500 text-xs mt-2 leading-relaxed max-w-sm font-medium mx-auto md:mx-0">
+                        Fundada em 2025, a Adminic combina suporte administrativo com inovação tecnológica. Nosso compromisso é com a eficiência e segurança dos seus dados.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Institucional</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="termos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1">Termos de Uso</a></li>
+                        <li><a href="politica.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1">Privacidade</a></li>
+                        <li><a href="quem-somos.html" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4 text-[10px] uppercase tracking-[0.3em]">Contato</h4>
+                    <ul class="space-y-3 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                        <li><a href="mailto:contato@adminic.com.br" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1">contato@adminic.com.br</a></li>
+                        <li><a href="https://wa.me/559284790794" class="hover:text-blue-600 dark:hover:text-blue-500 transition block py-1">(92) 8489-9955</a></li>
+                        <li>Manaus, AM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-200 dark:border-white/5 text-center">
+                <p class="text-slate-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-3">Willyan Souza Brito | CNPJ: 64.146.685/0001-61</p>
+                <p class="text-slate-500 text-[9px] font-medium tracking-widest uppercase">&copy; 2026 Adminic Serviços. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Support Widget -->
+    <aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans isolate pointer-events-none">
+        <div id="support-menu" class="pointer-events-auto invisible opacity-0 transform translate-y-4 origin-bottom-right transition-all duration-300 w-80 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl overflow-hidden" role="dialog" aria-modal="true" aria-hidden="true">
+            <header class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-5 border-b border-slate-200 dark:border-white/5">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                        <i class="fas fa-robot text-blue-600 dark:text-blue-400 text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p id="typing-text" class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-relaxed min-h-[40px]"></p>
+                    </div>
+                </div>
+            </header>
+            <nav class="p-3 space-y-1" aria-label="Canais de suporte">
+                <a href="https://wa.me/559284790794" target="_blank" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">WhatsApp</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Resposta instantânea</span>
+                    </div>
+                </a>
+                <a href="mailto:comercial@adminic.com.br" class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-800 dark:text-white text-sm">E-mail</span>
+                        <span class="block text-slate-500 dark:text-slate-400 text-[11px]">Orçamentos e dúvidas</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <button id="support-trigger" onclick="toggleSupportWidget()" class="pointer-events-auto relative flex items-center gap-3 p-2.5 md:pl-2 md:pr-5 md:py-2 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 bg-slate-900 dark:bg-blue-600 border border-slate-700 dark:border-blue-400 group">
+            <div class="relative w-10 h-10 rounded-full bg-blue-600 dark:bg-white flex items-center justify-center shadow-inner overflow-hidden">
+                <i id="icon-open" class="fas fa-headset text-white dark:text-blue-600 text-sm absolute"></i>
+                <i id="icon-close" class="fas fa-times text-white dark:text-blue-600 text-base transition-all duration-300 transform rotate-90 scale-50 opacity-0 absolute"></i>
+                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-green-400 border border-blue-600 dark:border-white rounded-full animate-pulse"></span>
+            </div>
+            <div class="text-left hidden md:block">
+                <p class="text-[9px] text-slate-300 dark:text-blue-100 font-bold uppercase tracking-widest leading-none mb-0.5 group-hover:text-white">Suporte</p>
+                <p class="text-sm font-bold text-white leading-none">Fale Conosco</p>
+            </div>
+        </button>
+    </aside>
+
+    <!-- Scripts -->
     <script>
-        const html = document.documentElement;
-        if (localStorage.theme === 'dark') html.classList.add('dark');
-        function toggleTheme() {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        let typingTimeout;
+        const welcomeMessage = "Olá! 👋 Precisa de ajuda com a exclusão dos seus dados ou alguma dúvida sobre privacidade?";
+        
+        function typeWriterEffect(element, text, speed = 30) {
+            let i = 0;
+            element.innerHTML = "";
+            element.classList.add('typing-cursor');
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(type, speed);
+                } else {
+                    setTimeout(() => { element.classList.remove('typing-cursor'); }, 1500);
+                }
+            }
+            clearTimeout(typingTimeout);
+            type();
         }
+
+        function toggleSupportWidget() {
+            const menu = document.getElementById('support-menu');
+            const btn = document.getElementById('support-trigger');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            const typingElement = document.getElementById('typing-text');
+            const isClosed = menu.classList.contains('invisible');
+
+            if (isClosed) {
+                menu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+                iconOpen.classList.add('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
+                setTimeout(() => { typeWriterEffect(typingElement, welcomeMessage); }, 300);
+            } else {
+                menu.classList.add('invisible', 'opacity-0', 'translate-y-4');
+                iconOpen.classList.remove('opacity-0', 'rotate-180', 'scale-0');
+                iconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
+                iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+                clearTimeout(typingTimeout);
+                typingElement.innerHTML = "";
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateIcons(isDark);
+        }
+
+        function updateIcons(isDark) {
+            document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+            });
+        }
+
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            updateIcons(true);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 600, once: true });
+            
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    const icon = btn.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+        });
     </script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>
