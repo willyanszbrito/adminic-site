@@ -1476,13 +1476,37 @@
         });
     }
 
-    if (localStorage.theme === 'dark') { // Default to light
-        html.classList.add('dark');
-        updateIcons(true);
-    } else {
-        html.classList.remove('dark');
-        updateIcons(false);
-    }
+    (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved === 'dark' || (!saved && prefersDark);
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        // Atualiza icone assim que possivel
+        function updateIcons(dark) {
+            document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(dark ? 'fa-moon' : 'fa-sun');
+            });
+        }
+        updateIcons(isDark);
+
+        // Ouve mudancas em tempo real do sistema operacional
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.documentElement.classList.add('dark');
+                    updateIcons(true);
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    updateIcons(false);
+                }
+            }
+        });
+    })()
 
     function toggleTheme() {
         if (html.classList.contains('dark')) {
