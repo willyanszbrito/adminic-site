@@ -147,11 +147,7 @@
         }
         
         /* Animações com preferência de redução */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
+        
             
             .mobile-menu {
                 transition: none !important;
@@ -719,13 +715,11 @@
         // Inicializar AOS com preferência de redução de movimento
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
-        if (!prefersReducedMotion) {
-            AOS.init({ 
+        AOS.init({ 
                 duration: 800, 
                 once: true,
                 offset: 100
             });
-        }
         
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');

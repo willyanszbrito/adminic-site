@@ -67,8 +67,7 @@
             transition: color 0.3s;
         }
         
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
+        
             .mobile-menu { transition: none !important; }
             html { scroll-behavior: auto !important; }
         }
@@ -538,9 +537,7 @@
         AOS.init({ 
             duration: 800, 
             once: true,
-            offset: 100,
-            disable: prefersReducedMotion
-        });
+            offset: 100});
         
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');

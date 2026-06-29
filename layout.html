@@ -147,13 +147,7 @@
         }
         
         /* Animações com preferência de redução */
-        @media (prefers-reduced-motion: reduce) {
-            .card-hover,
-            .mobile-menu,
-            * {
-                transition: none !important;
-                animation: none !important;
-            }
+        
             
             .card-hover:hover {
                 transform: none !important;
@@ -554,8 +548,7 @@
         AOS.init({ 
             duration: 800, 
             once: true,
-            offset: 100,
-            disable: prefersReducedMotion || window.innerWidth < 768
+            offset: 100|| window.innerWidth < 768
         });
         
         // Menu mobile toggle

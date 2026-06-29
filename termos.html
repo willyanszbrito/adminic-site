@@ -110,15 +110,7 @@
         }
         
         /* Redução de movimento */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
+        
             
             .mobile-menu,
             .mobile-menu.active {
@@ -651,13 +643,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             
-            if (!prefersReducedMotion) {
-                AOS.init({
+            AOS.init({
                     duration: 600,
                     once: true,
                     offset: 100
                 });
-            }
             
             // Menu mobile toggle com acessibilidade
             const mobileMenuButton = document.getElementById('mobile-menu-button');

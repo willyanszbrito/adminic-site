@@ -199,16 +199,7 @@
             outline-offset: 2px;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
+        
         }
 
         @media (prefers-reduced-motion: no-preference) {
@@ -1879,9 +1870,7 @@
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100,
-            disable: prefersReducedMotion
-        });
+            offset: 100});
 
         // Menu mobile toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
