@@ -237,6 +237,14 @@
             animation-delay: 0.6s;
             width: 0;
         }
+    
+        /* FALLBACK: Mostra elementos se o AOS não estiver inicializado ou estiver desativado */
+        html:not(.aos-init) [data-aos] {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+        }
     </style>
     <style>
         :root {
@@ -1583,8 +1591,8 @@
                 </div>
             </header>
             <nav class="p-3 space-y-1" aria-label="Canais de suporte">
-                <a href="demo-whatsapp.html"
-                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                <a href="https://wa.me/559284790794" target="_blank"
+                    class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
                         class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fab fa-whatsapp"></i>
@@ -1595,7 +1603,7 @@
                     </div>
                 </a>
                 <a href="mailto:comercial@adminic.com.br"
-                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
                         class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-envelope"></i>
@@ -1606,7 +1614,7 @@
                     </div>
                 </a>
                 <a href="central-ajuda.html"
-                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
+                    class="stagger-item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-colors group">
                     <div
                         class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-question"></i>
